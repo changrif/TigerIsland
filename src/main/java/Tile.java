@@ -1,3 +1,5 @@
+package generic;
+
 /**
  * Created by Kyle on 3/14/2017.
  */
@@ -32,7 +34,71 @@ public class Tile {
         return Hex3;
     }
 
+    //odd-r horizontal layout
+    public void addTile(int x, int y, int TilePos, Hex Map[][]){
+        Map[x][y] = getHex1();
+        getHex1().setX(x);
+        getHex1().setY(y);
 
+        if (TilePos == 1){
+            Map[x][y+1] = getHex2();
+            getHex2().setX(x);
+            getHex2().setY(y+1);
+
+            Map[x+1][y+1] = getHex3();
+            getHex3().setX(x+1);
+            getHex3().setY(y+1);
+        }
+        else if (TilePos == 2){
+            Map[x+1][y+1] = getHex2();
+            getHex2().setX(x+1);
+            getHex2().setY(y+1);
+
+            Map[x+1][y] = getHex3();
+            getHex3().setX(x+1);
+            getHex3().setY(y);
+        }
+
+        else if (TilePos == 3){
+            Map[x+1][y] = getHex2();
+            getHex2().setX(x+1);
+            getHex2().setY(y);
+
+            Map[x+1][y-1] = getHex3();
+            getHex3().setX(x+1);
+            getHex3().setY(y-1);
+        }
+
+        else if (TilePos == 4) {
+            Map[x + 1][y - 1] = getHex2();
+            getHex2().setX(x + 1);
+            getHex2().setY(y - 1);
+
+            Map[x][y - 1] = getHex3();
+            getHex3().setX(x);
+            getHex3().setY(y - 1);
+        }
+
+        else if (TilePos == 5){
+            Map[x][y-1] = getHex2();
+            getHex2().setX(x);
+            getHex2().setY(y-1);
+
+            Map[x-1][y] = getHex3();
+            getHex3().setX(x-1);
+            getHex3().setY(y);
+        }
+
+        else if (TilePos == 6){
+            Map[x-1][y] = getHex2();
+            getHex2().setX(x-1);
+            getHex2().setY(y);
+
+            Map[x][y+1] = getHex3();
+            getHex3().setX(x);
+            getHex3().setY(y+1);
+        }
+    }
 
     public static void main(String [] args) {
 
@@ -75,18 +141,18 @@ public class Tile {
 
         }
 
-        for (int i = 0; i < 0; i++) {
-                Hex hex1 = TileArray[i].getHex1();
-                Hex hex2 = TileArray[i].getHex2();
-                Hex hex3 = TileArray[i].getHex3();
+        for (int i = 0; i < 1; i++) {
+            Hex hex1 = TileArray[i].getHex1();
+            Hex hex2 = TileArray[i].getHex2();
+            Hex hex3 = TileArray[i].getHex3();
 
-                System.out.println(hex1.getTerrainType());
-                System.out.println(hex2.getTerrainType());
-                System.out.println(hex3.getTerrainType());
+            System.out.println(hex1.getTerrainType());
+            System.out.println(hex2.getTerrainType());
+            System.out.println(hex3.getTerrainType());
 
-                System.out.println("TileID: " + TileArray[i].getTileID());
+            System.out.println("TileID: " + TileArray[i].getTileID());
 
-                System.out.println();
+            System.out.println();
 
         }
 
