@@ -40,8 +40,8 @@ public class RandomTileIndexGenerator {
 
         Collection<Integer> tilesPicked = new HashSet<>();
 
-        //Just testing....
-        //test
+        //Just testing...
+
         for(int i = 0; i < 48; i++) {
             System.out.print(i + ". ");
             r.getRandomTileIndex(tilesPicked);
