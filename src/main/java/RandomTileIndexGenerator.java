@@ -8,42 +8,43 @@ import java.util.Random;
 
 public class RandomTileIndexGenerator {
 
+    private final int totalNumberOfTiles = 48;
+    Random rand;
+    private Collection<Integer> tilesPicked;
     public RandomTileIndexGenerator(){
-
+        rand = new Random();
+        tilesPicked = new HashSet<>();
     }
 
-    public int getRandomTileIndex(Collection<Integer> tilesPicked){
-        Random rand = new Random();
-        final int amountOfTiles = 48;
+    public int getAmountOfTiles(){
+        return totalNumberOfTiles;
+    }
 
-        if (tilesPicked.size()== amountOfTiles){
+    public int getNumberOfTilesPicked(){
+        return tilesPicked.size();
+    }
+
+    public int getRandomTileIndex(){
+        int tileID;
+
+        if (getNumberOfTilesPicked() == totalNumberOfTiles){
             throw new RuntimeException("Every ID has been used");
         }
 
-        boolean newIndex = false;
-        int index=0;
+        do {
+            tileID = getTileIndexFromZeroToFortySeven(totalNumberOfTiles);
+        }while(tileHasAlreadyBeenDrawn(tileID));
 
-        while(newIndex == false){
-            index = rand.nextInt(amountOfTiles);
-            if(tilesPicked.contains(index) == false){
-                newIndex = true;
-            }
-        }
+        tilesPicked.add(tileID);
 
-        tilesPicked.add(index);
-        System.out.println(index);
-        return index;
+        return tileID;
     }
 
-    public static void main(String args[]){
-        RandomTileIndexGenerator r = new RandomTileIndexGenerator();
+    public boolean tileHasAlreadyBeenDrawn(int tileID){
+        return tilesPicked.contains(tileID);
+    }
 
-        Collection<Integer> tilesPicked = new HashSet<>();
-
-        //Just testing...Hi
-        for(int i = 0; i < 48; i++) {
-            System.out.print(i + ". ");
-            r.getRandomTileIndex(tilesPicked);
-        }
+    public int getTileIndexFromZeroToFortySeven(int amountOfTiles) {
+        return rand.nextInt(amountOfTiles);
     }
 }
