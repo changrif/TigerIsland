@@ -6,7 +6,7 @@ public class Hex {
     private int x;
     private int y;
 
-    private String TerrainType;
+    private Terrain.typesOfTerrain TerrainType;
     private int Level = -1;
 
     private Tile Tile;
@@ -16,7 +16,7 @@ public class Hex {
     private Totoro totoro;
 
 
-    public Hex (String TerrainType){
+    public Hex (Terrain.typesOfTerrain TerrainType){
 
         this.TerrainType = TerrainType;
 
@@ -39,7 +39,7 @@ public class Hex {
     }
 
 
-    public String getTerrainType(){
+    public Terrain.typesOfTerrain getTerrainType(){
         return TerrainType;
     }
 

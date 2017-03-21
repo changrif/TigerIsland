@@ -14,6 +14,7 @@ public class Terrain {
         public Habitat(typesOfTerrain t){
             this.t = t;
         }
+        public typesOfTerrain getTerrain()  { return t; }
         public boolean isHabitable() {
             switch (t) {
                 case JUNGLE:
@@ -31,19 +32,6 @@ public class Terrain {
             }
             return false;
         }
-    }
-
-
-    public static void main(String args[]){
-        //Just Testing...
-
-        Habitat type = new Habitat(typesOfTerrain.JUNGLE);
-        boolean test = type.isHabitable();
-        System.out.println(test);
-
-        type = new Habitat(typesOfTerrain.VOLCANO);
-        boolean test2 = type.isHabitable();
-        System.out.println(test2);
     }
 }
 
