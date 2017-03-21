@@ -27,43 +27,44 @@ public class Map {
     public Tile[] getTiles(){
         return GameTiles;
     }
-    public String getMapTerrain(int x, int y){
+    public Terrain.typesOfTerrain getMapTerrain(int x, int y){
         return Map[x][y].getTerrainType();
     }
 
 
     public void TileGenerate(){
-        String TerrainTypes[] = {"Jungle", "Lake", "Grassland", "Rocky"};
+        Terrain.typesOfTerrain TerrainTypes[] = {
+                Terrain.typesOfTerrain.JUNGLE, Terrain.typesOfTerrain.LAKE, Terrain.typesOfTerrain.GRASSLANDS, Terrain.typesOfTerrain.ROCKY};
         int TileIndex = 0;
-        for (int i = 0; i < 3; i++) {
-            for (String terrain : TerrainTypes) {
-                Hex hex1 = new Hex("Volcano");
+        for (int i = 0; i < 3; i++){
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Jungle");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE);
                 GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain : TerrainTypes) {
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Lake");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
                 GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain : TerrainTypes) {
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Grassland");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS);
                 GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain : TerrainTypes) {
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Rocky");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY);
                 GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }

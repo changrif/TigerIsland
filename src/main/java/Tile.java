@@ -100,39 +100,40 @@ public class Tile {
 
     public static void main(String [] args) {
 
-        String TerrainTypes[] = {"Jungle", "Lake", "Grassland", "Rocky"};
+        Terrain.typesOfTerrain TerrainTypes[] = {
+                Terrain.typesOfTerrain.JUNGLE, Terrain.typesOfTerrain.LAKE, Terrain.typesOfTerrain.GRASSLANDS, Terrain.typesOfTerrain.ROCKY};
         Tile TileArray[] = new Tile[48];
         int TileIndex = 0;
 
         for (int i = 0; i < 3; i++){
-            for (String terrain: TerrainTypes){
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Jungle");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain: TerrainTypes){
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Lake");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain: TerrainTypes){
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Grassland");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
-            for (String terrain: TerrainTypes){
-                Hex hex1 = new Hex("Volcano");
+            for (Terrain.typesOfTerrain terrain: TerrainTypes){
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
                 Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex("Rocky");
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
