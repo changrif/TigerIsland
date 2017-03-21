@@ -16,19 +16,20 @@ public class DeckTest {
 
     @Before
     public void createDeck(){
-        deck.TileGenerate();
+        deck.generateTiles();
     }
 
     @Test
-    public void testforDeck(){
-        Assert.assertEquals(48, deck.getSizeOfDeck());
+    public void deckDecreasesByOneWhenTileIsDrawn(){
+        deck.draw();
+        Assert.assertEquals(47, deck.getCurrentSizeOfDeck());
     }
     @Test
     public void testForReturnGameTiles(){
-        Assert.assertEquals(deck.GameTiles, deck.getDeck());
+
     }
     @Test
     public void testGetTileID(){
-        Assert.assertEquals(6, deck.GameTiles[6].getTileID());
+
     }
 };

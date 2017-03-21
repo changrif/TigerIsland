@@ -32,6 +32,12 @@ public class Map {
     }
 
 
+    //Hey, let's move this to a "Deck" class.
+    //We think this would be a good idea because the map should not contain all the tiles when the map is generated
+    //Therefore, the tiles should be created in the deck class.
+    //P.S. The code from the RandomTileIndexGenerator.java class should be put into the deck class aswell. We refactored. :)
+    //<3 Nick & David 3/21 3:50pm
+
     public void TileGenerate(){
         Terrain.typesOfTerrain TerrainTypes[] = {
                 Terrain.typesOfTerrain.JUNGLE, Terrain.typesOfTerrain.LAKE, Terrain.typesOfTerrain.GRASSLANDS, Terrain.typesOfTerrain.ROCKY};
