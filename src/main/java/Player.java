@@ -11,7 +11,7 @@ public class Player {
     private int numberOfTotorosIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
-    private Tile tile;
+//    private Tile tile;
 
 
     public Player(String PlayerName) {
@@ -20,17 +20,16 @@ public class Player {
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
     }
 
-    public void placeTile(){
-        //place a tile given some coordinates... or something
-    }
-
-    public void passInTile(Tile t){
-        this.tile = t;
-    }
-
     int getXCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input your X coordinate for where to place the volcano tile.");
+        return sc.nextInt();
+    }
+
+    int getTileOrientationInputFromPlayer(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hello! Input the orientation number (1-6) for which you want to rotate the " +
+                "other two hexes around the volcano pivot.");
         return sc.nextInt();
     }
 
