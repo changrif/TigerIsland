@@ -18,7 +18,7 @@ public class Deck {
 
     public Tile draw(){
         //int index = rand.getRandomTileIndex(GameTiles.size());
-        int topCard = GameTiles.size();
+        int topCard = GameTiles.size()-1;
         Tile topTile = GameTiles.get(topCard);
         GameTiles.remove(topCard);
         return topTile;
