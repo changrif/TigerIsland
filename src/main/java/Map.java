@@ -42,8 +42,7 @@ public class Map {
         Map[volcanoXCoordinate][volcanoYCoordinate] = tile.getHex1();
 
 
-        if (tileOrientation == 1){
-          //  checkIfValidPosition
+        if (tileOrientation == 1 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)){
             hex2XCoordinate = volcanoXCoordinate;
             hex2YCoordinate = volcanoYCoordinate + 1;
             tile.getHex2().setX(hex2XCoordinate);
@@ -57,7 +56,7 @@ public class Map {
             tile.getHex3().setY(hex3YCoordinate);
             Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
         }
-        else if (tileOrientation == 2){
+        else if (tileOrientation == 2 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)){
 
             hex2XCoordinate = volcanoXCoordinate + 1;
             hex2YCoordinate = volcanoYCoordinate + 1;
@@ -74,7 +73,7 @@ public class Map {
 
         }
 
-        else if (tileOrientation == 3){
+        else if (tileOrientation == 3 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)){
             hex2XCoordinate = volcanoXCoordinate + 1;
             hex2YCoordinate = volcanoYCoordinate;
             tile.getHex2().setX(hex2XCoordinate);
@@ -89,7 +88,7 @@ public class Map {
             Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
         }
 
-        else if (tileOrientation == 4) {
+        else if (tileOrientation == 4 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)) {
 
             hex2XCoordinate = volcanoXCoordinate + 1;
             hex2YCoordinate = volcanoYCoordinate - 1;
@@ -106,7 +105,7 @@ public class Map {
 
         }
 
-        else if (tileOrientation == 5){
+        else if (tileOrientation == 5 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)){
             hex2XCoordinate = volcanoXCoordinate;
             hex2YCoordinate = volcanoYCoordinate - 1;
             tile.getHex2().setX(hex2XCoordinate);
@@ -121,7 +120,7 @@ public class Map {
             Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
         }
 
-        else if (tileOrientation == 6){
+        else if (tileOrientation == 6 && isValidPlacement(tile, tileOrientation, volcanoXCoordinate, volcanoYCoordinate)){
             hex2XCoordinate = volcanoXCoordinate - 1;
             hex2YCoordinate = volcanoYCoordinate;
             tile.getHex2().setX(hex2XCoordinate);
@@ -138,31 +137,29 @@ public class Map {
     }
 
 
-    public boolean isValidPlacement(Tile tile, int tileOrientation){
+    public boolean isValidPlacement(Tile tile, int tileOrientation, int x, int y){
 
         boolean validPlacement = false;
         if(tileOrientation == 1 && Map[x][y + 1] != null && Map[x+1][y+1] && checkNeighborTiles()){
             validPlacement = true;
         }
-        else if(tileOrientation == 2 && Map[x][y + 1] != null && Map[x+1][y+1] && checkNeighborTiles()){
+        else if(tileOrientation == 2 && Map[x + 1][y + 1] != null && Map[x+1][y] && checkNeighborTiles()){
 
         }
-        else if(tileOrientation == 3){
+        else if(tileOrientation == 3 && Map[x + 1][y] != null && Map[x+1][y - 1] && checkNeighborTiles()){
 
         }
-        else if(tileOrientation == 4){
+        else if(tileOrientation == 4 && Map[x + 1][y - 1] != null && Map[x][y - 1] && checkNeighborTiles()){
 
         }
-        else if(tileOrientation == 5){
+        else if(tileOrientation == 5 && Map[x][y - 1] != null && Map[x-1][y] && checkNeighborTiles()){
 
         }
-        else if(tileOrientation == 6){
+        else if(tileOrientation == 6 && Map[x - 1][y] != null && Map[x][y + 1] && checkNeighborTiles()){
 
         }
 
-
-        return
-
+        return validPlacement;
 
     }
 
