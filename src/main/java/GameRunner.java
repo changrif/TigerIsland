@@ -36,6 +36,14 @@ class GameRunner{
                 //player1 plays
                 //Draw
                 Tile t = deck.draw();
+                p1.passInTile(t);
+                //int x = p1.getXCoordinateInputFromPlayer();
+                //int y = p1.getYCoordinateInputFromPlayer();
+                int x = 100;
+                int y = 100;
+                int tileOrientation = 1;
+                map.placeTile(x, y, t, tileOrientation);
+
                 //Build
                 //If can't build, then game gameIsNotFinished=false;
                     // If player makes illegal move or cannot build set gameInProgress to false and p1 loses

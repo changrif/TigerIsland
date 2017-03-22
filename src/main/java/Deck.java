@@ -12,7 +12,7 @@ public class Deck {
     public Deck()
     {
         //rand = new RandomTileIndexGenerator();
-        GameTiles = new ArrayList<Tile>();
+        GameTiles = new ArrayList<>();
         Collections.shuffle(GameTiles);
     }
 

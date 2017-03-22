@@ -9,9 +9,6 @@ public class Hex {
     private Terrain.typesOfTerrain TerrainType;
     private int Level = -1;
 
-    private Tile Tile;
-    //private int TilePosition;
-
     private Meeple meeples[];
     private Totoro totoro;
 

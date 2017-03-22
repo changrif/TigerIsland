@@ -14,7 +14,9 @@ public class Terrain {
         public Habitat(typesOfTerrain t){
             this.t = t;
         }
+
         public typesOfTerrain getTerrain()  { return t; }
+
         public boolean isHabitable() {
             switch (t) {
                 case JUNGLE:

@@ -31,70 +31,7 @@ public class Tile {
     }
 
     //odd-r horizontal layout
-    public void addTile(int x, int y, int TilePos, Hex Map[][]){
-        Map[x][y] = Hex1;
-        Hex1.setX(x);
-        Hex1.setY(y);
 
-        if (TilePos == 1){
-            Map[x][y+1] = Hex2;
-            Hex2.setX(x);
-            Hex2.setY(y+1);
-
-            Map[x+1][y+1] = Hex3;
-            Hex3.setX(x+1);
-            Hex3.setY(y+1);
-        }
-        else if (TilePos == 2){
-            Map[x+1][y+1] = Hex2;
-            Hex2.setX(x+1);
-            Hex2.setY(y+1);
-
-            Map[x+1][y] = Hex3;
-            Hex3.setX(x+1);
-            Hex3.setY(y);
-        }
-
-        else if (TilePos == 3){
-            Map[x+1][y] = Hex2;
-            Hex2.setX(x+1);
-            Hex2.setY(y);
-
-            Map[x+1][y-1] = Hex3;
-            Hex3.setX(x+1);
-            Hex3.setY(y-1);
-        }
-
-        else if (TilePos == 4) {
-            Map[x + 1][y - 1] = Hex2;
-            Hex2.setX(x + 1);
-            Hex2.setY(y - 1);
-
-            Map[x][y - 1] = Hex3;
-            Hex3.setX(x);
-            Hex3.setY(y - 1);
-        }
-
-        else if (TilePos == 5){
-            Map[x][y-1] = Hex2;
-            Hex2.setX(x);
-            Hex2.setY(y-1);
-
-            Map[x-1][y] = Hex3;
-            Hex3.setX(x-1);
-            Hex3.setY(y);
-        }
-
-        else if (TilePos == 6){
-            Map[x-1][y] = Hex2;
-            Hex2.setX(x-1);
-            Hex2.setY(y);
-
-            Map[x][y+1] = Hex3;
-            Hex3.setX(x);
-            Hex3.setY(y+1);
-        }
-    }
 
     public static void main(String [] args) {
 

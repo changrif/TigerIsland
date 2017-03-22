@@ -144,7 +144,7 @@ public class Map {
         if(tileOrientation == 1 && Map[x][y + 1] != null && Map[x+1][y+1] && checkNeighborTiles()){
             validPlacement = true;
         }
-        else if(tileOrientation == 2){
+        else if(tileOrientation == 2 && Map[x][y + 1] != null && Map[x+1][y+1] && checkNeighborTiles()){
 
         }
         else if(tileOrientation == 3){
