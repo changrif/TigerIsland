@@ -7,8 +7,10 @@ import java.util.Scanner;
 public class Player {
     private final int MAX_NUMBER_OF_MEEPLES = 20;
     private final int MAX_NUMBER_OF_TOTOROS = 3;
+    private final int MAX_NUMBER_OF_TIGERS = 2;
     private int numberOfMeeplesIHave;
     private int numberOfTotorosIHave;
+    private int numberOfTigersIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
 //    private Tile tile;
@@ -18,6 +20,7 @@ public class Player {
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
+        numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
     int getXCoordinateInputFromPlayer(){
@@ -54,6 +57,8 @@ public class Player {
     public int getNUMBER_OF_TOTOROS() {
         return MAX_NUMBER_OF_TOTOROS;
     }
+
+    public int getNUMBER_OF_TIGERS(){return MAX_NUMBER_OF_TIGERS;}
 
     public String getPlayerName() {
         return name;
