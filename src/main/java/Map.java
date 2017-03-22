@@ -2,12 +2,13 @@
  * Created by Kyle on 3/14/2017.
  */
 public class Map {
-
-    private Hex Map[][] = new Hex[200][200];
-    private Tile GameTiles[] = new Tile[48];
+    private final int MAX_MAP_WIDTH = 200, MAX_MAP_HEIGHT = 200;
+    private Hex Map[][];
+   // private Tile GameTiles[] = new Tile[48];
 
 
     public Map(){
+        Map = new Hex[MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
     }
 
 
@@ -31,56 +32,138 @@ public class Map {
         return Map[x][y].getTerrainType();
     }
 
+    public void placeTile(int x, int y, Tile tile, int tileOrientation){
 
-    //Hey, let's move this to a "Deck" class.
-    //We think this would be a good idea because the map should not contain all the tiles when the map is generated
-    //Therefore, the tiles should be created in the deck class.
-    //P.S. The code from the RandomTileIndexGenerator.java class should be put into the deck class aswell. We refactored. :)
-    //<3 Nick & David 3/21 3:50pm
+        int hex2XCoordinate, hex2YCoordinate, hex3XCoordinate, hex3YCoordinate;
+        int volcanoXCoordinate = x;
+        int volcanoYCoordinate = y;
+        tile.getHex1().setX(volcanoXCoordinate);
+        tile.getHex1().setY(volcanoYCoordinate);
+        Map[volcanoXCoordinate][volcanoYCoordinate] = tile.getHex1();
 
-    public void TileGenerate(){
-        Terrain.typesOfTerrain TerrainTypes[] = {
-                Terrain.typesOfTerrain.JUNGLE, Terrain.typesOfTerrain.LAKE, Terrain.typesOfTerrain.GRASSLANDS, Terrain.typesOfTerrain.ROCKY};
-        int TileIndex = 0;
-        for (int i = 0; i < 3; i++){
-            for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE);
-                GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
-                TileIndex++;
-            }
 
-            for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
-                GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
-                TileIndex++;
-            }
+        if (tileOrientation == 1){
+          //  checkIfValidPosition
+            hex2XCoordinate = volcanoXCoordinate;
+            hex2YCoordinate = volcanoYCoordinate + 1;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
 
-            for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS);
-                GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
-                TileIndex++;
-            }
 
-            for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY);
-                GameTiles[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
-                TileIndex++;
-            }
+            hex3XCoordinate = volcanoXCoordinate + 1;
+            hex3YCoordinate = volcanoYCoordinate + 1;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
+        }
+        else if (tileOrientation == 2){
 
+            hex2XCoordinate = volcanoXCoordinate + 1;
+            hex2YCoordinate = volcanoYCoordinate + 1;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
+
+
+            hex3XCoordinate = volcanoXCoordinate + 1;
+            hex3YCoordinate = volcanoYCoordinate;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
+
+        }
+
+        else if (tileOrientation == 3){
+            hex2XCoordinate = volcanoXCoordinate + 1;
+            hex2YCoordinate = volcanoYCoordinate;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
+
+
+            hex3XCoordinate = volcanoXCoordinate + 1;
+            hex3YCoordinate = volcanoYCoordinate - 1;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
+        }
+
+        else if (tileOrientation == 4) {
+
+            hex2XCoordinate = volcanoXCoordinate + 1;
+            hex2YCoordinate = volcanoYCoordinate - 1;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
+
+
+            hex3XCoordinate = volcanoXCoordinate;
+            hex3YCoordinate = volcanoYCoordinate - 1;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
+
+        }
+
+        else if (tileOrientation == 5){
+            hex2XCoordinate = volcanoXCoordinate;
+            hex2YCoordinate = volcanoYCoordinate - 1;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
+
+
+            hex3XCoordinate = volcanoXCoordinate - 1;
+            hex3YCoordinate = volcanoYCoordinate;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
+        }
+
+        else if (tileOrientation == 6){
+            hex2XCoordinate = volcanoXCoordinate - 1;
+            hex2YCoordinate = volcanoYCoordinate;
+            tile.getHex2().setX(hex2XCoordinate);
+            tile.getHex2().setY(hex2YCoordinate);
+            Map[hex2XCoordinate][hex2YCoordinate] = tile.getHex2();
+
+
+            hex3XCoordinate = volcanoXCoordinate;
+            hex3YCoordinate = volcanoYCoordinate + 1;
+            tile.getHex3().setX(hex3XCoordinate);
+            tile.getHex3().setY(hex3YCoordinate);
+            Map[hex3XCoordinate][hex3YCoordinate] = tile.getHex3();
         }
     }
 
 
-    public boolean isValidPlacement(){
-        return true;
+    public boolean isValidPlacement(Tile tile, int tileOrientation){
+
+        boolean validPlacement = false;
+        if(tileOrientation == 1 && Map[x][y + 1] != null && Map[x+1][y+1] && checkNeighborTiles()){
+            validPlacement = true;
+        }
+        else if(tileOrientation == 2){
+
+        }
+        else if(tileOrientation == 3){
+
+        }
+        else if(tileOrientation == 4){
+
+        }
+        else if(tileOrientation == 5){
+
+        }
+        else if(tileOrientation == 6){
+
+        }
+
+
+        return
+
+
     }
 
 
@@ -96,7 +179,7 @@ public class Map {
         int xVolcano = 100;
         int yVolcano = 100;
 
-        GameBoard.TileGenerate();
+       // GameBoard.TileGenerate();
 
         GameBoard.GameTiles[chosenTile].addTile(xVolcano, yVolcano, TilePos, GameBoard.getMap());
 
