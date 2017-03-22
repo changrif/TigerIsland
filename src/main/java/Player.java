@@ -7,30 +7,32 @@ import java.util.Scanner;
 public class Player {
     private final int MAX_NUMBER_OF_MEEPLES = 20;
     private final int MAX_NUMBER_OF_TOTOROS = 3;
+    private final int MAX_NUMBER_OF_TIGERS = 2;
     private int numberOfMeeplesIHave;
     private int numberOfTotorosIHave;
+    private int numberOfTigersIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
-    private Tile tile;
+//    private Tile tile;
 
 
     public Player(String PlayerName) {
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
-    }
-
-    public void placeTile(){
-        //place a tile given some coordinates... or something
-    }
-
-    public void passInTile(Tile t){
-        this.tile = t;
+        numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
     int getXCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input your X coordinate for where to place the volcano tile.");
+        return sc.nextInt();
+    }
+
+    int getTileOrientationInputFromPlayer(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hello! Input the orientation number (1-6) for which you want to rotate the " +
+                "other two hexes around the volcano pivot.");
         return sc.nextInt();
     }
 
@@ -55,6 +57,8 @@ public class Player {
     public int getNUMBER_OF_TOTOROS() {
         return MAX_NUMBER_OF_TOTOROS;
     }
+
+    public int getNUMBER_OF_TIGERS(){return MAX_NUMBER_OF_TIGERS;}
 
     public String getPlayerName() {
         return name;
