@@ -672,17 +672,12 @@ public class Map {
         int x_3 = tileCoordinates[1][0];
         int y_3 = tileCoordinates[1][1];
 
-        if(hasNeighbors(x, y))  {
+        if(hasNeighbors(x, y) || hasNeighbors(x_2,y_2) || hasNeighbors(x_3, y_3))  {
             return true;
         }
-        else if(hasNeighbors(x_2,y_2))  {
-            return true;
+        else{
+            return false;
         }
-        else if(hasNeighbors(x_3, y_3)) {
-            return true;
-        }
-
-        return false;
     }
 
     public static void main(String [] args) {

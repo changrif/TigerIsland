@@ -93,7 +93,7 @@ public class MapTest {
     @Test
     public void correctTilePlacementTest2()  {
         GameBoard.placeTile(103, 101, t, 5);
-        Assert.assertTrue(checkPosition(103, 101, 5));
+        Assert.assertTrue(checkPosition(103, 101, 6));
     }
 
 }
