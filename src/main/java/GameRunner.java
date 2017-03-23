@@ -45,7 +45,32 @@ class GameRunner{
                 int tileOrientation = 1;
                 map.placeTile(x, y, t, tileOrientation);
 
-                //Build
+                //Build action (choose 1 of these)
+                //1. Found a settlement on any empty, level-1, non-volcano hex
+                //2. expand an existing settlement
+                //3. build a totoro sanctuary
+                //4. build a tiger playground
+                int option = p1.getBuildAction();
+                int xCoordForSettlement = 100;
+                int yCoordForSettlement = 101;
+                Hex hexForSettlement = map.getHex(xCoordForSettlement, yCoordForSettlement);
+                if(option == 1){
+                    if(map.isValidPlaceForSettlement(hexForSettlement)) {
+                        //this would store info about where settlements are on the map and what player is associated with that settlement
+                        map.foundASettlement(hexForSettlement, p1.getPlayerName()); //Maybe do a hash map. Key: PlayerID, Value:Settlement/Hex
+                    }
+                }
+                else if(option == 2){
+                    p1.expandASettlement();
+                }
+                else if(option == 3){
+                    p1.buildTotoroSanctuary();
+                }
+                else if(option == 4){
+                    p1.buildTigetPlayground();
+                }
+
+
                 //If can't build, then game gameIsNotFinished=false;
                     // If player makes illegal move or cannot build set gameInProgress to false and p1 loses
                 //Calculate the player's score
@@ -62,5 +87,6 @@ class GameRunner{
             }
         }
     }
+
 
 }
