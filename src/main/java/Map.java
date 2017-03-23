@@ -33,8 +33,6 @@ public class Map {
     }
 
     public void placeTile(int x, int y, Tile tile, int tileOrientation){
-
-        firstTilePlaced = true;
         int hex2XCoordinate, hex2YCoordinate, hex3XCoordinate, hex3YCoordinate;
         int volcanoXCoordinate = x;
         int volcanoYCoordinate = y;
@@ -354,6 +352,7 @@ public class Map {
         for(int i = 0; i < 6; i++)  {
             x_adj = adjacencyMatrix[i][0];
             y_adj = adjacencyMatrix[i][1];
+            System.out.println(x_adj + ", " + y_adj);
             System.out.println(Map[x_adj][y_adj]);
             if (Map[x_adj][y_adj] != null)  {
                 return true;

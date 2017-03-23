@@ -51,6 +51,7 @@ public class MapTest {
         d.generateTiles();
         t = d.draw();
         GameBoard.placeTile(100, 100, t, 1);
+        GameBoard.placeTile(101, 100, t, 2);
     }
 
     @After
@@ -73,18 +74,6 @@ public class MapTest {
     }
 
     @Test
-    public void incorrectTilePlacementTest() {
-        GameBoard.placeTile(100, 101, t, 3);
-        Assert.assertFalse(checkPosition(100, 101, 3));
-    }
-
-    @Test
-    public void correctTilePlacementTest()  {
-        GameBoard.placeTile(101, 100, t, 2);
-        Assert.assertTrue(checkPosition(101, 100, 2));
-    }
-
-    @Test
     public void correctPlacementNotAdjacent() {
         GameBoard.placeTile(70, 70, t,4);
         Assert.assertFalse(checkPosition(70, 70, 4));
@@ -93,7 +82,7 @@ public class MapTest {
     @Test
     public void correctTilePlacementTest2()  {
         GameBoard.placeTile(103, 101, t, 5);
-        Assert.assertTrue(checkPosition(103, 101, 6));
+        Assert.assertTrue(checkPosition(103, 101, 5));
     }
 
 }
