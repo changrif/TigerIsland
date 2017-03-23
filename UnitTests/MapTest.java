@@ -50,7 +50,7 @@ public class MapTest {
         d = new Deck();
         d.generateTiles();
         t = d.draw();
-        GameBoard.placeFirstTile(100, 100, t, 1);
+        GameBoard.placeTile(100, 100, t, 1);
     }
 
     @After
