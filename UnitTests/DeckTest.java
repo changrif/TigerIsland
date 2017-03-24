@@ -24,6 +24,25 @@ public class DeckTest {
     }
 
     @Test
+    public void deckSizeShouldBeFortyEightBeforeDrawingAnyTiles(){
+        Assert.assertEquals(48, deck.getCurrentSizeOfDeck());
+    }
+    @Test
+    public void deckSizeShouldBeZeroWhenAllTilesAreDrawn(){
+        for(int i = 0; i < 48; i++){
+            deck.draw();
+        }
+        Assert.assertEquals(0, deck.getCurrentSizeOfDeck());
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void ExceptionShouldBeThrownWhenMoreThanFortyEightTilesAreDrawn(){
+        for(int i = 0; i < 49; i++){
+            deck.draw();
+        }
+    }
+
+    @Test
     public void checkThatAll48TilesWereCreatedWithCorrectHexForVolcanoTerrain(){
         /*h1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
         h2 = new Hex(Terrain.typesOfTerrain.JUNGLE);
@@ -134,13 +153,10 @@ public class DeckTest {
     }
 
     @Test
-    public void testForReturnGameTiles(){
-
-    }
-    @Test
-    public void testGetTileID(){
+    public void WhenDrawingTileFromDeckThenItShouldBeValid(){
         t = deck.draw();
-
-
+        Assert.assertEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex1().getTerrainType());
+        Assert.assertNotEquals(null, t.getHex2().getTerrainType());
+        Assert.assertNotEquals(null, t.getHex3().getTerrainType());
     }
 };

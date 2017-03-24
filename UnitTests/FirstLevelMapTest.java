@@ -1,11 +1,9 @@
 import org.junit.*;
 
 /**
- * Created by chandlergriffin on 3/22/17.
+ * Created by chandlergriffin on 3/23/17.
  */
-
-public class MapTest {
-
+public class FirstLevelMapTest {
     private static Map GameBoard;
     private static Deck d;
     private static Tile t;
@@ -53,47 +51,63 @@ public class MapTest {
         GameBoard.placeTile(100, 100, t, 1);
     }
 
-    @After
-    public void drawTileTest()  {
+    @Before
+    public void draw() {
         t = d.draw();
+        /*
         Hex[][] map = GameBoard.getMap();
-
         for(int x = 105; x > 95; x--)   {
             for(int y = 105; y > 95; y--)   {
                 System.out.print(map[x][y] + "\t");
             }
             System.out.println();
         }
-        System.out.println();
+        System.out.println();*/
     }
 
     @Test
-    public void testFirstTilePlacement()    {
+    public void firstTilePlacementTest()    {
         Assert.assertTrue(checkPosition(100, 100, 1));
     }
 
     @Test
-    public void incorrectTilePlacementTest() {
-        GameBoard.placeTile(100, 101, t, 3);
-        Assert.assertFalse(checkPosition(100, 101, 3));
+    public void firstTileLevelTest()    {
+        Assert.assertEquals(1, GameBoard.getMap()[100][100].getLevel());
     }
 
     @Test
-    public void correctTilePlacementTest()  {
+    public void secondTilePlacementTest()  {
         GameBoard.placeTile(101, 100, t, 2);
         Assert.assertTrue(checkPosition(101, 100, 2));
     }
 
     @Test
-    public void correctPlacementNotAdjacent() {
-        GameBoard.placeTile(70, 70, t,4);
-        Assert.assertFalse(checkPosition(70, 70, 4));
+    public void thirdTilePlacementTest()  {
+        GameBoard.placeTile(100, 99, t, 3);
+        Assert.assertTrue(checkPosition(100, 99, 3));
     }
 
     @Test
-    public void correctTilePlacementTest2()  {
-        GameBoard.placeTile(103, 101, t, 5);
-        Assert.assertTrue(checkPosition(103, 101, 6));
+    public void fourthTilePlacementTest()  {
+        GameBoard.placeTile(99, 99, t, 4);
+        Assert.assertTrue(checkPosition(99, 99, 4));
     }
 
+    @Test
+    public void fifthTilePlacementTest()  {
+        GameBoard.placeTile(99, 100, t, 5);
+        Assert.assertTrue(checkPosition(99, 100, 5));
+    }
+
+    @Test
+    public void sixthTilePlacementTest()  {
+        GameBoard.placeTile(100, 102, t, 6);
+        Assert.assertTrue(checkPosition(100, 102, 6));
+    }
+
+    @Test
+    public void correctPlacementNotAdjacentTest() {
+        GameBoard.placeTile(70, 70, t,4);
+        Assert.assertFalse(checkPosition(70, 70, 4));
+    }
 }

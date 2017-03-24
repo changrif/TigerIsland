@@ -14,9 +14,9 @@ public class TileTest {
 
     @Before
     public void createTile()    {
-        Hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-        Hex2 = new Hex(Terrain.typesOfTerrain.ROCKY);
-        Hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
+        Hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, 1);
+        Hex2 = new Hex(Terrain.typesOfTerrain.ROCKY, 1);
+        Hex3 = new Hex(Terrain.typesOfTerrain.LAKE, 1);
         TileID = 1;
 
         t = new Tile(Hex1, Hex2, Hex3, TileID);

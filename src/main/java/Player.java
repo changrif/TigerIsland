@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,7 @@ public class Player {
     private int numberOfTigersIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
+    private ArrayList<Hex> settlements;
 //    private Tile tile;
 
 
@@ -23,22 +25,30 @@ public class Player {
         numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
-    int getXCoordinateInputFromPlayer(){
+    public int getXCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input your X coordinate for where to place the volcano tile.");
         return sc.nextInt();
     }
 
-    int getTileOrientationInputFromPlayer(){
+    public int getTileOrientationInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input the orientation number (1-6) for which you want to rotate the " +
                 "other two hexes around the volcano pivot.");
         return sc.nextInt();
     }
 
-    int getYCoordinateInputFromPlayer(){
+    public int getYCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input your Y coordinate for where to place the volcano tile.");
+        return sc.nextInt();
+    }
+
+
+    public int getBuildAction() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hello! Input your build action code (1-4).\n1. Found settlement.\n2. Expand settlement.\n" +
+                "3. Build Totoro Sanctuary.\n4. Build Tiger Playground.\n");
         return sc.nextInt();
     }
 
@@ -50,15 +60,43 @@ public class Player {
         isCurrentPlayersTurn = currentPlayersTurn;
     }
 
-    public int getNUMBER_OF_MEEPLES() {
-        return MAX_NUMBER_OF_MEEPLES;
+    public int getNumberOfMeeplesIHave() {
+        return numberOfMeeplesIHave;
     }
 
-    public int getNUMBER_OF_TOTOROS() {
-        return MAX_NUMBER_OF_TOTOROS;
+    public void decreaseNumberOfMeeplesByAmount(int numberOfMeeplesPlacedForCurrentTurn){
+        int updatedAmountOfMeeples = numberOfMeeplesIHave - numberOfMeeplesPlacedForCurrentTurn;
+        if(updatedAmountOfMeeples < 0){
+            throw new RuntimeException("Number of Meeples Cannot Be Negative!");
+        }
+        this.numberOfMeeplesIHave = updatedAmountOfMeeples;
+
     }
 
-    public int getNUMBER_OF_TIGERS(){return MAX_NUMBER_OF_TIGERS;}
+    public int getNumberOfTotorosIHave() {
+        return numberOfTotorosIHave;
+    }
+
+    public void decreaseNumberOfTotorosByAmount(int numberOfTotorosPlacedOnCurrentTurn) {
+        int updatedAmountOfTotoros = numberOfTotorosIHave - numberOfTotorosPlacedOnCurrentTurn;
+        if(updatedAmountOfTotoros < 0){
+            throw new RuntimeException("Number of Totoros Cannot Be Negative!");
+        }
+        this.numberOfTotorosIHave = updatedAmountOfTotoros;
+
+    }
+
+    public int getNumberOfTigersIHave() {
+        return numberOfTigersIHave;
+    }
+
+    public void decreaseNumberOfTigersByAmount(int numberOfTigersPlacedOnCurrentTurn) {
+        int updatedAmountOfTigers = numberOfTigersIHave - numberOfTigersPlacedOnCurrentTurn;
+        if(updatedAmountOfTigers < 0){
+            throw new RuntimeException("Number of Tigers Cannot Be Negative!");
+        }
+        this.numberOfTigersIHave = updatedAmountOfTigers;
+    }
 
     public String getPlayerName() {
         return name;

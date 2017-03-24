@@ -7,16 +7,21 @@ public class Tile {
     private Hex Hex2;
     private Hex Hex3;
     private int TileID;
+    private int TileLevel;
 
     public Tile(Hex Hex1, Hex Hex2, Hex Hex3, int TileID){
         this.Hex1 = Hex1;
         this.Hex2 = Hex2;
         this.Hex3 = Hex3;
         this.TileID = TileID;
-
+        this.TileLevel = 0;
     }
 
-    public int getTileID() {return TileID; }
+    public int getTileLevel() { return TileLevel; }
+
+    public void setTileLevel(int level) { this.TileLevel = level; }
+
+    public int getTileID() { return TileID; }
 
     public Hex getHex1(){
         return Hex1;
@@ -42,33 +47,33 @@ public class Tile {
 
         for (int i = 0; i < 3; i++){
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE, TileIndex);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE, TileIndex);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS, TileIndex);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY, TileIndex);
                 TileArray[TileIndex] = new Tile(hex1, hex2, hex3, TileIndex);
                 TileIndex++;
             }

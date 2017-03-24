@@ -8,12 +8,9 @@ public class Map {
 
 
     public Map(){
-
         Map = new Hex[MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
         firstTilePlaced = false;
     }
-
-
 
     public boolean isTaken(int x, int y){
         if(Map[x][y] != null) {
@@ -22,6 +19,17 @@ public class Map {
 
         else
             return false;
+    }
+
+    public boolean isTilePlaceTaken(Tile t, int x1, int y1, int x2, int y2, int x3, int y3)  {
+        if(!isTaken(x1, y1) && !isTaken(x2, y2) && !isTaken(x3, y3)) {
+            t.setTileLevel(1);
+            t.getHex1().setLevel(1);
+            t.getHex2().setLevel(1);
+            t.getHex3().setLevel(1);
+            return true;
+        }
+        return false;
     }
 
     public Hex[][] getMap(){
@@ -33,8 +41,6 @@ public class Map {
     }
 
     public void placeTile(int x, int y, Tile tile, int tileOrientation){
-
-        firstTilePlaced = true;
         int hex2XCoordinate, hex2YCoordinate, hex3XCoordinate, hex3YCoordinate;
         int volcanoXCoordinate = x;
         int volcanoYCoordinate = y;
@@ -257,46 +263,64 @@ public class Map {
         if(firstTilePlaced == false)
         {
             firstTilePlaced = true;
+            tile.setTileLevel(1);
+            tile.getHex1().setLevel(1);
+            tile.getHex2().setLevel(1);
+            tile.getHex3().setLevel(1);
             return true;
         }
 
         boolean validPlacement = false;
 
-        if(Map[x][y] == null){
-            if(isEven(y))    {
-                if (tileOrientation == 1 && Map[x-1][y + 1] == null && Map[x][y + 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+        if(isEven(y))    {
+            if (tileOrientation == 1 && ((isTilePlaceTaken(tile, x, y, x-1, y+1, x, y+1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x-1, y+1, x, y+1))) {
                     validPlacement = true;
-                } else if (tileOrientation == 2 && Map[x][y + 1] == null && Map[x + 1][y] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+                } else if (tileOrientation == 2 && ((isTilePlaceTaken(tile, x, y, x, y+1, x+1, y) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x, y+1, x+1, y))) {
                     validPlacement = true;
-                } else if (tileOrientation == 3 && Map[x + 1][y] == null && Map[x][y - 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+                } else if (tileOrientation == 3 && ((isTilePlaceTaken(tile, x, y, x+1, y, x, y-1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x+1, y, x, y-1))) {
                     validPlacement = true;
-                } else if (tileOrientation == 4 && Map[x][y - 1] == null && Map[x-1][y - 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+                } else if (tileOrientation == 4 && ((isTilePlaceTaken(tile, x, y, x, y-1, x-1, y-1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x, y-1, x-1, y-1))) {
                     validPlacement = true;
-                } else if (tileOrientation == 5 && Map[x-1][y - 1] == null && Map[x - 1][y] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+                } else if (tileOrientation == 5 && ((isTilePlaceTaken(tile, x, y, x-1, y-1, x-1, y) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x-1, y-1, x-1, y))) {
                     validPlacement = true;
-                } else if (tileOrientation == 6 && Map[x - 1][y] == null && Map[x-1][y + 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                }
-            }
-            else {
-                if (tileOrientation == 1 && Map[x][y + 1] == null && Map[x + 1][y + 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                } else if (tileOrientation == 2 && Map[x + 1][y + 1] == null && Map[x + 1][y] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                } else if (tileOrientation == 3 && Map[x + 1][y] == null && Map[x + 1][y - 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                } else if (tileOrientation == 4 && Map[x + 1][y - 1] == null && Map[x][y - 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                } else if (tileOrientation == 5 && Map[x][y - 1] == null && Map[x - 1][y] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
-                    validPlacement = true;
-                } else if (tileOrientation == 6 && Map[x - 1][y] == null && Map[x][y + 1] == null && isAdjacentToAnotherTile(tileOrientation, x, y)) {
+                } else if (tileOrientation == 6 && ((isTilePlaceTaken(tile, x, y, x-1, y, x-1, y+1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x-1, y, x-1, y+1))) {
                     validPlacement = true;
                 }
             }
+        else {
+            if (tileOrientation == 1 && ((isTilePlaceTaken(tile, x, y, x, y+1, x+1, y+1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x, y+1, x+1, y+1))) {
+                    validPlacement = true;
+                } else if (tileOrientation == 2 && ((isTilePlaceTaken(tile, x, y, x+1, y+1, x+1, y) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x+1, y+1, x+1, y))) {
+                    validPlacement = true;
+                } else if (tileOrientation == 3 && ((isTilePlaceTaken(tile, x, y, x+1, y, x+1, y-1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x+1, y, x+1, y-1))) {
+                    validPlacement = true;
+                } else if (tileOrientation == 4 && ((isTilePlaceTaken(tile, x, y, x+1, y-1, x, y-1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x+1, y-1, x, y-1))) {
+                    validPlacement = true;
+                } else if (tileOrientation == 5 && ((isTilePlaceTaken(tile, x, y, x, y-1, x-1, y) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x, y-1, x-1, y))) {
+                    validPlacement = true;
+                } else if (tileOrientation == 6 && ((isTilePlaceTaken(tile, x, y, x-1, y, x, y+1) && isAdjacentToAnotherTile(tile, tileOrientation, x, y)) || canStackTile(tile, x, y, x-1, y, x, y+1))) {
+                    validPlacement = true;
+                }
         }
 
         System.out.println(validPlacement + " in valid placement");
         return validPlacement;
+    }
+
+    public boolean canStackTile(Tile t, int x1,int y1, int x2, int y2, int x3, int y3)   {
+        if(isOnTopOfMoreThanOneTile(x1, y1,  x2, y2, x3, y3) && isOnTheSameLevel(x1, y1,  x2, y2, x3, y3) && isVolcanoOverVolcano(x1, y1)) {
+            int tileLevel = (Map[x1][y1]).getLevel();
+            t.setTileLevel(tileLevel+1);
+            t.getHex1().setLevel(tileLevel+1);
+            t.getHex2().setLevel(tileLevel+1);
+            t.getHex3().setLevel(tileLevel+1);
+            return true;
+        }
+
+        //System.out.println("MORE THAN ONE TILE: " + isOnTopOfMoreThanOneTile(x1, y1,  x2, y2, x3, y3));
+        //System.out.println("IS ON THE SAME LEVEL: " + isOnTheSameLevel(x1, y1,  x2, y2, x3, y3));
+        //System.out.println("IS VOLCANO OVER VOLCANO: " + isVolcanoOverVolcano( x1, y1));
+        return false;
     }
 
     public int[][] createAdjacentCoordinateArray(int x, int y)    {
@@ -345,18 +369,25 @@ public class Map {
         return adjacencyMatrix;
     }
 
-    public boolean hasNeighbors(int x, int y)    {
+    public boolean hasNeighbors(Tile t, int x, int y)    {
         int[][] adjacencyMatrix;
         int x_adj;
         int y_adj;
+
+        int currentLevel = t.getTileLevel();
+        //System.out.println("CURRENT LEVEL IS " + currentLevel);
 
         adjacencyMatrix = createAdjacentCoordinateArray(x, y);
         for(int i = 0; i < 6; i++)  {
             x_adj = adjacencyMatrix[i][0];
             y_adj = adjacencyMatrix[i][1];
-            System.out.println(Map[x_adj][y_adj]);
-            if (Map[x_adj][y_adj] != null)  {
-                return true;
+            //System.out.println(x_adj + ", " + y_adj);
+            //System.out.println(Map[x_adj][y_adj]);
+            if (Map[x_adj][y_adj] != null) {
+                //System.out.println("ADJ LEVEL IS " + Map[x_adj][y_adj].getLevel());
+                if (Map[x_adj][y_adj].getLevel() == currentLevel)  {
+                    return true;
+                }
             }
         }
 
@@ -465,7 +496,7 @@ public class Map {
         return tileCoordinates;
     }
 
-    public boolean isAdjacentToAnotherTile(int tileOrientation, int x, int y)    {
+    public boolean isAdjacentToAnotherTile(Tile t, int tileOrientation, int x, int y)    {
         int[][] tileCoordinates = determineTileCoordinatesBasedOnOrientation(tileOrientation, x, y);
 
         int x_2 = tileCoordinates[0][0];
@@ -474,12 +505,82 @@ public class Map {
         int x_3 = tileCoordinates[1][0];
         int y_3 = tileCoordinates[1][1];
 
-        if(hasNeighbors(x, y) || hasNeighbors(x_2,y_2) || hasNeighbors(x_3, y_3))  {
+        if(hasNeighbors(t, x, y) || hasNeighbors(t, x_2,y_2) || hasNeighbors(t, x_3, y_3))  {
             return true;
         }
         else{
             return false;
         }
+    }
+
+    public boolean isOnTopOfMoreThanOneTile(int x1,int y1, int x2, int y2, int x3, int y3) {
+        int tileID1 = -1;
+        int tileID2 = -2;
+        int tileID3 = -3;
+
+        //System.out.println("COORDINATE X: " + x1 + " Y: " + y1 + " is " + Map[x1][y1]);
+
+        if(isTaken(x1, y1)){
+            tileID1 = (Map[x1][y1]).getTileIndex();
+        }
+
+        if(isTaken(x2, y2)) {
+            tileID2 = (Map[x2][y2]).getTileIndex();
+        }
+
+        if(isTaken(x3, y3)) {
+            tileID3 = (Map[x3][y3]).getTileIndex();
+        }
+
+        if(tileID1 == tileID2 && tileID1 == tileID3)    {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isVolcanoOverVolcano(int x1, int y1) {
+        Terrain.typesOfTerrain terrainOnMap = null;
+
+        if(isTaken(x1, y1)) {
+            terrainOnMap = (Map[x1][y1]).getTerrainType();
+        }
+
+        if(terrainOnMap == Terrain.typesOfTerrain.VOLCANO)    {
+            return true;
+        }
+
+        //System.out.println("Terrain: " + terrainOnMap);
+
+        return false;
+    }
+
+    public boolean isOnTheSameLevel(int x1,int y1, int x2, int y2, int x3, int y3) {
+        int tileLvl1 = -1;
+        int tileLvl2 = -2;
+        int tileLvl3 = -3;
+
+        if(isTaken(x1, y1)){
+            tileLvl1 = (Map[x1][y1]).getLevel();
+        }
+
+        if(isTaken(x2, y2)) {
+            tileLvl2 = (Map[x2][y2]).getLevel();
+        }
+
+        if(isTaken(x3, y3)) {
+            tileLvl3 = (Map[x3][y3]).getLevel();
+        }
+
+        if(tileLvl1 == tileLvl2 && tileLvl1 == tileLvl3)    {
+            return true;
+        }
+
+        //System.out.println("TILE1: " + tileLvl1);
+        //System.out.println("TILE2: " + tileLvl2);
+        //System.out.println("TILE3: " + tileLvl3);
+
+        return false;
     }
 
     public static void main(String [] args) {

@@ -30,33 +30,33 @@ public class Deck {
         int TileIndex=0;
         for (int i = 0; i < 3; i++){
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.JUNGLE, TileIndex);
                 GameTiles.add(new Tile(hex1, hex2, hex3, TileIndex));
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.LAKE, TileIndex);
                 GameTiles.add(new Tile(hex1, hex2, hex3, TileIndex));
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.GRASSLANDS, TileIndex);
                 GameTiles.add(new Tile(hex1, hex2, hex3, TileIndex));
                 TileIndex++;
             }
 
             for (Terrain.typesOfTerrain terrain: TerrainTypes){
-                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO);
-                Hex hex2 = new Hex(terrain);
-                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY);
+                Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, TileIndex);
+                Hex hex2 = new Hex(terrain, TileIndex);
+                Hex hex3 = new Hex(Terrain.typesOfTerrain.ROCKY, TileIndex);
                 GameTiles.add(new Tile(hex1, hex2, hex3, TileIndex));
                 TileIndex++;
             }
