@@ -35,7 +35,6 @@ public class Tile {
         return Hex3;
     }
 
-    //odd-r horizontal layout
 
 
     public static void main(String [] args) {
