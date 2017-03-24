@@ -53,22 +53,23 @@ class GameRunner{
                 int option = p1.getBuildAction();
                 int xCoordForSettlement = 100;
                 int yCoordForSettlement = 101;
-                Hex hexForSettlement = map.getHex(xCoordForSettlement, yCoordForSettlement);
-                if(option == 1){
-                    if(map.isValidPlaceForSettlement(hexForSettlement)) {
-                        //this would store info about where settlements are on the map and what player is associated with that settlement
-                        map.foundASettlement(hexForSettlement, p1.getPlayerName()); //Maybe do a hash map. Key: PlayerID, Value:Settlement/Hex
-                    }
-                }
-                else if(option == 2){
-                    p1.expandASettlement();
-                }
-                else if(option == 3){
-                    p1.buildTotoroSanctuary();
-                }
-                else if(option == 4){
-                    p1.buildTigetPlayground();
-                }
+                //Just Commented this to test Unit Tests because it wasn't compiling - Chandler
+//                Hex hexForSettlement = map.getHex(xCoordForSettlement, yCoordForSettlement);
+//                if(option == 1){
+//                    if(map.isValidPlaceForSettlement(hexForSettlement)) {
+//                        //this would store info about where settlements are on the map and what player is associated with that settlement
+//                        map.foundASettlement(hexForSettlement, p1.getPlayerName()); //Maybe do a hash map. Key: PlayerID, Value:Settlement/Hex
+//                    }
+//                }
+//                else if(option == 2){
+//                    p1.expandASettlement();
+//                }
+//                else if(option == 3){
+//                    p1.buildTotoroSanctuary();
+//                }
+//                else if(option == 4){
+//                    p1.buildTigerPlayground();
+//                }
 
 
                 //If can't build, then game gameIsNotFinished=false;

@@ -7,17 +7,20 @@ public class Hex {
     private int y;
 
     private Terrain.typesOfTerrain TerrainType;
-    private int Level = -1;
+    private int Level = 0;
+    private int TileIndex;
 
     private Meeple meeples[];
     private Totoro totoro;
 
 
-    public Hex (Terrain.typesOfTerrain TerrainType){
+    public Hex (Terrain.typesOfTerrain TerrainType, int TileIndex){
 
         this.TerrainType = TerrainType;
-
+        this.TileIndex = TileIndex;
     }
+
+    public int getTileIndex() { return TileIndex; }
 
     public void setX(int x){
         this.x = x;
