@@ -3,8 +3,7 @@
  */
 public class Hex {
 
-    private int x;
-    private int y;
+    private Coordinate coordinate;
 
     private Terrain.typesOfTerrain TerrainType;
     private int Level = 0;
@@ -12,7 +11,7 @@ public class Hex {
 
     private Meeple meeples[];
     private Totoro totoro;
-    private Settlement settlement;
+    //private Settlement settlement;
 
 
     public Hex (Terrain.typesOfTerrain TerrainType, int TileIndex){
@@ -39,20 +38,12 @@ public class Hex {
 
     public int getTileIndex() { return TileIndex; }
 
-    public void setX(int x){
-        this.x = x;
+    public void setCoordinate(Coordinate coordinate){
+        this.coordinate = coordinate;
     }
 
-    public void setY(int y){
-        this.y = y;
-    }
-
-    public int getX(){
-        return x;
-    }
-
-    public int getY(){
-        return y;
+    public Coordinate getCoordinate(){
+        return coordinate;
     }
 
 
@@ -79,13 +70,14 @@ public class Hex {
         totoro = new Totoro(player);
     }
 
+    /*
     public void setSettlement(Settlement settlement){
         this.settlement = settlement;
     }
 
     public Settlement getSettlement(){
         return this.settlement;
-    }
+    }*/
 
 
 }
