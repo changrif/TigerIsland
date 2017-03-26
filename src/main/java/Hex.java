@@ -12,12 +12,29 @@ public class Hex {
 
     private Meeple meeples[];
     private Totoro totoro;
+    private Settlement settlement;
 
 
     public Hex (Terrain.typesOfTerrain TerrainType, int TileIndex){
 
         this.TerrainType = TerrainType;
         this.TileIndex = TileIndex;
+    }
+
+    public boolean MeeplesPresent(){
+        if (meeples == null){
+            return false;
+        }
+        else
+            return true;
+    }
+
+    public boolean TotoroPresent(){
+        if (totoro == null){
+            return false;
+        }
+        else
+            return true;
     }
 
     public int getTileIndex() { return TileIndex; }
@@ -51,15 +68,23 @@ public class Hex {
         return Level;
     }
 
-    public void placeMeeples(int player){
+    public void placeMeeples(String player){
         meeples = new Meeple[Level];
         for(int i = 0; i < Level; i++){
             meeples[i] = new Meeple(player);
         }
     }
 
-    public void placeTotoro(int player){
+    public void placeTotoro(String player){
         totoro = new Totoro(player);
+    }
+
+    public void setSettlement(Settlement settlement){
+        this.settlement = settlement;
+    }
+
+    public Settlement getSettlement(){
+        return this.settlement;
     }
 
 
