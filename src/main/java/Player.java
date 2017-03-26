@@ -14,12 +14,12 @@ public class Player {
     private int numberOfTigersIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
-    //private ArrayList<Settlement> OwnedSettlements;
+    private ArrayList<Settlement> OwnedSettlements;
 //    private Tile tile;
 
 
     public Player(String PlayerName) {
-        //OwnedSettlements = new ArrayList<>();
+        OwnedSettlements = new ArrayList<>();
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
@@ -105,7 +105,7 @@ public class Player {
     }
 
 
-    /*
+
     public void addSettlement(Settlement NewSettlement){
         OwnedSettlements.add(NewSettlement);
     }
@@ -113,5 +113,5 @@ public class Player {
     public ArrayList<Settlement> getPlayerSettlements(){
         return OwnedSettlements;
     }
-*/
+
 }

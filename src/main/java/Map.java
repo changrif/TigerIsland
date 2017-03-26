@@ -305,39 +305,44 @@ public class Map {
     }
 
 
+
+
+
     public boolean isNewSettlementValid(Hex chosenHex) {
 
-        if ((chosenHex.MeeplesPresent() == false) && (chosenHex.TotoroPresent() == false) && (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO) && (chosenHex.getLevel() == 1)) {
+        if ((chosenHex.MeeplesPresent() == false) && (chosenHex.TotoroPresent() == false) && (chosenHex.TigerPresent() == false) && (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO) && (chosenHex.getLevel() == 1)) {
             return true;
         } else
             return false;
     }
 
-    public void foundNewSettlement(int x, int y, Player player){
+    public void foundNewSettlement(Coordinate Location, Player player){
+
+
+        int x = Location.getX();
+        int y = Location.getY();
 
         Hex chosenHex = Map[x][y];
 
         if (isNewSettlementValid(chosenHex)){
             String playerID = player.getPlayerName();
-            chosenHex.placeMeeples(playerID);
+            chosenHex.placeMeeples(player);
 
-            /* Commented out to run tests - Chandler
-            Settlement s = new Settlement(chosenHex, playerID);
+            Settlement s = new Settlement(chosenHex, player);
             chosenHex.setSettlement(s);
 
             player.addSettlement(s);
             player.decreaseNumberOfMeeplesByAmount(1);
-            */
+
         }
     }
 
-    public boolean isExpansionPossible() {
 
-        return true;
-    }
+    public void ExpandSettlement(Coordinate Location, Terrain.typesOfTerrain TerrainType, Player p){
 
-    public void ExpandSettlement(int x, int y, Terrain.typesOfTerrain TerrainType, Player p){
-        /* Commented out to run tests - Chandler
+
+        int x = Location.getX();
+        int y = Location.getY();
 
         //throw error if trying to expand on volcano?
         if(TerrainType == Terrain.typesOfTerrain.VOLCANO){
@@ -358,8 +363,9 @@ public class Map {
         while(queue.size() != 0){
             //get current Hex
             Hex CurrentHex = queue.poll();
+            Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
 
-            int[][] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHex.getX(), CurrentHex.getY());
+            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
             int x_adj;
             int y_adj;
 
@@ -368,8 +374,8 @@ public class Map {
             //and matches the terrain type
             //then add it
             for (int i = 0; i < 6; i++) {
-                x_adj = adjacencyMatrix[i][0];
-                y_adj = adjacencyMatrix[i][1];
+                x_adj = adjacencyMatrix[i].getX();
+                y_adj = adjacencyMatrix[i].getY();
                 boolean added = false;
 
                 if (Map[x_adj][y_adj] != null) {
@@ -386,7 +392,7 @@ public class Map {
                             queue.add(Map[x_adj][y_adj]);
                             ExpansionHexes.add(Map[x_adj][y_adj]);
                             RequiredMeeples += Map[x_adj][y_adj].getLevel();
-                            System.out.println("Expanded on: " + x_adj + "," + y_adj);
+                            //System.out.println("Expanded on: " + x_adj + "," + y_adj);
                         }
                     }
                 }
@@ -394,7 +400,7 @@ public class Map {
 
         }
 
-        System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
+        //System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
 
         //add hexes to settlement if enough Meeples
         if (p.getNumberOfMeeplesIHave() < RequiredMeeples){
@@ -403,75 +409,81 @@ public class Map {
         else{
             for (int i = 0; i < ExpansionHexes.size(); i++){
                 ExpansionHexes.get(i).setSettlement(ExpandedSettlement);
-                ExpansionHexes.get(i).placeMeeples(p.getPlayerName());
+                ExpansionHexes.get(i).placeMeeples(p);
                 ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
             }
             p.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
-            System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
+            //System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
         }
-        */
+
     }
 
-    public void PlaceTotoro(int x, int y, Player player){
-        /* Commented out to run tests - Chandler
+    public void PlaceTotoro(Coordinate Location, Player player){
 
-        //return error trying to place on Volcano or space already occupied
-        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null){
+        int x = Location.getX();
+        int y = Location.getY();
+
+        //return error trying to place on Volcano or space already occupied or not Totoro left to play
+        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTotorosIHave() <= 0){
             return;
         }
 
-        int[][] adjacencyMatrix = createAdjacentCoordinateArray(x,y);
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
         int x_adj;
         int y_adj;
 
         for (int i = 0; i < 6; i++) {
-            x_adj = adjacencyMatrix[i][0];
-            y_adj = adjacencyMatrix[i][1];
+            x_adj = adjacencyMatrix[i].getX();
+            y_adj = adjacencyMatrix[i].getY();
 
             if ( (Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement()!= null)) {
-                if (Map[x_adj][y_adj].getSettlement().getLength() >= 5) {
-                    Map[x][y].placeTotoro(player.getPlayerName());
+                if (Map[x_adj][y_adj].getSettlement().getLength() >= 5 && (Map[x_adj][y_adj].getSettlement().getTotoroFlag() == false)) {
                     Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
+                    Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
+                    Map[x][y].placeTotoro(player);
                     player.decreaseNumberOfTotorosByAmount(1);
-                    System.out.println("Totoro placed!");
+                    //System.out.println("Totoro placed!");
                     break;
                 }
             }
         }
 
-        System.out.println(player.getPlayerName() + " has " + player.getNumberOfTotorosIHave() + " Totoros left!");
-        */
+        //System.out.println(player.getPlayerName() + " has " + player.getNumberOfTotorosIHave() + " Totoros left!");
+
     }
 
-    public void PlaceTiger(int x, int y, Player player){
-        /* Commented out to run tests - Chandler
+    public void PlaceTiger(Coordinate Location, Player player){
 
-        //return error trying to place on Volcano or space already occupied
-        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null){
+        int x = Location.getX();
+        int y = Location.getY();
+
+        //return error trying to place on Volcano or space already occupied or no tigers left to play
+        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTigersIHave() <= 0){
             return;
         }
 
-        int[][] adjacencyMatrix = createAdjacentCoordinateArray(x,y);
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
         int x_adj;
         int y_adj;
 
         for (int i = 0; i < 6; i++) {
-            x_adj = adjacencyMatrix[i][0];
-            y_adj = adjacencyMatrix[i][1];
+            x_adj = adjacencyMatrix[i].getX();
+            y_adj = adjacencyMatrix[i].getY();
 
-            if ( (Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement()!= null)) {
+            if ( (Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement()!= null) && (Map[x_adj][y_adj].getSettlement().getTigerFlag() == false)) {
                 if (Map[x_adj][y_adj].getSettlement().getLength() >= 3) {
-                    Map[x][y].placeTiger(player.getPlayerName());
                     Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
+                    Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
+                    Map[x][y].placeTiger(player);
                     player.decreaseNumberOfTigersByAmount(1);
-                    System.out.println("Tiger placed!");
+                    //System.out.println("Tiger placed!");
                     break;
                 }
             }
         }
 
-        System.out.println(player.getPlayerName() + " has " + player.getNumberOfTigersIHave() + " Tigerss left!");
-        */
+        //System.out.println(player.getPlayerName() + " has " + player.getNumberOfTigersIHave() + " Tigers left!");
+
     }
 }
 
