@@ -325,7 +325,6 @@ public class Map {
         Hex chosenHex = Map[x][y];
 
         if (isNewSettlementValid(chosenHex)){
-            String playerID = player.getPlayerName();
             chosenHex.placeMeeples(player);
 
             Settlement s = new Settlement(chosenHex, player);
