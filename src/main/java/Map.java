@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * Created by Kyle on 3/14/2017.
@@ -229,7 +230,7 @@ public class Map {
     }
 
     public boolean canStackTile(Tile tile) {
-        if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile)) {
+        if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile) && !isOnTopOfATotoro(tile) && !isOnTopOfATiger(tile) && !isNukingAnEntireSettlement(tile)) {
             int tileLevel = hexAt(tile.getHex1().getCoordinate()).getLevel();
             setTileLevel(tile, tileLevel + 1);
             return true;
@@ -300,10 +301,58 @@ public class Map {
         return false;
     }
 
+    public boolean isOnTopOfATotoro(Tile tile)   {
+        boolean isTotoroPresent = false;
+        if(hexAt(tile.getHex2().getCoordinate()).TotoroPresent())  {
+            isTotoroPresent = true;
+        }   else if(hexAt(tile.getHex3().getCoordinate()).TotoroPresent())  {
+            isTotoroPresent = true;
+        }
+        return isTotoroPresent;
+    }
+
+    public boolean isOnTopOfATiger(Tile tile)   {
+        boolean isTigerPresent = false;
+        if(hexAt(tile.getHex2().getCoordinate()).TigerPresent())  {
+            isTigerPresent = true;
+        }   else if(hexAt(tile.getHex3().getCoordinate()).TigerPresent())  {
+            isTigerPresent = true;
+        }
+        return isTigerPresent;
+    }
+
+    public boolean isNukingAnEntireSettlement(Tile tile)    {
+        boolean isNukingSettlement = false;
+        Settlement settlement1 = null;
+        Settlement settlement2 = null;
+
+        if(tile.getHex2().getSettlement() != null)  {
+            settlement1 = tile.getHex2().getSettlement();
+
+            if(settlement1.getLength() == 1)    {
+                isNukingSettlement = true;
+            }
+        }
+
+        if(tile.getHex3().getSettlement() != null)  {
+            settlement2 = tile.getHex3().getSettlement();
+            if(settlement2.getLength() == 1)    {
+                isNukingSettlement = true;
+            }
+        }
+
+        if(settlement1 != null && settlement2 != null)   {
+            if(settlement1.equals(settlement2)) {
+                isNukingSettlement = true;
+            }
+        }
+
+        return isNukingSettlement;
+    }
+
     public Hex hexAt(Coordinate coordinate) {
         return Map[coordinate.getX()][coordinate.getY()];
     }
-
 
 
 
