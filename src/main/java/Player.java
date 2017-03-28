@@ -81,10 +81,10 @@ public class Player {
         return numberOfTotorosIHave;
     }
 
-    public void decreaseNumberOfTotorosByAmount(int numberOfTotorosPlacedOnCurrentTurn) {
+    public void decreaseNumberOfTotorosByAmount(int numberOfTotorosPlacedOnCurrentTurn) throws NotEnoughTotoro {
         int updatedAmountOfTotoros = numberOfTotorosIHave - numberOfTotorosPlacedOnCurrentTurn;
         if(updatedAmountOfTotoros < 0){
-            throw new RuntimeException("Number of Totoros Cannot Be Negative!");
+            throw new NotEnoughTotoro("Number of Totoros Cannot Be Negative!");
         }
         this.numberOfTotorosIHave = updatedAmountOfTotoros;
 
@@ -94,10 +94,10 @@ public class Player {
         return numberOfTigersIHave;
     }
 
-    public void decreaseNumberOfTigersByAmount(int numberOfTigersPlacedOnCurrentTurn) {
+    public void decreaseNumberOfTigersByAmount(int numberOfTigersPlacedOnCurrentTurn) throws NotEnoughTigers{
         int updatedAmountOfTigers = numberOfTigersIHave - numberOfTigersPlacedOnCurrentTurn;
         if(updatedAmountOfTigers < 0){
-            throw new RuntimeException("Number of Tigers Cannot Be Negative!");
+            throw new NotEnoughTigers("Number of Tigers Cannot Be Negative!");
         }
         this.numberOfTigersIHave = updatedAmountOfTigers;
     }

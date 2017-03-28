@@ -44,24 +44,24 @@ public class PlayerTest {
     }
 
     @Test
-    public void numberOfTotorosShouldBeOneWhenTwoTotorosAreDeducted() {
+    public void numberOfTotorosShouldBeOneWhenTwoTotorosAreDeducted() throws NotEnoughTotoro{
         p.decreaseNumberOfTotorosByAmount(2);
         Assert.assertEquals(1, p.getNumberOfTotorosIHave());
     }
 
     @Test
-    public void numberOfTigersShouldBeOneWhenOneTigerIsDeducted(){
+    public void numberOfTigersShouldBeOneWhenOneTigerIsDeducted() throws NotEnoughTigers{
         p.decreaseNumberOfTigersByAmount(1);
         Assert.assertEquals(1, p.getNumberOfTigersIHave());
     }
 
-    @Test (expected = RuntimeException.class)
-    public void exceptionShouldBeThrownWhenThereIsAnAttemptToPlaceMoreTigersThanPlayerCurrentlyHas(){
+    @Test (expected = NotEnoughTigers.class)
+    public void exceptionShouldBeThrownWhenThereIsAnAttemptToPlaceMoreTigersThanPlayerCurrentlyHas() throws NotEnoughTigers{
         p.decreaseNumberOfTigersByAmount(3);
     }
 
-    @Test (expected = RuntimeException.class)
-    public void exceptionShouldBeThrownWhenThereIsAnAttemptToPlaceMoreTotorsThanPlayerCurrentlyHas(){
+    @Test (expected = NotEnoughTotoro.class)
+    public void exceptionShouldBeThrownWhenThereIsAnAttemptToPlaceMoreTotorsThanPlayerCurrentlyHas() throws NotEnoughTotoro{
         p.decreaseNumberOfTotorosByAmount(4);
     }
 

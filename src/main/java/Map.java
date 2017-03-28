@@ -16,7 +16,7 @@ public class Map {
         isTheFirstTilePlaced = false;
     }
 
-    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) throws InvalidTilePlacement {
+    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) {
         setTileCoordinates(tile, coordinate, tileOrientation);
         setTileLevel(tile);
         if (isValidPlacement(tile)) {
@@ -482,7 +482,11 @@ public class Map {
                     Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
                     Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
                     Map[x][y].placeTotoro(player);
-                    player.decreaseNumberOfTotorosByAmount(1);
+                    try {
+                        player.decreaseNumberOfTotorosByAmount(1);
+                    } catch (NotEnoughTotoro notEnough) {
+                        notEnough.printStackTrace();
+                    }
                     player.IncreasePoints(200);
                     //System.out.println("Totoro placed!");
                     break;
@@ -516,7 +520,11 @@ public class Map {
                 Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
                 Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
                 Map[x][y].placeTiger(player);
-                player.decreaseNumberOfTigersByAmount(1);
+                try {
+                    player.decreaseNumberOfTigersByAmount(1);
+                } catch (NotEnoughTigers notEnoughTigers) {
+                    notEnoughTigers.printStackTrace();
+                }
                 player.IncreasePoints(75);
                 //System.out.println("Tiger placed!");
                 break;
