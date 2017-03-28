@@ -40,7 +40,7 @@ public class MapAcceptanceTests {
 
         for(int i=0; i < 200; i++) {
             for(int j=0; j<200; j++){
-                assertTrue(!Gameboard.isTaken(i,j));
+                assertTrue(!Gameboard.isTaken(new Coordinate(i,j)));
             }
         }
 

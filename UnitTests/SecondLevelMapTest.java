@@ -73,31 +73,59 @@ public class SecondLevelMapTest {
         d.generateTiles();
         t = d.draw();
         Coordinate coordinate = new Coordinate(100, 100);
-        GameBoard.placeTile(t, coordinate, 1);
+        try {
+            GameBoard.placeTile(t, coordinate, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(101, 100);
-        GameBoard.placeTile(t, coordinate, 2);
+        try {
+            GameBoard.placeTile(t, coordinate, 2);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(100, 99);
-        GameBoard.placeTile(t, coordinate, 3);
+        try {
+            GameBoard.placeTile(t, coordinate, 3);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(99, 99);
-        GameBoard.placeTile(t, coordinate, 4);
+        try {
+            GameBoard.placeTile(t, coordinate, 4);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(99, 100);
-        GameBoard.placeTile(t, coordinate, 5);
+        try {
+            GameBoard.placeTile(t, coordinate, 5);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(100, 102);
-        GameBoard.placeTile(t, coordinate, 6);
+        try {
+            GameBoard.placeTile(t, coordinate, 6);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
         t = d.draw();
         coordinate = new Coordinate(100, 100);
-        GameBoard.placeTile(t, coordinate, 2);
+        try {
+            GameBoard.placeTile(t, coordinate, 2);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         //printMap();
     }
 
@@ -109,35 +137,56 @@ public class SecondLevelMapTest {
     @Test
     public void secondTilePlacementTest() {
         Coordinate coordinate = new Coordinate(99, 99);
-        GameBoard.placeTile(t, coordinate, 5);
+        try {
+            GameBoard.placeTile(t, coordinate, 5);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+        System.out.println();
         Assert.assertTrue(checkTileIDToBoard(99, 99));
     }
 
     @Test
     public void thirdTilePlacementTest() {
         Coordinate coordinate = new Coordinate(100, 102);
-        GameBoard.placeTile(t, coordinate, 5);
+        try {
+            GameBoard.placeTile(t, coordinate, 5);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkTileIDToBoard(100, 102));
     }
 
     @Test
     public void notOnTheSameLevelPlacementTest() {
         Coordinate coordinate = new Coordinate(101, 102);
-        GameBoard.placeTile(t, coordinate, 6);
+        try {
+            GameBoard.placeTile(t, coordinate, 6);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertFalse(checkPosition(101, 102, 6));
     }
 
     @Test
     public void gapTilePlacementTest() {
         Coordinate coordinate = new Coordinate(99, 100);
-        GameBoard.placeTile(t, coordinate, 6);
+        try {
+            GameBoard.placeTile(t, coordinate, 6);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertFalse(checkTileIDToBoard(99, 100));
     }
 
     @Test
     public void noOverlapTest() {
         Coordinate coordinate = new Coordinate(100, 99);
-        GameBoard.placeTile(t, coordinate, 3);
+        try {
+            GameBoard.placeTile(t, coordinate, 3);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertFalse(checkTileIDToBoard(100, 99));
     }
 

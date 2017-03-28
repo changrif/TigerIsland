@@ -20,10 +20,8 @@ public class TotoroTest {
         Assert.assertFalse(t.getPointValue()!= 200);
     }
 
-
-
     @Test
     public void playerIDShouldMatchWhatYouPassInTheParameter(){
-        Assert.assertEquals(2, t.getPlayer());
+        Assert.assertEquals("Kyle", t.getPlayer());
     }
 }

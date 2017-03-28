@@ -28,10 +28,9 @@ class GameRunner{
 
     public void runGame(){
         p1.setCurrentPlayersTurn(true);
+        boolean didPlayer1Win;//1 p1 won, if its false then p1 lost
         while(gameInProgess){
             //play
-
-
             if(p1.isCurrentPlayersTurn()){
                 //player1 plays
                 //Draw
@@ -42,7 +41,13 @@ class GameRunner{
 //                int tileOrientation = p1.getTileOrientationInputFromPlayer();
                 Coordinate coordinate = new Coordinate(100, 100);
                 int tileOrientation = 1;
-                map.placeTile(t, coordinate, tileOrientation);
+                try {
+                    map.placeTile(t, coordinate, tileOrientation);
+                } catch (InvalidTilePlacement invalidTilePlacement) {
+                    didPlayer1Win = false;
+                    gameInProgess=false;
+                    break;
+                }
 
                 //Build action (choose 1 of these)
                 //1. Found a settlement on any empty, level-1, non-volcano hex
@@ -50,28 +55,31 @@ class GameRunner{
                 //3. build a totoro sanctuary
                 //4. build a tiger playground
                 int option = p1.getBuildAction();
-                int xCoordForSettlement = 100;
-                int yCoordForSettlement = 101;
-                //Just Commented this to test Unit Tests because it wasn't compiling - Chandler
-//                Hex hexForSettlement = map.getHex(xCoordForSettlement, yCoordForSettlement);
-//                if(option == 1){
-//                    if(map.isValidPlaceForSettlement(hexForSettlement)) {
-//                        //this would store info about where settlements are on the map and what player is associated with that settlement
-//                        map.foundASettlement(hexForSettlement, p1.getPlayerName()); //Maybe do a hash map. Key: PlayerID, Value:Settlement/Hex
-//                    }
-//                }
-//                else if(option == 2){
-//                    p1.expandASettlement();
-//                }
-//                else if(option == 3){
-//                    p1.buildTotoroSanctuary();
-//                }
-//                else if(option == 4){
-//                    p1.buildTigerPlayground();
-//                }
+                if(option == 1){
+                    int xCoordForSettlement = 100;
+                    int yCoordForSettlement = 101;
+                    map.foundNewSettlement(new Coordinate(xCoordForSettlement, yCoordForSettlement), p1);
+                }
+                else if(option == 2){
+                    //WHAT IS THE FIRST PARAMETER???
+                    //map.ExpandSettlement(Location, Terrain.typesOfTerrain.LAKE, p1);
+                }
+                else if(option == 3){
+                    map.PlaceTotoro(new Coordinate(100,100), p1);
+                }
+                else if(option == 4){
+                    map.PlaceTiger(new Coordinate(100, 100), p1);
+                }
 
 
-                //If can't build, then game gameIsNotFinished=false;
+                //Game ends and scores are compared when:
+                //1. Player runs out of pieces
+                if(checkIfAllPiecesArePlaced(p1)){
+
+                    gameInProgess=false;
+                }
+                //Player loses if you can't build
+
                     // If player makes illegal move or cannot build set gameInProgress to false and p1 loses
                 //Calculate the player's score
                 p1.setCurrentPlayersTurn(false);
@@ -86,6 +94,23 @@ class GameRunner{
                 p1.setCurrentPlayersTurn(true);
             }
         }
+        //game is over, compare scores
+        if(p1.getPoints() > p2.getPoints()){
+            didPlayer1Win = true;
+        }
+        else if(p1.getPoints() == p2.getPoints()){
+            didPlayer1Win = checkIfAllPiecesArePlaced(p1);
+        }
+        else{
+            didPlayer1Win = false;
+        }
+    }
+
+    private boolean checkIfAllPiecesArePlaced(Player p) {
+        if(p.getNumberOfMeeplesIHave()==0 && p.getNumberOfTigersIHave() == 0 && p.getNumberOfTotorosIHave() == 0){
+            return true;
+        }
+        return false;
     }
 
 

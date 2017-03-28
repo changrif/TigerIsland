@@ -116,6 +116,9 @@ public class Player {
         return OwnedSettlements;
     }
 
+    public int getPoints() {
+        return points;
+    }
 
     public void IncreasePoints(int PointsToAdd){
         points += PointsToAdd;

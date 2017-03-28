@@ -64,15 +64,27 @@ public class FirstTileLevelTwoMapTest {
         t = d.draw();
         GameBoard = new Map();
         Coordinate coordinate = new Coordinate(100, 100);
-        GameBoard.placeTile(t, coordinate, 1);
+        try {
+            GameBoard.placeTile(t, coordinate, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
 
         t = d.draw();
         coordinate = new Coordinate(101, 100);
-        GameBoard.placeTile(t, coordinate, 2);
+        try {
+            GameBoard.placeTile(t, coordinate, 2);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
 
         t = d.draw();
         coordinate = new Coordinate(100, 100);
-        GameBoard.placeTile(t, coordinate, 2);
+        try {
+            GameBoard.placeTile(t, coordinate, 2);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
     }
 
     @Test

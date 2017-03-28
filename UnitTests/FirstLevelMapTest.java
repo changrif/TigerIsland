@@ -49,72 +49,116 @@ public class FirstLevelMapTest {
         d.generateTiles();
         t = d.draw();
         Coordinate coordinate = new Coordinate(100, 100);
-        GameBoard.placeTile(t, coordinate,  1);
+        try {
+            GameBoard.placeTile(t, coordinate,  1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
     }
 
     @Before
-    public void draw() {
-        t = d.draw();
+    public void draw(){
+        t=d.draw();
         /*
-        Hex[][] map = GameBoard.getMap();
-        for(int x = 105; x > 95; x--)   {
-            for(int y = 105; y > 95; y--)   {
-                System.out.print(map[x][y] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println();*/
+
+         */
     }
 
     @Test
-    public void firstTilePlacementTest()    {
+    public void firstTilePlacementTest(){
+
         Assert.assertTrue(checkPosition(100, 100, 1));
     }
 
     @Test
-    public void firstTileLevelTest()    {
+    public void firstTileLevelTest(){
         Assert.assertEquals(1, GameBoard.getMap()[100][100].getLevel());
     }
 
     @Test
     public void secondTilePlacementTest()  {
         Coordinate coordinate = new Coordinate(101, 100);
-        GameBoard.placeTile(t, coordinate, 2);
+        try {
+            GameBoard.placeTile(t, coordinate, 2);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkPosition(101, 100, 2));
     }
 
     @Test
     public void thirdTilePlacementTest()  {
         Coordinate coordinate = new Coordinate(100, 99);
-        GameBoard.placeTile(t, coordinate, 3);
+        try {
+            GameBoard.placeTile(t, coordinate, 3);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkPosition(100, 99, 3));
     }
 
     @Test
     public void fourthTilePlacementTest()  {
         Coordinate coordinate = new Coordinate(99, 99);
-        GameBoard.placeTile(t, coordinate, 4);
+        try {
+            GameBoard.placeTile(t, coordinate, 4);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkPosition(99, 99, 4));
     }
 
     @Test
     public void fifthTilePlacementTest()  {
         Coordinate coordinate = new Coordinate(99, 100);
-        GameBoard.placeTile(t, coordinate, 5);
+        try {
+            GameBoard.placeTile(t, coordinate, 5);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkPosition(99, 100, 5));
     }
 
     @Test
     public void sixthTilePlacementTest()  {
         Coordinate coordinate = new Coordinate(100, 102);
-        GameBoard.placeTile(t, coordinate, 6);
+        try {
+            GameBoard.placeTile(t, coordinate, 6);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertTrue(checkPosition(100, 102, 6));
     }
 
     @Test
     public void correctPlacementNotAdjacentTest() {
         Coordinate coordinate = new Coordinate(70, 70);
-        GameBoard.placeTile(t, coordinate,4);
+        try {
+            GameBoard.placeTile(t, coordinate,4);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
         Assert.assertFalse(checkPosition(70, 70, 4));
+    }
+
+    @Test
+    public void afterPlacingATileAtOriginInOrientation1ThenThe3CorrespondingCoordinatesAreTaken(){
+        Coordinate coordinate = new Coordinate(100, 100);
+        try {
+            GameBoard.placeTile(t, coordinate,1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+        Assert.assertEquals(true, GameBoard.isTaken(t.getHex1().getCoordinate()));
+        Assert.assertEquals(true, GameBoard.isTaken(t.getHex2().getCoordinate()));
+        Assert.assertEquals(true, GameBoard.isTaken(t.getHex3().getCoordinate()));
+    }
+
+    @Test
+    public void checkIfGivenTileCanBePlaceInALocation(){
+
+        Coordinate c1 = new Coordinate(100, 100);
+        GameBoard.setTileCoordinates(t, c1, 1);
+        Assert.assertEquals(false, GameBoard.canPlaceTileAtGivenTileLocationOnLevel1(t));
     }
 }

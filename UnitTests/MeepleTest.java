@@ -20,7 +20,7 @@ public class MeepleTest {
 
     @Test
     public void playerIDShouldMatchWhatYouPassInTheParameter(){
-        Assert.assertEquals(3, m.getPlayer());
+        Assert.assertEquals("Kyle", m.getPlayer());
     }
 
 

@@ -19,10 +19,8 @@ public class TigerTest {
         Assert.assertFalse(t.getPointValue()!= 75);
     }
 
-
-
     @Test
     public void playerIDShouldMatchWhatYouPassInTheParameter(){
-        Assert.assertEquals(1, t.getPlayer());
+        Assert.assertEquals("Kyle", t.getPlayer());
     }
 }

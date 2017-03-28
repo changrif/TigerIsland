@@ -16,53 +16,15 @@ public class Map {
         isTheFirstTilePlaced = false;
     }
 
-    public boolean testTaken(int x, int y) {
-        if (Map[x][y] != null) {
-            return true;
-        } else
-            return false;
-    }
-
-    public boolean isTaken(Coordinate coordinate) {
-        if (Map[coordinate.getX()][coordinate.getY()] != null) {
-            return true;
-        } else
-            return false;
-    }
-
-    public boolean isTilePlaceTaken(Tile tile) {
-        if (!isTaken(tile.getHex1().getCoordinate()) && !isTaken(tile.getHex2().getCoordinate()) && !isTaken(tile.getHex3().getCoordinate())) {
-            setTileLevel(tile, 1);
-            return true;
+    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) throws InvalidTilePlacement {
+        setTileCoordinates(tile, coordinate, tileOrientation);
+        setTileLevel(tile);
+        if (isValidPlacement(tile)) {
+            mapTileToBoard(tile);
         }
-        return false;
-    }
-
-    public void setTileLevel(Tile tile, int level) {
-        tile.setTileLevel(level);
-        tile.getHex1().setLevel(level);
-        tile.getHex2().setLevel(level);
-        tile.getHex3().setLevel(level);
-    }
-
-    public Hex[][] getMap() {
-        return Map;
-    }
-
-    public Terrain.typesOfTerrain getMapTerrain(Coordinate coordinate) {
-        return hexAt(coordinate).getTerrainType();
-    }
-
-    //Maps a Tile's Hexes to the Board
-    public void mapTileToBoard(Tile tile) {
-        mapHexToBoard(tile.getHex1());
-        mapHexToBoard(tile.getHex2());
-        mapHexToBoard(tile.getHex3());
-    }
-
-    //Maps a Hex to the Board
-    public void mapHexToBoard(Hex hex) {
-        Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()] = hex;
+        else{
+            throw new InvalidTilePlacement();
+        }
     }
 
     public void setTileCoordinates(Tile tile, Coordinate coordinate, int tileOrientation) {
@@ -134,36 +96,72 @@ public class Map {
         return tileCoordinates;
     }
 
-    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) {
-        setTileCoordinates(tile, coordinate, tileOrientation);
-        if (isValidPlacement(tile)) {
-            mapTileToBoard(tile);
-        }
-    }
-
-    private boolean isEven(int y) {
-        return y % 2 == 0;
-    }
-
-    public boolean isTheFirstTile(Tile tile) {
-        if (!isTheFirstTilePlaced) {
-            isTheFirstTilePlaced = true;
-            setTileLevel(tile, 1);
-            return true;
-        }
-        return false;
-    }
-
     public boolean isValidPlacement(Tile tile) {
         boolean validPlacement = false;
 
         if (isTheFirstTile(tile)) {
             validPlacement = true;
-        } else if ((isTilePlaceTaken(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
+        } else if ((canPlaceTileAtGivenTileLocationOnLevel1(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
             validPlacement = true;
         }
 
         return validPlacement;
+    }
+
+    public boolean isTheFirstTile(Tile tile) {
+        if (!isTheFirstTilePlaced) {
+            isTheFirstTilePlaced = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void setTileLevel(Tile tile) {
+
+        int level = tile.getTileLevel();
+        if(isTaken(tile.getHex1().getCoordinate()))   {
+            level = hexAt(tile.getHex1().getCoordinate()).getLevel();
+        }
+
+        tile.setTileLevel(level+1);
+        tile.getHex1().setLevel(level+1);
+        tile.getHex2().setLevel(level+1);
+        tile.getHex3().setLevel(level+1);
+    }
+
+    public boolean canPlaceTileAtGivenTileLocationOnLevel1(Tile tile) {
+        if (!isTaken(tile.getHex1().getCoordinate()) && !isTaken(tile.getHex2().getCoordinate()) && !isTaken(tile.getHex3().getCoordinate())) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isAdjacentToAnotherTile(Tile tile) {
+        Coordinate coordinateOfHex1 = tile.getHex1().getCoordinate();
+        Coordinate coordinateOfHex2 = tile.getHex2().getCoordinate();
+        Coordinate coordinateOfHex3 = tile.getHex3().getCoordinate();
+
+        if (hasNeighbors(tile, coordinateOfHex1) || hasNeighbors(tile, coordinateOfHex2) || hasNeighbors(tile, coordinateOfHex3)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean hasNeighbors(Tile tile, Coordinate coordinate) {
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(coordinate);
+        Coordinate adj;
+
+        for (int i = 0; i < 6; i++) {
+            adj = adjacencyMatrix[i];
+            if (hexAt(adj) != null) {
+                if (hexAt(adj).getLevel() == tile.getTileLevel()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public Coordinate[] createAdjacentCoordinateArray(Coordinate coordinate) {
@@ -190,38 +188,9 @@ public class Map {
         return adjacencyMatrix;
     }
 
-    public boolean hasNeighbors(Tile tile, Coordinate coordinate) {
-        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(coordinate);
-        Coordinate adj;
-
-        for (int i = 0; i < 6; i++) {
-            adj = adjacencyMatrix[i];
-            if (hexAt(adj) != null) {
-                if (hexAt(adj).getLevel() == tile.getTileLevel()) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public boolean isAdjacentToAnotherTile(Tile tile) {
-        Coordinate coordinateOfHex1 = tile.getHex1().getCoordinate();
-        Coordinate coordinateOfHex2 = tile.getHex2().getCoordinate();
-        Coordinate coordinateOfHex3 = tile.getHex3().getCoordinate();
-
-        if (hasNeighbors(tile, coordinateOfHex1) || hasNeighbors(tile, coordinateOfHex2) || hasNeighbors(tile, coordinateOfHex3)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public boolean canStackTile(Tile tile) {
         if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile) && !isOnTopOfATotoro(tile) && !isOnTopOfATiger(tile) && !isNukingAnEntireSettlement(tile)) {
             int tileLevel = hexAt(tile.getHex1().getCoordinate()).getLevel();
-            setTileLevel(tile, tileLevel + 1);
             return true;
         }
 
@@ -252,20 +221,6 @@ public class Map {
         return true;
     }
 
-    public boolean isVolcanoOverVolcano(Tile tile) {
-        Terrain.typesOfTerrain terrainOnMap = null;
-
-        if (isTaken(tile.getHex1().getCoordinate())) {
-            terrainOnMap = hexAt(tile.getHex1().getCoordinate()).getTerrainType();
-        }
-
-        if (terrainOnMap == Terrain.typesOfTerrain.VOLCANO) {
-            return true;
-        }
-
-        return false;
-    }
-
     public boolean isOnTheSameLevel(Tile tile) {
         int tileLvl1 = -1;
         int tileLvl2 = -2;
@@ -284,6 +239,20 @@ public class Map {
         }
 
         if (tileLvl1 == tileLvl2 && tileLvl1 == tileLvl3) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isVolcanoOverVolcano(Tile tile) {
+        Terrain.typesOfTerrain terrainOnMap = null;
+
+        if (isTaken(tile.getHex1().getCoordinate())) {
+            terrainOnMap = hexAt(tile.getHex1().getCoordinate()).getTerrainType();
+        }
+
+        if (terrainOnMap == Terrain.typesOfTerrain.VOLCANO) {
             return true;
         }
 
@@ -339,10 +308,47 @@ public class Map {
         return isNukingSettlement;
     }
 
+    //Maps a Tile's Hexes to the Board
+    public void mapTileToBoard(Tile tile) {
+        mapHexToBoard(tile.getHex1());
+        mapHexToBoard(tile.getHex2());
+        mapHexToBoard(tile.getHex3());
+    }
+
+    //Maps a Hex to the Board
+    public void mapHexToBoard(Hex hex) {
+        Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()] = hex;
+    }
+
+    public boolean isTaken(Coordinate coordinate) {
+        if (Map[coordinate.getX()][coordinate.getY()] != null) {
+            return true;
+        } else
+            return false;
+    }
+
+    public Hex[][] getMap() {
+        return Map;
+    }
+
+    public Terrain.typesOfTerrain getMapTerrain(Coordinate coordinate) {
+        return hexAt(coordinate).getTerrainType();
+    }
+
+    public boolean testTaken(int x, int y) {
+        if (Map[x][y] != null) {
+            return true;
+        } else
+            return false;
+    }
+
+    private boolean isEven(int y) {
+        return y % 2 == 0;
+    }
+
     public Hex hexAt(Coordinate coordinate) {
         return Map[coordinate.getX()][coordinate.getY()];
     }
-
 
     public boolean isNewSettlementValid(Hex chosenHex) {
 
@@ -353,8 +359,6 @@ public class Map {
     }
 
     public void foundNewSettlement(Coordinate Location, Player player) {
-
-
         int x = Location.getX();
         int y = Location.getY();
 
@@ -376,10 +380,7 @@ public class Map {
 
     }
 
-
     public void ExpandSettlement(Coordinate Location, Terrain.typesOfTerrain TerrainType, Player p) {
-
-
         int x = Location.getX();
         int y = Location.getY();
 
@@ -523,7 +524,6 @@ public class Map {
         }
     }
 
-
     public void MergeSettlementsAfterFounding(Coordinate Location, Player player) {
 
         int x = Location.getX();
@@ -554,13 +554,16 @@ public class Map {
         }
     }
 
-
     public void MergeSettlementsAfterExpansion(){
-
-
 
     }
 
+//    public Tile searchForFirstValidTilePlacements(Tile tile)    {
+//        tile.getHex1().getCoordinate();
+//
+//
+//        return tile;
+//    }
 
 }
 

@@ -49,10 +49,26 @@ public class SettlementTests {
         Coordinate tile3Location = new Coordinate(103,99);
         Coordinate tile4Location = new Coordinate(103, 101);
 
-        GameBoard.placeTile(tile1, tile1Location, 1);
-        GameBoard.placeTile(tile2, tile2Location, 1);
-        GameBoard.placeTile(tile3, tile3Location, 1);
-        GameBoard.placeTile(tile4, tile4Location, 1);
+        try {
+            GameBoard.placeTile(tile1, tile1Location, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+        try {
+            GameBoard.placeTile(tile2, tile2Location, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+        try {
+            GameBoard.placeTile(tile3, tile3Location, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+        try {
+            GameBoard.placeTile(tile4, tile4Location, 1);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
 
 
         Assert.assertEquals(p1.getPlayerSettlements().size(), 0);
