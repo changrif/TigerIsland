@@ -2,11 +2,12 @@
  * Created by Kyle on 3/14/2017.
  */
 public class Totoro {
-    private int player;
+
+    private String player;
     private static final int pointValue = 200;
 
     //Constructor
-    public Totoro(int playerID){
+    public Totoro(String playerID){
         player = playerID;
     }
 
@@ -14,7 +15,7 @@ public class Totoro {
         return pointValue;
     }
 
-    public int getPlayer(){
+    public String getPlayer(){
         return player;
     }
 

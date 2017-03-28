@@ -14,16 +14,18 @@ public class Player {
     private int numberOfTigersIHave;
     private String name;
     private boolean isCurrentPlayersTurn;
-    private ArrayList<Hex> settlements;
+    private ArrayList<Settlement> OwnedSettlements;
 //    private Tile tile;
 
 
     public Player(String PlayerName) {
+        OwnedSettlements = new ArrayList<>();
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
         numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
+
 
     public int getXCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
@@ -101,4 +103,15 @@ public class Player {
     public String getPlayerName() {
         return name;
     }
+
+
+
+    public void addSettlement(Settlement NewSettlement){
+        OwnedSettlements.add(NewSettlement);
+    }
+
+    public ArrayList<Settlement> getPlayerSettlements(){
+        return OwnedSettlements;
+    }
+
 }

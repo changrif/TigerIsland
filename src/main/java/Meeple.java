@@ -3,11 +3,11 @@
  */
 public class Meeple {
 
-    private int player;
+    private String player;
     private static final int pointValue = 1;
 
     //Constructor
-    public Meeple(int playerID){
+    public Meeple(String playerID){
         this.player = playerID;
     }
 
@@ -15,7 +15,7 @@ public class Meeple {
         return pointValue;
     }
 
-    public int getPlayer(){
+    public String getPlayer(){
         return player;
     }
 }

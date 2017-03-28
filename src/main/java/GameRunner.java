@@ -40,10 +40,9 @@ class GameRunner{
 //                int x = p1.getXCoordinateInputFromPlayer();
 //                int y = p1.getYCoordinateInputFromPlayer();
 //                int tileOrientation = p1.getTileOrientationInputFromPlayer();
-                int x = 100;
-                int y = 100;
+                Coordinate coordinate = new Coordinate(100, 100);
                 int tileOrientation = 1;
-                map.placeTile(x, y, t, tileOrientation);
+                map.placeTile(t, coordinate, tileOrientation);
 
                 //Build action (choose 1 of these)
                 //1. Found a settlement on any empty, level-1, non-volcano hex

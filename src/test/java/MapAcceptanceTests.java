@@ -27,7 +27,7 @@ public class MapAcceptanceTests {
 
         for(int i=0; i < 200; i++) {
             for(int j=0; j<200; j++){
-                assertFalse(Gameboard.isTaken(i,j));
+                assertFalse(Gameboard.testTaken(i,j));
             }
         }
 

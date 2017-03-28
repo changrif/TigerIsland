@@ -11,7 +11,7 @@ public class TotoroTest {
 
     @Before
     public void createTotoro(){
-        t = new Totoro(2);
+        t = new Totoro("Kyle");
     }
 
     @Test

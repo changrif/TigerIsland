@@ -10,7 +10,7 @@ public class MeepleTest {
 
     @Before
     public void createMeeple(){
-        m = new Meeple(3);
+        m = new Meeple("Kyle");
     }
 
     @Test

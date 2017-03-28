@@ -10,7 +10,7 @@ public class TigerTest {
 
     @Before
     public void createTiger(){
-        t = new Tiger(1);
+        t = new Tiger("Kyle");
     }
 
     @Test
