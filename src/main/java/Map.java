@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * Created by Kyle on 3/14/2017.
@@ -39,7 +38,7 @@ public class Map {
         return false;
     }
 
-    public void setTileLevel(Tile tile, int level)  {
+    public void setTileLevel(Tile tile, int level) {
         tile.setTileLevel(level);
         tile.getHex1().setLevel(level);
         tile.getHex2().setLevel(level);
@@ -55,26 +54,26 @@ public class Map {
     }
 
     //Maps a Tile's Hexes to the Board
-    public void mapTileToBoard(Tile tile)   {
-        mapHexToBoard(tile.getHex1()); 
+    public void mapTileToBoard(Tile tile) {
+        mapHexToBoard(tile.getHex1());
         mapHexToBoard(tile.getHex2());
         mapHexToBoard(tile.getHex3());
     }
 
     //Maps a Hex to the Board
-    public void mapHexToBoard(Hex hex)    {
+    public void mapHexToBoard(Hex hex) {
         Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()] = hex;
     }
-    
-    public void setTileCoordinates(Tile tile, Coordinate coordinate, int tileOrientation)  {
+
+    public void setTileCoordinates(Tile tile, Coordinate coordinate, int tileOrientation) {
         Coordinate[] coordinates = getTileCoordinates(coordinate, tileOrientation);
 
         tile.getHex1().setCoordinate(coordinates[0]);
         tile.getHex2().setCoordinate(coordinates[1]);
         tile.getHex3().setCoordinate(coordinates[2]);
     }
-    
-    public Coordinate[] getTileCoordinates(Coordinate coordinate, int tileOrientation)   {
+
+    public Coordinate[] getTileCoordinates(Coordinate coordinate, int tileOrientation) {
         Coordinate[] tileCoordinates = new Coordinate[3];
         Coordinate[] adjacentCoordinates = determineTileCoordinatesBasedOnOrientation(coordinate, tileOrientation);
 
@@ -92,26 +91,21 @@ public class Map {
 
         if (isEven(y)) {
             if (tileOrientation == 1) {
-                tileCoordinates[0] = new Coordinate(x - 1,y + 1);
+                tileCoordinates[0] = new Coordinate(x - 1, y + 1);
                 tileCoordinates[1] = new Coordinate(x, y + 1);
-            }
-            else if (tileOrientation == 2) {
+            } else if (tileOrientation == 2) {
                 tileCoordinates[0] = new Coordinate(x, y + 1);
                 tileCoordinates[1] = new Coordinate(x + 1, y);
-            }
-            else if (tileOrientation == 3) {
+            } else if (tileOrientation == 3) {
                 tileCoordinates[0] = new Coordinate(x + 1, y);
                 tileCoordinates[1] = new Coordinate(x, y - 1);
-            }
-            else if (tileOrientation == 4) {
+            } else if (tileOrientation == 4) {
                 tileCoordinates[0] = new Coordinate(x, y - 1);
                 tileCoordinates[1] = new Coordinate(x - 1, y - 1);
-            }
-            else if (tileOrientation == 5) {
+            } else if (tileOrientation == 5) {
                 tileCoordinates[0] = new Coordinate(x - 1, y - 1);
                 tileCoordinates[1] = new Coordinate(x - 1, y);
-            }
-            else if (tileOrientation == 6) {
+            } else if (tileOrientation == 6) {
                 tileCoordinates[0] = new Coordinate(x - 1, y);
                 tileCoordinates[1] = new Coordinate(x - 1, y + 1);
             }
@@ -119,24 +113,19 @@ public class Map {
             if (tileOrientation == 1) {
                 tileCoordinates[0] = new Coordinate(x, y + 1);
                 tileCoordinates[1] = new Coordinate(x + 1, y + 1);
-            }
-            else if (tileOrientation == 2) {
+            } else if (tileOrientation == 2) {
                 tileCoordinates[0] = new Coordinate(x + 1, y + 1);
                 tileCoordinates[1] = new Coordinate(x + 1, y);
-            }
-            else if (tileOrientation == 3) {
+            } else if (tileOrientation == 3) {
                 tileCoordinates[0] = new Coordinate(x + 1, y);
                 tileCoordinates[1] = new Coordinate(x + 1, y - 1);
-            }
-            else if (tileOrientation == 4) {
+            } else if (tileOrientation == 4) {
                 tileCoordinates[0] = new Coordinate(x + 1, y - 1);
                 tileCoordinates[1] = new Coordinate(x, y - 1);
-            }
-            else if (tileOrientation == 5) {
+            } else if (tileOrientation == 5) {
                 tileCoordinates[0] = new Coordinate(x, y - 1);
                 tileCoordinates[1] = new Coordinate(x - 1, y);
-            }
-            else if (tileOrientation == 6) {
+            } else if (tileOrientation == 6) {
                 tileCoordinates[0] = new Coordinate(x - 1, y);
                 tileCoordinates[1] = new Coordinate(x, y + 1);
             }
@@ -145,7 +134,7 @@ public class Map {
         return tileCoordinates;
     }
 
-    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation)    {
+    public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) {
         setTileCoordinates(tile, coordinate, tileOrientation);
         if (isValidPlacement(tile)) {
             mapTileToBoard(tile);
@@ -157,7 +146,7 @@ public class Map {
     }
 
     public boolean isTheFirstTile(Tile tile) {
-        if (!isTheFirstTilePlaced)   {
+        if (!isTheFirstTilePlaced) {
             isTheFirstTilePlaced = true;
             setTileLevel(tile, 1);
             return true;
@@ -168,9 +157,9 @@ public class Map {
     public boolean isValidPlacement(Tile tile) {
         boolean validPlacement = false;
 
-        if (isTheFirstTile(tile))   {
+        if (isTheFirstTile(tile)) {
             validPlacement = true;
-        }   else if ((isTilePlaceTaken(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
+        } else if ((isTilePlaceTaken(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
             validPlacement = true;
         }
 
@@ -301,48 +290,48 @@ public class Map {
         return false;
     }
 
-    public boolean isOnTopOfATotoro(Tile tile)   {
+    public boolean isOnTopOfATotoro(Tile tile) {
         boolean isTotoroPresent = false;
-        if(hexAt(tile.getHex2().getCoordinate()).TotoroPresent())  {
+        if (hexAt(tile.getHex2().getCoordinate()).TotoroPresent()) {
             isTotoroPresent = true;
-        }   else if(hexAt(tile.getHex3().getCoordinate()).TotoroPresent())  {
+        } else if (hexAt(tile.getHex3().getCoordinate()).TotoroPresent()) {
             isTotoroPresent = true;
         }
         return isTotoroPresent;
     }
 
-    public boolean isOnTopOfATiger(Tile tile)   {
+    public boolean isOnTopOfATiger(Tile tile) {
         boolean isTigerPresent = false;
-        if(hexAt(tile.getHex2().getCoordinate()).TigerPresent())  {
+        if (hexAt(tile.getHex2().getCoordinate()).TigerPresent()) {
             isTigerPresent = true;
-        }   else if(hexAt(tile.getHex3().getCoordinate()).TigerPresent())  {
+        } else if (hexAt(tile.getHex3().getCoordinate()).TigerPresent()) {
             isTigerPresent = true;
         }
         return isTigerPresent;
     }
 
-    public boolean isNukingAnEntireSettlement(Tile tile)    {
+    public boolean isNukingAnEntireSettlement(Tile tile) {
         boolean isNukingSettlement = false;
         Settlement settlement1 = null;
         Settlement settlement2 = null;
 
-        if(tile.getHex2().getSettlement() != null)  {
+        if (tile.getHex2().getSettlement() != null) {
             settlement1 = tile.getHex2().getSettlement();
 
-            if(settlement1.getLength() == 1)    {
+            if (settlement1.getLength() == 1) {
                 isNukingSettlement = true;
             }
         }
 
-        if(tile.getHex3().getSettlement() != null)  {
+        if (tile.getHex3().getSettlement() != null) {
             settlement2 = tile.getHex3().getSettlement();
-            if(settlement2.getLength() == 1)    {
+            if (settlement2.getLength() == 1) {
                 isNukingSettlement = true;
             }
         }
 
-        if(settlement1 != null && settlement2 != null)   {
-            if(settlement1.equals(settlement2)) {
+        if (settlement1 != null && settlement2 != null) {
+            if (settlement1.equals(settlement2)) {
                 isNukingSettlement = true;
             }
         }
@@ -355,8 +344,6 @@ public class Map {
     }
 
 
-
-
     public boolean isNewSettlementValid(Hex chosenHex) {
 
         if ((chosenHex.MeeplesPresent() == false) && (chosenHex.TotoroPresent() == false) && (chosenHex.TigerPresent() == false) && (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO) && (chosenHex.getLevel() == 1)) {
@@ -365,7 +352,7 @@ public class Map {
             return false;
     }
 
-    public void foundNewSettlement(Coordinate Location, Player player){
+    public void foundNewSettlement(Coordinate Location, Player player) {
 
 
         int x = Location.getX();
@@ -373,7 +360,7 @@ public class Map {
 
         Hex chosenHex = Map[x][y];
 
-        if (isNewSettlementValid(chosenHex)){
+        if (isNewSettlementValid(chosenHex)) {
             chosenHex.placeMeeples(player);
 
             Settlement s = new Settlement(chosenHex, player);
@@ -386,14 +373,14 @@ public class Map {
     }
 
 
-    public void ExpandSettlement(Coordinate Location, Terrain.typesOfTerrain TerrainType, Player p){
+    public void ExpandSettlement(Coordinate Location, Terrain.typesOfTerrain TerrainType, Player p) {
 
 
         int x = Location.getX();
         int y = Location.getY();
 
         //throw error if trying to expand on volcano?
-        if(TerrainType == Terrain.typesOfTerrain.VOLCANO){
+        if (TerrainType == Terrain.typesOfTerrain.VOLCANO) {
             return;
         }
 
@@ -404,11 +391,11 @@ public class Map {
 
         Settlement ExpandedSettlement = Map[x][y].getSettlement();
         ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
-        for (int i = 0; i < SettlementHexes.size(); i++){
+        for (int i = 0; i < SettlementHexes.size(); i++) {
             queue.add(SettlementHexes.get(i));
         }
 
-        while(queue.size() != 0){
+        while (queue.size() != 0) {
             //get current Hex
             Hex CurrentHex = queue.poll();
             Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
@@ -451,11 +438,10 @@ public class Map {
         //System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
 
         //add hexes to settlement if enough Meeples
-        if (p.getNumberOfMeeplesIHave() < RequiredMeeples){
+        if (p.getNumberOfMeeplesIHave() < RequiredMeeples) {
             return;
-        }
-        else{
-            for (int i = 0; i < ExpansionHexes.size(); i++){
+        } else {
+            for (int i = 0; i < ExpansionHexes.size(); i++) {
                 ExpansionHexes.get(i).setSettlement(ExpandedSettlement);
                 ExpansionHexes.get(i).placeMeeples(p);
                 ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
@@ -466,13 +452,13 @@ public class Map {
 
     }
 
-    public void PlaceTotoro(Coordinate Location, Player player){
+    public void PlaceTotoro(Coordinate Location, Player player) {
 
         int x = Location.getX();
         int y = Location.getY();
 
         //return error trying to place on Volcano or space already occupied or not Totoro left to play
-        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTotorosIHave() <= 0){
+        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTotorosIHave() <= 0) {
             return;
         }
 
@@ -484,7 +470,7 @@ public class Map {
             x_adj = adjacencyMatrix[i].getX();
             y_adj = adjacencyMatrix[i].getY();
 
-            if ( (Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement()!= null)) {
+            if ((Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement() != null)) {
                 if (Map[x_adj][y_adj].getSettlement().getLength() >= 5 && (Map[x_adj][y_adj].getSettlement().getTotoroFlag() == false)) {
                     Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
                     Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
@@ -500,13 +486,13 @@ public class Map {
 
     }
 
-    public void PlaceTiger(Coordinate Location, Player player){
+    public void PlaceTiger(Coordinate Location, Player player) {
 
         int x = Location.getX();
         int y = Location.getY();
 
-        //return error trying to place on Volcano or space already occupied or no tigers left to play
-        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTigersIHave() <= 0){
+        //return error trying to place on Volcano or space already occupied or no tigers left to play or not level 3+ tile
+        if (Map[x][y].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y].getSettlement() != null || player.getNumberOfTigersIHave() <= 0 || Map[x][y].getLevel() < 3) {
             return;
         }
 
@@ -518,20 +504,32 @@ public class Map {
             x_adj = adjacencyMatrix[i].getX();
             y_adj = adjacencyMatrix[i].getY();
 
-            if ( (Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement()!= null) && (Map[x_adj][y_adj].getSettlement().getTigerFlag() == false)) {
-                if (Map[x_adj][y_adj].getSettlement().getLength() >= 3) {
-                    Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
-                    Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
-                    Map[x][y].placeTiger(player);
-                    player.decreaseNumberOfTigersByAmount(1);
-                    //System.out.println("Tiger placed!");
-                    break;
-                }
+            if ((Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].getSettlement() != null) && (Map[x_adj][y_adj].getSettlement().getTigerFlag() == false)) {
+                Map[x_adj][y_adj].getSettlement().addToSettlement(Map[x][y]);
+                Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
+                Map[x][y].placeTiger(player);
+                player.decreaseNumberOfTigersByAmount(1);
+                //System.out.println("Tiger placed!");
+                break;
             }
         }
+    }
 
-        //System.out.println(player.getPlayerName() + " has " + player.getNumberOfTigersIHave() + " Tigers left!");
+
+    public void MergeSettlementsAfterFounding(Coordinate Location){
+
+
 
     }
+
+
+    public void MergeSettlementsAfterExpansion(){
+
+
+
+    }
+
+
 }
+
 
