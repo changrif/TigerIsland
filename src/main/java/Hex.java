@@ -13,6 +13,9 @@ public class Hex {
     private Totoro totoro;
     private Tiger tiger;
     private Settlement settlement;
+    private String BelongsToThisPlayer;
+
+
 
 
     public Hex (Terrain.typesOfTerrain TerrainType, int TileIndex){
@@ -73,16 +76,19 @@ public class Hex {
         for(int i = 0; i < Level; i++){
             meeples[i] = new Meeple(player.getPlayerName());
         }
+        BelongsToThisPlayer = player.getPlayerName();
     }
 
     public void placeTotoro(Player player){
         totoro = new Totoro(player.getPlayerName());
         this.settlement.addTotoroFlag();
+        BelongsToThisPlayer = player.getPlayerName();
     }
 
     public void placeTiger(Player player){
         tiger = new Tiger(player.getPlayerName());
         this.settlement.addTigerFlag();
+        BelongsToThisPlayer = player.getPlayerName();
     }
 
     public void setSettlement(Settlement settlement){
@@ -91,6 +97,10 @@ public class Hex {
 
     public Settlement getSettlement(){
         return this.settlement;
+    }
+
+    public String GetPlayerBelongsTo(){
+        return BelongsToThisPlayer;
     }
 
 

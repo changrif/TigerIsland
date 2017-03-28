@@ -368,8 +368,12 @@ public class Map {
 
             player.addSettlement(s);
             player.decreaseNumberOfMeeplesByAmount(1);
+            player.IncreasePoints(1);
 
+            MergeSettlementsAfterFounding(Location, player);
         }
+
+
     }
 
 
@@ -391,6 +395,7 @@ public class Map {
 
         Settlement ExpandedSettlement = Map[x][y].getSettlement();
         ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
+
         for (int i = 0; i < SettlementHexes.size(); i++) {
             queue.add(SettlementHexes.get(i));
         }
@@ -447,6 +452,7 @@ public class Map {
                 ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
             }
             p.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
+            p.IncreasePoints(RequiredMeeples);
             //System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
         }
 
@@ -476,6 +482,7 @@ public class Map {
                     Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
                     Map[x][y].placeTotoro(player);
                     player.decreaseNumberOfTotorosByAmount(1);
+                    player.IncreasePoints(200);
                     //System.out.println("Totoro placed!");
                     break;
                 }
@@ -509,6 +516,7 @@ public class Map {
                 Map[x][y].setSettlement(Map[x_adj][y_adj].getSettlement());
                 Map[x][y].placeTiger(player);
                 player.decreaseNumberOfTigersByAmount(1);
+                player.IncreasePoints(75);
                 //System.out.println("Tiger placed!");
                 break;
             }
@@ -516,10 +524,34 @@ public class Map {
     }
 
 
-    public void MergeSettlementsAfterFounding(Coordinate Location){
+    public void MergeSettlementsAfterFounding(Coordinate Location, Player player) {
+
+        int x = Location.getX();
+        int y = Location.getY();
+
+        Settlement MergedSettlement = Map[x][y].getSettlement();
 
 
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
+        int x_adj;
+        int y_adj;
 
+        for (int i = 0; i < 6; i++) {
+            x_adj = adjacencyMatrix[i].getX();
+            y_adj = adjacencyMatrix[i].getY();
+
+            if ((Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].GetPlayerBelongsTo() == player.getPlayerName()) && Map[x_adj][y_adj].getSettlement() != MergedSettlement) {
+                ArrayList<Hex> HexesToMerge = Map[x_adj][y_adj].getSettlement().getSettlementHexes();
+
+                for (int j = 0; j < HexesToMerge.size(); j++) {
+                    MergedSettlement.addToSettlement(HexesToMerge.get(j));
+                    Map[x_adj][y_adj].setSettlement(MergedSettlement);
+                }
+
+                player.getPlayerSettlements().remove(Map[x_adj][y_adj].getSettlement());
+            }
+
+        }
     }
 
 

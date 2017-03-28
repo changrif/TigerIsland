@@ -13,6 +13,7 @@ public class Player {
     private int numberOfTotorosIHave;
     private int numberOfTigersIHave;
     private String name;
+    private int points;
     private boolean isCurrentPlayersTurn;
     private ArrayList<Settlement> OwnedSettlements;
 //    private Tile tile;
@@ -20,6 +21,7 @@ public class Player {
 
     public Player(String PlayerName) {
         OwnedSettlements = new ArrayList<>();
+        points = 0;
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
@@ -112,6 +114,11 @@ public class Player {
 
     public ArrayList<Settlement> getPlayerSettlements(){
         return OwnedSettlements;
+    }
+
+
+    public void IncreasePoints(int PointsToAdd){
+        points += PointsToAdd;
     }
 
 }
