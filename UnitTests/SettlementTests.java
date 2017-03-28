@@ -144,7 +144,23 @@ public class SettlementTests {
         //P1's total Tiger should be 1 now
         Assert.assertEquals(p1.getNumberOfTigersIHave(), 2);
     }
+    @Test
+    public void tigerFlagShouldBeAddedFromSettlementIfSetterIsCalled(){
+        CurrentPlacement = new Coordinate(103,102);
+        GameBoard.PlaceTiger(CurrentPlacement, p1);
+        p1.getPlayerSettlements().get(0).addTigerFlag();
+        Assert.assertTrue(p1.getPlayerSettlements().get(0).getTigerFlag());
+    }
 
+
+    @Test
+    public void tigerFlagShouldBeRemovedFromSettlementIfSetterIsCalled(){
+        CurrentPlacement = new Coordinate(103,102);
+        GameBoard.PlaceTiger(CurrentPlacement, p1);
+        p1.getPlayerSettlements().get(0).addTigerFlag();
+        p1.getPlayerSettlements().get(0).removeTigerFlag();
+        Assert.assertFalse(p1.getPlayerSettlements().get(0).getTigerFlag());
+    }
 
 }
 
