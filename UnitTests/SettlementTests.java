@@ -70,7 +70,6 @@ public class SettlementTests {
             invalidTilePlacement.printStackTrace();
         }
 
-
         Assert.assertEquals(p1.getPlayerSettlements().size(), 0);
 
         CurrentPlacement = new Coordinate(100,101);
@@ -94,7 +93,7 @@ public class SettlementTests {
         GameBoard.PlaceTotoro(CurrentPlacement, p1);
 
         //should only have 1 settlement at this point
-        Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
+        Assert.assertEquals(p1.getOwnedSettlementsSize(), 1);
 
         //should be length 6 (5 Meeples and 1 Totoro)
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 6);
@@ -118,7 +117,7 @@ public class SettlementTests {
         GameBoard.PlaceTiger(CurrentPlacement, p1);
 
         //should only have 1 settlement at this point
-        Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
+        Assert.assertEquals(p1.getOwnedSettlementsSize(), 1);
 
         //should be length 6 (5 Meeples and 1 Totoro )
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 6);

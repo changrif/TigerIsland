@@ -76,6 +76,10 @@ public class PlayerTest {
         Assert.assertEquals(true, p.isCurrentPlayersTurn());
     }
 
+    @Test
+    public void whenAPlayerIsCreatedThenTheSizeOfTheSettlementsTheyHaveShouldBeZero(){
+        Assert.assertEquals(0, p.getOwnedSettlementsSize());
+    }
 //    @Test
 //    public void xCoordinateShouldEqualTheNumberInputtedByUser(){
 //        int x = p.getXCoordinateInputFromPlayer();

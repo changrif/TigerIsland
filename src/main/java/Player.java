@@ -71,7 +71,7 @@ public class Player {
     public void decreaseNumberOfMeeplesByAmount(int numberOfMeeplesPlacedForCurrentTurn){
         int updatedAmountOfMeeples = numberOfMeeplesIHave - numberOfMeeplesPlacedForCurrentTurn;
         if(updatedAmountOfMeeples < 0){
-            throw new RuntimeException("Number of Meeples Cannot Be Negative!");
+            throw new NotEnoughMeeples();
         }
         this.numberOfMeeplesIHave = updatedAmountOfMeeples;
 
@@ -84,7 +84,7 @@ public class Player {
     public void decreaseNumberOfTotorosByAmount(int numberOfTotorosPlacedOnCurrentTurn) throws NotEnoughTotoro {
         int updatedAmountOfTotoros = numberOfTotorosIHave - numberOfTotorosPlacedOnCurrentTurn;
         if(updatedAmountOfTotoros < 0){
-            throw new NotEnoughTotoro("Number of Totoros Cannot Be Negative!");
+            throw new NotEnoughTotoro();
         }
         this.numberOfTotorosIHave = updatedAmountOfTotoros;
 
@@ -94,10 +94,14 @@ public class Player {
         return numberOfTigersIHave;
     }
 
+    public int getOwnedSettlementsSize() {
+        return OwnedSettlements.size();
+    }
+
     public void decreaseNumberOfTigersByAmount(int numberOfTigersPlacedOnCurrentTurn) throws NotEnoughTigers{
         int updatedAmountOfTigers = numberOfTigersIHave - numberOfTigersPlacedOnCurrentTurn;
         if(updatedAmountOfTigers < 0){
-            throw new NotEnoughTigers("Number of Tigers Cannot Be Negative!");
+            throw new NotEnoughTigers();
         }
         this.numberOfTigersIHave = updatedAmountOfTigers;
     }
