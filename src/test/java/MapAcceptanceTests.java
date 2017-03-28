@@ -33,4 +33,18 @@ public class MapAcceptanceTests {
 
     }
 
+    @Then("^a board data structure containing data will produce errors\\.$")
+    public void a_board_data_structure_containing_data_will_produce_errors() throws Throwable {
+        Map Gameboard = new Map();
+        assertTrue(Gameboard instanceof Map);
+
+        for(int i=0; i < 200; i++) {
+            for(int j=0; j<200; j++){
+                assertTrue(!Gameboard.isTaken(i,j));
+            }
+        }
+
+    }
+
+
 }
