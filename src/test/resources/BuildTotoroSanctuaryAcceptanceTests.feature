@@ -16,3 +16,6 @@ Feature: Totoro Sanctuary
     Given a player has a settlement with a Totoro
     When a player tries to add another Totoro to that settlement
     Then they are not allowed to place the Totoro
+
+
+
