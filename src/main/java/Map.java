@@ -374,7 +374,7 @@ public class Map {
             player.decreaseNumberOfMeeplesByAmount(1);
             player.IncreasePoints(1);
 
-            MergeSettlementsAfterFounding(Location, player);
+            MergeSettlementsAfterFounding(s, player);
         }
 
 
@@ -532,13 +532,9 @@ public class Map {
         }
     }
 
-    public void MergeSettlementsAfterFounding(Coordinate Location, Player player) {
+    public void MergeSettlementsAfterFounding(Settlement MergedSettlement, Player player) {
 
-        int x = Location.getX();
-        int y = Location.getY();
-
-        Settlement MergedSettlement = Map[x][y].getSettlement();
-
+        Coordinate Location = MergedSettlement.getSettlementHexes().get(0).getCoordinate();
 
         Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
         int x_adj;
@@ -550,16 +546,16 @@ public class Map {
 
             if ((Map[x_adj][y_adj] != null) && (Map[x_adj][y_adj].GetPlayerBelongsTo() == player.getPlayerName()) && Map[x_adj][y_adj].getSettlement() != MergedSettlement) {
                 ArrayList<Hex> HexesToMerge = Map[x_adj][y_adj].getSettlement().getSettlementHexes();
+                player.getPlayerSettlements().remove(Map[x_adj][y_adj].getSettlement());
 
                 for (int j = 0; j < HexesToMerge.size(); j++) {
                     MergedSettlement.addToSettlement(HexesToMerge.get(j));
-                    Map[x_adj][y_adj].setSettlement(MergedSettlement);
+                    HexesToMerge.get(j).setSettlement(MergedSettlement);
                 }
-
-                player.getPlayerSettlements().remove(Map[x_adj][y_adj].getSettlement());
             }
-
         }
+
+
     }
 
     public void MergeSettlementsAfterExpansion(){

@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kyle on 3/25/2017.
  */
@@ -26,7 +28,7 @@ public class SettlementTests {
         p2 = new Player("Dave");
     }
 
-    @Before
+    @Test
     public void P1foundsNewSettlement()   {
         Hex Hex01 = new Hex(Terrain.typesOfTerrain.VOLCANO, 1);
         Hex Hex02 = new Hex(Terrain.typesOfTerrain.JUNGLE, 2);
@@ -76,12 +78,33 @@ public class SettlementTests {
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
 
-        CurrentPlacement = new Coordinate(100,100);
+        CurrentPlacement = new Coordinate(100,101);
+        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
+
+        CurrentPlacement = new Coordinate(104,100);
+        GameBoard.PlaceTotoro(CurrentPlacement, p1);
+        Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
+        Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 6);
+
+        CurrentPlacement = new Coordinate(104,102);
+        GameBoard.foundNewSettlement(CurrentPlacement, p1);
+        Assert.assertEquals(p1.getPlayerSettlements().size(), 2);
+
+        CurrentPlacement = new Coordinate(103,102);
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
 
+        ArrayList<Hex> MergedHexes = p1.getPlayerSettlements().get(0).getSettlementHexes();
+        for (int k = 0; k < MergedHexes.size(); k++){
+            System.out.println(MergedHexes.get(k).getCoordinate().getX() + "," + MergedHexes.get(k).getCoordinate().getY());
+        }
+
+        Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 8);
+
     }
 
+    /*
     @Before public void P1ExpandSettlement(){
         CurrentPlacement = new Coordinate(100,101);
         GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
@@ -161,6 +184,7 @@ public class SettlementTests {
         Assert.assertFalse(p1.getPlayerSettlements().get(0).getTigerFlag());
     }
 
+*/
 }
 
 
