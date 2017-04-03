@@ -44,9 +44,7 @@ class GameRunner{
                 try {
                     map.placeTile(t, coordinate, tileOrientation);
                 } catch (InvalidTilePlacement invalidTilePlacement) {
-                    didPlayer1Win = false;
-                    gameInProgess=false;
-                    break;
+                    invalidTilePlacement.printStackTrace();
                 }
 
                 //Build action (choose 1 of these)
@@ -95,10 +93,10 @@ class GameRunner{
             }
         }
         //game is over, compare scores
-        if(p1.getPoints() > p2.getPoints()){
+        if(p1.getMatchScore() > p2.getMatchScore()){
             didPlayer1Win = true;
         }
-        else if(p1.getPoints() == p2.getPoints()){
+        else if(p1.getMatchScore() == p2.getMatchScore()){
             didPlayer1Win = checkIfAllPiecesArePlaced(p1);
         }
         else{

@@ -13,15 +13,17 @@ public class Player {
     private int numberOfTotorosIHave;
     private int numberOfTigersIHave;
     private String name;
-    private int points;
+    private int matchScore;
+    private int tournamentScore;
+    private int roundScore;
     private boolean isCurrentPlayersTurn;
     private ArrayList<Settlement> OwnedSettlements;
-//    private Tile tile;
-
 
     public Player(String PlayerName) {
         OwnedSettlements = new ArrayList<>();
-        points = 0;
+        matchScore = 0;
+        tournamentScore = 0;
+        roundScore = 0;
         name = PlayerName;
         numberOfMeeplesIHave = MAX_NUMBER_OF_MEEPLES;
         numberOfTotorosIHave = MAX_NUMBER_OF_TOTOROS;
@@ -120,12 +122,29 @@ public class Player {
         return OwnedSettlements;
     }
 
-    public int getPoints() {
-        return points;
+    public int getMatchScore() {
+        return matchScore;
     }
 
-    public void IncreasePoints(int PointsToAdd){
-        points += PointsToAdd;
+    public void increaseMatchScore(int PointsToAdd){
+        matchScore += PointsToAdd;
     }
+
+    public int getTournamentScore() {
+        return tournamentScore;
+    }
+
+    public void increaseTournamentScore(int PointsToAdd){
+        tournamentScore += PointsToAdd;
+    }
+
+    public int getRoundScore() {
+        return roundScore;
+    }
+
+    public void increaseRoundScore(int PointsToAdd){
+        roundScore += PointsToAdd;
+    }
+
 
 }
