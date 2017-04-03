@@ -22,10 +22,6 @@ Feature: Meeples
     When a player enters their build phase
     Then it cannot be placed on a hex that is already occupied by meeples
 
-    Given a player that has a certain amount of meeples
-    When he/she places a meeple on the board
-    Then the amount of meeples available to the player decrease by one
-
   Scenario: Attempting to place meeple on volcano
     Given a terrain that is of type volcano,
     When a meeple tries to occupy the terrain,

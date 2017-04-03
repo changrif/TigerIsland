@@ -1,8 +1,8 @@
 Feature: Totoro Sanctuary
   Scenario: Adding a Totoro
     Given a player does not have a settlement of size 5 or larger with an empty non-volcanic adjacent hex
-    When a player tries to place a tortoro during the build phase
-    Then they will not be allowed to add a tortoro
+    When a player tries to place a totoro during the build phase
+    Then they will not be allowed to add a totoro
 
     Given a player has a settlement of size 5 or larger with an empty non-volcanic adjacent hex
     When a player enters their build phase

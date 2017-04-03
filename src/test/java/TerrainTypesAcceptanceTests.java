@@ -2,11 +2,13 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 
 /**
  * Created by ddmac on 3/29/2017.
  */
 public class TerrainTypesAcceptanceTests {
+
     @Given("^a type of terrain,$")
     public void a_type_of_terrain() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -31,21 +33,32 @@ public class TerrainTypesAcceptanceTests {
         throw new PendingException();
     }
 
-    @Given("^a tile,$")
-    public void a_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Given("^a tile that has been created,$")
+    public void a_tilePiece() throws Throwable {
+
     }
 
-    @When("^it is placed on the board,$")
-    public void it_is_placed_on_the_board() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @When("^the tile is placed on the board,$")
+    public void the_tile_is_placed_on_the_board() throws Throwable {
+
     }
 
-    @Then("^it must contain one, and only one, volcano terrain\\.$")
+    @Then("^it must contain exactly one volcano terrain\\.$")
     public void it_must_contain_one_and_only_one_volcano_terrain() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Deck d = new Deck();
+        d.generateTiles();
+        Tile t;
+        int volcanoCount = 0;
+        for(int i = 0; i < 47; i++){
+            t = d.draw();
+            Assert.assertEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex1().getTerrainType());
+            Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex2().getTerrainType());
+            Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex3().getTerrainType());
+
+            if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType()){
+                volcanoCount++;
+            }
+        }
+        Assert.assertEquals(47, volcanoCount);
     }
 }

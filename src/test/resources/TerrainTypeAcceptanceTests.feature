@@ -10,6 +10,6 @@ Feature: Terrain Types
     Then it can be compared with all adjacent terrains.
 
   Scenario: Volcano Terrain
-    Given a tile,
-    When it is placed on the board,
-    Then it must contain one, and only one, volcano terrain.
+    Given a tile that has been created,
+    When the tile is placed on the board,
+    Then it must contain exactly one volcano terrain.

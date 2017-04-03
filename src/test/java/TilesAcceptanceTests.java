@@ -8,7 +8,6 @@ import org.junit.Assert;
  * Created by AizeyPineda on 3/24/17.
  */
 public class TilesAcceptanceTests {
-    Deck d = new Deck();
 
     @Given("^no tiles have been placed$")
     public void no_tiles_have_been_placed() throws Throwable {
@@ -23,12 +22,14 @@ public class TilesAcceptanceTests {
 
     @Then("^there are (48) tiles$")
     public void there_are_tiles(int arg1) throws Throwable {
+        Deck d = new Deck();
         d.generateTiles();
         Assert.assertEquals(arg1, d.getCurrentSizeOfDeck());
     }
 
     @Then("^there are (3) tiles of each of the (16) terrain combinations$")
     public void there_are_tiles_of_each_of_the_terrain_combinations(int arg1, int arg2) throws Throwable {
+        Deck d = new Deck();
 
         int LakeAndRockyTile = 0, LakeAndGrasslandTile = 0, LakeAndLakeTile = 0, LakeAndJungleTile = 0;
         int RockyAndLakeTile = 0, GrasslandAndLakeTile = 0, JungleAndLakeTile = 0, RockyAndJungleTile = 0;
@@ -108,28 +109,20 @@ public class TilesAcceptanceTests {
 
     }
 
-    @Given("^a tile,$")
-    public void a_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+  /*  @Given("There are (48) tiles in the deck")
+    public void there_are_forty_eight_tiles_in_deck(int arg1) throws Throwable{
+        d.generateTiles();
+        Assert.assertEquals(arg1, d.getCurrentSizeOfDeck());
     }
-
-    @When("^it is placed on the board,$")
-    public void it_is_placed_on_the_board() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^it must contain one, and only one, volcano terrain\\.$")
-    public void it_must_contain_one_and_only_one_volcano_terrain() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
     @When("^there is more than three tiles of the same type$")
     public void there_is_more_than_three_tiles_of_the_same_type() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        int LakeAndRockyTile = 1;
+        for(int i = 0; i < 48; i++){
+            Tile t = d.draw();
+            if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()) {
+                LakeAndRockyTile++;
+            }
+        }
     }
 
     @Then("^an exception is thrown$")
@@ -137,131 +130,346 @@ public class TilesAcceptanceTests {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
-
-    @Given("^a tile is created$")
-    public void a_tile_is_created() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+*/
+    @Given("^all the tiles in the deck$")
+    public void all_the_tiles() throws Throwable {
+        Deck d = new Deck();
+        d.generateTiles();
+        Assert.assertEquals(48, d.getCurrentSizeOfDeck());
     }
 
     @When("^the game begins$")
     public void the_game_begins() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
-    @Then("^it should have (\\d+) hexes with the proper configuration of one volcano and a terrain combination$")
-    public void it_should_have_hexes_with_the_proper_configuration_of_one_volcano_and_a_terrain_combination(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Then("^each tile should have (\\d+) hexes with the proper configuration of one volcano and a terrain combination$")
+    public void each_tile_should_have_hexes_with_the_proper_configuration_of_one_volcano_and_a_terrain_combination(int arg1) throws Throwable {
+        Deck d = new Deck();
+        d.generateTiles();
+        Tile t;
+        int volcanoCount = 0;
+        for(int i = 0; i < 47; i++){
+            t = d.draw();
+            Assert.assertEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex1().getTerrainType());
+
+            Assert.assertNotEquals(null, t.getHex2().getTerrainType());
+            Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex2().getTerrainType());
+
+            Assert.assertNotEquals(null, t.getHex3().getTerrainType());
+            Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex3().getTerrainType());
+
+            if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType()){
+                volcanoCount++;
+            }
+        }
+        Assert.assertEquals(47, volcanoCount);
     }
 
     @Given("^the board is empty$")
     public void the_board_is_empty() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @When("^a tile is being placed$")
     public void a_tile_is_being_placed() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^the tile is placed at the origin, in any orientation$")
     public void the_tile_is_placed_at_the_origin_in_any_orientation() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Map m = new Map();
+        Deck d = new Deck();
+
+        for(int i = 0; i<200; i++){
+            for(int j = 0; j < 200; j++){
+                Assert.assertEquals(null, m.getMap()[i][j]);
+            }
+        }
+
+        Coordinate c = new Coordinate(98, 101);
+        Coordinate c2 = new Coordinate(98, 100);
+
+
+        d.generateTiles();
+
+        Tile t = d.draw();
+
+        // Tested all possible orientations
+        /*m.placeTile(t, c, 6);
+        m.placeTile(t, c, 5);
+        m.placeTile(t, c, 4);
+        m.placeTile(t, c, 3);
+        m.placeTile(t, c, 2);
+        m.placeTile(t, c, 1);*/
+
+        /*m.placeTile(t, c2, 6);
+        m.placeTile(t, c2, 5);
+        m.placeTile(t, c2, 4);
+        m.placeTile(t, c2, 3);
+        m.placeTile(t, c2, 2);*/
+        m.placeTile(t, c2, 1);
+
     }
 
     @Given("^the board is not empty$")
     public void the_board_is_not_empty() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+       //Not Complete
     }
 
     @When("^a tile is being placed not adjacent to another tile$")
     public void a_tile_is_being_placed_not_adjacent_to_another_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^the player will be disqualified$")
     public void the_player_will_be_disqualified() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Given("^a random tile that is not the first tile,$")
     public void a_random_tile_that_is_not_the_first_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @When("^the game is in session,$")
     public void the_game_is_in_session() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^the tile is prohibited from not being placed adjacent to another tile\\.$")
     public void the_tile_is_prohibited_from_not_being_placed_adjacent_to_another_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Map m = new Map();
+        Deck d = new Deck();
+
+        Coordinate c = new Coordinate(98, 101);
+        Coordinate c2 = new Coordinate(50, 50);
+
+        d.generateTiles();
+
+        Tile t = d.draw();
+
+        m.placeTile(t, c, 5);
+
+        try {
+            t = d.draw();
+            m.placeTile(t, c2, 3);
+        }
+        catch(InvalidTilePlacement i){
+
+        }
     }
 
     @Given("^a tile$")
     public void aTile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        // Not Completed since it requires the game state
     }
 
     @When("^it is placed,$")
     public void it_is_placed() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @When("^it is the (\\d+)th tile$")
     public void it_is_the_th_tile(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^the game ends\\.$")
     public void the_game_ends() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Given("^there is a fixed number of tiles available$")
     public void there_is_a_fixed_number_of_tiles_available() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @When("^they successfully place a tile$")
     public void they_successfully_place_a_tile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^that tile should be removed from the list of available tiles / combination type$")
     public void that_tile_should_be_removed_from_the_list_of_available_tiles_combination_type() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Map m = new Map();
+        Deck d = new Deck();
+
+        Coordinate c = new Coordinate(98, 101);
+
+        int LakeAndRockyTile = 0, LakeAndGrasslandTile = 0, LakeAndLakeTile = 0, LakeAndJungleTile = 0;
+        int RockyAndLakeTile = 0, GrasslandAndLakeTile = 0, JungleAndLakeTile = 0, RockyAndJungleTile = 0;
+        int RockyAndRockyTile = 0, RockyAndGrasslandTile = 0, JungleAndRockyTile = 0, GrasslandAndRockyTile = 0;
+        int GrasslandAndJungleTile = 0, GrasslandAndGrasslandTile = 0, JungleAndJungleTile = 0, JungleAndGrasslandTile = 0;
+
+        d.generateTiles();
+
+        Assert.assertEquals(48, d.getCurrentSizeOfDeck());
+
+        Tile t = d.draw();
+
+        m.placeTile(t, c, 5);
+
+        //Find out which type of tile was placed. In then end, all types should be accounted for 3 times each
+
+        if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+            LakeAndRockyTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+            LakeAndGrasslandTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+            LakeAndLakeTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+            LakeAndJungleTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+            RockyAndLakeTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+            GrasslandAndLakeTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+            JungleAndLakeTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+            RockyAndJungleTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+            RockyAndRockyTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+            RockyAndGrasslandTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+            GrasslandAndRockyTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+            JungleAndRockyTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+            JungleAndJungleTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+            JungleAndGrasslandTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+            GrasslandAndJungleTile++;
+        }
+        else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+            GrasslandAndGrasslandTile++;
+        }
+
+
+        Assert.assertEquals(47, d.getCurrentSizeOfDeck());
+
+        for(int i = 0; i < 47; i++){
+            t = d.draw();
+            if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+                LakeAndRockyTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+                LakeAndGrasslandTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+                LakeAndLakeTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+                LakeAndJungleTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+                RockyAndLakeTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+                GrasslandAndLakeTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.LAKE == t.getHex3().getTerrainType()){
+                JungleAndLakeTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+                RockyAndJungleTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+                RockyAndRockyTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+                RockyAndGrasslandTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+                GrasslandAndRockyTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.ROCKY == t.getHex3().getTerrainType()){
+                JungleAndRockyTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+                JungleAndJungleTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+                JungleAndGrasslandTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.JUNGLE == t.getHex3().getTerrainType()){
+                GrasslandAndJungleTile++;
+            }
+            else if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex2().getTerrainType() && Terrain.typesOfTerrain.GRASSLANDS == t.getHex3().getTerrainType()){
+                GrasslandAndGrasslandTile++;
+            }
+
+        }
+        Assert.assertEquals(3, LakeAndGrasslandTile);
+        Assert.assertEquals(3, LakeAndJungleTile);
+        Assert.assertEquals(3, LakeAndLakeTile);
+        Assert.assertEquals(3, LakeAndRockyTile);
+        Assert.assertEquals(3, JungleAndLakeTile);
+        Assert.assertEquals(3, GrasslandAndLakeTile);
+        Assert.assertEquals(3, RockyAndLakeTile);
+        Assert.assertEquals(3, RockyAndGrasslandTile);
+        Assert.assertEquals(3, RockyAndJungleTile);
+        Assert.assertEquals(3, RockyAndRockyTile);
+        Assert.assertEquals(3, GrasslandAndRockyTile);
+        Assert.assertEquals(3, JungleAndRockyTile);
+        Assert.assertEquals(3, GrasslandAndGrasslandTile);
+        Assert.assertEquals(3, GrasslandAndJungleTile);
+        Assert.assertEquals(3, JungleAndGrasslandTile);
+        Assert.assertEquals(3, JungleAndJungleTile);
     }
 
     @When("^a tile is being placed on level (\\d+)$")
     public void a_tile_is_being_placed_on_level(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^at least one side of the tile being placed must touch an existing tile on the board$")
     public void at_least_one_side_of_the_tile_being_placed_must_touch_an_existing_tile_on_the_board() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
+        Map m = new Map();
+        Deck d = new Deck();
+
+        Coordinate c = new Coordinate(98, 101);
+        Coordinate c2 = new Coordinate(50, 50);
+        Coordinate c3 = new Coordinate(99, 99);
+
+        d.generateTiles();
+
+        Tile t = d.draw();
+
+        m.placeTile(t, c, 5);
+
+        Assert.assertEquals(1, t.getTileLevel());
+
+        t = d.draw();
+        m.placeTile(t, c3, 6);
+
+        Assert.assertEquals(1, t.getTileLevel());
+
+        try {
+            t = d.draw();
+            m.placeTile(t, c2, 3);
+            Assert.assertEquals(1, t.getTileLevel());
+        }
+        catch(InvalidTilePlacement i){
+
+        }
     }
 
     @Given("^the board is not empty and has a valid level (\\d+) configuration$")
@@ -270,8 +478,8 @@ public class TilesAcceptanceTests {
         throw new PendingException();
     }
 
-    @When("^a tile is being stacked$")
-    public void a_tile_is_beingStacked() throws Throwable {
+    @When("^a tile is in the process of being stacked$")
+    public void a_tile_is_About_To_Be_Stacked() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

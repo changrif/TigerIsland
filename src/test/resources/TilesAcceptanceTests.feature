@@ -16,9 +16,9 @@ Feature: Tiles
     Then an exception is thrown
 
   Scenario: Tile Creation
-    Given a tile is created
+    Given all the tiles in the deck
     When the game begins
-    Then it should have 3 hexes with the proper configuration of one volcano and a terrain combination
+    Then each tile should have 3 hexes with the proper configuration of one volcano and a terrain combination
 
   Scenario: Placing Tile for the first time
     Given the board is empty
@@ -52,7 +52,7 @@ Feature: Tiles
 
   Scenario: Stacking A Tile
     Given the board is not empty and has a valid level 1 configuration
-    When a tile is being stacked
+    When a tile is in the process of being stacked
     Then it can be stacked so long as it follows stacking restrictions
 
     Given the board is not empty and has a valid level 1 configuration
