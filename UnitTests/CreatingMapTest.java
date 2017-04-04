@@ -6,10 +6,11 @@ import org.junit.Test;
  */
 public class CreatingMapTest {
 
-    public boolean parseThroughMap(Hex[][] Gameboard)   {
-        for(int row = 0; row < 200; row++)  {
-            for(int col = 0; col < 200; col++)  {
-                if (Gameboard[row][col] != null)    {
+    public boolean parseThroughMap(Hex[][][] Gameboard)   {
+        for(int x = 0; x < 200; x++)  {
+            for(int y = 0; y < 200; y++)  {
+                for(int z = 0; z < 200; z++)
+                if (Gameboard[x][y][z] != null)    {
                     return false;
                 }
             }
@@ -20,7 +21,7 @@ public class CreatingMapTest {
     @Test
     public void mapIsOfHexesTest() {
         Map GameBoard = new Map();
-        Assert.assertEquals(Hex[][].class, GameBoard.getMap().getClass());
+        Assert.assertEquals(Hex[][][].class, GameBoard.getMap().getClass());
     }
 
     @Test

@@ -7,7 +7,7 @@ public class Hex {
 
     private Terrain.typesOfTerrain TerrainType;
     private int Level = 0;
-    private int TileIndex;
+    private int TileID;
 
     private Meeple meeples[];
     private Totoro totoro;
@@ -18,10 +18,10 @@ public class Hex {
 
 
 
-    public Hex (Terrain.typesOfTerrain TerrainType, int TileIndex){
+    public Hex (Terrain.typesOfTerrain TerrainType, int TileID){
 
         this.TerrainType = TerrainType;
-        this.TileIndex = TileIndex;
+        this.TileID = TileID;
     }
 
     public boolean MeeplesPresent(){
@@ -48,7 +48,7 @@ public class Hex {
             return true;
     }
 
-    public int getTileIndex() { return TileIndex; }
+    public int getTileID() { return TileID; }
 
     public void setCoordinate(Coordinate coordinate){
         this.coordinate = coordinate;

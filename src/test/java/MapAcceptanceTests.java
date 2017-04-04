@@ -25,9 +25,10 @@ public class MapAcceptanceTests {
         Map Gameboard = new Map();
         assertTrue(Gameboard instanceof Map);
 
-        for(int i=0; i < 200; i++) {
-            for(int j=0; j<200; j++){
-                assertFalse(Gameboard.testTaken(i,j));
+        for(int x = 0; x < 200; x++)  {
+            for(int y = 0; y < 200; y++)  {
+                for(int z = 0; z < 200; z++)
+                    assertFalse(Gameboard.isTaken(new Coordinate(x, y, z)));
             }
         }
 
@@ -38,9 +39,10 @@ public class MapAcceptanceTests {
         Map Gameboard = new Map();
         assertTrue(Gameboard instanceof Map);
 
-        for(int i=0; i < 200; i++) {
-            for(int j=0; j<200; j++){
-                assertTrue(!Gameboard.isTaken(new Coordinate(i,j)));
+        for(int x = 0; x < 200; x++)  {
+            for(int y = 0; y < 200; y++)  {
+                for(int z = 0; z < 200; z++)
+                    assertTrue(Gameboard.isTaken(new Coordinate(x, y, z)));
             }
         }
 

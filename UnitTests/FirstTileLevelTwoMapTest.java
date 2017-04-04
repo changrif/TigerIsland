@@ -5,83 +5,110 @@ import org.junit.*;
  */
 
 public class FirstTileLevelTwoMapTest {
-
     private static Map GameBoard;
     private static Deck d;
     private static Tile t;
 
-    public static boolean checkPosition(int xVolcano, int yVolcano, int TilePos) {
-        if(yVolcano%2 == 0)    {
-            if (TilePos == 1) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano-1, yVolcano + 1) && GameBoard.testTaken(xVolcano, yVolcano + 1));
-            } else if (TilePos == 2) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano + 1) && GameBoard.testTaken(xVolcano + 1, yVolcano));
-            } else if (TilePos == 3) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano + 1, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano - 1));
-            } else if (TilePos == 4) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano - 1) && GameBoard.testTaken(xVolcano-1, yVolcano - 1));
-            } else if (TilePos == 5) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano-1, yVolcano - 1) && GameBoard.testTaken(xVolcano - 1, yVolcano));
-            } else if (TilePos == 6) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano - 1, yVolcano) && GameBoard.testTaken(xVolcano-1, yVolcano + 1));
+    public static boolean checkPosition(Coordinate volcano, int tileOrientation)    {
+        int x = volcano.getX();
+        int y = volcano.getY();
+        int z = volcano.getZ();
+
+        if (tileOrientation == 1) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x - 1, y, z + 1)) && GameBoard.isTaken(new Coordinate(x - 1, y + 1, z))) {
+                return true;
             }
-        }
-        else {
-            if (TilePos == 1) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano + 1) && GameBoard.testTaken(xVolcano + 1, yVolcano + 1));
-            } else if (TilePos == 2) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano + 1, yVolcano + 1) && GameBoard.testTaken(xVolcano + 1, yVolcano));
-            } else if (TilePos == 3) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano + 1, yVolcano) && GameBoard.testTaken(xVolcano + 1, yVolcano - 1));
-            } else if (TilePos == 4) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano + 1, yVolcano - 1) && GameBoard.testTaken(xVolcano, yVolcano - 1));
-            } else if (TilePos == 5) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano - 1) && GameBoard.testTaken(xVolcano - 1, yVolcano));
-            } else if (TilePos == 6) {
-                return (GameBoard.testTaken(xVolcano, yVolcano) && GameBoard.testTaken(xVolcano - 1, yVolcano) && GameBoard.testTaken(xVolcano, yVolcano + 1));
+        } else if (tileOrientation == 2) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x - 1, y + 1, z)) && GameBoard.isTaken(new Coordinate(x, y + 1, z - 1))) {
+                return true;
+            }
+        } else if (tileOrientation == 3) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x, y + 1, z - 1)) && GameBoard.isTaken(new Coordinate(x + 1, y, z - 1)))  {
+                return true;
+            }
+        } else if (tileOrientation == 4) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x + 1, y, z - 1)) && GameBoard.isTaken(new Coordinate(x + 1, y - 1, z))) {
+                return true;
+            }
+        } else if (tileOrientation == 5) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x + 1, y - 1, z)) && GameBoard.isTaken(new Coordinate(x, y - 1, z + 1)))  {
+                return true;
+            }
+        } else if (tileOrientation == 6) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x, y - 1, z + 1)) && GameBoard.isTaken(new Coordinate(x - 1, y, z + 1)))  {
+                return true;
             }
         }
         return false;
     }
 
     public static boolean checkTileIDOnHexes()  {
-        if(t.getHex1().getTileIndex() == t.getHex2().getTileIndex() &&
-                t.getHex1().getTileIndex() == t.getHex3().getTileIndex() &&
-                t.getTileID() == t.getHex1().getTileIndex())    {
+        if(t.getHex1().getTileID() == t.getHex2().getTileID() &&
+                t.getHex1().getTileID() == t.getHex3().getTileID() &&
+                t.getTileID() == t.getHex1().getTileID())    {
             return true;
         }
         return false;
     }
 
-    @BeforeClass
-    public static void createDeck()    {
-        d = new Deck();
-        d.generateTiles();
-    }
-
     @Before
     public void createBoardWithFirstLevel()    {
+        d = new Deck();
+        d.generateTiles();
         t = d.draw();
         GameBoard = new Map();
-        Coordinate coordinate = new Coordinate(100, 100);
+        GameBoard.placeFirstTile();
+        Coordinate coordinate1 = new Coordinate(101, 101, 98);
         try {
-            GameBoard.placeTile(t, coordinate, 1);
+            GameBoard.placeTile(t, coordinate1, 1);
         } catch (InvalidTilePlacement invalidTilePlacement) {
             invalidTilePlacement.printStackTrace();
         }
 
         t = d.draw();
-        coordinate = new Coordinate(101, 100);
+        Coordinate coordinate2 = new Coordinate(99, 102, 99);
         try {
-            GameBoard.placeTile(t, coordinate, 2);
+            GameBoard.placeTile(t, coordinate2, 2);
         } catch (InvalidTilePlacement invalidTilePlacement) {
             invalidTilePlacement.printStackTrace();
         }
 
         t = d.draw();
-        coordinate = new Coordinate(100, 100);
+        Coordinate coordinate3 = new Coordinate(97, 102, 101);
         try {
-            GameBoard.placeTile(t, coordinate, 2);
+            GameBoard.placeTile(t, coordinate3, 3);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+
+        t = d.draw();
+        Coordinate coordinate4 = new Coordinate(97, 101, 102);
+        try {
+            GameBoard.placeTile(t, coordinate4, 4);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+
+        t = d.draw();
+        Coordinate coordinate5 = new Coordinate(99, 99, 102);
+        try {
+            GameBoard.placeTile(t, coordinate5, 5);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+
+        t = d.draw();
+        Coordinate coordinate6 = new Coordinate(102, 98, 100);
+        try {
+            GameBoard.placeTile(t, coordinate6, 6);
+        } catch (InvalidTilePlacement invalidTilePlacement) {
+            invalidTilePlacement.printStackTrace();
+        }
+
+        t = d.draw();
+        Coordinate stackedTileCoordinate = new Coordinate(100, 100, 100);
+        try {
+            GameBoard.placeTile(t, stackedTileCoordinate, 2);
         } catch (InvalidTilePlacement invalidTilePlacement) {
             invalidTilePlacement.printStackTrace();
         }
@@ -89,12 +116,12 @@ public class FirstTileLevelTwoMapTest {
 
     @Test
     public void correctlyStackTileOnLevelTwo() {
-        Assert.assertTrue(checkPosition(100, 100, 2) && GameBoard.getMap()[100][100].getTileIndex() == t.getTileID());
+        Assert.assertTrue(checkPosition(new Coordinate(100, 100, 100), 2) && GameBoard.getMap()[100][100][100].getTileID() == t.getTileID());
     }
 
     @Test
     public void firstStackedTilePlacementTest()    {
-        Assert.assertTrue(checkPosition(100, 100, 2));
+        Assert.assertTrue(checkPosition(new Coordinate(100, 100, 100), 2));
     }
 
     @Test
@@ -104,17 +131,17 @@ public class FirstTileLevelTwoMapTest {
 
     @Test
     public void firstStackedTileHex1LevelTest()    {
-        Assert.assertEquals(2, GameBoard.getMap()[100][100].getLevel());
+        Assert.assertEquals(2, GameBoard.getMap()[100][100][100].getLevel());
     }
 
     @Test
     public void firstStackedTileHex2LevelTest()    {
-        Assert.assertEquals(2, GameBoard.getMap()[100][101].getLevel());
+        Assert.assertEquals(2, GameBoard.getMap()[99][101][100].getLevel());
     }
 
     @Test
     public void firstStackedTileHex3LevelTest()    {
-        Assert.assertEquals(2, GameBoard.getMap()[101][100].getLevel());
+        Assert.assertEquals(2, GameBoard.getMap()[100][101][99].getLevel());
     }
 
     @Test
