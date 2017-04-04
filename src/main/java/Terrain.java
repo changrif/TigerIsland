@@ -3,6 +3,18 @@
  */
 
 public class Terrain {
+    public typesOfTerrain getTerrainTypeFromString(String a) {
+        if(a.equalsIgnoreCase("JUNGLE"))
+            return typesOfTerrain.JUNGLE;
+        if(a.equalsIgnoreCase("LAKE"))
+            return typesOfTerrain.LAKE;
+        if(a.equalsIgnoreCase("GRASS"))
+            return typesOfTerrain.GRASSLANDS;
+        if(a.equalsIgnoreCase("ROCK"))
+            return typesOfTerrain.ROCKY;
+        return null;
+    }
+
     public enum typesOfTerrain {
         JUNGLE, LAKE, ROCKY, GRASSLANDS, VOLCANO
     }

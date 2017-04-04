@@ -6,6 +6,7 @@ import java.util.Scanner;
  */
 
 public class Player {
+    private Hex Map[][][];
     private final int MAX_NUMBER_OF_MEEPLES = 20;
     private final int MAX_NUMBER_OF_TOTOROS = 3;
     private final int MAX_NUMBER_OF_TIGERS = 2;
@@ -19,7 +20,8 @@ public class Player {
     private boolean isCurrentPlayersTurn;
     private ArrayList<Settlement> OwnedSettlements;
 
-    public Player(String PlayerName) {
+    public Player(String PlayerName, Hex Map[][][]) {
+        this.Map = Map;
         OwnedSettlements = new ArrayList<>();
         matchScore = 0;
         tournamentScore = 0;
@@ -146,5 +148,9 @@ public class Player {
         roundScore += PointsToAdd;
     }
 
+
+    public void giveTileToAI(Tile tileToPlaceFromServer) {
+        this.tile = tileToPlaceFromServer;
+    }
 
 }
