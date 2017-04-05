@@ -1,5 +1,6 @@
 import org.junit.Assert;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -88,6 +89,18 @@ public class SettlementTests {
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 7);
 
+        CurrentPlacement = new Coordinate(99, 101, 100);
+        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.LAKE, p1);
+        Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
+        Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 9);
+
+        ArrayList<Hex> MergedHexes = p1.getPlayerSettlements().get(0).getSettlementHexes();
+        for (int k = 0; k < MergedHexes.size(); k++){
+            System.out.println(MergedHexes.get(k).getCoordinate().getX() + "," + MergedHexes.get(k).getCoordinate().getY() + "," + MergedHexes.get(k).getCoordinate().getZ());
+        }
+
+
+        /*
         CurrentPlacement = new Coordinate(101,100, 99);
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 2);
@@ -96,14 +109,23 @@ public class SettlementTests {
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
 
-        ArrayList<Hex> MergedHexes = p1.getPlayerSettlements().get(0).getSettlementHexes();
+        /*
+        MergedHexes = p1.getPlayerSettlements().get(0).getSettlementHexes();
         for (int k = 0; k < MergedHexes.size(); k++){
-            System.out.println(MergedHexes.get(k).getCoordinate().getX() + "," + MergedHexes.get(k).getCoordinate().getY());
+            System.out.println(MergedHexes.get(k).getCoordinate().getX() + "," + MergedHexes.get(k).getCoordinate().getY() + "," + MergedHexes.get(k).getCoordinate().getZ());
         }
-
+        */
+        /*
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 9);
+        */
 
     }
+
+
+
+
+
+
 
     /*
     @Before public void P1ExpandSettlement(){

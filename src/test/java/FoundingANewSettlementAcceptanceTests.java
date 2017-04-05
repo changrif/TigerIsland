@@ -2,7 +2,6 @@
  * Created by ddmac on 3/29/2017.
  */
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -26,10 +25,10 @@ public class FoundingANewSettlementAcceptanceTests {
         Map m = new Map();
         Deck d = new Deck();
 
-        Coordinate c = new Coordinate(100, 100);
+        Coordinate c = new Coordinate(100, 100, 100);
         d.generateTiles();
         Tile t = d.draw();
-        Coordinate c2 = new Coordinate(99, 101);
+        Coordinate c2 = new Coordinate(99, 101, 100);
 
         m.placeTile(t, c, 1);
         Player p = new Player("David");
