@@ -41,6 +41,7 @@ public class TournamentClient {
     public void runClient() throws IOException {
         Map m = new Map();
         Player ourAI = new Player(playerId, m);
+        Player opponentAI = new Player(opponentId, m);
         String fromServer;
         for(int i = 0; i < 48; i++){
 
@@ -56,14 +57,20 @@ public class TournamentClient {
                 Hex hex2 = new Hex(terrainA, -1000);
                 Hex hex3 = new Hex(terrainB, -1000);
                 Tile t = new Tile(hex1, hex2, hex3, -1000);
-                ourAI.
+
                 ourAI.giveTileToAI(t);
                 sendMessageToServerBasedOnThePlayersMove(ourAI);
             }
+            else{
+                fromServer = in.readLine();//message sent to both players
+                System.out.println("Server: " + fromServer);
+                //update the map, given meeples, totoros, tigers,
+                //TODO <move>: "Place <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z> ... or expand or whatever
+            }
 
-            fromServer = in.readLine();//message sent to both players
-            System.out.println("Server: " + fromServer);
+
         }
+
 
     }
 
@@ -87,28 +94,51 @@ public class TournamentClient {
     }
 
     public void sendMessageToServerBasedOnThePlayersMove(Player ourAI) {
-
+        Tile tilePlacedByAI = ourAI.getFirstValidTilePlacementCoordinate();
+        int tilePlacedX = tilePlacedByAI.getHex1().getCoordinate().getX();
+        int tilePlacedY = tilePlacedByAI.getHex1().getCoordinate().getY();
+        int tilePlacedZ = tilePlacedByAI.getHex1().getCoordinate().getZ();
+        int orientationOfTile = tilePlacedByAI.getTileOrientation();
         int buildOption = ourAI.getBuildAction();
         if(buildOption == 1){
 //            orientationOfTile ;
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileWePlaced +
-                " AT " + x + " " + y + " " + z + " " + orientationOfTile + " FOUND SETTLEMENT AT " + x + " " + y + " " + z);
+            Hex HexForSettlement = ourAI.getHexToBeUsedAsSettlement();
+            int settlementLocationX = HexForSettlement.getCoordinate().getX();
+            int settlementLocationY = HexForSettlement.getCoordinate().getY();
+            int settlementLocationZ = HexForSettlement.getCoordinate().getZ();
+            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+                " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " FOUND SETTLEMENT AT " + settlementLocationX + " " + settlementLocationY + " " + settlementLocationZ);
         }
         else if (buildOption ==2 ) {
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileWePlaced +
-                    " AT " + x + " " + y + " " + z + " " + orientationOfTile + " EXPAND SETTLEMENT AT " + x + " " + y + " " + z + " " + terrainToExpand);
+            Hex HexForPlayerToExpand = ourAI.getHexToExpandTo();
+            int settlementExpandedLocationX = HexForPlayerToExpand.getCoordinate().getX();
+            int settlementExpandedLocationY = HexForPlayerToExpand.getCoordinate().getY();
+            int settlementExpandedLocationZ = HexForPlayerToExpand.getCoordinate().getZ();
+
+            //CHECK IF TERRAIN CAN BE PRINTED CORRECTLY
+            Terrain.typesOfTerrain terrainToExpand = HexForPlayerToExpand.getTerrainType();
+            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " EXPAND SETTLEMENT AT " + settlementExpandedLocationX + " " + settlementExpandedLocationY + " " + settlementExpandedLocationZ + " " + terrainToExpand);
         }
         else if (buildOption == 3) {
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileWePlaced +
-                    " AT " + x + " " + y + " " + z + " " + orientationOfTile + " BUILD TOTORO SANCTUARY AT " + x + " " + y + " " + z);
+            Hex HexForTotoroSanctuary = ourAI.getHexToPlaceTotoro();
+            int totoroSanctuaryLocationX = HexForTotoroSanctuary.getCoordinate().getX();
+            int totoroSanctuaryLocationY = HexForTotoroSanctuary.getCoordinate().getY();
+            int totoroSanctuaryLocationZ = HexForTotoroSanctuary.getCoordinate().getZ();
+            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " BUILD TOTORO SANCTUARY AT " + totoroSanctuaryLocationX + " " + totoroSanctuaryLocationY + " " + totoroSanctuaryLocationZ);
         }
         else if (buildOption == 4) {
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileWePlaced +
-                    " AT " + x + " " + y + " " + z + " " + orientationOfTile + " BUILD TIGER PLAYGROUND AT " + x + " " + y + " " + z);
+            Hex HexForTigerSanctuary = ourAI.getHexToPlaceTiger();
+            int tigerPlaygroundLocationX = HexForTigerSanctuary.getCoordinate().getX();
+            int tigerPlaygroundLocationY = HexForTigerSanctuary.getCoordinate().getY();
+            int tigerPlaygroundLocationZ = HexForTigerSanctuary.getCoordinate().getZ();
+            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " BUILD TIGER PLAYGROUND AT " + tigerPlaygroundLocationX + " " + tigerPlaygroundLocationY + " " + tigerPlaygroundLocationZ);
         }
         else if (buildOption == -1){
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileWePlaced +
-                    " AT " + x + " " + y + " " + z + " " + orientationOfTile + " UNABLE TO BUILD");
+            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " UNABLE TO BUILD");
         }
     }
 

@@ -1,6 +1,7 @@
 /**
  * Created by Nick Kroeger on 3/21/2017.
  */
+@Deprecated
 class GameRunner{
 
     private boolean gameInProgess = true;

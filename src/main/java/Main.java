@@ -16,10 +16,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        //the 2 players play the game
-        GameRunner gr = new GameRunner(p1, p2, m, d);
-        gr.runGame();
-
 
     }
 

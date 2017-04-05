@@ -6,7 +6,8 @@ import java.util.Scanner;
  */
 
 public class Player {
-    private Hex Map[][][];
+    private Map map;
+    private Tile tileToPlaceFromServer;
     private final int MAX_NUMBER_OF_MEEPLES = 20;
     private final int MAX_NUMBER_OF_TOTOROS = 3;
     private final int MAX_NUMBER_OF_TIGERS = 2;
@@ -20,8 +21,8 @@ public class Player {
     private boolean isCurrentPlayersTurn;
     private ArrayList<Settlement> OwnedSettlements;
 
-    public Player(String PlayerName, Hex Map[][][]) {
-        this.Map = Map;
+    public Player(String PlayerName, Map Map) {
+        this.map = Map;
         OwnedSettlements = new ArrayList<>();
         matchScore = 0;
         tournamentScore = 0;
@@ -32,12 +33,6 @@ public class Player {
         numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
-
-    public int getXCoordinateInputFromPlayer(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! Input your X coordinate for where to place the volcano tile.");
-        return sc.nextInt();
-    }
 
     public int getTileOrientationInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
@@ -148,9 +143,32 @@ public class Player {
         roundScore += PointsToAdd;
     }
 
-
     public void giveTileToAI(Tile tileToPlaceFromServer) {
-        this.tile = tileToPlaceFromServer;
+        this.tileToPlaceFromServer = tileToPlaceFromServer;
     }
 
+    //DON'T DELETE THESE COMMENTS
+//    public Tile getFirstValidTilePlacementCoordinate(){
+//        Tile t = map.getFirstValidTilePlacement(tileToPlaceFromServer);
+//        map.placeTile(t, t.getHex1().getCoordinate(), t.getTileOrientation());
+//        return t;
+//    }
+//
+//    public Hex getHexToBeUsedAsSettlement(){
+//        Hex h = map.getHexForSettlement();
+//        return h;
+//    }
+//
+//    public Hex getHexToExpandTo(){
+//        Hex h = map.getHexForExpansion();
+//        return h;
+//    }
+//    public Hex getHexToPlaceTotoro(){
+//        Hex h = map.getHexForTotoroToBePlacedOn();
+//        return h;
+//    }
+//    public Hex getHexToPlaceTiger(){
+//        Hex h = map.getHexForTigerToBePlacedOn();
+//        return h;
+//    }
 }
