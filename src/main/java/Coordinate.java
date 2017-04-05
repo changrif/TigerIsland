@@ -6,7 +6,7 @@ public class Coordinate {
     private int y;
     private int z;
 
-    public Coordinate(int x, int y, int z) {
+    public Coordinate(int z, int x, int y) {
         this.x = x;
         this.y = y;
         this.z = z;

@@ -39,7 +39,8 @@ class GameRunner{
 //                int x = p1.getXCoordinateInputFromPlayer();
 //                int y = p1.getYCoordinateInputFromPlayer();
 //                int tileOrientation = p1.getTileOrientationInputFromPlayer();
-                Coordinate coordinate = new Coordinate(100, 100);
+                Coordinate coordinate =
+                        new Coordinate(100, 100,99);
                 int tileOrientation = 1;
                 try {
                     map.placeTile(t, coordinate, tileOrientation);
@@ -56,17 +57,18 @@ class GameRunner{
                 if(option == 1){
                     int xCoordForSettlement = 100;
                     int yCoordForSettlement = 101;
-                    map.foundNewSettlement(new Coordinate(xCoordForSettlement, yCoordForSettlement), p1);
+                    int zCoordForSettlement = 99;
+                    map.foundNewSettlement(new Coordinate(xCoordForSettlement, yCoordForSettlement, zCoordForSettlement), p1);
                 }
                 else if(option == 2){
                     //WHAT IS THE FIRST PARAMETER???
                     //map.ExpandSettlement(Location, Terrain.typesOfTerrain.LAKE, p1);
                 }
                 else if(option == 3){
-                    map.PlaceTotoro(new Coordinate(100,100), p1);
+                    map.PlaceTotoro(new Coordinate(100,100, 100), p1);
                 }
                 else if(option == 4){
-                    map.PlaceTiger(new Coordinate(100, 100), p1);
+                    map.PlaceTiger(new Coordinate(100, 100, 100), p1);
                 }
 
 
