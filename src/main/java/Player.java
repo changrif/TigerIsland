@@ -6,8 +6,6 @@ import java.util.Scanner;
  */
 
 public class Player {
-    private Map map;
-    private Tile tileToPlaceFromServer;
     private final int MAX_NUMBER_OF_MEEPLES = 20;
     private final int MAX_NUMBER_OF_TOTOROS = 3;
     private final int MAX_NUMBER_OF_TIGERS = 2;
@@ -20,9 +18,9 @@ public class Player {
     private int roundScore;
     private boolean isCurrentPlayersTurn;
     private ArrayList<Settlement> OwnedSettlements;
+    private PlayerState.gameState currentStateOfTheGameAfterAIMove;
 
-    public Player(String PlayerName, Map Map) {
-        this.map = Map;
+    public Player(String PlayerName) {
         OwnedSettlements = new ArrayList<>();
         matchScore = 0;
         tournamentScore = 0;
@@ -33,6 +31,13 @@ public class Player {
         numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
+    public PlayerState.gameState getCurrentStateOfTheGameAfterAIMove() {
+        return currentStateOfTheGameAfterAIMove;
+    }
+
+    public void setCurrentStateOfTheGameAfterAIMove(PlayerState.gameState currentStateOfTheGameAfterAIMove) {
+        this.currentStateOfTheGameAfterAIMove = currentStateOfTheGameAfterAIMove;
+    }
 
     public int getTileOrientationInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
@@ -44,14 +49,6 @@ public class Player {
     public int getYCoordinateInputFromPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! Input your Y coordinate for where to place the volcano tile.");
-        return sc.nextInt();
-    }
-
-
-    public int getBuildAction() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! Input your build action code (1-4).\n1. Found settlement.\n2. Expand settlement.\n" +
-                "3. Build Totoro Sanctuary.\n4. Build Tiger Playground.\n");
         return sc.nextInt();
     }
 
@@ -73,7 +70,6 @@ public class Player {
             throw new NotEnoughMeeples();
         }
         this.numberOfMeeplesIHave = updatedAmountOfMeeples;
-
     }
 
     public int getNumberOfTotorosIHave() {
@@ -109,8 +105,6 @@ public class Player {
         return name;
     }
 
-
-
     public void addSettlement(Settlement NewSettlement){
         OwnedSettlements.add(NewSettlement);
     }
@@ -143,32 +137,4 @@ public class Player {
         roundScore += PointsToAdd;
     }
 
-    public void giveTileToAI(Tile tileToPlaceFromServer) {
-        this.tileToPlaceFromServer = tileToPlaceFromServer;
-    }
-
-    //DON'T DELETE THESE COMMENTS
-//    public Tile getFirstValidTilePlacementCoordinate(){
-//        Tile t = map.getFirstValidTilePlacement(tileToPlaceFromServer);
-//        map.placeTile(t, t.getHex1().getCoordinate(), t.getTileOrientation());
-//        return t;
-//    }
-//
-//    public Hex getHexToBeUsedAsSettlement(){
-//        Hex h = map.getHexForSettlement();
-//        return h;
-//    }
-//
-//    public Hex getHexToExpandTo(){
-//        Hex h = map.getHexForExpansion();
-//        return h;
-//    }
-//    public Hex getHexToPlaceTotoro(){
-//        Hex h = map.getHexForTotoroToBePlacedOn();
-//        return h;
-//    }
-//    public Hex getHexToPlaceTiger(){
-//        Hex h = map.getHexForTigerToBePlacedOn();
-//        return h;
-//    }
 }

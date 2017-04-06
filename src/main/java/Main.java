@@ -5,7 +5,6 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String [] args){
-
         CheckIfCommandLineInputLengthIsValid(args);
         TournamentClient client;
         try {
@@ -15,8 +14,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static void CheckIfCommandLineInputLengthIsValid(String[] args) {

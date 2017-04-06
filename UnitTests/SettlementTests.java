@@ -26,8 +26,8 @@ public class SettlementTests {
         GameBoard.placeFirstTile();
         d = new Deck();
         d.generateTiles();
-        p1 = new Player("Kyle", GameBoard);
-        p2 = new Player("Dave", GameBoard);
+        p1 = new Player("Kyle");
+        p2 = new Player("Dave");
     }
 
     @Test
