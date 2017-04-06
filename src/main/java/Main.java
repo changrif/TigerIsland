@@ -9,7 +9,6 @@ public class Main {
         TournamentClient client;
         try {
             client = new TournamentClient(args);
-            client.setUpProtocolBeforeGame();
             client.runClient();
         } catch (IOException e) {
             e.printStackTrace();

@@ -34,6 +34,7 @@ public class PlayerBrain {
     }
 
     private void setBestTilePlacement(){
+
         bestTilePlacement = searchForFirstValidTilePlacements(tileToPlace);
     }
 
@@ -134,5 +135,9 @@ public class PlayerBrain {
 
     public Player getOpponent() {
         return opponent;
+    }
+
+    public void giveBrainTheOpponentsMove(Coordinate opponentVolcanoCoordinate, int opponentOrientation) {
+        //TODO here chandler :)
     }
 }

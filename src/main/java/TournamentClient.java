@@ -48,6 +48,23 @@ public class TournamentClient {
         beginGame(m, brain);
     }
 
+    public void beginGame(Map m, PlayerBrain brain) throws IOException {
+        String fromServer;
+        for(int i = 0; i < 48; i++){
+            fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
+            if (weAreTheActivePlayer(fromServer)) {
+                System.out.println("Server: " + fromServer);//make your move //getTile x+y where x,y = "JUNGLE" "LAKE" "GRASS" "ROCK"
+                Tile tileToPlace = createTile(tileToPlaceFromServer);
+                brain.setTileToPlace(tileToPlace);
+                sendMessageToServerBasedOnOurPlayersMove(brain);
+            }
+            else{
+                System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
+                handleMessageSetToBothPlayersFromServer(m, brain, fromServer);
+            }
+        }
+    }
+
     public void setUpProtocolBeforeGame() throws IOException {
         setUpAuthenticationProtocol();
 
@@ -110,23 +127,6 @@ public class TournamentClient {
             gameId = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
         }
         return fromServer;
-    }
-
-    public void beginGame(Map m, PlayerBrain brain) throws IOException {
-        String fromServer;
-        for(int i = 0; i < 48; i++){
-            fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
-            if (weAreTheActivePlayer(fromServer)) {
-                System.out.println("Server: " + fromServer);//make your move //getTile x+y where x,y = "JUNGLE" "LAKE" "GRASS" "ROCK"
-                Tile tileToPlace = createTile(tileToPlaceFromServer);
-                brain.setTileToPlace(tileToPlace);
-                sendMessageToServerBasedOnOurPlayersMove(brain);
-            }
-            else{
-                System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
-                handleMessageSetToBothPlayersFromServer(m, brain, fromServer);
-            }
-        }
     }
 
     public boolean weAreTheActivePlayer(String fromServer) {
@@ -215,7 +215,9 @@ public class TournamentClient {
         opponentOrientation = getOpponentTileOrientation(opponentMove);
         opponentVolcanoCoordinate = getVolcanoCoordinateFromOpponent(opponentMove);
         opponentTile = createTileFromOpponentToPlaceOnBoard(opponentMove);
+        brain.giveBrainTheOpponentsMove(opponentVolcanoCoordinate, opponentOrientation);
         m.placeTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
+
     }
 
     public boolean didSomeoneLose(String currentState) {
