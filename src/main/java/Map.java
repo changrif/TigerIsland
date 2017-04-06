@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class Map {
     //Private Instance Variables
     private final int MAX_MAP_WIDTH = 200, MAX_MAP_HEIGHT = 200, MAX_MAP_LENGTH = 200;
-    private final Coordinate ORIGIN = new Coordinate(100, 100, 100);
+    private final Coordinate ORIGIN = new Coordinate (100,100,100);
     private Hex Map[][][];
     private boolean isTheFirstTilePlaced;
 
@@ -30,16 +30,12 @@ public class Map {
         setTileCoordinates(tile, coordinate, tileOrientation);
         setTileLevel(tile);
         if (isValidPlacement(tile)) {
-            //nukeSettlement(tile);
+            SplitSettlementsAfterNuking(coordinate, tileOrientation);
             mapTileToBoard(tile);
         }
         else{
             throw new InvalidTilePlacement();
         }
-    }
-
-    public void nukeSettlement(Tile tile)   {
-
     }
 
     public void setTileCoordinates(Tile tile, Coordinate coordinate, int tileOrientation) {
@@ -164,13 +160,6 @@ public class Map {
         tile.getHex1().setLevel(level+1);
         tile.getHex2().setLevel(level+1);
         tile.getHex3().setLevel(level+1);
-    }
-
-    public void tileReset(Tile tile)    {
-        tile.setTileLevel(0);
-        tile.getHex1().setLevel(0);
-        tile.getHex2().setLevel(0);
-        tile.getHex3().setLevel(0);
     }
 
     public boolean canPlaceTileAtGivenTileLocationOnLevel1(Tile tile) {
@@ -554,9 +543,6 @@ public class Map {
                     }
                 }
             }
-
-            MergeSettlementsAfterExpansion(ExpandedSettlement, player);
-
         }
 
         //System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
@@ -574,6 +560,8 @@ public class Map {
             player.increaseMatchScore(RequiredMeeples);
             //System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
         }
+
+        MergeSettlementsAfterExpansion(ExpandedSettlement, player);
 
     }
 
@@ -676,6 +664,12 @@ public class Map {
 
                 for (int j = 0; j < HexesToMerge.size(); j++) {
                     MergedSettlement.addToSettlement(HexesToMerge.get(j));
+                    if(HexesToMerge.get(j).TotoroPresent() == true){
+                        MergedSettlement.addTotoroFlag();
+                    }
+                    if(HexesToMerge.get(j).TigerPresent() == true){
+                        MergedSettlement.addTigerFlag();
+                    }
                     HexesToMerge.get(j).setSettlement(MergedSettlement);
                 }
             }
@@ -707,13 +701,138 @@ public class Map {
 
                     for (int j = 0; j < HexesToMerge.size(); j++) {
                         MergedSettlement.addToSettlement(HexesToMerge.get(j));
+                        if(HexesToMerge.get(j).TotoroPresent() == true){
+                            MergedSettlement.addTotoroFlag();
+                        }
+                        if(HexesToMerge.get(j).TigerPresent() == true){
+                            MergedSettlement.addTigerFlag();
+                        }
                         HexesToMerge.get(j).setSettlement(MergedSettlement);
                     }
                 }
             }
+        }
+    }
+
+
+    public void SplitSettlementsAfterNuking(Coordinate VolcanoLocation, int TileOrientation){
+
+        Coordinate TerrainCoordinates[] = determineTileCoordinatesBasedOnOrientation(VolcanoLocation, TileOrientation);
+        Hex Hex1 = Map[TerrainCoordinates[0].getX()][TerrainCoordinates[0].getY()][TerrainCoordinates[0].getZ()];
+        Hex Hex2 = Map[TerrainCoordinates[1].getX()][TerrainCoordinates[1].getY()][TerrainCoordinates[1].getZ()];
+
+
+        ArrayList<Settlement> NukedSettlements = new ArrayList<>();
+        if (Hex1 != null){
+            if (Hex1.getSettlement() != null){
+                Hex1.getSettlement().getSettlementHexes().remove(Hex1);
+                NukedSettlements.add(Hex1.getSettlement());
+                Hex1.setSettlement(null);
+            }
+        }
+        if (Hex2 != null){
+            if (Hex2.getSettlement() != null){
+                Hex2.getSettlement().getSettlementHexes().remove(Hex2);
+                NukedSettlements.add(Hex2.getSettlement());
+                Hex2.setSettlement(null);
+            }
+        }
+
+        //loop through the settlements added
+        for (int i = 0; i < NukedSettlements.size(); i++){
+            //get the hexes from the current settlement
+            ArrayList<Hex> NukedSettlementsHexes = NukedSettlements.get(i).getSettlementHexes();
+            Player hexOwner = NukedSettlements.get(i).getPlayer();
+
+            //loop through the hexes in each settlement until empty
+            while (!NukedSettlementsHexes.isEmpty()){
+                Hex randomHex = NukedSettlementsHexes.get(0);
+
+                //perform BFS using the randomHex as a starting point
+                Settlement NewSettlement = new Settlement(randomHex, hexOwner);
+                ArrayList<Hex> NewSettlementHexes = NewSettlement.getSettlementHexes();
+
+                LinkedList<Hex> queue = new LinkedList<>();
+                queue.add(randomHex);
+
+                while (queue.size() != 0) {
+                    //get current Hex and remove it from the NukedSettlements Hexes
+                    Hex CurrentHex = queue.poll();
+
+                    if (CurrentHex.TotoroPresent()){
+                        NewSettlement.addTotoroFlag();
+                    }
+                    if (CurrentHex.TigerPresent()){
+                        NewSettlement.addTigerFlag();
+                    }
+                    NukedSettlementsHexes.remove(CurrentHex);
+
+                    Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
+
+                    Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
+                    int x_adj;
+                    int y_adj;
+                    int z_adj;
+
+                    //if a neighboring tile isn't part of the settlement already
+                    //and isn't already added to the list of hexes marked for expansion
+                    //and matches the terrain type
+                    //then add it
+                    for (int j = 0; j < 6; j++) {
+                        x_adj = adjacencyMatrix[j].getX();
+                        y_adj = adjacencyMatrix[j].getY();
+                        z_adj = adjacencyMatrix[j].getZ();
+                        boolean added = false;
+
+                        if (Map[x_adj][y_adj][z_adj] != null) {
+                            if (Map[x_adj][y_adj][z_adj].getSettlement() == CurrentHex.getSettlement()) {
+
+                                for (int k = 0; k < NewSettlementHexes.size(); k++) {
+                                    if (NewSettlementHexes.get(k) == Map[x_adj][y_adj][z_adj]) {
+                                        added = true;
+                                    }
+                                }
+
+                                if (added == false) {
+                                    queue.add(Map[x_adj][y_adj][z_adj]);
+                                    NewSettlementHexes.add(Map[x_adj][y_adj][z_adj]);
+                                    CurrentHex.setSettlement(NewSettlement);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                NewSettlement.setLength(NewSettlement.getSettlementHexes().size());
+                hexOwner.addSettlement(NewSettlement);
+
+            }
+
+            hexOwner.removeSettlement(NukedSettlements.get(i));
 
         }
     }
+
+    public boolean canPlaceTile(Tile tile, Coordinate coordinate)  {
+        for(int i = 1; i < 7; i++)  {
+            setTileCoordinates(tile, coordinate, i);
+            setTileLevel(tile);
+            if(isValidPlacement(tile))  {
+                return true;
+            }
+            tileReset(tile);
+        }
+
+        return false;
+    }
+
+    public void tileReset(Tile tile)    {
+        tile.setTileLevel(0);
+        tile.getHex1().setLevel(0);
+        tile.getHex2().setLevel(0);
+        tile.getHex3().setLevel(0);
+    }
+
 
     public Tile searchForFirstValidTilePlacements(Tile tile)    {
         LinkedList<Coordinate> queue = new LinkedList<>();
@@ -755,6 +874,7 @@ public class Map {
         return tile;
     }
 
+
     public boolean hasBeenVisited(ArrayList<Coordinate> isVisited, Coordinate adjacentCoordinate)    {
 
         for (int j = 0; j < isVisited.size(); j++) {
@@ -768,24 +888,12 @@ public class Map {
         return false;
     }
 
-    public boolean canPlaceTile(Tile tile, Coordinate coordinate)  {
-        for(int i = 1; i < 7; i++)  {
-            setTileCoordinates(tile, coordinate, i);
-            setTileLevel(tile);
-            if(isValidPlacement(tile))  {
-                return true;
-            }
-            tileReset(tile);
-        }
-
-        return false;
-    }
 
     public Tile searchForFirstValidStackedTilePlacement(Tile tile, ArrayList<Coordinate> volcanoCoordinates)    {
 
         for(Coordinate volcanoCoordinate : volcanoCoordinates)  {
             if(canPlaceTile(tile, volcanoCoordinate))   {
-                nukeSettlement(tile);
+                SplitSettlementsAfterNuking(volcanoCoordinate, 1 );
                 return tile;
             }
         }
@@ -793,6 +901,10 @@ public class Map {
         return tile;
     }
 
+
+
 }
+
+
 
 

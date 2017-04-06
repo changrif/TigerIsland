@@ -6,19 +6,19 @@ import java.util.ArrayList;
 public class Settlement {
 
     private int length;
-    private String player;
+    private Player player;
     private boolean HasTotoro;
     private boolean HasTiger;
     private ArrayList<Hex> SettlementLocations;
 
     //create new settlement
     public Settlement(Hex PlayerHex, Player player){
-            this.player = player.getPlayerName();
-            SettlementLocations = new ArrayList<>();
-            SettlementLocations.add(PlayerHex);
-            length = 1;
-            HasTotoro = false;
-            HasTiger  = false;
+        this.player = player;
+        SettlementLocations = new ArrayList<>();
+        SettlementLocations.add(PlayerHex);
+        length = 1;
+        HasTotoro = false;
+        HasTiger  = false;
     }
 
     //combine two settlements (i.e. at end of a turn)
@@ -36,7 +36,7 @@ public class Settlement {
         return length;
     }
 
-    public String getPlayer(){
+    public Player getPlayer(){
         return player;
     }
 
@@ -44,8 +44,12 @@ public class Settlement {
 
     //expands the settlement by adding hex and updating length
     public void addToSettlement(Hex chosenHex){
-                SettlementLocations.add(chosenHex);
-                length++;
+        SettlementLocations.add(chosenHex);
+        length++;
+    }
+
+    public void setLength(int length){
+        this.length = length;
     }
 
     public void addTigerFlag(){
@@ -76,5 +80,7 @@ public class Settlement {
 
 
 }
+
+
 
 

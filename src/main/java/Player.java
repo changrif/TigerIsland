@@ -137,4 +137,9 @@ public class Player {
         roundScore += PointsToAdd;
     }
 
+    public void removeSettlement(Settlement removedSettlement){
+        OwnedSettlements.remove(removedSettlement);
+    }
+
+
 }
