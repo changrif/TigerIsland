@@ -215,7 +215,7 @@ public class TournamentClient {
         opponentOrientation = getOpponentTileOrientation(opponentMove);
         opponentVolcanoCoordinate = getVolcanoCoordinateFromOpponent(opponentMove);
         opponentTile = createTileFromOpponentToPlaceOnBoard(opponentMove);
-        brain.giveBrainTheOpponentsMove(opponentVolcanoCoordinate, opponentOrientation);
+        brain.giveBrainTheUpdatedVolcanoCoordinates(opponentVolcanoCoordinate, opponentOrientation);
         m.placeTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
 
     }

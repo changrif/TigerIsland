@@ -48,6 +48,13 @@ public class Hex {
             return true;
     }
 
+    public boolean isSettled()    {
+        if(tiger == null && totoro == null && meeples == null)  {
+            return false;
+        } else
+            return true;
+    }
+
     public int getTileID() { return TileID; }
 
     public void setCoordinate(Coordinate coordinate){

@@ -30,7 +30,8 @@ public class Map {
         setTileCoordinates(tile, coordinate, tileOrientation);
         setTileLevel(tile);
         if (isValidPlacement(tile)) {
-            SplitSettlementsAfterNuking(coordinate, tileOrientation);
+            tile.setTileOrientation(tileOrientation);
+            splitSettlementsAfterNuking(tile);
             mapTileToBoard(tile);
         }
         else{
@@ -715,11 +716,9 @@ public class Map {
     }
 
 
-    public void SplitSettlementsAfterNuking(Coordinate VolcanoLocation, int TileOrientation){
-
-        Coordinate TerrainCoordinates[] = determineTileCoordinatesBasedOnOrientation(VolcanoLocation, TileOrientation);
-        Hex Hex1 = Map[TerrainCoordinates[0].getX()][TerrainCoordinates[0].getY()][TerrainCoordinates[0].getZ()];
-        Hex Hex2 = Map[TerrainCoordinates[1].getX()][TerrainCoordinates[1].getY()][TerrainCoordinates[1].getZ()];
+    public void splitSettlementsAfterNuking(Tile tile){
+        Hex Hex1 = hexAt(tile.getHex2().getCoordinate());
+        Hex Hex2 = hexAt(tile.getHex3().getCoordinate());
 
 
         ArrayList<Settlement> NukedSettlements = new ArrayList<>();
@@ -812,96 +811,6 @@ public class Map {
 
         }
     }
-
-    public boolean canPlaceTile(Tile tile, Coordinate coordinate)  {
-        for(int i = 1; i < 7; i++)  {
-            setTileCoordinates(tile, coordinate, i);
-            setTileLevel(tile);
-            if(isValidPlacement(tile))  {
-                return true;
-            }
-            tileReset(tile);
-        }
-
-        return false;
-    }
-
-    public void tileReset(Tile tile)    {
-        tile.setTileLevel(0);
-        tile.getHex1().setLevel(0);
-        tile.getHex2().setLevel(0);
-        tile.getHex3().setLevel(0);
-    }
-
-
-    public Tile searchForFirstValidTilePlacements(Tile tile)    {
-        LinkedList<Coordinate> queue = new LinkedList<>();
-        Coordinate[] adjacentHexes = createAdjacentCoordinateArray(ORIGIN);
-        ArrayList<Coordinate> isVisited = new ArrayList<>();
-        isVisited.add(ORIGIN);
-
-        for(Coordinate coordinate : adjacentHexes)  {
-            queue.add(coordinate);
-        }
-
-        while(!queue.isEmpty()) {
-            //get current Coordinate
-            Coordinate currentCoordinate = queue.poll();
-            isVisited.add(currentCoordinate);
-
-            //if a neighboring tile isn't taken, then check for valid placements
-            if(!isTaken(currentCoordinate)) {
-                if (canPlaceTile(tile, currentCoordinate)) {
-                    return tile;
-                }
-            }
-
-            //if a neighboring tile is taken,
-            //and neighbors aren't already added to the list of coordinates
-            //then add them
-            else    {
-                Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(currentCoordinate);
-                Coordinate adjacentCoordinate;
-                for(int i = 0; i < adjacencyMatrix.length; i++) {
-                    adjacentCoordinate = adjacencyMatrix[i];
-                    if(!hasBeenVisited(isVisited, adjacentCoordinate))   {
-                        queue.add(adjacentCoordinate);
-                    }
-                }
-            }
-        }
-
-        return tile;
-    }
-
-
-    public boolean hasBeenVisited(ArrayList<Coordinate> isVisited, Coordinate adjacentCoordinate)    {
-
-        for (int j = 0; j < isVisited.size(); j++) {
-            if (isVisited.get(j).getX() == adjacentCoordinate.getX() &&
-                    isVisited.get(j).getY() == adjacentCoordinate.getY() &&
-                    isVisited.get(j).getZ() == adjacentCoordinate.getZ()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    public Tile searchForFirstValidStackedTilePlacement(Tile tile, ArrayList<Coordinate> volcanoCoordinates)    {
-
-        for(Coordinate volcanoCoordinate : volcanoCoordinates)  {
-            if(canPlaceTile(tile, volcanoCoordinate))   {
-                SplitSettlementsAfterNuking(volcanoCoordinate, 1 );
-                return tile;
-            }
-        }
-
-        return tile;
-    }
-
-
 
 }
 
