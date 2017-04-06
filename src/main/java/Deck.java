@@ -6,18 +6,15 @@ import java.util.Collections;
  */
 public class Deck {
 
- //   private RandomTileIndexGenerator rand;
     private ArrayList<Tile> GameTiles;
 
     public Deck()
     {
-        //rand = new RandomTileIndexGenerator();
         GameTiles = new ArrayList<>();
         Collections.shuffle(GameTiles);
     }
 
     public Tile draw(){
-        //int index = rand.getRandomTileIndex(GameTiles.size());
         int topCard = GameTiles.size() - 1;
         Tile topTile = GameTiles.get(topCard);
         GameTiles.remove(topCard);
