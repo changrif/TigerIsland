@@ -7,6 +7,7 @@ import java.util.LinkedList;
 public class Map {
     //Private Instance Variables
     private final int MAX_MAP_WIDTH = 200, MAX_MAP_HEIGHT = 200, MAX_MAP_LENGTH = 200;
+    private final Coordinate ORIGIN = new Coordinate(100, 100, 100);
     private Hex Map[][][];
     private boolean isTheFirstTilePlaced;
 
@@ -29,7 +30,7 @@ public class Map {
         setTileCoordinates(tile, coordinate, tileOrientation);
         setTileLevel(tile);
         if (isValidPlacement(tile)) {
-            nukeSettlement(tile);
+            //nukeSettlement(tile);
             mapTileToBoard(tile);
         }
         else{
@@ -163,6 +164,13 @@ public class Map {
         tile.getHex1().setLevel(level+1);
         tile.getHex2().setLevel(level+1);
         tile.getHex3().setLevel(level+1);
+    }
+
+    public void tileReset(Tile tile)    {
+        tile.setTileLevel(0);
+        tile.getHex1().setLevel(0);
+        tile.getHex2().setLevel(0);
+        tile.getHex3().setLevel(0);
     }
 
     public boolean canPlaceTileAtGivenTileLocationOnLevel1(Tile tile) {
@@ -707,12 +715,83 @@ public class Map {
         }
     }
 
-//    public Tile searchForFirstValidTilePlacements(Tile tile)    {
-//        tile.getHex1().getCoordinate();
-//
-//
-//        return tile;
-//    }
+    public Tile searchForFirstValidTilePlacements(Tile tile)    {
+        LinkedList<Coordinate> queue = new LinkedList<>();
+        Coordinate[] adjacentHexes = createAdjacentCoordinateArray(ORIGIN);
+        ArrayList<Coordinate> isVisited = new ArrayList<>();
+        isVisited.add(ORIGIN);
+
+        for(Coordinate coordinate : adjacentHexes)  {
+            queue.add(coordinate);
+        }
+
+        while(!queue.isEmpty()) {
+            //get current Coordinate
+            Coordinate currentCoordinate = queue.poll();
+            isVisited.add(currentCoordinate);
+
+            //if a neighboring tile isn't taken, then check for valid placements
+            if(!isTaken(currentCoordinate)) {
+                if (canPlaceTile(tile, currentCoordinate)) {
+                    return tile;
+                }
+            }
+
+            //if a neighboring tile is taken,
+            //and neighbors aren't already added to the list of coordinates
+            //then add them
+            else    {
+                Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(currentCoordinate);
+                Coordinate adjacentCoordinate;
+                for(int i = 0; i < adjacencyMatrix.length; i++) {
+                    adjacentCoordinate = adjacencyMatrix[i];
+                    if(!hasBeenVisited(isVisited, adjacentCoordinate))   {
+                        queue.add(adjacentCoordinate);
+                    }
+                }
+            }
+        }
+
+        return tile;
+    }
+
+    public boolean hasBeenVisited(ArrayList<Coordinate> isVisited, Coordinate adjacentCoordinate)    {
+
+        for (int j = 0; j < isVisited.size(); j++) {
+            if (isVisited.get(j).getX() == adjacentCoordinate.getX() &&
+                    isVisited.get(j).getY() == adjacentCoordinate.getY() &&
+                    isVisited.get(j).getZ() == adjacentCoordinate.getZ()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canPlaceTile(Tile tile, Coordinate coordinate)  {
+        for(int i = 1; i < 7; i++)  {
+            setTileCoordinates(tile, coordinate, i);
+            setTileLevel(tile);
+            if(isValidPlacement(tile))  {
+                return true;
+            }
+            tileReset(tile);
+        }
+
+        return false;
+    }
+
+    public Tile searchForFirstValidStackedTilePlacement(Tile tile, ArrayList<Coordinate> volcanoCoordinates)    {
+
+        for(Coordinate volcanoCoordinate : volcanoCoordinates)  {
+            if(canPlaceTile(tile, volcanoCoordinate))   {
+                nukeSettlement(tile);
+                return tile;
+            }
+        }
+
+        return tile;
+    }
 
 }
 

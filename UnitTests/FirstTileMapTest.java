@@ -15,10 +15,10 @@ public class FirstTileMapTest {
         int z = 100;
 
         if(GameBoard.isTaken(new Coordinate(x, y, z)) &&
-                GameBoard.isTaken(new Coordinate(x - 1, y, z + 1)) &&
-                GameBoard.isTaken(new Coordinate(x - 1, y + 1, z)) &&
-                GameBoard.isTaken(new Coordinate(x + 1, y, z - 1)) &&
-                GameBoard.isTaken(new Coordinate(x + 1, y - 1, z))) {
+                GameBoard.isTaken(new Coordinate(z - 1, x, y + 1)) &&
+                GameBoard.isTaken(new Coordinate(z - 1, x + 1, y)) &&
+                GameBoard.isTaken(new Coordinate(z + 1, x, y - 1)) &&
+                GameBoard.isTaken(new Coordinate(z + 1, x - 1, y))) {
                 return true;
             }
         return false;
@@ -35,10 +35,28 @@ public class FirstTileMapTest {
         return false;
     }
 
+    public static void printMap() {
+        Hex[][][] map = GameBoard.getMap();
+        for (int x = 105; x > 95; x--) {
+            for (int y = 105; y > 95; y--) {
+                for(int z = 105; z > 95; z--) {
+                    if (map[x][y][z] != null) {
+                        System.out.print(map[x][y][z].getTerrainType().toString().substring(0, 1) + map[x][y][z].getTileID() + "\t\t");
+                    } else {
+                        System.out.print(map[x][y][z] + "\t");
+                    }
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
     @BeforeClass
     public static void initializeBoard()    {
         GameBoard = new Map();
         GameBoard.placeFirstTile();
+        //printMap();
         t = new FirstTile();
     }
 

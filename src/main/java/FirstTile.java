@@ -11,27 +11,27 @@ public class FirstTile {
     private int TileLevel;
 
     public FirstTile() {
-        this.Hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, -1);
+        this.Hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, 49);
         this.Hex1.setCoordinate(new Coordinate(100, 100, 100));
         this.Hex1.setLevel(1);
 
-        this.Hex2 = new Hex(Terrain.typesOfTerrain.JUNGLE, -1);
+        this.Hex2 = new Hex(Terrain.typesOfTerrain.JUNGLE, 49);
         this.Hex2.setCoordinate(new Coordinate(99, 100, 101));
         this.Hex2.setLevel(1);
 
-        this.Hex3 = new Hex(Terrain.typesOfTerrain.LAKE, -1);
+        this.Hex3 = new Hex(Terrain.typesOfTerrain.LAKE, 49);
         this.Hex3.setCoordinate(new Coordinate(99, 101, 100));
         this.Hex3.setLevel(1);
 
-        this.Hex4 = new Hex(Terrain.typesOfTerrain.ROCKY, -1);
+        this.Hex4 = new Hex(Terrain.typesOfTerrain.ROCKY, 49);
         this.Hex4.setCoordinate(new Coordinate(101, 99, 100));
         this.Hex4.setLevel(1);
 
-        this.Hex5 = new Hex(Terrain.typesOfTerrain.GRASSLANDS, -1);
+        this.Hex5 = new Hex(Terrain.typesOfTerrain.GRASSLANDS, 49);
         this.Hex5.setCoordinate(new Coordinate(101, 100, 99));
         this.Hex5.setLevel(1);
 
-        this.TileID = -1;
+        this.TileID = 49;
         this.TileLevel = 1;
     }
 

@@ -10,10 +10,11 @@ import java.util.Scanner;
 public class PlayerTest {
 
     private Player p;
+    private Map Gameboard;
 
     @Before
     public void setUpPlayer(){
-        p = new Player("Nick");
+        p = new Player("Nick", Gameboard);
     }
 
     @Test

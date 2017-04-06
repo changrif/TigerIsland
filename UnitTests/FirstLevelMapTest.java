@@ -9,32 +9,32 @@ public class FirstLevelMapTest {
     private static Tile t;
 
     public static boolean checkPosition(Coordinate volcano, int tileOrientation)    {
+        int z = volcano.getZ();
         int x = volcano.getX();
         int y = volcano.getY();
-        int z = volcano.getZ();
 
         if (tileOrientation == 1) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x - 1, y, z + 1)) && GameBoard.isTaken(new Coordinate(x - 1, y + 1, z))) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z - 1, x, y + 1)) && GameBoard.isTaken(new Coordinate(z - 1, x + 1, y))) {
                 return true;
             }
         } else if (tileOrientation == 2) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x - 1, y + 1, z)) && GameBoard.isTaken(new Coordinate(x, y + 1, z - 1))) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z - 1, x + 1, y)) && GameBoard.isTaken(new Coordinate(z, x + 1, y - 1))) {
                 return true;
             }
         } else if (tileOrientation == 3) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x, y + 1, z - 1)) && GameBoard.isTaken(new Coordinate(x + 1, y, z - 1)))  {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z, x + 1, y - 1)) && GameBoard.isTaken(new Coordinate(z + 1, x, y - 1)))  {
                 return true;
             }
         } else if (tileOrientation == 4) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x + 1, y, z - 1)) && GameBoard.isTaken(new Coordinate(x + 1, y - 1, z))) {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z + 1, x, y - 1)) && GameBoard.isTaken(new Coordinate(z + 1, x - 1, y))) {
                 return true;
             }
         } else if (tileOrientation == 5) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x + 1, y - 1, z)) && GameBoard.isTaken(new Coordinate(x, y - 1, z + 1)))  {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z + 1, x - 1, y)) && GameBoard.isTaken(new Coordinate(z, x - 1, y + 1)))  {
                 return true;
             }
         } else if (tileOrientation == 6) {
-            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(x, y - 1, z + 1)) && GameBoard.isTaken(new Coordinate(x - 1, y, z + 1)))  {
+            if(GameBoard.isTaken(volcano) && GameBoard.isTaken(new Coordinate(z, x - 1, y + 1)) && GameBoard.isTaken(new Coordinate(z - 1, x, y + 1)))  {
                 return true;
             }
         }

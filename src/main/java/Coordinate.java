@@ -12,6 +12,10 @@ public class Coordinate {
         this.z = z;
     }
 
+    public void coordinateToString()  {
+        System.out.println("(Z: " + z + ", X: " + x + ", Y: " + y + ")");
+    }
+
     public int getX() {
         return x;
     }

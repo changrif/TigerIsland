@@ -94,6 +94,7 @@ public class TournamentClient {
     }
 
     public void sendMessageToServerBasedOnThePlayersMove(Player ourAI) {
+        /*
         Tile tilePlacedByAI = ourAI.getFirstValidTilePlacementCoordinate();
         int tilePlacedX = tilePlacedByAI.getHex1().getCoordinate().getX();
         int tilePlacedY = tilePlacedByAI.getHex1().getCoordinate().getY();
@@ -140,6 +141,7 @@ public class TournamentClient {
             out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
                     " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTile + " UNABLE TO BUILD");
         }
+        */
     }
 
     public String setUpMoveProtocol() throws IOException {
