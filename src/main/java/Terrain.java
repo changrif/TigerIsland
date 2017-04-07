@@ -21,7 +21,7 @@ public class Terrain {
 
     public String convertTerrainToString(Terrain.typesOfTerrain t){
         if(t == typesOfTerrain.GRASSLANDS)
-            return "GRASSLANDS";
+            return "GRASS";
         if(t == typesOfTerrain.JUNGLE)
             return "JUNGLE";
         if(t == typesOfTerrain.LAKE)

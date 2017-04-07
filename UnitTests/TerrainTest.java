@@ -71,4 +71,34 @@ public class TerrainTest {
         Assert.assertEquals(true, grasslands.isHabitable());
     }
 
+    @Test
+    public void isJungleTerrainCorrectlyConvertedToStringTest() {
+        String terrainType = "JUNGLE";
+        Terrain t = new Terrain();
+        Assert.assertEquals(terrainType, t.convertTerrainToString(Terrain.typesOfTerrain.JUNGLE));
+    }
+
+    @Test
+    public void isLakeTerrainCorrectlyConvertedToStringTest() {
+        String terrainType = "LAKE";
+        Terrain t = new Terrain();
+        Assert.assertEquals(terrainType, t.convertTerrainToString(Terrain.typesOfTerrain.LAKE));
+    }
+
+    @Test
+    public void isGrasslandTerrainCorrectlyConvertedToStringTest() {
+        String terrainType = "GRASS";
+        Terrain t = new Terrain();
+        Assert.assertEquals(terrainType, t.convertTerrainToString(Terrain.typesOfTerrain.GRASSLANDS));
+    }
+
+    @Test
+    public void isRockTerrainCorrectlyConvertedToStringTest() {
+        String terrainType = "ROCK";
+        Terrain t = new Terrain();
+        Assert.assertEquals(terrainType, t.convertTerrainToString(Terrain.typesOfTerrain.ROCKY));
+    }
+
+
+
 }
