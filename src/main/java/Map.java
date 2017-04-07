@@ -1,3 +1,5 @@
+import org.junit.Assert;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -539,14 +541,11 @@ public class Map {
                             queue.add(Map[x_adj][y_adj][z_adj]);
                             ExpansionHexes.add(Map[x_adj][y_adj][z_adj]);
                             RequiredMeeples += Map[x_adj][y_adj][z_adj].getLevel();
-                            //System.out.println("Expanded on: " + x_adj + "," + y_adj);
                         }
                     }
                 }
             }
         }
-
-        //System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
 
         //add hexes to settlement if enough Meeples
         if (player.getNumberOfMeeplesIHave() < RequiredMeeples) {
@@ -559,7 +558,6 @@ public class Map {
             }
             player.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
             player.increaseMatchScore(RequiredMeeples);
-            //System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
         }
 
         MergeSettlementsAfterExpansion(ExpandedSettlement, player);
@@ -598,14 +596,10 @@ public class Map {
                         notEnough.printStackTrace();
                     }
                     player.increaseMatchScore(200);
-                    //System.out.println("Totoro placed!");
                     break;
                 }
             }
         }
-
-        //System.out.println(player.getPlayerName() + " has " + player.getNumberOfTotorosIHave() + " Totoros left!");
-
     }
 
     public void PlaceTiger(Coordinate Location, Player player) {
@@ -639,7 +633,6 @@ public class Map {
                     notEnoughTigers.printStackTrace();
                 }
                 player.increaseMatchScore(75);
-                //System.out.println("Tiger placed!");
                 break;
             }
         }
@@ -758,6 +751,16 @@ public class Map {
                     //get current Hex and remove it from the NukedSettlements Hexes
                     Hex CurrentHex = queue.poll();
 
+//                    System.out.println();
+//                    System.out.println("Current HEX: ");
+//                    CurrentHex.getCoordinate().coordinateToString();
+//                    System.out.println("HEXES IN CURRENT HEX's SETTLEMENT: ");
+//                    Settlement TestSettlement = CurrentHex.getSettlement();
+//                    for (int l = 0; l < TestSettlement.getSettlementHexes().size(); l++){
+//                        TestSettlement.getSettlementHexes().get(l).getCoordinate().coordinateToString();
+//                        Assert.assertEquals(Map[CurrentHex.getCoordinate().getX()][CurrentHex.getCoordinate().getY()][CurrentHex.getCoordinate().getZ()].getSettlement(), CurrentHex.getSettlement());
+//                    }
+//                    System.out.println("--");
                     if (CurrentHex.TotoroPresent()){
                         NewSettlement.addTotoroFlag();
                     }
@@ -765,7 +768,6 @@ public class Map {
                         NewSettlement.addTigerFlag();
                     }
                     NukedSettlementsHexes.remove(CurrentHex);
-
                     Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
 
                     Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
@@ -782,33 +784,36 @@ public class Map {
                         y_adj = adjacencyMatrix[j].getY();
                         z_adj = adjacencyMatrix[j].getZ();
                         boolean added = false;
-
+//                        System.out.println("ADJACENT COORD: ");
+//                        adjacencyMatrix[j].coordinateToString();
                         if (Map[x_adj][y_adj][z_adj] != null) {
-                            if (Map[x_adj][y_adj][z_adj].getSettlement() == CurrentHex.getSettlement()) {
-
+//                                System.out.println("IS NOT NULL");
+                            if (Map[x_adj][y_adj][z_adj].getSettlement() == NukedSettlements.get(i)) {
+//                                System.out.println("IS IN SETTLEMENT");
                                 for (int k = 0; k < NewSettlementHexes.size(); k++) {
                                     if (NewSettlementHexes.get(k) == Map[x_adj][y_adj][z_adj]) {
+//                                        System.out.println("HAS BEEN ADDED TO NEWSETTLEMENTS");
                                         added = true;
                                     }
                                 }
 
                                 if (added == false) {
+//                                    System.out.println("NEEDS TO BE ADDED TO NEW SETTLEMENTS");
                                     queue.add(Map[x_adj][y_adj][z_adj]);
                                     NewSettlementHexes.add(Map[x_adj][y_adj][z_adj]);
-                                    CurrentHex.setSettlement(NewSettlement);
+                                    //Map[x_adj][y_adj][z_adj].setSettlement(NewSettlement);
                                 }
                             }
                         }
                     }
                 }
-
+                for (int l = 0; l < NewSettlementHexes.size(); l++){
+                    NewSettlementHexes.get(l).setSettlement(NewSettlement);
+                }
                 NewSettlement.setLength(NewSettlement.getSettlementHexes().size());
                 hexOwner.addSettlement(NewSettlement);
-
             }
-
             hexOwner.removeSettlement(NukedSettlements.get(i));
-
         }
     }
 
