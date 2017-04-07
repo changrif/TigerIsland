@@ -10,7 +10,7 @@ public class StringParser {
         return fromServer.startsWith("M");
     }
 
-    public String getPlayerIDFromServerMessage(String fromServer) {
+    public String getPlayerIDFromServerMessageDuringAuthenticationProtocol(String fromServer) {
         String pid;
         String [] splitStringFromServer;
         splitStringFromServer = fromServer.split(" ");
@@ -169,7 +169,7 @@ public class StringParser {
         PlayerState p = new PlayerState();
         String [] gameStateMessageFromMessageSentToBothPlayers;
         String[] splitStringFromServer = fromServer.split(" ");
-        gameStateMessageFromMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 5, splitStringFromServer.length);
+        gameStateMessageFromMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 6, splitStringFromServer.length);
         String gameStateMessage = mergeStringArrayIntoString(gameStateMessageFromMessageSentToBothPlayers);
         return p.getStateOfTheGameAfterMove(gameStateMessage);
     }

@@ -4,7 +4,7 @@
 public class PlayerState {
 
     public PlayerState.gameState getStateOfTheGameAfterMove(String a) {
-        if(a.equalsIgnoreCase("FORFEITED: ILLEGAL TILE"))
+        if(a.equalsIgnoreCase("FORFEITED: ILLEGAL TILE PLACEMENT"))
             return PlayerState.gameState.FORFEITED_ILLEGAL_TILE_PLACEMENT;
         if(a.equalsIgnoreCase("FORFEITED: ILLEGAL BUILD"))
             return PlayerState.gameState.FORFEITED_ILLEGAL_BUILD;
