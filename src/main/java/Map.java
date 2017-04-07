@@ -712,11 +712,12 @@ public class Map {
     public void splitSettlementsAfterNuking(Tile tile){
         Hex Hex1 = hexAt(tile.getHex2().getCoordinate());
         Hex Hex2 = hexAt(tile.getHex3().getCoordinate());
-
+        Settlement OriginalHex1Settlement = null;
 
         ArrayList<Settlement> NukedSettlements = new ArrayList<>();
         if (Hex1 != null){
             if (Hex1.getSettlement() != null){
+                OriginalHex1Settlement = Hex1.getSettlement();
                 Hex1.getSettlement().getSettlementHexes().remove(Hex1);
                 NukedSettlements.add(Hex1.getSettlement());
                 Hex1.setSettlement(null);
@@ -725,7 +726,9 @@ public class Map {
         if (Hex2 != null){
             if (Hex2.getSettlement() != null){
                 Hex2.getSettlement().getSettlementHexes().remove(Hex2);
-                NukedSettlements.add(Hex2.getSettlement());
+                    if (Hex2.getSettlement() != OriginalHex1Settlement){
+                        NukedSettlements.add(Hex2.getSettlement());
+                }
                 Hex2.setSettlement(null);
             }
         }
