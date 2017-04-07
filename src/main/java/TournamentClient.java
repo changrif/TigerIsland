@@ -9,16 +9,11 @@ public class TournamentClient {
     private String tournamentPassword;
     private String teamUsername;
     private String teamPassword;
-    private int numberOfChallenges;
     private int numberOfRounds;
     private String playerId;
     private String opponentId;
-    private String challengeId;
-    private int roundId;
-    private int moveNumber;
     private String gameId;
     private String tileToPlaceFromServer;
-    private int orientationOfTile;
 
     private final double TIME_FOR_MOVE = 1.5;
 
@@ -47,7 +42,9 @@ public class TournamentClient {
         Player opponentAI = new Player(opponentId);
         PlayerBrain brain = new PlayerBrain(ourAI, opponentAI, m);
 
-        beginGame(m, brain);
+        for(int i = 0; i <numberOfRounds; i++)
+            beginGame(m, brain);
+
     }
 
     public void setUpProtocolBeforeGame() throws IOException {
@@ -80,7 +77,7 @@ public class TournamentClient {
     public void setUpChallengeProtocol() throws IOException {
         String fromServer;
         fromServer = in.readLine();
-        challengeId = parser.getChallengeIDFromServerMessage(fromServer);
+        //   challengeId = parser.getChallengeIDFromServerMessage(fromServer);
         numberOfRounds = parser.getNumberOfRoundsFromServerMessage(fromServer);
         System.out.println("Server: " + fromServer);
     }
@@ -88,7 +85,7 @@ public class TournamentClient {
     public void setUpRoundProtocol() throws IOException {
         String fromServer;
         fromServer = in.readLine();
-        roundId = parser.getRoundIDFromServerMessage(fromServer);
+        // roundId = parser.getRoundIDFromServerMessage(fromServer);
         System.out.println("Server: " + fromServer);
     }
 
@@ -104,22 +101,60 @@ public class TournamentClient {
         boolean gameInSession = true;
         fromServer = in.readLine();
         getGameIDFromServer(fromServer);
+        int moveNumber = 1;
         while(gameInSession){
             if (weAreTheActivePlayer(fromServer)) {
                 System.out.println("Server: " + fromServer);//make your move //getTile x+y where x,y = "JUNGLE" "LAKE" "GRASS" "ROCK"
                 Tile tileToPlace = createTile(fromServer);
                 brain.setTileToPlace(tileToPlace);
-                sendMessageToServerBasedOnOurPlayersMove(brain);
+                sendMessageToServerBasedOnOurPlayersMove(brain, moveNumber);
             }
             else{
                 System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
                 handleMessageSentToBothPlayersFromServer(m, brain, fromServer);
             }
+
+            moveNumber++;
+
             fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
             if(isGameOver(fromServer)){
                 gameInSession = false;
+                int firstScore = getCurrentScoreForFirstPlayerWhenGameEnds(fromServer);
+                int secondScore = getCurrentScoreForSecondPlayerWhenGameEnds(fromServer);
+                setBothPlayersScore(brain, fromServer, firstScore, secondScore);
             }
         }
+    }
+    public void setBothPlayersScore(PlayerBrain brain, String fromServer, int firstScore, int secondScore) {
+        if(ourPlayerIsTheFirstPIDFromServerForTellingUsTheScore(fromServer, brain)){
+            setPlayerScoreOnceGameEnds(brain.getOurPlayer(), firstScore);
+            setPlayerScoreOnceGameEnds(brain.getOpponent(), secondScore);
+        }
+        else{
+            setPlayerScoreOnceGameEnds(brain.getOpponent(), firstScore);
+            setPlayerScoreOnceGameEnds(brain.getOurPlayer(), secondScore);
+        }
+    }
+
+    private int getCurrentScoreForFirstPlayerWhenGameEnds(String fromServer) {
+        return parser.getCurrentScoreForFirstPlayerWhenGameEnds(fromServer);
+    }
+
+    private int getCurrentScoreForSecondPlayerWhenGameEnds(String fromServer) {
+        return parser.getCurrentScoreForSecondPlayerWhenGameEnds(fromServer);
+    }
+    private void setPlayerScoreOnceGameEnds(Player p, int score) {
+        p.increaseMatchScore(score);
+    }
+
+    private boolean ourPlayerIsTheFirstPIDFromServerForTellingUsTheScore(String fromServer, PlayerBrain brain){
+        String playerIDFromServer = getPlayerIdForFirstPlayerOnceGameEnds(fromServer);
+        String ourPlayerName = brain.getOurPlayer().getPlayerName();
+        return playerIDFromServer.equals(ourPlayerName);
+    }
+
+    private String getPlayerIdForFirstPlayerOnceGameEnds(String fromServer) {
+        return parser.getPlayerIdForFirstPlayerOnceGameEnds(fromServer);
     }
 
     private boolean isGameOver(String fromServer) {
@@ -141,7 +176,7 @@ public class TournamentClient {
         return parser.weAreActivePlayer(fromServer);
     }
 
-    public void sendMessageToServerBasedOnOurPlayersMove(PlayerBrain brain) {
+    public void sendMessageToServerBasedOnOurPlayersMove(PlayerBrain brain, int moveNumber) {
         Tile tilePlacedByAI = brain.getBestTilePlacement();
 
         int tilePlacedX = tilePlacedByAI.getHex1().getCoordinate().getX();
@@ -233,47 +268,42 @@ public class TournamentClient {
                 addOpponentTigerPlaygroundToBoard(m, brain, opponentMove);
             }
             else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == parseBuildSelectionFromOpponent(opponentMove)){
-
+                //Do nothing
             }
         }
-        //if(parser.getPIDFromServerSentToBothPlayers(fromServer).equals())
-        //update the map, given meeples, totoros, tigers,
-        //TODO ..."Place <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>
-        //TODO ... or expand or whatever
-
 
     }
 
     private void addOpponentSettlementToBoard(Map m, PlayerBrain brain, String s){
-        int xCoordForOpponenentSettlement = parser.getXCoordFromOpponentMove(s);
-        int yCoordForOpponenentSettlement = parser.getYCoordFromOpponentMove(s);
-        int zCoordForOpponenentSettlement = parser.getZCoordFromOpponentMove(s);
-        Coordinate c = new Coordinate(zCoordForOpponenentSettlement, xCoordForOpponenentSettlement, yCoordForOpponenentSettlement);
+        int xCoordForOpponentSettlement = parser.getXCoordFromOpponentMove(s);
+        int yCoordForOpponentSettlement = parser.getYCoordFromOpponentMove(s);
+        int zCoordForOpponentSettlement = parser.getZCoordFromOpponentMove(s);
+        Coordinate c = new Coordinate(zCoordForOpponentSettlement, xCoordForOpponentSettlement, yCoordForOpponentSettlement);
         m.foundNewSettlement(c, brain.getOpponent());
     }
 
     private void addOpponentExpansionOnBoardBasedOnTheServerMessage(Map m, PlayerBrain brain, String s) {
-        int xCoordForOpponenentExpansion = parser.getXCoordFromOpponentMove(s);
-        int yCoordForOpponenentExpansion = parser.getYCoordFromOpponentMove(s);
-        int zCoordForOpponenentExpansion = parser.getZCoordFromOpponentMove(s);
-        Coordinate c = new Coordinate(zCoordForOpponenentExpansion, xCoordForOpponenentExpansion, yCoordForOpponenentExpansion);
+        int xCoordForOpponentExpansion = parser.getXCoordFromOpponentMove(s);
+        int yCoordForOpponentExpansion = parser.getYCoordFromOpponentMove(s);
+        int zCoordForOpponentExpansion = parser.getZCoordFromOpponentMove(s);
+        Coordinate c = new Coordinate(zCoordForOpponentExpansion, xCoordForOpponentExpansion, yCoordForOpponentExpansion);
         Terrain.typesOfTerrain t = parser.getTerrainTypeFromServerMessageIfOpponentExpands(s);
         m.ExpandSettlement(c, t, brain.getOpponent());
     }
 
     private void addOpponentTotoroSanctuaryToBoard(Map m, PlayerBrain brain, String opponentMove) {
-        int xCoordForOpponenentTotoroSanctuary = parser.getXCoordFromOpponentMove(opponentMove);
-        int yCoordForOpponenentTotoroSanctuary = parser.getYCoordFromOpponentMove(opponentMove);
-        int zCoordForOpponenentTotoroSanctuary = parser.getZCoordFromOpponentMove(opponentMove);
-        Coordinate c = new Coordinate(zCoordForOpponenentTotoroSanctuary, xCoordForOpponenentTotoroSanctuary, yCoordForOpponenentTotoroSanctuary);
+        int xCoordForOpponentTotoroSanctuary = parser.getXCoordFromOpponentMove(opponentMove);
+        int yCoordForOpponentTotoroSanctuary = parser.getYCoordFromOpponentMove(opponentMove);
+        int zCoordForOpponentTotoroSanctuary = parser.getZCoordFromOpponentMove(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponentTotoroSanctuary, xCoordForOpponentTotoroSanctuary, yCoordForOpponentTotoroSanctuary);
         m.PlaceTotoro(c, brain.getOpponent());
     }
 
     private void addOpponentTigerPlaygroundToBoard(Map m, PlayerBrain brain, String opponentMove) {
-        int xCoordForOpponenentTigerPlayground = parser.getXCoordFromOpponentMove(opponentMove);
-        int yCoordForOpponenentTigerPlayground = parser.getYCoordFromOpponentMove(opponentMove);
-        int zCoordForOpponenentTigerPlayground = parser.getZCoordFromOpponentMove(opponentMove);
-        Coordinate c = new Coordinate(zCoordForOpponenentTigerPlayground, xCoordForOpponenentTigerPlayground, yCoordForOpponenentTigerPlayground);
+        int xCoordForOpponentTigerPlayground = parser.getXCoordFromOpponentMove(opponentMove);
+        int yCoordForOpponentTigerPlayground = parser.getYCoordFromOpponentMove(opponentMove);
+        int zCoordForOpponentTigerPlayground = parser.getZCoordFromOpponentMove(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponentTigerPlayground, xCoordForOpponentTigerPlayground, yCoordForOpponentTigerPlayground);
         m.PlaceTiger(c, brain.getOpponent());
     }
 
