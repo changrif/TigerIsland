@@ -200,4 +200,10 @@ public class StringParser {
         String currentState = serverMessage[6];
         return currentState;
     }
+
+    public boolean isGameOver(String fromServer) {
+        String [] serverMessage = fromServer.split(" ");
+        String currentState = serverMessage[2];
+        return currentState.equals("OVER");
+    }
 }

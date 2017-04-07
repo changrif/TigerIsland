@@ -19,6 +19,18 @@ public class Terrain {
         JUNGLE, LAKE, ROCKY, GRASSLANDS, VOLCANO
     }
 
+    public String convertTerrainToString(Terrain.typesOfTerrain t){
+        if(t == typesOfTerrain.GRASSLANDS)
+            return "GRASSLANDS";
+        if(t == typesOfTerrain.JUNGLE)
+            return "JUNGLE";
+        if(t == typesOfTerrain.LAKE)
+            return "LAKE";
+        if(t == typesOfTerrain.ROCKY)
+            return "ROCK";
+        return null;
+    }
+
     //We can move this somewhere else later if it is more convenient as well as change names
     public static class Habitat {
         typesOfTerrain t;

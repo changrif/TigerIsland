@@ -18,8 +18,10 @@ public class PlayerBrain {
     private Map map;
     private Tile bestTilePlacement;
     private Tile tileToPlace;
-    private Coordinate bestSettlementPlacement;
-    private Coordinate settlementToPlace;
+    private Terrain.typesOfTerrain typeOfTerrainForBestExpansion;
+    private Coordinate bestSettlementPlacementForFounding;
+    private Coordinate bestSettlementPlacementForExpansion;
+    private Coordinate bestSettlementPlacementForTiger;
     private ArrayList<Coordinate> volcanoCoordinates = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelThree = new ArrayList<>();
 
@@ -159,30 +161,34 @@ public class PlayerBrain {
     public BuildOption.typesOfBuildOptions getBuildAction() {
         //TODO method will decide which build option is best
         if(canFindFirstPlaceForTigerPlayground()){
-            settlementToPlace = bestSettlementPlacement;
             return BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND;
         }
-        else if(ourPlayer.getNumberOfTigersIHave() == 0 && canFindFirstPlaceToExpandSettlement()){
-            settlementToPlace = bestSettlementPlacement;
+        else if(wePlacedAllOfOurTigers() && canFindFirstPlaceToExpandSettlement()){
             return BuildOption.typesOfBuildOptions.EXPANSION;
         }
         else if(canFindFirstPlaceToFoundSettlement()){
-            settlementToPlace = bestSettlementPlacement;
+            //Note to Nick & David, from Nick...
+            // make sure we're returning the best coordinate later for founding settlement
+            //            settlementToPlaceTiger = bestSettlementPlacement;
             return BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT;
         }
 
         return null;
     }
 
+    public boolean wePlacedAllOfOurTigers() {
+        return ourPlayer.getNumberOfTigersIHave() == 0;
+    }
+
     public boolean canFindFirstPlaceToFoundSettlement() {
         if(canPlaceNextToLevelThree())    {
             return true;
         }
-        else if(ourPlayer.getPlayerSettlements().size() == 0)    {
+        else if(ifPlayerDoesNotHaveAnySettlements())    {
             findCoordinateForFoundingASettlement();
             return true;
         }
-        else if(ourPlayer.getPlayerSettlements().size() > 0)   {
+        else if(ifPlayerHasAtleastOneSettlement())   {
             for(Settlement settlement : ourPlayer.getPlayerSettlements())   {
                 if(canPlacePiece(settlement))   {
                     return true;
@@ -194,11 +200,19 @@ public class PlayerBrain {
         return false;
     }
 
+    public boolean ifPlayerHasAtleastOneSettlement() {
+        return ourPlayer.getPlayerSettlements().size() > 0;
+    }
+
+    public boolean ifPlayerDoesNotHaveAnySettlements() {
+        return ourPlayer.getPlayerSettlements().size() == 0;
+    }
+
     public boolean canPlaceNextToLevelThree()   {
         for(Coordinate coordinate : availableHexesOnLevelThree)  {
             for(Coordinate adjacentCoordinate : map.createAdjacentCoordinateArray(coordinate)) {
                 if(hexIsViableForSettlement(adjacentCoordinate))    {
-                    bestSettlementPlacement = adjacentCoordinate;
+                    bestSettlementPlacementForFounding = adjacentCoordinate;
                     return true;
                 }
             }
@@ -225,7 +239,9 @@ public class PlayerBrain {
             //if a neighboring hex is taken, then check for valid placement
             if(map.isTaken(currentCoordinate)) {
                 if (hexIsViableForSettlement(currentCoordinate)) {
-                    bestSettlementPlacement = currentCoordinate;
+                    bestSettlementPlacementForFounding = currentCoordinate;
+                    //CHANDLER LOOK AT THIS <3333333333333333333333333333333333333333333333333333333333333333333333333333
+                    //Check if there should be a break here to exit loop
                 }
             }
 
@@ -272,7 +288,7 @@ public class PlayerBrain {
                 Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
                 for (Coordinate coordinate : adjacentCoordinateArray) {
                     if(map.isTaken(coordinate) && !map.hexAt(coordinate).isSettled() && map.hexAt(coordinate).getLevel() >= 3)    {
-                        bestSettlementPlacement = coordinate;
+                        bestSettlementPlacementForTiger = coordinate;
                         return true;
                     }
                 }
@@ -287,7 +303,8 @@ public class PlayerBrain {
             Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
             for(Coordinate coordinate : adjacentCoordinateArray)    {
                 if(hexIsViableForSettlement(coordinate))   {
-                    bestSettlementPlacement = coordinate;
+                    bestSettlementPlacementForExpansion = coordinate;
+                    typeOfTerrainForBestExpansion = map.hexAt(coordinate).getTerrainType();
                     return true;
                 }
             }
@@ -305,9 +322,12 @@ public class PlayerBrain {
         return null;
     }
 
-    public Hex getHexToExpandTo() {
-        //TODO return the hex where you decided to initially expand, if the brain chooses to do so.
-        return null;
+    public Coordinate getCoordinateToExpandTo() {
+        return bestSettlementPlacementForExpansion;
+    }
+
+    public Terrain.typesOfTerrain getTerrainForExpansion(){
+        return typeOfTerrainForBestExpansion;
     }
 
     public Hex getHexToPlaceTotoro() {
@@ -315,9 +335,8 @@ public class PlayerBrain {
         return null;
     }
 
-    public Hex getHexToPlaceTiger() {
-        //TODO return the hex where you decided to place Tiger playground, if the brain chooses to do so.
-        return null;
+    public Coordinate getCoordinateForTigerPlayground() {
+        return bestSettlementPlacementForTiger;
     }
 
     public Player getOurPlayer() {

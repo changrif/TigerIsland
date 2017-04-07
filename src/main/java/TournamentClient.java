@@ -40,29 +40,14 @@ public class TournamentClient {
     }
 
     public void runClient() throws IOException {
+        setUpProtocolBeforeGame();
+
         Map m = new Map();
-        Player ourAI = new Player(playerId);
+        Player ourAI = new Player(playerId);//this is invalid
         Player opponentAI = new Player(opponentId);
         PlayerBrain brain = new PlayerBrain(ourAI, opponentAI, m);
-        setUpProtocolBeforeGame();
-        beginGame(m, brain);
-    }
 
-    public void beginGame(Map m, PlayerBrain brain) throws IOException {
-        String fromServer;
-        for(int i = 0; i < 48; i++){
-            fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
-            if (weAreTheActivePlayer(fromServer)) {
-                System.out.println("Server: " + fromServer);//make your move //getTile x+y where x,y = "JUNGLE" "LAKE" "GRASS" "ROCK"
-                Tile tileToPlace = createTile(tileToPlaceFromServer);
-                brain.setTileToPlace(tileToPlace);
-                sendMessageToServerBasedOnOurPlayersMove(brain);
-            }
-            else{
-                System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
-                handleMessageSetToBothPlayersFromServer(m, brain, fromServer);
-            }
-        }
+        beginGame(m, brain);
     }
 
     public void setUpProtocolBeforeGame() throws IOException {
@@ -73,8 +58,6 @@ public class TournamentClient {
         setUpRoundProtocol();
 
         setUpMatchProtocol();
-
-        setUpMoveProtocol();
     }
 
     public void setUpAuthenticationProtocol() throws IOException {
@@ -90,7 +73,7 @@ public class TournamentClient {
         out.println("Client: I AM " + teamUsername + " " + teamPassword);
 
         fromServer = in.readLine();
-        playerId = parser.getPlayerIDFromServerMessage(fromServer);
+        playerId = parser.getPlayerIDFromServerMessageDuringAuthenticationProtocol(fromServer);
         System.out.println("Server: " + fromServer);
     }
 
@@ -116,9 +99,34 @@ public class TournamentClient {
         System.out.println("Server: " + fromServer);
     }
 
-    public String setUpMoveProtocol() throws IOException {
+    public void beginGame(Map m, PlayerBrain brain) throws IOException {
         String fromServer;
+        boolean gameInSession = true;
         fromServer = in.readLine();
+        getGameIDFromServer(fromServer);
+        while(gameInSession){
+            if (weAreTheActivePlayer(fromServer)) {
+                System.out.println("Server: " + fromServer);//make your move //getTile x+y where x,y = "JUNGLE" "LAKE" "GRASS" "ROCK"
+                Tile tileToPlace = createTile(fromServer);
+                brain.setTileToPlace(tileToPlace);
+                sendMessageToServerBasedOnOurPlayersMove(brain);
+            }
+            else{
+                System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
+                handleMessageSetToBothPlayersFromServer(m, brain, fromServer);
+            }
+            fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
+            if(isGameOver(fromServer)){
+                gameInSession = false;
+            }
+        }
+    }
+
+    private boolean isGameOver(String fromServer) {
+        return parser.isGameOver(fromServer);
+    }
+
+    public void getGameIDFromServer(String fromServer) {
         if (weAreTheActivePlayer(fromServer)) {
             gameId = parser.getGameIDFromServerMessageIfActivePlayer(fromServer);
 //            moveNumber = parseStringToGetMoveNumberFromServerMessageIfActivePlayer(fromServer);
@@ -126,8 +134,8 @@ public class TournamentClient {
         } else {
             gameId = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
         }
-        return fromServer;
     }
+
 
     public boolean weAreTheActivePlayer(String fromServer) {
         return parser.weAreActivePlayer(fromServer);
@@ -153,29 +161,29 @@ public class TournamentClient {
                     " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " FOUND SETTLEMENT AT " + settlementLocationX + " " + settlementLocationY + " " + settlementLocationZ);
         }
         else if (BuildOption.typesOfBuildOptions.EXPANSION == buildOptions) {
-            Hex HexForPlayerToExpand = brain.getHexToExpandTo();
-            int settlementExpandedLocationX = HexForPlayerToExpand.getCoordinate().getX();
-            int settlementExpandedLocationY = HexForPlayerToExpand.getCoordinate().getY();
-            int settlementExpandedLocationZ = HexForPlayerToExpand.getCoordinate().getZ();
-
-            //CHECK IF TERRAIN CAN BE PRINTED CORRECTLY
-            Terrain.typesOfTerrain terrainToExpand = HexForPlayerToExpand.getTerrainType();
+            Coordinate coordinateForPlayerToExpand = brain.getCoordinateToExpandTo();
+            int settlementExpandedLocationX = coordinateForPlayerToExpand.getX();
+            int settlementExpandedLocationY = coordinateForPlayerToExpand.getY();
+            int settlementExpandedLocationZ = coordinateForPlayerToExpand.getZ();
+            Terrain.typesOfTerrain terrainToExpand = brain.getTerrainForExpansion();
+            Terrain terra = new Terrain();
+            String terrainToExpandAsString = terra.convertTerrainToString(terrainToExpand);
             out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
-                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " EXPAND SETTLEMENT AT " + settlementExpandedLocationX + " " + settlementExpandedLocationY + " " + settlementExpandedLocationZ + " " + terrainToExpand);
+                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " EXPAND SETTLEMENT AT " + settlementExpandedLocationX + " " + settlementExpandedLocationY + " " + settlementExpandedLocationZ + " " + terrainToExpandAsString);
         }
-        else if (BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == buildOptions) {
-            Hex HexForTotoroSanctuary = brain.getHexToPlaceTotoro();
-            int totoroSanctuaryLocationX = HexForTotoroSanctuary.getCoordinate().getX();
-            int totoroSanctuaryLocationY = HexForTotoroSanctuary.getCoordinate().getY();
-            int totoroSanctuaryLocationZ = HexForTotoroSanctuary.getCoordinate().getZ();
-            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
-                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " BUILD TOTORO SANCTUARY AT " + totoroSanctuaryLocationX + " " + totoroSanctuaryLocationY + " " + totoroSanctuaryLocationZ);
-        }
+//        else if (BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == buildOptions) {
+//            Hex HexForTotoroSanctuary = brain.getHexToPlaceTotoro();
+//            int totoroSanctuaryLocationX = HexForTotoroSanctuary.getCoordinate().getX();
+//            int totoroSanctuaryLocationY = HexForTotoroSanctuary.getCoordinate().getY();
+//            int totoroSanctuaryLocationZ = HexForTotoroSanctuary.getCoordinate().getZ();
+//            out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
+//                    " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " BUILD TOTORO SANCTUARY AT " + totoroSanctuaryLocationX + " " + totoroSanctuaryLocationY + " " + totoroSanctuaryLocationZ);
+//        }
         else if (BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == buildOptions) {
-            Hex HexForTigerSanctuary = brain.getHexToPlaceTiger();
-            int tigerPlaygroundLocationX = HexForTigerSanctuary.getCoordinate().getX();
-            int tigerPlaygroundLocationY = HexForTigerSanctuary.getCoordinate().getY();
-            int tigerPlaygroundLocationZ = HexForTigerSanctuary.getCoordinate().getZ();
+            Coordinate coordinateForTigerPlayground = brain.getCoordinateForTigerPlayground();
+            int tigerPlaygroundLocationX = coordinateForTigerPlayground.getX();
+            int tigerPlaygroundLocationY = coordinateForTigerPlayground.getY();
+            int tigerPlaygroundLocationZ = coordinateForTigerPlayground.getZ();
             out.println("Client: GAME " + gameId + " MOVE " + moveNumber + " PLACE " + tileToPlaceFromServer +
                     " AT " + tilePlacedX + " " + tilePlacedY + " " + tilePlacedZ + " " + orientationOfTilePlaced + " BUILD TIGER PLAYGROUND AT " + tigerPlaygroundLocationX + " " + tigerPlaygroundLocationY + " " + tigerPlaygroundLocationZ);
         }
@@ -193,31 +201,75 @@ public class TournamentClient {
         String currentState = parser.getCurrentStateFromServer(fromServer);
         PlayerState.gameState stateOfGame = null;
         if(didSomeoneLose(currentState)){
-            stateOfGame = parser.getGameStateFromMessageSentToBothPlayers(fromServer);
-            if(weLostTheGame(brain, fromServer)){
-                setStateIfWeLostTheGame(brain, stateOfGame);
-                //End Game.....
-            }
-            else{
-                setStateIfWeWonTheGame(brain, stateOfGame);
-                //End Game.....
-            }
-
             //then check if we lost or if opponent lost
             //if we lost, then set our player state to Lost
             //if we forfeited, then set out player state to forfeited
+//            stateOfGame = parser.getGameStateFromMessageSentToBothPlayers(fromServer);
+//            if(weLostTheGame(brain, fromServer)){
+//                setStateIfWeLostTheGame(brain, stateOfGame);
+//                //End Game.....
+//            }
+//            else{
+//                setStateIfWeWonTheGame(brain, stateOfGame);
+//                //End Game.....
+//            }
+
+
+        }
+        else{
+            placeTileFromOpponent(m, brain, fromServer);
+            parseBuildSelectionFromOpponent(fromServer);
         }
         //if(parser.getPIDFromServerSentToBothPlayers(fromServer).equals())
         //update the map, given meeples, totoros, tigers,
         //TODO ..."Place <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>
         //TODO ... or expand or whatever
+
+
+    }
+
+    public void parseBuildSelectionFromOpponent(String fromServer) {
+        BuildOption.typesOfBuildOptions buildOptions = parser.getBuildOptionFromMessageSentToBothPlayers(fromServer);
+
+        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == buildOptions) {
+            int xCoordForOpponenentSettlement = parser.getXCoordFromOpponentMove(fromServer);
+            int yCoordForOpponenentSettlement = parser.getYCoordFromOpponentMove(fromServer);
+            int zCoordForOpponenentSettlement = parser.getZCoordFromOpponentMove(fromServer);
+        }
+        else if(BuildOption.typesOfBuildOptions.EXPANSION == buildOptions){
+            int xCoordForOpponenentExpansion = parser.getXCoordFromOpponentMove(fromServer);
+            int yCoordForOpponenentExpansion = parser.getYCoordFromOpponentMove(fromServer);
+            int zCoordForOpponenentExpansion = parser.getZCoordFromOpponentMove(fromServer);
+            //ADD Terrain
+        }
+        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == buildOptions){
+            int xCoordForOpponenentTotoroSanctuary = parser.getXCoordFromOpponentMove(fromServer);
+            int yCoordForOpponenentTotoroSanctuary = parser.getYCoordFromOpponentMove(fromServer);
+            int zCoordForOpponenentTotoroSanctuary = parser.getZCoordFromOpponentMove(fromServer);
+        }
+        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == buildOptions){
+            int xCoordForOpponenentTigerPlayground = parser.getXCoordFromOpponentMove(fromServer);
+            int yCoordForOpponenentTigerPlayground = parser.getYCoordFromOpponentMove(fromServer);
+            int zCoordForOpponenentTigerPlayground = parser.getZCoordFromOpponentMove(fromServer);
+        }
+        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == buildOptions){
+
+        }
+
+
+    }
+
+    public void placeTileFromOpponent(Map m, PlayerBrain brain, String fromServer) {
+        String opponentMove;
+        int opponentOrientation;
+        Coordinate opponentVolcanoCoordinate;
+        Tile opponentTile;
         opponentMove = getOpponentMove(fromServer);
         opponentOrientation = getOpponentTileOrientation(opponentMove);
         opponentVolcanoCoordinate = getVolcanoCoordinateFromOpponent(opponentMove);
         opponentTile = createTileFromOpponentToPlaceOnBoard(opponentMove);
         brain.giveBrainTheUpdatedVolcanoCoordinates(opponentVolcanoCoordinate, opponentOrientation);
         m.placeTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
-
     }
 
     public boolean didSomeoneLose(String currentState) {
@@ -240,15 +292,14 @@ public class TournamentClient {
         return playerName.equalsIgnoreCase(playerNameFromServer);
     }
 
-
     private Tile createTileFromOpponentToPlaceOnBoard(String opponentMove) {
         String tileOpponentPlaced = parser.getTileOpponentPlacedFromServer(opponentMove);
         Tile t = createTile(tileOpponentPlaced);
         return t;
     }
 
-    private Tile createTile(String s){
-        tileToPlaceFromServer = parser.getTileIDFromServerMessageIfActivePlayer(s);
+    private Tile createTile(String fromServer){
+        tileToPlaceFromServer = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
         Terrain.typesOfTerrain terrainA = parser.getTerrainAFromString(tileToPlaceFromServer);
         Terrain.typesOfTerrain terrainB = parser.getTerrainBFromString(tileToPlaceFromServer);
         Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, -1000);
