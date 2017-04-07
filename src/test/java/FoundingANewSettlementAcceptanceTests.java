@@ -24,13 +24,17 @@ public class FoundingANewSettlementAcceptanceTests {
     public void they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement() throws Throwable {
         Map m = new Map();
         Deck d = new Deck();
-
+        Player p1 = new Player("Aizey");
+        m.placeFirstTile();
         Coordinate c = new Coordinate(100, 100, 100);
-        d.generateTiles();
-        Tile t = d.draw();
-        Coordinate c2 = new Coordinate(99, 101, 100);
+        m.foundNewSettlement(c, p1);
 
-        m.placeTile(t, c, 1);
+//        Coordinate c = new Coordinate(100, 100, 100);
+//        d.generateTiles();
+//        Tile t = d.draw();
+//        Coordinate c2 = new Coordinate(99, 101, 100);
+
+        //m.placeTile(t, c, 1);
         /* don't be mad and don't delete
         Player p = new Player("David");
 
