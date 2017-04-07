@@ -234,10 +234,10 @@ public class StringParserTest{
         Assert.assertEquals(expected, parser.getZCoordFromOpponentMove(test));
     }
 
-    /*@Test
+    @Test
     public void getGameStatusFromServerMessagesSentToBothPlayers(){
         String test = "GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>";
         Assert.assertTrue(parser.isGameOver(test));
-    }*/
+    }
 
 }

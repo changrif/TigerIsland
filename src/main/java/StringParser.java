@@ -206,4 +206,13 @@ public class StringParser {
         String currentState = serverMessage[2];
         return currentState.equals("OVER");
     }
+
+    public Terrain.typesOfTerrain getTerrainTypeFromServerMessageIfOpponentExpands(String opponentMove) {
+        Terrain t = new Terrain();
+        String terrainType;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        terrainType = splitStringFromServer[splitStringFromServer.length-1];
+        return t.getTerrainTypeFromString(terrainType);
+    }
 }

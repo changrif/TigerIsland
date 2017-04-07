@@ -113,7 +113,7 @@ public class TournamentClient {
             }
             else{
                 System.out.println("Server: " + fromServer);//GAME <gid> MOVE <#> PLAYER <pid> <move> or forfeited, lost etc.
-                handleMessageSetToBothPlayersFromServer(m, brain, fromServer);
+                handleMessageSentToBothPlayersFromServer(m, brain, fromServer);
             }
             fromServer = in.readLine();//either "MAKE YOUR MOVE..." OR "GAME A MOVE 1 PLACE tile AT xyz..."
             if(isGameOver(fromServer)){
@@ -193,7 +193,7 @@ public class TournamentClient {
         }
     }
 
-    public void handleMessageSetToBothPlayersFromServer(Map m, PlayerBrain brain, String fromServer) throws IOException {
+    public void handleMessageSentToBothPlayersFromServer(Map m, PlayerBrain brain, String fromServer) throws IOException {
         String opponentMove;
         int opponentOrientation;
         Coordinate opponentVolcanoCoordinate;
@@ -218,7 +218,23 @@ public class TournamentClient {
         }
         else{
             placeTileFromOpponent(m, brain, fromServer);
-            parseBuildSelectionFromOpponent(fromServer);
+            opponentMove = getOpponentMove(fromServer);
+
+            if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == parseBuildSelectionFromOpponent(opponentMove)) {
+                addOpponentSettlementToBoard(m, brain, opponentMove);
+            }
+            else if(BuildOption.typesOfBuildOptions.EXPANSION == parseBuildSelectionFromOpponent(opponentMove)){
+                addOpponentExpansionOnBoardBasedOnTheServerMessage(m, brain, opponentMove);
+            }
+            else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == parseBuildSelectionFromOpponent(opponentMove)){
+                addOpponentTotoroSanctuaryToBoard(m, brain, opponentMove);
+            }
+            else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == parseBuildSelectionFromOpponent(opponentMove)){
+                addOpponentTigerPlaygroundToBoard(m, brain, opponentMove);
+            }
+            else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == parseBuildSelectionFromOpponent(opponentMove)){
+
+            }
         }
         //if(parser.getPIDFromServerSentToBothPlayers(fromServer).equals())
         //update the map, given meeples, totoros, tigers,
@@ -228,36 +244,44 @@ public class TournamentClient {
 
     }
 
-    public void parseBuildSelectionFromOpponent(String fromServer) {
-        BuildOption.typesOfBuildOptions buildOptions = parser.getBuildOptionFromMessageSentToBothPlayers(fromServer);
-
-        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == buildOptions) {
-            int xCoordForOpponenentSettlement = parser.getXCoordFromOpponentMove(fromServer);
-            int yCoordForOpponenentSettlement = parser.getYCoordFromOpponentMove(fromServer);
-            int zCoordForOpponenentSettlement = parser.getZCoordFromOpponentMove(fromServer);
-        }
-        else if(BuildOption.typesOfBuildOptions.EXPANSION == buildOptions){
-            int xCoordForOpponenentExpansion = parser.getXCoordFromOpponentMove(fromServer);
-            int yCoordForOpponenentExpansion = parser.getYCoordFromOpponentMove(fromServer);
-            int zCoordForOpponenentExpansion = parser.getZCoordFromOpponentMove(fromServer);
-            //ADD Terrain
-        }
-        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == buildOptions){
-            int xCoordForOpponenentTotoroSanctuary = parser.getXCoordFromOpponentMove(fromServer);
-            int yCoordForOpponenentTotoroSanctuary = parser.getYCoordFromOpponentMove(fromServer);
-            int zCoordForOpponenentTotoroSanctuary = parser.getZCoordFromOpponentMove(fromServer);
-        }
-        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == buildOptions){
-            int xCoordForOpponenentTigerPlayground = parser.getXCoordFromOpponentMove(fromServer);
-            int yCoordForOpponenentTigerPlayground = parser.getYCoordFromOpponentMove(fromServer);
-            int zCoordForOpponenentTigerPlayground = parser.getZCoordFromOpponentMove(fromServer);
-        }
-        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == buildOptions){
-
-        }
-
-
+    private void addOpponentSettlementToBoard(Map m, PlayerBrain brain, String s){
+        int xCoordForOpponenentSettlement = parser.getXCoordFromOpponentMove(s);
+        int yCoordForOpponenentSettlement = parser.getYCoordFromOpponentMove(s);
+        int zCoordForOpponenentSettlement = parser.getZCoordFromOpponentMove(s);
+        Coordinate c = new Coordinate(zCoordForOpponenentSettlement, xCoordForOpponenentSettlement, yCoordForOpponenentSettlement);
+        m.foundNewSettlement(c, brain.getOpponent());
     }
+
+    private void addOpponentExpansionOnBoardBasedOnTheServerMessage(Map m, PlayerBrain brain, String s) {
+        int xCoordForOpponenentExpansion = parser.getXCoordFromOpponentMove(s);
+        int yCoordForOpponenentExpansion = parser.getYCoordFromOpponentMove(s);
+        int zCoordForOpponenentExpansion = parser.getZCoordFromOpponentMove(s);
+        Coordinate c = new Coordinate(zCoordForOpponenentExpansion, xCoordForOpponenentExpansion, yCoordForOpponenentExpansion);
+        Terrain.typesOfTerrain t = parser.getTerrainTypeFromServerMessageIfOpponentExpands(s);
+        m.ExpandSettlement(c, t, brain.getOpponent());
+    }
+
+    private void addOpponentTotoroSanctuaryToBoard(Map m, PlayerBrain brain, String opponentMove) {
+        int xCoordForOpponenentTotoroSanctuary = parser.getXCoordFromOpponentMove(opponentMove);
+        int yCoordForOpponenentTotoroSanctuary = parser.getYCoordFromOpponentMove(opponentMove);
+        int zCoordForOpponenentTotoroSanctuary = parser.getZCoordFromOpponentMove(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponenentTotoroSanctuary, xCoordForOpponenentTotoroSanctuary, yCoordForOpponenentTotoroSanctuary);
+        m.PlaceTotoro(c, brain.getOpponent());
+    }
+
+    private void addOpponentTigerPlaygroundToBoard(Map m, PlayerBrain brain, String opponentMove) {
+        int xCoordForOpponenentTigerPlayground = parser.getXCoordFromOpponentMove(opponentMove);
+        int yCoordForOpponenentTigerPlayground = parser.getYCoordFromOpponentMove(opponentMove);
+        int zCoordForOpponenentTigerPlayground = parser.getZCoordFromOpponentMove(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponenentTigerPlayground, xCoordForOpponenentTigerPlayground, yCoordForOpponenentTigerPlayground);
+        m.PlaceTiger(c, brain.getOpponent());
+    }
+
+    private BuildOption.typesOfBuildOptions parseBuildSelectionFromOpponent(String opponentMove) {
+        BuildOption.typesOfBuildOptions buildOptions = parser.getBuildOptionFromMessageSentToBothPlayers(opponentMove);
+        return buildOptions;
+    }
+
 
     public void placeTileFromOpponent(Map m, PlayerBrain brain, String fromServer) {
         String opponentMove;
