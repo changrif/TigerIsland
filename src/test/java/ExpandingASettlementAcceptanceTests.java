@@ -360,8 +360,7 @@ public class ExpandingASettlementAcceptanceTests {
 
     @When("^a player’s turn has ended$")
     public void a_player_s_turn_has_ended() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
     }
 
     @Then("^the settlement size will increase by the number of added territories$")
