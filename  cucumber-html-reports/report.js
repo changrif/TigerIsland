@@ -69,21 +69,21 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_does_not_have_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
 formatter.result({
-  "duration": 220786097,
+  "duration": 227709571,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_place_a_totoro_during_the_build_phase()"
 });
 formatter.result({
-  "duration": 40120,
+  "duration": 49451,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_will_not_be_allowed_to_add_a_totoro()"
 });
 formatter.result({
-  "duration": 32062763,
+  "duration": 35755188,
   "status": "passed"
 });
 formatter.match({
@@ -96,42 +96,42 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
 formatter.result({
-  "duration": 185205,
+  "duration": 212728,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "duration": 33123,
+  "duration": 54115,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_can_add_a_Totoro_to_the_empty_hex()"
 });
 formatter.result({
-  "duration": 93329048,
+  "duration": 32170993,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_that_has_a_certain_amount_of_totoros()"
 });
 formatter.result({
-  "duration": 28457,
+  "duration": 38720,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.he_she_places_a_totoro_on_the_board()"
 });
 formatter.result({
-  "duration": 31257,
+  "duration": 30790,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.the_amount_of_totoros_available_to_the_player_decrease_by_one()"
 });
 formatter.result({
-  "duration": 21223404,
+  "duration": 66960506,
   "status": "passed"
 });
 formatter.scenario({
@@ -161,21 +161,21 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_with_a_Totoro()"
 });
 formatter.result({
-  "duration": 53649,
+  "duration": 83505,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_add_another_Totoro_to_that_settlement()"
 });
 formatter.result({
-  "duration": 21459,
+  "duration": 48050,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_are_not_allowed_to_place_the_Totoro()"
 });
 formatter.result({
-  "duration": 7072290,
+  "duration": 28627850,
   "status": "passed"
 });
 formatter.uri("ExpandingASettlementAcceptanceTests.feature");
@@ -243,45 +243,50 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement()"
 });
 formatter.result({
-  "duration": 2553676,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement(ExpandingASettlementAcceptanceTests.java:14)\r\n\tat ✽.Given there is an adjacent non-volcanic hex to a player’s existing settlement(ExpandingASettlementAcceptanceTests.feature:4)\r\n",
-  "status": "pending"
+  "duration": 15246012,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_expand()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 526223,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_be_able_to_occupy_all_contiguous_hexes_of_the_chosen_terrain()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 145551,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_that_has_a_certain_amount_of_meeples()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 43320114,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.he_she_attempts_to_expand_to_a_terrain()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 377406,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_have_the_necessary_amount_of_meeples_to_expand()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 67644,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_that_has_a_certain_amount_of_totoros()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 11645488,
+  "status": "passed"
 });
 formatter.match({
   "arguments": [
@@ -293,13 +298,15 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.he_she_attempts_to_expand_to_a_terrain_adjacent_to_a_settlement_of_length(int)"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 476307,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_have_the_necessary_amount_of_totoros_to_expand()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 117561,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 16,
@@ -328,15 +335,15 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left()"
 });
 formatter.result({
-  "duration": 288769,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left(ExpandingASettlementAcceptanceTests.java:68)\r\n\tat ✽.Given a player has enough Meeples left(ExpandingASettlementAcceptanceTests.feature:17)\r\n",
-  "status": "pending"
+  "duration": 38072810,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_expand()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 397000,
+  "status": "passed"
 });
 formatter.match({
   "arguments": [
@@ -348,7 +355,8 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.the_must_place_Meeple_per_level_on_each_hex(int)"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 188937,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 21,
@@ -377,21 +385,22 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain()"
 });
 formatter.result({
-  "duration": 392801,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain(ExpandingASettlementAcceptanceTests.java:80)\r\n\tat ✽.Given a non-adjacent terrain(ExpandingASettlementAcceptanceTests.feature:22)\r\n",
-  "status": "pending"
+  "duration": 11712666,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_meeple_tries_to_expand_to_the_terrain()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 56448,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.it_will_be_prohibited_from_doing_so()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 99833,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 26,
@@ -420,21 +429,22 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement()"
 });
 formatter.result({
-  "duration": 263578,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement(ExpandingASettlementAcceptanceTests.java:98)\r\n\tat ✽.Given a successful expansion of a settlement(ExpandingASettlementAcceptanceTests.feature:27)\r\n",
-  "status": "pending"
+  "duration": 11253619,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_s_turn_has_ended()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 42919,
+  "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.the_settlement_size_will_increase_by_the_number_of_added_territories()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 35921,
+  "status": "passed"
 });
 formatter.uri("FoundingANewSettlement.feature");
 formatter.feature({
@@ -486,42 +496,42 @@ formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_non_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 84438,
+  "duration": 168410,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_has_the_option_to_build()"
 });
 formatter.result({
-  "duration": 34055,
+  "duration": 53648,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 79578201,
+  "duration": 43415748,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 28924,
+  "duration": 44785,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_can_build()"
 });
 formatter.result({
-  "duration": 19127,
+  "duration": 45252,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_cannot_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 6700482,
+  "duration": 8105144,
   "status": "passed"
 });
 formatter.uri("GameResultsAcceptanceTests.feature");
@@ -559,7 +569,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left()"
 });
 formatter.result({
-  "duration": 311629,
+  "duration": 3475965,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\r\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\r\n",
   "status": "pending"
 });
@@ -602,7 +612,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left()"
 });
 formatter.result({
-  "duration": 420792,
+  "duration": 418926,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\r\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\r\n",
   "status": "pending"
 });
@@ -650,7 +660,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_game_that_is_in_progress()"
 });
 formatter.result({
-  "duration": 419393,
+  "duration": 299966,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\r\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\r\n",
   "status": "pending"
 });
@@ -722,14 +732,14 @@ formatter.match({
   "location": "HexAcceptanceTests.a_hex_is_created()"
 });
 formatter.result({
-  "duration": 119427,
+  "duration": 144151,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_is_created()"
 });
 formatter.result({
-  "duration": 37787,
+  "duration": 60179,
   "status": "passed"
 });
 formatter.match({
@@ -742,29 +752,30 @@ formatter.match({
   "location": "HexAcceptanceTests.it_should_have_sides(int)"
 });
 formatter.result({
-  "duration": 195934,
+  "duration": 9701541,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_hex_has__been_created()"
 });
 formatter.result({
-  "duration": 23792,
+  "duration": 41519,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_has_been_created()"
 });
 formatter.result({
-  "duration": 21459,
+  "duration": 35455,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types()"
 });
 formatter.result({
-  "duration": 162345,
-  "status": "passed"
+  "duration": 501498,
+  "error_message": "java.lang.AssertionError: expected:\u003c1\u003e but was:\u003c0\u003e\r\n\tat org.junit.Assert.fail(Assert.java:88)\r\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\r\n\tat org.junit.Assert.assertEquals(Assert.java:645)\r\n\tat org.junit.Assert.assertEquals(Assert.java:631)\r\n\tat HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types(HexAcceptanceTests.java:61)\r\n\tat ✽.Then it must have one, and only one of the five terrain types(HexAcceptanceTests.feature:10)\r\n",
+  "status": "failed"
 });
 formatter.uri("MapAcceptanceTests.feature");
 formatter.feature({
@@ -801,21 +812,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 85371,
+  "duration": 116161,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 28457,
+  "duration": 37321,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_should_be_initialized_to_empty()"
 });
 formatter.result({
-  "duration": 150378549,
+  "duration": 1710116315,
   "status": "passed"
 });
 formatter.scenario({
@@ -845,21 +856,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 44785,
+  "duration": 71376,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 20993,
+  "duration": 30323,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_containing_data_will_produce_errors()"
 });
 formatter.result({
-  "duration": 34192847,
+  "duration": 964357240,
   "status": "passed"
 });
 formatter.uri("MeepleAcceptanceTests.feature");
@@ -893,17 +904,32 @@ formatter.step({
   "name": "20 Meeples are created for each player",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "MeepleAcceptanceTests.the_Meeples_are_not_initialized()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 95635,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "MeepleAcceptanceTests.before_the_game_begins()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 28923,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "20",
+      "offset": 0
+    }
+  ],
+  "location": "MeepleAcceptanceTests.meeples_are_created_for_each_player(int)"
+});
+formatter.result({
+  "duration": 170277,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 8,
@@ -973,59 +999,89 @@ formatter.step({
   "name": "it cannot be placed on a hex that is already occupied by meeples",
   "keyword": "Then "
 });
-formatter.match({});
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_meeple()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 44785,
+  "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 37321,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "MeepleAcceptanceTests.it_can_be_placed_on_a_habitable_terrain()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 7140401,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_meeple()"
+});
+formatter.result({
+  "duration": 32656,
+  "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 28923,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_volcano_terrain()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 7009312,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_Meeple_is_being_placed()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 40586,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_player_builds()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 30789,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MeepleAcceptanceTests.decrement_the_number_of_Meeples_from_the_player_s_total()"
+});
+formatter.result({
+  "duration": 6853031,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_meeple()"
+});
+formatter.result({
+  "duration": 33122,
+  "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 24259,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_hex_that_is_already_occupied_by_meeples()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 7189852,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 25,
@@ -1050,17 +1106,26 @@ formatter.step({
   "name": "it will be prohibited from doing so.",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_terrain_that_is_of_type_volcano()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 90503,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "MeepleAcceptanceTests.a_meeple_tries_to_occupy_the_terrain()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 33122,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MeepleAcceptanceTests.it_will_be_prohibited_from_doing_so()"
+});
+formatter.result({
+  "duration": 95034142,
+  "status": "passed"
 });
 formatter.uri("MergingSettlementsAcceptanceTests.feature");
 formatter.feature({
@@ -1127,63 +1192,63 @@ formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 100299,
+  "duration": 107764,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_player_ends_their_turn()"
 });
 formatter.result({
-  "duration": 20992,
+  "duration": 29857,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_merge_into_one()"
 });
 formatter.result({
-  "duration": 12177309,
+  "duration": 7659160,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_not_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 34988,
+  "duration": 39654,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_players_turn_ends()"
 });
 formatter.result({
-  "duration": 20993,
+  "duration": 29390,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not_merge_into_one()"
 });
 formatter.result({
-  "duration": 19856063,
+  "duration": 6898750,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_a_different_player()"
 });
 formatter.result({
-  "duration": 30323,
+  "duration": 40120,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_players_finishes_their_turn()"
 });
 formatter.result({
-  "duration": 25191,
+  "duration": 28924,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not__be_merged()"
 });
 formatter.result({
-  "duration": 6982721,
+  "duration": 7035436,
   "status": "passed"
 });
 formatter.uri("PlayerTurnsAcceptanceTests.feature");
@@ -1221,21 +1286,22 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_start_of_a_game()"
 });
 formatter.result({
-  "duration": 362945,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.the_start_of_a_game(PlayerTurnsAcceptanceTests.java:14)\r\n\tat ✽.Given the start of a game(PlayerTurnsAcceptanceTests.feature:4)\r\n",
-  "status": "pending"
+  "duration": 118960,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.two_people_want_to_play_a_game()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 28457,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.they_should_be_able_to_have_the_role_of_a_player_to_enter_the_game()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 56448,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 8,
@@ -1264,21 +1330,22 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.there_are_still_tiles_available()"
 });
 formatter.result({
-  "duration": 269643,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.there_are_still_tiles_available(PlayerTurnsAcceptanceTests.java:32)\r\n\tat ✽.Given there are still tiles available(PlayerTurnsAcceptanceTests.feature:9)\r\n",
-  "status": "pending"
+  "duration": 56448,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_draws_a_tile()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 37787,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_player_must_place_the_tile_in_a_valid_spot_before_executing_a_build_action()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 11354852,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 13,
@@ -1307,21 +1374,22 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.has_build_actions_available()"
 });
 formatter.result({
-  "duration": 279906,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.has_build_actions_available(PlayerTurnsAcceptanceTests.java:50)\r\n\tat ✽.Given has build actions available(PlayerTurnsAcceptanceTests.feature:14)\r\n",
-  "status": "pending"
+  "duration": 59714,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_has_just_placed_a_tile()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 31722,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_player_must_complete_the_build_action_before_ending_their_turn()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 7343334,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 18,
@@ -1350,21 +1418,22 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded()"
 });
 formatter.result({
-  "duration": 276174,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded(PlayerTurnsAcceptanceTests.java:68)\r\n\tat ✽.Given a new settlement is added or expanded(PlayerTurnsAcceptanceTests.feature:19)\r\n",
-  "status": "pending"
+  "duration": 62979,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_ends_their_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 35455,
+  "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_turn_ends_settlements_are_merged_if_necessary()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 33588,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 23,
@@ -1413,8 +1482,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player()"
 });
 formatter.result({
-  "duration": 331222,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:86)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
+  "duration": 367143,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:186)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1490,8 +1559,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_and_a_player(int,int)"
 });
 formatter.result({
-  "duration": 417526,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:116)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
+  "duration": 464177,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:216)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1553,14 +1622,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_has_placed_Meeple_s()"
 });
 formatter.result({
-  "duration": 7181454,
+  "duration": 21972618,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 278040,
+  "duration": 461378,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:5)\r\n",
   "status": "pending"
 });
@@ -1603,14 +1672,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Totoro()"
 });
 formatter.result({
-  "duration": 52249,
+  "duration": 95634,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 499165,
+  "duration": 271975,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:10)\r\n",
   "status": "pending"
 });
@@ -1653,7 +1722,7 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Tiger()"
 });
 formatter.result({
-  "duration": 366211,
+  "duration": 493567,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:110)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
@@ -1725,39 +1794,43 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "duration": 445517,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat TerrainTypesAcceptanceTests.a_type_of_terrain(TerrainTypesAcceptanceTests.java:15)\r\n\tat ✽.Given a type of terrain,(TerrainTypeAcceptanceTests.feature:4)\r\n",
-  "status": "pending"
+  "duration": 6986453,
+  "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_has_been_placed()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 83972,
+  "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_cannot_be_compared_with_non_adjacent_terrains()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 72309,
+  "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 7162328,
+  "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_has_been_placed()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 66244,
+  "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_can_be_compared_with_all_adjacent_terrains()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 50849,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 12,
@@ -1786,21 +1859,21 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_tilePiece()"
 });
 formatter.result({
-  "duration": 69977,
+  "duration": 48984,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_is_placed_on_the_board()"
 });
 formatter.result({
-  "duration": 32189,
+  "duration": 27991,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_must_contain_one_and_only_one_volcano_terrain()"
 });
 formatter.result({
-  "duration": 495433,
+  "duration": 361545,
   "status": "passed"
 });
 formatter.uri("TilesAcceptanceTests.feature");
@@ -1849,76 +1922,66 @@ formatter.step({
   "name": "there are 3 tiles of each of the 16 terrain combinations",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 95634,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.before_the_first_turn()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 27525,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "arguments": [
+    {
+      "val": "48",
+      "offset": 10
+    }
+  ],
+  "location": "TilesAcceptanceTests.there_are_tiles(int)"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 215994,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
+});
+formatter.result({
+  "duration": 27524,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.before_the_first_turn()"
+});
+formatter.result({
+  "duration": 23792,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "3",
+      "offset": 10
+    },
+    {
+      "val": "16",
+      "offset": 33
+    }
+  ],
+  "location": "TilesAcceptanceTests.there_are_tiles_of_each_of_the_terrain_combinations(int,int)"
+});
+formatter.result({
+  "duration": 472574,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 12,
-  "name": "Checking correct number of configuration of tiles",
-  "description": "",
-  "id": "tiles;checking-correct-number-of-configuration-of-tiles",
-  "type": "scenario",
-  "keyword": "Scenario"
-});
-formatter.step({
-  "line": 13,
-  "name": "there are 48 tiles",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 14,
-  "name": "before the first turn",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 15,
-  "name": "there is more than three tiles of the same type",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 16,
-  "name": "an exception is thrown",
-  "keyword": "Then "
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.scenario({
-  "line": 18,
   "name": "Tile Creation",
   "description": "",
   "id": "tiles;tile-creation",
@@ -1926,34 +1989,49 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 19,
+  "line": 13,
   "name": "all the tiles in the deck",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 20,
+  "line": 14,
   "name": "the game begins",
   "keyword": "When "
 });
 formatter.step({
-  "line": 21,
+  "line": 15,
   "name": "each tile should have 3 hexes with the proper configuration of one volcano and a terrain combination",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.all_the_tiles()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 153482,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_game_begins()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 45718,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "3",
+      "offset": 22
+    }
+  ],
+  "location": "TilesAcceptanceTests.each_tile_should_have_hexes_with_the_proper_configuration_of_one_volcano_and_a_terrain_combination(int)"
+});
+formatter.result({
+  "duration": 507562,
+  "status": "passed"
 });
 formatter.scenario({
-  "line": 23,
+  "line": 17,
   "name": "Placing Tile for the first time",
   "description": "",
   "id": "tiles;placing-tile-for-the-first-time",
@@ -1961,34 +2039,43 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 24,
+  "line": 18,
   "name": "the board is empty",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 25,
+  "line": 19,
   "name": "a tile is being placed",
   "keyword": "When "
 });
 formatter.step({
-  "line": 26,
+  "line": 20,
   "name": "the tile is placed at the origin, in any orientation",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.the_board_is_empty()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 71376,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.a_tile_is_being_placed()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 29390,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_tile_is_placed_at_the_origin_in_any_orientation()"
+});
+formatter.result({
+  "duration": 542475965,
+  "status": "passed"
 });
 formatter.scenario({
-  "line": 28,
+  "line": 22,
   "name": "Placing Tile",
   "description": "",
   "id": "tiles;placing-tile",
@@ -1996,124 +2083,79 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 29,
+  "line": 23,
   "name": "the board is not empty",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 30,
+  "line": 24,
   "name": "a tile is being placed not adjacent to another tile",
   "keyword": "When "
 });
 formatter.step({
-  "line": 31,
-  "name": "the player will be disqualified",
+  "line": 25,
+  "name": "the player will be prohibited from doing so",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 33,
-  "name": "a random tile that is not the first tile,",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 34,
-  "name": "the game is in session,",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 35,
-  "name": "the tile is prohibited from not being placed adjacent to another tile.",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 37,
-  "name": "a tile",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 38,
-  "name": "it is placed,",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 39,
-  "name": "it is the 48th tile",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 40,
-  "name": "the game ends.",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 42,
+  "line": 27,
   "name": "there is a fixed number of tiles available",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 43,
+  "line": 28,
   "name": "they successfully place a tile",
   "keyword": "When "
 });
 formatter.step({
-  "line": 44,
+  "line": 29,
   "name": "that tile should be removed from the list of available tiles / combination type",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.the_board_is_not_empty()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 63912,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.a_tile_is_being_placed_not_adjacent_to_another_tile()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 26124,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 6950532,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.there_is_a_fixed_number_of_tiles_available()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 38254,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.they_successfully_place_a_tile()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 25191,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.that_tile_should_be_removed_from_the_list_of_available_tiles_combination_type()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+  "duration": 7139935,
+  "status": "passed"
 });
 formatter.scenario({
-  "line": 48,
+  "line": 32,
   "name": "Placing Tile on level 1",
   "description": "",
   "id": "tiles;placing-tile-on-level-1",
@@ -2121,34 +2163,49 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 49,
+  "line": 33,
   "name": "the board is not empty",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 50,
+  "line": 34,
   "name": "a tile is being placed on level 1",
   "keyword": "When "
 });
 formatter.step({
-  "line": 51,
+  "line": 35,
   "name": "at least one side of the tile being placed must touch an existing tile on the board",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.the_board_is_not_empty()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 61580,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 32
+    }
+  ],
+  "location": "TilesAcceptanceTests.a_tile_is_being_placed_on_level(int)"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 132489,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.at_least_one_side_of_the_tile_being_placed_must_touch_an_existing_tile_on_the_board()"
+});
+formatter.result({
+  "duration": 6925341,
+  "status": "passed"
 });
 formatter.scenario({
-  "line": 53,
+  "line": 37,
   "name": "Stacking A Tile",
   "description": "",
   "id": "tiles;stacking-a-tile",
@@ -2156,58 +2213,118 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 54,
+  "line": 38,
   "name": "the board is not empty and has a valid level 1 configuration",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 55,
+  "line": 39,
   "name": "a tile is in the process of being stacked",
   "keyword": "When "
 });
 formatter.step({
-  "line": 56,
+  "line": 40,
   "name": "it can be stacked so long as it follows stacking restrictions",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 58,
+  "line": 42,
   "name": "the board is not empty and has a valid level 1 configuration",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 59,
+  "line": 43,
   "name": "a tile is being stacked and",
   "keyword": "When "
 });
 formatter.step({
-  "line": 60,
+  "line": 44,
   "name": "it has space beneath it",
   "keyword": "When "
 });
 formatter.step({
-  "line": 61,
+  "line": 45,
   "name": "it is prohibited from being stacked",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 63,
+  "line": 47,
   "name": "the board is not empty and has a valid level 1 configuration",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 64,
+  "line": 48,
   "name": "a tile is being stacked",
   "keyword": "When "
 });
 formatter.step({
-  "line": 65,
+  "line": 49,
   "name": "its volcano hex is not over a volcano hex",
   "keyword": "When "
 });
 formatter.step({
-  "line": 66,
+  "line": 50,
   "name": "the tile is prohibited from being stacked",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 52,
+  "name": "a tile",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 53,
+  "name": "it is placed over an area of the board",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 54,
+  "name": "the level of that area of the board increases by 1",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 56,
+  "name": "a tile",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 57,
+  "name": "it is placed over an area of the board",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 58,
+  "name": "it can not be placed directly over a single tile",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 60,
+  "name": "a tile",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 61,
+  "name": "it is placed over an area of the board",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 62,
+  "name": "the tiles being covered must be at the same level",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 64,
+  "name": "a tile",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 65,
+  "name": "it is placed over an area of the board",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 66,
+  "name": "it can not cover a size 1 settlement",
   "keyword": "Then "
 });
 formatter.step({
@@ -2222,7 +2339,7 @@ formatter.step({
 });
 formatter.step({
   "line": 70,
-  "name": "the level of that area of the board increases by 1",
+  "name": "none of the hexes contain a totoro",
   "keyword": "Then "
 });
 formatter.step({
@@ -2237,7 +2354,7 @@ formatter.step({
 });
 formatter.step({
   "line": 74,
-  "name": "it can not be placed directly over a single tile",
+  "name": "at least one of the hexes must be a volcano",
   "keyword": "Then "
 });
 formatter.step({
@@ -2247,12 +2364,12 @@ formatter.step({
 });
 formatter.step({
   "line": 77,
-  "name": "it is placed over an area of the board",
+  "name": "a player attempts to nuke an area of the board",
   "keyword": "When "
 });
 formatter.step({
   "line": 78,
-  "name": "the tiles being covered must be at the same level",
+  "name": "the volcano terrain of the tile must be placed over a volcano terrain on the board",
   "keyword": "Then "
 });
 formatter.step({
@@ -2262,216 +2379,246 @@ formatter.step({
 });
 formatter.step({
   "line": 81,
-  "name": "it is placed over an area of the board",
+  "name": "a player attempts to nuke an area of the board",
   "keyword": "When "
 });
 formatter.step({
   "line": 82,
-  "name": "it can not cover a size 1 settlement",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 84,
-  "name": "a tile",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 85,
-  "name": "it is placed over an area of the board",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 86,
-  "name": "none of the hexes contain a totoro",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 88,
-  "name": "a tile",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 89,
-  "name": "it is placed over an area of the board",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 90,
-  "name": "at least one of the hexes must be a volcano",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 92,
-  "name": "a tile",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 93,
-  "name": "a player attempts to nuke an area of the board",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 94,
-  "name": "the volcano terrain of the tile must be placed over a volcano terrain on the board",
-  "keyword": "Then "
-});
-formatter.step({
-  "line": 96,
-  "name": "a tile",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 97,
-  "name": "a player attempts to nuke an area of the board",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 98,
   "name": "it will completely cover the hexes with no blank board space under it",
   "keyword": "Then "
 });
-formatter.match({});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 45
+    }
+  ],
+  "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 195934,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.a_tile_is_About_To_Be_Stacked()"
+});
+formatter.result({
+  "duration": 30323,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_can_be_stacked_so_long_as_it_follows_stacking_restrictions()"
+});
+formatter.result({
+  "duration": 6912745,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 45
+    }
+  ],
+  "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+});
+formatter.result({
+  "duration": 129690,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.a_tile_is_being_stacked_and()"
+});
+formatter.result({
+  "duration": 32655,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_has_space_beneath_it()"
+});
+formatter.result({
+  "duration": 24259,
+  "status": "passed"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_prohibited_from_being_stacked()"
+});
+formatter.result({
+  "duration": 25192,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 45
+    }
+  ],
+  "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+});
+formatter.result({
+  "duration": 84439,
+  "status": "passed"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.its_volcano_hex_is_not_over_a_volcano_hex()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_tile_is_prohibited_from_being_stacked()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 49
+    }
+  ],
+  "location": "TilesAcceptanceTests.the_level_of_that_area_of_the_board_increases_by(int)"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_can_not_be_placed_directly_over_a_single_tile()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_tiles_being_covered_must_be_at_the_same_level()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "1",
+      "offset": 24
+    }
+  ],
+  "location": "TilesAcceptanceTests.it_can_not_cover_a_size_settlement(int)"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.none_of_the_hexes_contain_a_totoro()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.at_least_one_of_the_hexes_must_be_a_volcano()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.a_player_attempts_to_nuke_an_area_of_the_board()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
+});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_volcano_terrain_of_the_tile_must_be_placed_over_a_volcano_terrain_on_the_board()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.a_player_attempts_to_nuke_an_area_of_the_board()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "TilesAcceptanceTests.it_will_completely_cover_the_hexes_with_no_blank_board_space_under_it()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
 formatter.scenario({
-  "line": 100,
+  "line": 84,
   "name": "Nuking",
   "description": "",
   "id": "tiles;nuking",
@@ -2479,107 +2626,107 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 101,
+  "line": 85,
   "name": "a tile",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 102,
+  "line": 86,
   "name": "a player attempts to nuke an area of the board that completely overlaps a tile",
   "keyword": "When "
 });
 formatter.step({
-  "line": 103,
+  "line": 87,
   "name": "the player will be prohibited from doing so",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 105,
+  "line": 89,
   "name": "a tile",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 106,
+  "line": 90,
   "name": "a player attempts to nuke an area of the board that will split a settlement",
   "keyword": "When "
 });
 formatter.step({
-  "line": 107,
+  "line": 91,
   "name": "the new settlement is created",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 108,
+  "line": 92,
   "name": "both settlement sizes are updated",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 110,
+  "line": 94,
   "name": "a tile",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 111,
+  "line": 95,
   "name": "a player attempts to nuke an area of the board that contains a totoro",
   "keyword": "When "
 });
 formatter.step({
-  "line": 112,
+  "line": 96,
   "name": "the player will be prohibited from doing so",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 114,
+  "line": 98,
   "name": "a tile",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 115,
+  "line": 99,
   "name": "a player attempts to nuke a settlement of size one",
   "keyword": "When "
 });
 formatter.step({
-  "line": 116,
+  "line": 100,
   "name": "the player will be prohibited from doing so",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 118,
+  "line": 102,
   "name": "a tile",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 119,
+  "line": 103,
   "name": "a player attempts to nuke a settlement of size greater than one",
   "keyword": "When "
 });
 formatter.step({
-  "line": 120,
+  "line": 104,
   "name": "a player attempts to nuke an area of the board that does not contain a totoro",
   "keyword": "When "
 });
 formatter.step({
-  "line": 121,
+  "line": 105,
   "name": "a player attempts to nuke an area of the board that does not completely overlap a tile",
   "keyword": "When "
 });
 formatter.step({
-  "line": 122,
+  "line": 106,
   "name": "the player will not be prohibited from doing so",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 124,
+  "line": 108,
   "name": "a tile is being stacked",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 125,
+  "line": 109,
   "name": "a settlement exists on the tiles being covered",
   "keyword": "When "
 });
 formatter.step({
-  "line": 126,
+  "line": 110,
   "name": "the settlements are destroyed, so the meeples are no longer in play",
   "keyword": "Then "
 });
@@ -2591,9 +2738,11 @@ formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
@@ -2619,9 +2768,11 @@ formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
@@ -2631,9 +2782,11 @@ formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
+formatter.match({
+  "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({

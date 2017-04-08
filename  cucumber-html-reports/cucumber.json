@@ -12,7 +12,7 @@
         "steps": [
           {
             "result": {
-              "duration": 220786097,
+              "duration": 227709571,
               "status": "passed"
             },
             "line": 3,
@@ -30,7 +30,7 @@
           },
           {
             "result": {
-              "duration": 40120,
+              "duration": 49451,
               "status": "passed"
             },
             "line": 4,
@@ -42,7 +42,7 @@
           },
           {
             "result": {
-              "duration": 32062763,
+              "duration": 35755188,
               "status": "passed"
             },
             "line": 5,
@@ -54,7 +54,7 @@
           },
           {
             "result": {
-              "duration": 185205,
+              "duration": 212728,
               "status": "passed"
             },
             "line": 7,
@@ -72,7 +72,7 @@
           },
           {
             "result": {
-              "duration": 33123,
+              "duration": 54115,
               "status": "passed"
             },
             "line": 8,
@@ -84,7 +84,7 @@
           },
           {
             "result": {
-              "duration": 93329048,
+              "duration": 32170993,
               "status": "passed"
             },
             "line": 9,
@@ -96,7 +96,7 @@
           },
           {
             "result": {
-              "duration": 28457,
+              "duration": 38720,
               "status": "passed"
             },
             "line": 11,
@@ -108,7 +108,7 @@
           },
           {
             "result": {
-              "duration": 31257,
+              "duration": 30790,
               "status": "passed"
             },
             "line": 12,
@@ -120,7 +120,7 @@
           },
           {
             "result": {
-              "duration": 21223404,
+              "duration": 66960506,
               "status": "passed"
             },
             "line": 13,
@@ -142,7 +142,7 @@
         "steps": [
           {
             "result": {
-              "duration": 53649,
+              "duration": 83505,
               "status": "passed"
             },
             "line": 16,
@@ -154,7 +154,7 @@
           },
           {
             "result": {
-              "duration": 21459,
+              "duration": 48050,
               "status": "passed"
             },
             "line": 17,
@@ -166,7 +166,7 @@
           },
           {
             "result": {
-              "duration": 7072290,
+              "duration": 28627850,
               "status": "passed"
             },
             "line": 18,
@@ -198,9 +198,8 @@
         "steps": [
           {
             "result": {
-              "duration": 2553676,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement(ExpandingASettlementAcceptanceTests.java:14)\r\n\tat ✽.Given there is an adjacent non-volcanic hex to a player’s existing settlement(ExpandingASettlementAcceptanceTests.feature:4)\r\n",
-              "status": "pending"
+              "duration": 15246012,
+              "status": "passed"
             },
             "line": 4,
             "name": "there is an adjacent non-volcanic hex to a player’s existing settlement",
@@ -211,7 +210,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 526223,
+              "status": "passed"
             },
             "line": 5,
             "name": "they expand",
@@ -222,7 +222,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 145551,
+              "status": "passed"
             },
             "line": 6,
             "name": "they must be able to occupy all contiguous hexes of the chosen terrain",
@@ -233,7 +234,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 43320114,
+              "status": "passed"
             },
             "line": 8,
             "name": "a player that has a certain amount of meeples",
@@ -244,7 +246,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 377406,
+              "status": "passed"
             },
             "line": 9,
             "name": "he/she attempts to expand to a terrain",
@@ -255,7 +258,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 67644,
+              "status": "passed"
             },
             "line": 10,
             "name": "they must have the necessary amount of meeples to expand",
@@ -266,7 +270,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11645488,
+              "status": "passed"
             },
             "line": 12,
             "name": "a player that has a certain amount of totoros",
@@ -277,7 +282,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 476307,
+              "status": "passed"
             },
             "line": 13,
             "name": "he/she attempts to expand to a terrain adjacent to a settlement of length 5+",
@@ -294,7 +300,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 117561,
+              "status": "passed"
             },
             "line": 14,
             "name": "they must have the necessary amount of totoros to expand",
@@ -315,9 +322,8 @@
         "steps": [
           {
             "result": {
-              "duration": 288769,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left(ExpandingASettlementAcceptanceTests.java:68)\r\n\tat ✽.Given a player has enough Meeples left(ExpandingASettlementAcceptanceTests.feature:17)\r\n",
-              "status": "pending"
+              "duration": 38072810,
+              "status": "passed"
             },
             "line": 17,
             "name": "a player has enough Meeples left",
@@ -328,7 +334,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 397000,
+              "status": "passed"
             },
             "line": 18,
             "name": "they expand",
@@ -339,7 +346,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 188937,
+              "status": "passed"
             },
             "line": 19,
             "name": "the must place 1 Meeple per level on each hex",
@@ -366,9 +374,8 @@
         "steps": [
           {
             "result": {
-              "duration": 392801,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain(ExpandingASettlementAcceptanceTests.java:80)\r\n\tat ✽.Given a non-adjacent terrain(ExpandingASettlementAcceptanceTests.feature:22)\r\n",
-              "status": "pending"
+              "duration": 11712666,
+              "status": "passed"
             },
             "line": 22,
             "name": "a non-adjacent terrain",
@@ -379,7 +386,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 56448,
+              "status": "passed"
             },
             "line": 23,
             "name": "a meeple tries to expand to the terrain",
@@ -390,7 +398,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 99833,
+              "status": "passed"
             },
             "line": 24,
             "name": "it will be prohibited from doing so",
@@ -411,9 +420,8 @@
         "steps": [
           {
             "result": {
-              "duration": 263578,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement(ExpandingASettlementAcceptanceTests.java:98)\r\n\tat ✽.Given a successful expansion of a settlement(ExpandingASettlementAcceptanceTests.feature:27)\r\n",
-              "status": "pending"
+              "duration": 11253619,
+              "status": "passed"
             },
             "line": 27,
             "name": "a successful expansion of a settlement",
@@ -424,7 +432,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 42919,
+              "status": "passed"
             },
             "line": 28,
             "name": "a player’s turn has ended",
@@ -435,7 +444,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 35921,
+              "status": "passed"
             },
             "line": 29,
             "name": "the settlement size will increase by the number of added territories",
@@ -466,7 +476,7 @@
         "steps": [
           {
             "result": {
-              "duration": 84438,
+              "duration": 168410,
               "status": "passed"
             },
             "line": 4,
@@ -478,7 +488,7 @@
           },
           {
             "result": {
-              "duration": 34055,
+              "duration": 53648,
               "status": "passed"
             },
             "line": 5,
@@ -490,7 +500,7 @@
           },
           {
             "result": {
-              "duration": 79578201,
+              "duration": 43415748,
               "status": "passed"
             },
             "line": 6,
@@ -502,7 +512,7 @@
           },
           {
             "result": {
-              "duration": 28924,
+              "duration": 44785,
               "status": "passed"
             },
             "line": 9,
@@ -514,7 +524,7 @@
           },
           {
             "result": {
-              "duration": 19127,
+              "duration": 45252,
               "status": "passed"
             },
             "line": 10,
@@ -526,7 +536,7 @@
           },
           {
             "result": {
-              "duration": 6700482,
+              "duration": 8105144,
               "status": "passed"
             },
             "line": 11,
@@ -558,7 +568,7 @@
         "steps": [
           {
             "result": {
-              "duration": 311629,
+              "duration": 3475965,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\r\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\r\n",
               "status": "pending"
             },
@@ -603,7 +613,7 @@
         "steps": [
           {
             "result": {
-              "duration": 420792,
+              "duration": 418926,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\r\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\r\n",
               "status": "pending"
             },
@@ -648,7 +658,7 @@
         "steps": [
           {
             "result": {
-              "duration": 419393,
+              "duration": 299966,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\r\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\r\n",
               "status": "pending"
             },
@@ -714,7 +724,7 @@
         "steps": [
           {
             "result": {
-              "duration": 119427,
+              "duration": 144151,
               "status": "passed"
             },
             "line": 4,
@@ -726,7 +736,7 @@
           },
           {
             "result": {
-              "duration": 37787,
+              "duration": 60179,
               "status": "passed"
             },
             "line": 5,
@@ -738,7 +748,7 @@
           },
           {
             "result": {
-              "duration": 195934,
+              "duration": 9701541,
               "status": "passed"
             },
             "line": 6,
@@ -756,7 +766,7 @@
           },
           {
             "result": {
-              "duration": 23792,
+              "duration": 41519,
               "status": "passed"
             },
             "line": 8,
@@ -768,7 +778,7 @@
           },
           {
             "result": {
-              "duration": 21459,
+              "duration": 35455,
               "status": "passed"
             },
             "line": 9,
@@ -780,8 +790,9 @@
           },
           {
             "result": {
-              "duration": 162345,
-              "status": "passed"
+              "duration": 501498,
+              "error_message": "java.lang.AssertionError: expected:\u003c1\u003e but was:\u003c0\u003e\r\n\tat org.junit.Assert.fail(Assert.java:88)\r\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\r\n\tat org.junit.Assert.assertEquals(Assert.java:645)\r\n\tat org.junit.Assert.assertEquals(Assert.java:631)\r\n\tat HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types(HexAcceptanceTests.java:61)\r\n\tat ✽.Then it must have one, and only one of the five terrain types(HexAcceptanceTests.feature:10)\r\n",
+              "status": "failed"
             },
             "line": 10,
             "name": "it must have one, and only one of the five terrain types",
@@ -812,7 +823,7 @@
         "steps": [
           {
             "result": {
-              "duration": 85371,
+              "duration": 116161,
               "status": "passed"
             },
             "line": 4,
@@ -824,7 +835,7 @@
           },
           {
             "result": {
-              "duration": 28457,
+              "duration": 37321,
               "status": "passed"
             },
             "line": 5,
@@ -836,7 +847,7 @@
           },
           {
             "result": {
-              "duration": 150378549,
+              "duration": 1710116315,
               "status": "passed"
             },
             "line": 6,
@@ -858,7 +869,7 @@
         "steps": [
           {
             "result": {
-              "duration": 44785,
+              "duration": 71376,
               "status": "passed"
             },
             "line": 9,
@@ -870,7 +881,7 @@
           },
           {
             "result": {
-              "duration": 20993,
+              "duration": 30323,
               "status": "passed"
             },
             "line": 10,
@@ -882,7 +893,7 @@
           },
           {
             "result": {
-              "duration": 34192847,
+              "duration": 964357240,
               "status": "passed"
             },
             "line": 11,
@@ -914,29 +925,44 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 95635,
+              "status": "passed"
             },
             "line": 4,
             "name": "the Meeples are not initialized",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.the_Meeples_are_not_initialized()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 28923,
+              "status": "passed"
             },
             "line": 5,
             "name": "before the game begins",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.before_the_game_begins()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 170277,
+              "status": "passed"
             },
             "line": 6,
             "name": "20 Meeples are created for each player",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "20",
+                  "offset": 0
+                }
+              ],
+              "location": "MeepleAcceptanceTests.meeples_are_created_for_each_player(int)"
+            },
             "keyword": "Then "
           }
         ]
@@ -951,16 +977,20 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 44785,
+              "status": "passed"
             },
             "line": 9,
             "name": "a meeple",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_meeple()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 37321,
+              "status": "passed"
             },
             "line": 10,
             "name": "a player enters their build phase",
@@ -971,25 +1001,32 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 7140401,
+              "status": "passed"
             },
             "line": 11,
             "name": "it can be placed on a habitable terrain",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.it_can_be_placed_on_a_habitable_terrain()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 32656,
+              "status": "passed"
             },
             "line": 13,
             "name": "a meeple",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_meeple()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 28923,
+              "status": "passed"
             },
             "line": 14,
             "name": "a player enters their build phase",
@@ -1000,52 +1037,68 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 7009312,
+              "status": "passed"
             },
             "line": 15,
             "name": "it cannot be placed on a volcano terrain",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_volcano_terrain()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 40586,
+              "status": "passed"
             },
             "line": 17,
             "name": "a Meeple is being placed",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_Meeple_is_being_placed()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 30789,
+              "status": "passed"
             },
             "line": 18,
             "name": "a player builds",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_player_builds()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 6853031,
+              "status": "passed"
             },
             "line": 19,
             "name": "decrement the number of Meeples from the player’s total",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.decrement_the_number_of_Meeples_from_the_player_s_total()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 33122,
+              "status": "passed"
             },
             "line": 21,
             "name": "a meeple",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_meeple()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 24259,
+              "status": "passed"
             },
             "line": 22,
             "name": "a player enters their build phase",
@@ -1056,11 +1109,14 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 7189852,
+              "status": "passed"
             },
             "line": 23,
             "name": "it cannot be placed on a hex that is already occupied by meeples",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_hex_that_is_already_occupied_by_meeples()"
+            },
             "keyword": "Then "
           }
         ]
@@ -1075,29 +1131,38 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 90503,
+              "status": "passed"
             },
             "line": 26,
             "name": "a terrain that is of type volcano,",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_terrain_that_is_of_type_volcano()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 33122,
+              "status": "passed"
             },
             "line": 27,
             "name": "a meeple tries to occupy the terrain,",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.a_meeple_tries_to_occupy_the_terrain()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 95034142,
+              "status": "passed"
             },
             "line": 28,
             "name": "it will be prohibited from doing so.",
-            "match": {},
+            "match": {
+              "location": "MeepleAcceptanceTests.it_will_be_prohibited_from_doing_so()"
+            },
             "keyword": "Then "
           }
         ]
@@ -1122,7 +1187,7 @@
         "steps": [
           {
             "result": {
-              "duration": 100299,
+              "duration": 107764,
               "status": "passed"
             },
             "line": 3,
@@ -1134,7 +1199,7 @@
           },
           {
             "result": {
-              "duration": 20992,
+              "duration": 29857,
               "status": "passed"
             },
             "line": 4,
@@ -1146,7 +1211,7 @@
           },
           {
             "result": {
-              "duration": 12177309,
+              "duration": 7659160,
               "status": "passed"
             },
             "line": 5,
@@ -1158,7 +1223,7 @@
           },
           {
             "result": {
-              "duration": 34988,
+              "duration": 39654,
               "status": "passed"
             },
             "line": 7,
@@ -1170,7 +1235,7 @@
           },
           {
             "result": {
-              "duration": 20993,
+              "duration": 29390,
               "status": "passed"
             },
             "line": 8,
@@ -1182,7 +1247,7 @@
           },
           {
             "result": {
-              "duration": 19856063,
+              "duration": 6898750,
               "status": "passed"
             },
             "line": 9,
@@ -1194,7 +1259,7 @@
           },
           {
             "result": {
-              "duration": 30323,
+              "duration": 40120,
               "status": "passed"
             },
             "line": 11,
@@ -1206,7 +1271,7 @@
           },
           {
             "result": {
-              "duration": 25191,
+              "duration": 28924,
               "status": "passed"
             },
             "line": 12,
@@ -1218,7 +1283,7 @@
           },
           {
             "result": {
-              "duration": 6982721,
+              "duration": 7035436,
               "status": "passed"
             },
             "line": 13,
@@ -1250,9 +1315,8 @@
         "steps": [
           {
             "result": {
-              "duration": 362945,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.the_start_of_a_game(PlayerTurnsAcceptanceTests.java:14)\r\n\tat ✽.Given the start of a game(PlayerTurnsAcceptanceTests.feature:4)\r\n",
-              "status": "pending"
+              "duration": 118960,
+              "status": "passed"
             },
             "line": 4,
             "name": "the start of a game",
@@ -1263,7 +1327,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 28457,
+              "status": "passed"
             },
             "line": 5,
             "name": "two people want to play a game",
@@ -1274,7 +1339,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 56448,
+              "status": "passed"
             },
             "line": 6,
             "name": "they should be able to have the role of a player to enter the game",
@@ -1295,9 +1361,8 @@
         "steps": [
           {
             "result": {
-              "duration": 269643,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.there_are_still_tiles_available(PlayerTurnsAcceptanceTests.java:32)\r\n\tat ✽.Given there are still tiles available(PlayerTurnsAcceptanceTests.feature:9)\r\n",
-              "status": "pending"
+              "duration": 56448,
+              "status": "passed"
             },
             "line": 9,
             "name": "there are still tiles available",
@@ -1308,7 +1373,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 37787,
+              "status": "passed"
             },
             "line": 10,
             "name": "a player draws a tile",
@@ -1319,7 +1385,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11354852,
+              "status": "passed"
             },
             "line": 11,
             "name": "the player must place the tile in a valid spot before executing a build action",
@@ -1340,9 +1407,8 @@
         "steps": [
           {
             "result": {
-              "duration": 279906,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.has_build_actions_available(PlayerTurnsAcceptanceTests.java:50)\r\n\tat ✽.Given has build actions available(PlayerTurnsAcceptanceTests.feature:14)\r\n",
-              "status": "pending"
+              "duration": 59714,
+              "status": "passed"
             },
             "line": 14,
             "name": "has build actions available",
@@ -1353,7 +1419,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 31722,
+              "status": "passed"
             },
             "line": 15,
             "name": "a player has just placed a tile",
@@ -1364,7 +1431,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7343334,
+              "status": "passed"
             },
             "line": 16,
             "name": "the player must complete the build action before ending their turn",
@@ -1385,9 +1453,8 @@
         "steps": [
           {
             "result": {
-              "duration": 276174,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded(PlayerTurnsAcceptanceTests.java:68)\r\n\tat ✽.Given a new settlement is added or expanded(PlayerTurnsAcceptanceTests.feature:19)\r\n",
-              "status": "pending"
+              "duration": 62979,
+              "status": "passed"
             },
             "line": 19,
             "name": "a new settlement is added or expanded",
@@ -1398,7 +1465,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 35455,
+              "status": "passed"
             },
             "line": 20,
             "name": "a player ends their build phase",
@@ -1409,7 +1477,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 33588,
+              "status": "passed"
             },
             "line": 21,
             "name": "the turn ends, settlements are merged (if necessary)",
@@ -1430,8 +1499,8 @@
         "steps": [
           {
             "result": {
-              "duration": 331222,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:86)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
+              "duration": 367143,
+              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:186)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
               "status": "pending"
             },
             "line": 24,
@@ -1519,8 +1588,8 @@
         "steps": [
           {
             "result": {
-              "duration": 417526,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:116)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
+              "duration": 464177,
+              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:216)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
               "status": "pending"
             },
             "line": 34,
@@ -1596,7 +1665,7 @@
         "steps": [
           {
             "result": {
-              "duration": 7181454,
+              "duration": 21972618,
               "status": "passed"
             },
             "line": 4,
@@ -1608,7 +1677,7 @@
           },
           {
             "result": {
-              "duration": 278040,
+              "duration": 461378,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:5)\r\n",
               "status": "pending"
             },
@@ -1648,7 +1717,7 @@
         "steps": [
           {
             "result": {
-              "duration": 52249,
+              "duration": 95634,
               "status": "passed"
             },
             "line": 9,
@@ -1660,7 +1729,7 @@
           },
           {
             "result": {
-              "duration": 499165,
+              "duration": 271975,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:10)\r\n",
               "status": "pending"
             },
@@ -1700,7 +1769,7 @@
         "steps": [
           {
             "result": {
-              "duration": 366211,
+              "duration": 493567,
               "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:110)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
               "status": "pending"
             },
@@ -1761,9 +1830,8 @@
         "steps": [
           {
             "result": {
-              "duration": 445517,
-              "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat TerrainTypesAcceptanceTests.a_type_of_terrain(TerrainTypesAcceptanceTests.java:15)\r\n\tat ✽.Given a type of terrain,(TerrainTypeAcceptanceTests.feature:4)\r\n",
-              "status": "pending"
+              "duration": 6986453,
+              "status": "passed"
             },
             "line": 4,
             "name": "a type of terrain,",
@@ -1774,7 +1842,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 83972,
+              "status": "passed"
             },
             "line": 5,
             "name": "the tile has been placed,",
@@ -1785,7 +1854,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 72309,
+              "status": "passed"
             },
             "line": 6,
             "name": "it cannot be compared with non-adjacent terrains.",
@@ -1796,7 +1866,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7162328,
+              "status": "passed"
             },
             "line": 8,
             "name": "a type of terrain,",
@@ -1807,7 +1878,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 66244,
+              "status": "passed"
             },
             "line": 9,
             "name": "the tile has been placed,",
@@ -1818,7 +1890,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 50849,
+              "status": "passed"
             },
             "line": 10,
             "name": "it can be compared with all adjacent terrains.",
@@ -1839,7 +1912,7 @@
         "steps": [
           {
             "result": {
-              "duration": 69977,
+              "duration": 48984,
               "status": "passed"
             },
             "line": 13,
@@ -1851,7 +1924,7 @@
           },
           {
             "result": {
-              "duration": 32189,
+              "duration": 27991,
               "status": "passed"
             },
             "line": 14,
@@ -1863,7 +1936,7 @@
           },
           {
             "result": {
-              "duration": 495433,
+              "duration": 361545,
               "status": "passed"
             },
             "line": 15,
@@ -1895,108 +1968,96 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 95634,
+              "status": "passed"
             },
             "line": 4,
             "name": "no tiles have been placed",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 27525,
+              "status": "passed"
             },
             "line": 5,
             "name": "before the first turn",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.before_the_first_turn()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 215994,
+              "status": "passed"
             },
             "line": 6,
             "name": "there are 48 tiles",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "48",
+                  "offset": 10
+                }
+              ],
+              "location": "TilesAcceptanceTests.there_are_tiles(int)"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 27524,
+              "status": "passed"
             },
             "line": 8,
             "name": "no tiles have been placed",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 23792,
+              "status": "passed"
             },
             "line": 9,
             "name": "before the first turn",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.before_the_first_turn()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 472574,
+              "status": "passed"
             },
             "line": 10,
             "name": "there are 3 tiles of each of the 16 terrain combinations",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "3",
+                  "offset": 10
+                },
+                {
+                  "val": "16",
+                  "offset": 33
+                }
+              ],
+              "location": "TilesAcceptanceTests.there_are_tiles_of_each_of_the_terrain_combinations(int,int)"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
         "line": 12,
-        "name": "Checking correct number of configuration of tiles",
-        "description": "",
-        "id": "tiles;checking-correct-number-of-configuration-of-tiles",
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 13,
-            "name": "there are 48 tiles",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 14,
-            "name": "before the first turn",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 15,
-            "name": "there is more than three tiles of the same type",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 16,
-            "name": "an exception is thrown",
-            "match": {},
-            "keyword": "Then "
-          }
-        ]
-      },
-      {
-        "line": 18,
         "name": "Tile Creation",
         "description": "",
         "id": "tiles;tile-creation",
@@ -2005,35 +2066,50 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 153482,
+              "status": "passed"
             },
-            "line": 19,
+            "line": 13,
             "name": "all the tiles in the deck",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.all_the_tiles()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 45718,
+              "status": "passed"
             },
-            "line": 20,
+            "line": 14,
             "name": "the game begins",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_game_begins()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 507562,
+              "status": "passed"
             },
-            "line": 21,
+            "line": 15,
             "name": "each tile should have 3 hexes with the proper configuration of one volcano and a terrain combination",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "3",
+                  "offset": 22
+                }
+              ],
+              "location": "TilesAcceptanceTests.each_tile_should_have_hexes_with_the_proper_configuration_of_one_volcano_and_a_terrain_combination(int)"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
-        "line": 23,
+        "line": 17,
         "name": "Placing Tile for the first time",
         "description": "",
         "id": "tiles;placing-tile-for-the-first-time",
@@ -2042,35 +2118,44 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 71376,
+              "status": "passed"
             },
-            "line": 24,
+            "line": 18,
             "name": "the board is empty",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_board_is_empty()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 29390,
+              "status": "passed"
             },
-            "line": 25,
+            "line": 19,
             "name": "a tile is being placed",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.a_tile_is_being_placed()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 542475965,
+              "status": "passed"
             },
-            "line": 26,
+            "line": 20,
             "name": "the tile is placed at the origin, in any orientation",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_tile_is_placed_at_the_origin_in_any_orientation()"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
-        "line": 28,
+        "line": 22,
         "name": "Placing Tile",
         "description": "",
         "id": "tiles;placing-tile",
@@ -2079,125 +2164,80 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 63912,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "the board is not empty",
+            "match": {
+              "location": "TilesAcceptanceTests.the_board_is_not_empty()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 26124,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "a tile is being placed not adjacent to another tile",
+            "match": {
+              "location": "TilesAcceptanceTests.a_tile_is_being_placed_not_adjacent_to_another_tile()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 6950532,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "the player will be prohibited from doing so",
+            "match": {
+              "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 38254,
+              "status": "passed"
+            },
+            "line": 27,
+            "name": "there is a fixed number of tiles available",
+            "match": {
+              "location": "TilesAcceptanceTests.there_is_a_fixed_number_of_tiles_available()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 25191,
+              "status": "passed"
+            },
+            "line": 28,
+            "name": "they successfully place a tile",
+            "match": {
+              "location": "TilesAcceptanceTests.they_successfully_place_a_tile()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 7139935,
+              "status": "passed"
             },
             "line": 29,
-            "name": "the board is not empty",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 30,
-            "name": "a tile is being placed not adjacent to another tile",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 31,
-            "name": "the player will be disqualified",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 33,
-            "name": "a random tile that is not the first tile,",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 34,
-            "name": "the game is in session,",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 35,
-            "name": "the tile is prohibited from not being placed adjacent to another tile.",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 37,
-            "name": "a tile",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 38,
-            "name": "it is placed,",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 39,
-            "name": "it is the 48th tile",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 40,
-            "name": "the game ends.",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 42,
-            "name": "there is a fixed number of tiles available",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 43,
-            "name": "they successfully place a tile",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 44,
             "name": "that tile should be removed from the list of available tiles / combination type",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.that_tile_should_be_removed_from_the_list_of_available_tiles_combination_type()"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
-        "line": 48,
+        "line": 32,
         "name": "Placing Tile on level 1",
         "description": "",
         "id": "tiles;placing-tile-on-level-1",
@@ -2206,35 +2246,50 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 61580,
+              "status": "passed"
             },
-            "line": 49,
+            "line": 33,
             "name": "the board is not empty",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_board_is_not_empty()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 132489,
+              "status": "passed"
             },
-            "line": 50,
+            "line": 34,
             "name": "a tile is being placed on level 1",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 32
+                }
+              ],
+              "location": "TilesAcceptanceTests.a_tile_is_being_placed_on_level(int)"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 6925341,
+              "status": "passed"
             },
-            "line": 51,
+            "line": 35,
             "name": "at least one side of the tile being placed must touch an existing tile on the board",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.at_least_one_side_of_the_tile_being_placed_must_touch_an_existing_tile_on_the_board()"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
-        "line": 53,
+        "line": 37,
         "name": "Stacking A Tile",
         "description": "",
         "id": "tiles;stacking-a-tile",
@@ -2243,101 +2298,283 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 195934,
+              "status": "passed"
             },
-            "line": 54,
+            "line": 38,
             "name": "the board is not empty and has a valid level 1 configuration",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 45
+                }
+              ],
+              "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 30323,
+              "status": "passed"
             },
-            "line": 55,
+            "line": 39,
             "name": "a tile is in the process of being stacked",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.a_tile_is_About_To_Be_Stacked()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 6912745,
+              "status": "passed"
             },
-            "line": 56,
+            "line": 40,
             "name": "it can be stacked so long as it follows stacking restrictions",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_can_be_stacked_so_long_as_it_follows_stacking_restrictions()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 129690,
+              "status": "passed"
             },
-            "line": 58,
+            "line": 42,
             "name": "the board is not empty and has a valid level 1 configuration",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 45
+                }
+              ],
+              "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 32655,
+              "status": "passed"
             },
-            "line": 59,
+            "line": 43,
             "name": "a tile is being stacked and",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.a_tile_is_being_stacked_and()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 24259,
+              "status": "passed"
             },
-            "line": 60,
+            "line": 44,
             "name": "it has space beneath it",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_has_space_beneath_it()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 25192,
+              "status": "passed"
             },
-            "line": 61,
+            "line": 45,
             "name": "it is prohibited from being stacked",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_prohibited_from_being_stacked()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 84439,
+              "status": "passed"
             },
-            "line": 63,
+            "line": 47,
             "name": "the board is not empty and has a valid level 1 configuration",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 45
+                }
+              ],
+              "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
+            },
             "keyword": "Given "
           },
           {
             "result": {
               "status": "undefined"
             },
-            "line": 64,
+            "line": 48,
             "name": "a tile is being stacked",
             "match": {},
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
-            "line": 65,
+            "line": 49,
             "name": "its volcano hex is not over a volcano hex",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.its_volcano_hex_is_not_over_a_volcano_hex()"
+            },
             "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 50,
+            "name": "the tile is prohibited from being stacked",
+            "match": {
+              "location": "TilesAcceptanceTests.the_tile_is_prohibited_from_being_stacked()"
+            },
+            "keyword": "Then "
           },
           {
             "result": {
               "status": "undefined"
             },
-            "line": 66,
-            "name": "the tile is prohibited from being stacked",
+            "line": 52,
+            "name": "a tile",
             "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 53,
+            "name": "it is placed over an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 54,
+            "name": "the level of that area of the board increases by 1",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 49
+                }
+              ],
+              "location": "TilesAcceptanceTests.the_level_of_that_area_of_the_board_increases_by(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 56,
+            "name": "a tile",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 57,
+            "name": "it is placed over an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 58,
+            "name": "it can not be placed directly over a single tile",
+            "match": {
+              "location": "TilesAcceptanceTests.it_can_not_be_placed_directly_over_a_single_tile()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 60,
+            "name": "a tile",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 61,
+            "name": "it is placed over an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 62,
+            "name": "the tiles being covered must be at the same level",
+            "match": {
+              "location": "TilesAcceptanceTests.the_tiles_being_covered_must_be_at_the_same_level()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 64,
+            "name": "a tile",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 65,
+            "name": "it is placed over an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 66,
+            "name": "it can not cover a size 1 settlement",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 24
+                }
+              ],
+              "location": "TilesAcceptanceTests.it_can_not_cover_a_size_settlement(int)"
+            },
             "keyword": "Then "
           },
           {
@@ -2351,20 +2588,24 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 69,
             "name": "it is placed over an area of the board",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 70,
-            "name": "the level of that area of the board increases by 1",
-            "match": {},
+            "name": "none of the hexes contain a totoro",
+            "match": {
+              "location": "TilesAcceptanceTests.none_of_the_hexes_contain_a_totoro()"
+            },
             "keyword": "Then "
           },
           {
@@ -2378,20 +2619,24 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 73,
             "name": "it is placed over an area of the board",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_is_placed_over_an_area_of_the_board()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 74,
-            "name": "it can not be placed directly over a single tile",
-            "match": {},
+            "name": "at least one of the hexes must be a volcano",
+            "match": {
+              "location": "TilesAcceptanceTests.at_least_one_of_the_hexes_must_be_a_volcano()"
+            },
             "keyword": "Then "
           },
           {
@@ -2405,20 +2650,24 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 77,
-            "name": "it is placed over an area of the board",
-            "match": {},
+            "name": "a player attempts to nuke an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.a_player_attempts_to_nuke_an_area_of_the_board()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 78,
-            "name": "the tiles being covered must be at the same level",
-            "match": {},
+            "name": "the volcano terrain of the tile must be placed over a volcano terrain on the board",
+            "match": {
+              "location": "TilesAcceptanceTests.the_volcano_terrain_of_the_tile_must_be_placed_over_a_volcano_terrain_on_the_board()"
+            },
             "keyword": "Then "
           },
           {
@@ -2432,134 +2681,30 @@
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 81,
-            "name": "it is placed over an area of the board",
-            "match": {},
+            "name": "a player attempts to nuke an area of the board",
+            "match": {
+              "location": "TilesAcceptanceTests.a_player_attempts_to_nuke_an_area_of_the_board()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
             "line": 82,
-            "name": "it can not cover a size 1 settlement",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 84,
-            "name": "a tile",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 85,
-            "name": "it is placed over an area of the board",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 86,
-            "name": "none of the hexes contain a totoro",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 88,
-            "name": "a tile",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 89,
-            "name": "it is placed over an area of the board",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 90,
-            "name": "at least one of the hexes must be a volcano",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 92,
-            "name": "a tile",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 93,
-            "name": "a player attempts to nuke an area of the board",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 94,
-            "name": "the volcano terrain of the tile must be placed over a volcano terrain on the board",
-            "match": {},
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 96,
-            "name": "a tile",
-            "match": {},
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 97,
-            "name": "a player attempts to nuke an area of the board",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 98,
             "name": "it will completely cover the hexes with no blank board space under it",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.it_will_completely_cover_the_hexes_with_no_blank_board_space_under_it()"
+            },
             "keyword": "Then "
           }
         ]
       },
       {
-        "line": 100,
+        "line": 84,
         "name": "Nuking",
         "description": "",
         "id": "tiles;nuking",
@@ -2570,7 +2715,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 101,
+            "line": 85,
             "name": "a tile",
             "match": {},
             "keyword": "Given "
@@ -2579,25 +2724,27 @@
             "result": {
               "status": "undefined"
             },
-            "line": 102,
+            "line": 86,
             "name": "a player attempts to nuke an area of the board that completely overlaps a tile",
             "match": {},
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
-            "line": 103,
+            "line": 87,
             "name": "the player will be prohibited from doing so",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
               "status": "undefined"
             },
-            "line": 105,
+            "line": 89,
             "name": "a tile",
             "match": {},
             "keyword": "Given "
@@ -2606,7 +2753,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 106,
+            "line": 90,
             "name": "a player attempts to nuke an area of the board that will split a settlement",
             "match": {},
             "keyword": "When "
@@ -2615,7 +2762,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 107,
+            "line": 91,
             "name": "the new settlement is created",
             "match": {},
             "keyword": "Then "
@@ -2624,7 +2771,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 108,
+            "line": 92,
             "name": "both settlement sizes are updated",
             "match": {},
             "keyword": "Then "
@@ -2633,7 +2780,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 110,
+            "line": 94,
             "name": "a tile",
             "match": {},
             "keyword": "Given "
@@ -2642,25 +2789,27 @@
             "result": {
               "status": "undefined"
             },
-            "line": 111,
+            "line": 95,
             "name": "a player attempts to nuke an area of the board that contains a totoro",
             "match": {},
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
-            "line": 112,
+            "line": 96,
             "name": "the player will be prohibited from doing so",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
               "status": "undefined"
             },
-            "line": 114,
+            "line": 98,
             "name": "a tile",
             "match": {},
             "keyword": "Given "
@@ -2669,25 +2818,27 @@
             "result": {
               "status": "undefined"
             },
-            "line": 115,
+            "line": 99,
             "name": "a player attempts to nuke a settlement of size one",
             "match": {},
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "status": "skipped"
             },
-            "line": 116,
+            "line": 100,
             "name": "the player will be prohibited from doing so",
-            "match": {},
+            "match": {
+              "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
+            },
             "keyword": "Then "
           },
           {
             "result": {
               "status": "undefined"
             },
-            "line": 118,
+            "line": 102,
             "name": "a tile",
             "match": {},
             "keyword": "Given "
@@ -2696,7 +2847,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 119,
+            "line": 103,
             "name": "a player attempts to nuke a settlement of size greater than one",
             "match": {},
             "keyword": "When "
@@ -2705,7 +2856,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 120,
+            "line": 104,
             "name": "a player attempts to nuke an area of the board that does not contain a totoro",
             "match": {},
             "keyword": "When "
@@ -2714,7 +2865,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 121,
+            "line": 105,
             "name": "a player attempts to nuke an area of the board that does not completely overlap a tile",
             "match": {},
             "keyword": "When "
@@ -2723,7 +2874,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 122,
+            "line": 106,
             "name": "the player will not be prohibited from doing so",
             "match": {},
             "keyword": "Then "
@@ -2732,7 +2883,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 124,
+            "line": 108,
             "name": "a tile is being stacked",
             "match": {},
             "keyword": "Given "
@@ -2741,7 +2892,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 125,
+            "line": 109,
             "name": "a settlement exists on the tiles being covered",
             "match": {},
             "keyword": "When "
@@ -2750,7 +2901,7 @@
             "result": {
               "status": "undefined"
             },
-            "line": 126,
+            "line": 110,
             "name": "the settlements are destroyed, so the meeples are no longer in play",
             "match": {},
             "keyword": "Then "

@@ -9,12 +9,6 @@ Feature: Tiles
     When before the first turn
     Then there are 3 tiles of each of the 16 terrain combinations
 
-  Scenario: Checking correct number of configuration of tiles
-    Given there are 48 tiles
-    When before the first turn
-    When there is more than three tiles of the same type
-    Then an exception is thrown
-
   Scenario: Tile Creation
     Given all the tiles in the deck
     When the game begins
@@ -28,21 +22,11 @@ Feature: Tiles
   Scenario: Placing Tile
     Given the board is not empty
     When a tile is being placed not adjacent to another tile
-    Then the player will be disqualified
-
-    Given a random tile that is not the first tile,
-    When the game is in session,
-    Then the tile is prohibited from not being placed adjacent to another tile.
-
-    Given a tile
-    When it is placed,
-    When it is the 48th tile
-    Then the game ends.
+    Then the player will be prohibited from doing so
 
     Given there is a fixed number of tiles available
     When they successfully place a tile
     Then that tile should be removed from the list of available tiles / combination type
-
 
 
   Scenario: Placing Tile on level 1
