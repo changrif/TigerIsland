@@ -303,7 +303,7 @@ public class TournamentClient {
         int zCoordForOpponentExpansion = parser.getZCoordFromOpponentMove(s);
         Coordinate c = new Coordinate(zCoordForOpponentExpansion, xCoordForOpponentExpansion, yCoordForOpponentExpansion);
         Terrain.typesOfTerrain t = parser.getTerrainTypeFromServerMessageIfOpponentExpands(s);
-        m.ExpandSettlement(c, t, brain.getOpponent());
+        m.expandSettlement(c, t, brain.getOpponent());
     }
 
     private void addOpponentTotoroSanctuaryToBoard(Map m, PlayerBrain brain, String opponentMove) {
@@ -311,7 +311,7 @@ public class TournamentClient {
         int yCoordForOpponentTotoroSanctuary = parser.getYCoordFromOpponentMove(opponentMove);
         int zCoordForOpponentTotoroSanctuary = parser.getZCoordFromOpponentMove(opponentMove);
         Coordinate c = new Coordinate(zCoordForOpponentTotoroSanctuary, xCoordForOpponentTotoroSanctuary, yCoordForOpponentTotoroSanctuary);
-        m.PlaceTotoro(c, brain.getOpponent());
+        m.placeTotoro(c, brain.getOpponent());
     }
 
     private void addOpponentTigerPlaygroundToBoard(Map m, PlayerBrain brain, String opponentMove) {
@@ -319,7 +319,7 @@ public class TournamentClient {
         int yCoordForOpponentTigerPlayground = parser.getYCoordFromOpponentMove(opponentMove);
         int zCoordForOpponentTigerPlayground = parser.getZCoordFromOpponentMove(opponentMove);
         Coordinate c = new Coordinate(zCoordForOpponentTigerPlayground, xCoordForOpponentTigerPlayground, yCoordForOpponentTigerPlayground);
-        m.PlaceTiger(c, brain.getOpponent());
+        m.placeTiger(c, brain.getOpponent());
     }
 
     private BuildOption.typesOfBuildOptions parseBuildSelectionFromOpponent(String opponentMove) {
