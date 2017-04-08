@@ -11,7 +11,7 @@ public class Deck {
     public Deck()
     {
         GameTiles = new ArrayList<>();
-        Collections.shuffle(GameTiles);
+
     }
 
     public Tile draw(){
@@ -59,6 +59,7 @@ public class Deck {
             }
 
         }
+        Collections.shuffle(GameTiles);
     }
 
 

@@ -84,49 +84,6 @@ public class Map {
             tileCoordinates[1] = new Coordinate(z - 1, x, y + 1);
         }
 
-        /*
-        if (isEven(y)) {
-            if (tileOrientation == 1) {
-                tileCoordinates[0] = new Coordinate(x - 1, y + 1);
-                tileCoordinates[1] = new Coordinate(x, y + 1);
-            } else if (tileOrientation == 2) {
-                tileCoordinates[0] = new Coordinate(x, y + 1);
-                tileCoordinates[1] = new Coordinate(x + 1, y);
-            } else if (tileOrientation == 3) {
-                tileCoordinates[0] = new Coordinate(x + 1, y);
-                tileCoordinates[1] = new Coordinate(x, y - 1);
-            } else if (tileOrientation == 4) {
-                tileCoordinates[0] = new Coordinate(x, y - 1);
-                tileCoordinates[1] = new Coordinate(x - 1, y - 1);
-            } else if (tileOrientation == 5) {
-                tileCoordinates[0] = new Coordinate(x - 1, y - 1);
-                tileCoordinates[1] = new Coordinate(x - 1, y);
-            } else if (tileOrientation == 6) {
-                tileCoordinates[0] = new Coordinate(x - 1, y);
-                tileCoordinates[1] = new Coordinate(x - 1, y + 1);
-            }
-        } else {
-            if (tileOrientation == 1) {
-                tileCoordinates[0] = new Coordinate(x, y + 1);
-                tileCoordinates[1] = new Coordinate(x + 1, y + 1);
-            } else if (tileOrientation == 2) {
-                tileCoordinates[0] = new Coordinate(x + 1, y + 1);
-                tileCoordinates[1] = new Coordinate(x + 1, y);
-            } else if (tileOrientation == 3) {
-                tileCoordinates[0] = new Coordinate(x + 1, y);
-                tileCoordinates[1] = new Coordinate(x + 1, y - 1);
-            } else if (tileOrientation == 4) {
-                tileCoordinates[0] = new Coordinate(x + 1, y - 1);
-                tileCoordinates[1] = new Coordinate(x, y - 1);
-            } else if (tileOrientation == 5) {
-                tileCoordinates[0] = new Coordinate(x, y - 1);
-                tileCoordinates[1] = new Coordinate(x - 1, y);
-            } else if (tileOrientation == 6) {
-                tileCoordinates[0] = new Coordinate(x - 1, y);
-                tileCoordinates[1] = new Coordinate(x, y + 1);
-            }
-        }*/
-
         return tileCoordinates;
     }
 
@@ -210,23 +167,6 @@ public class Map {
         adjacencyMatrix[3] = new Coordinate(z + 1, x, y - 1);
         adjacencyMatrix[4] = new Coordinate(z + 1, x - 1, y);
         adjacencyMatrix[5] = new Coordinate(z, x - 1, y + 1);
-
-        /*
-        if (isEven(y)) {
-            adjacencyMatrix[0] = new Coordinate(x - 1, y + 1);
-            adjacencyMatrix[1] = new Coordinate(x, y + 1);
-            adjacencyMatrix[2] = new Coordinate(x + 1, y);
-            adjacencyMatrix[3] = new Coordinate(x, y - 1);
-            adjacencyMatrix[4] = new Coordinate(x - 1, y - 1);
-            adjacencyMatrix[5] = new Coordinate(x - 1, y);
-        } else {
-            adjacencyMatrix[0] = new Coordinate(x, y + 1);
-            adjacencyMatrix[1] = new Coordinate(x + 1, y + 1);
-            adjacencyMatrix[2] = new Coordinate(x + 1, y);
-            adjacencyMatrix[3] = new Coordinate(x + 1, y - 1);
-            adjacencyMatrix[4] = new Coordinate(x, y - 1);
-            adjacencyMatrix[5] = new Coordinate(x - 1, y);
-        }*/
 
         return adjacencyMatrix;
     }
@@ -377,79 +317,8 @@ public class Map {
         return hexAt(coordinate).getTerrainType();
     }
 
-    private boolean isEven(int y) {
-        return y % 2 == 0;
-    }
-
     public Hex hexAt(Coordinate coordinate) {
         return Map[coordinate.getX()][coordinate.getY()][coordinate.getZ()];
-    }
-
-    /*
-    public Coordinate convertCubeToOffset(Coordinate coordinate)    {
-        Coordinate convertedCoordinate;
-        int x = coordinate.getX() + (coordinate.getZ() - (coordinate.getZ() % 2)) / 2;
-        int y = coordinate.getZ();
-        convertedCoordinate = new Coordinate(x, y);
-        return convertedCoordinate;
-    }
-
-    public Coordinate convertOffsetToCube(Coordinate coordinate)    {
-        Coordinate convertedCoordinate;
-        int x = coordinate.getX() - (coordinate.getY() - (coordinate.getY() % 2)) / 2;
-        int z = coordinate.getY();
-        int y = -x - z;
-        convertedCoordinate = new Coordinate(x, y, z);
-        return convertedCoordinate;
-    }
-*/
-    public static void main(String [] args) {
-        /*
-        Map Gameboard = new Map();
-        Coordinate coordinate = new Coordinate(100, 100);
-        Deck deck = new Deck();
-        deck.generateTiles();
-        Tile tile = deck.draw();
-        Gameboard.setTileCoordinates(tile, coordinate,1);
-
-        Coordinate coordinate1 = new Coordinate(-1, 0, 1);
-        Coordinate coordinate2 = new Coordinate(0, -1, 1);
-        Coordinate coordinate3 = new Coordinate(1, -1, 0);
-        Coordinate coordinate4 = new Coordinate(1, 0, -1);
-        Coordinate coordinate5 = new Coordinate(0, 1, -1);
-        Coordinate coordinate6 = new Coordinate(-1, 1, 0);
-
-        Gameboard.printCubeCoordinate(coordinate1);
-        coordinate1 = Gameboard.convertCubeToOffset(coordinate1);
-        Gameboard.printOffsetCoordinate(coordinate1);
-
-        Gameboard.printCubeCoordinate(coordinate2);
-        coordinate2 = Gameboard.convertCubeToOffset(coordinate2);
-        Gameboard.printOffsetCoordinate(coordinate2);
-
-        Gameboard.printCubeCoordinate(coordinate3);
-        coordinate3 = Gameboard.convertCubeToOffset(coordinate3);
-        Gameboard.printOffsetCoordinate(coordinate3);
-
-        Gameboard.printCubeCoordinate(coordinate4);
-        coordinate4 = Gameboard.convertCubeToOffset(coordinate4);
-        Gameboard.printOffsetCoordinate(coordinate4);
-
-        Gameboard.printCubeCoordinate(coordinate5);
-        coordinate5 = Gameboard.convertCubeToOffset(coordinate5);
-        Gameboard.printOffsetCoordinate(coordinate5);
-
-        Gameboard.printCubeCoordinate(coordinate6);
-        coordinate6 = Gameboard.convertCubeToOffset(coordinate6);
-        Gameboard.printOffsetCoordinate(coordinate6);*/
-    }
-
-    public void printOffsetCoordinate(Coordinate coordinate)    {
-        System.out.println("x: " + coordinate.getX() + " \ny: " + coordinate.getY());
-    }
-
-    public void printCubeCoordinate(Coordinate coordinate)    {
-        System.out.println("x: " + coordinate.getX() + " \ny: " + coordinate.getY() + " \nz: " + coordinate.getZ());
     }
 
     public boolean isNewSettlementValid(Hex chosenHex) {
@@ -460,12 +329,8 @@ public class Map {
             return false;
     }
 
-    public void foundNewSettlement(Coordinate Location, Player player) {
-        int x = Location.getX();
-        int y = Location.getY();
-        int z = Location.getZ();
-
-        Hex chosenHex = Map[x][y][z];
+    public void foundNewSettlement(Coordinate coordinate, Player player) {
+        Hex chosenHex = hexAt(coordinate);
 
         if (isNewSettlementValid(chosenHex)) {
             chosenHex.placeMeeples(player);
@@ -477,20 +342,22 @@ public class Map {
             player.decreaseNumberOfMeeplesByAmount(1);
             player.increaseMatchScore(1);
 
-            MergeSettlementsAfterFounding(s, player);
+            mergeSettlementsAfterFounding(s, player);
         }
-
-
     }
 
-    public void ExpandSettlement(Coordinate Location, Terrain.typesOfTerrain TerrainType, Player player) {
-        int x = Location.getX();
-        int y = Location.getY();
-        int z = Location.getZ();
+    public boolean playerHasEnoughMeeplesToExpand(Player player, int requiredMeeples) {
+        //add hexes to settlement if enough Meeples
+        if (player.getNumberOfMeeplesIHave() >= requiredMeeples) {
+            return true;
+        }
+        return false;
+    }
 
+    public int requiredMeeplesForExpansion(Coordinate coordinate, Terrain.typesOfTerrain TerrainType)    {
         //throw error if trying to expand on volcano?
         if (TerrainType == Terrain.typesOfTerrain.VOLCANO) {
-            return;
+            return -1;
         }
 
         int RequiredMeeples = 0;
@@ -498,7 +365,7 @@ public class Map {
         ArrayList<Hex> ExpansionHexes = new ArrayList<>();
         LinkedList<Hex> queue = new LinkedList<>();
 
-        Settlement ExpandedSettlement = Map[x][y][z].getSettlement();
+        Settlement ExpandedSettlement = hexAt(coordinate).getSettlement();
         ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
 
         for (int i = 0; i < SettlementHexes.size(); i++) {
@@ -511,45 +378,88 @@ public class Map {
             Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
 
             Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
-            int x_adj;
-            int y_adj;
-            int z_adj;
 
             //if a neighboring tile isn't part of the settlement already
             //and isn't already added to the list of hexes marked for expansion
             //and matches the terrain type
             //then add it
-            for (int i = 0; i < 6; i++) {
-                x_adj = adjacencyMatrix[i].getX();
-                y_adj = adjacencyMatrix[i].getY();
-                z_adj = adjacencyMatrix[i].getZ();
+            for(Coordinate adj : adjacencyMatrix) {
                 boolean added = false;
 
-                if (Map[x_adj][y_adj][z_adj] != null) {
-
-                    if (Map[x_adj][y_adj][z_adj].getTerrainType() == TerrainType && Map[x_adj][y_adj][z_adj].getSettlement() == null) {
+                if (isTaken(adj)) {
+                    if (hexAt(adj).getTerrainType() == TerrainType && hexAt(adj).getSettlement() == null) {
 
                         for (int j = 0; j < ExpansionHexes.size(); j++) {
-                            if (ExpansionHexes.get(j) == Map[x_adj][y_adj][z_adj]) {
+                            if (ExpansionHexes.get(j) == hexAt(adj)) {
                                 added = true;
                             }
                         }
 
                         if (added == false) {
-                            queue.add(Map[x_adj][y_adj][z_adj]);
-                            ExpansionHexes.add(Map[x_adj][y_adj][z_adj]);
-                            RequiredMeeples += Map[x_adj][y_adj][z_adj].getLevel();
-                            //System.out.println("Expanded on: " + x_adj + "," + y_adj);
+                            queue.add(hexAt(adj));
+                            ExpansionHexes.add(hexAt(adj));
+                            RequiredMeeples += hexAt(adj).getLevel();
+                        }
+                    }
+                }
+            }
+        }
+        return RequiredMeeples;
+    }
+
+    public void expandSettlement(Coordinate coordinate, Terrain.typesOfTerrain TerrainType, Player player) {
+        //throw error if trying to expand on volcano?
+        if (TerrainType == Terrain.typesOfTerrain.VOLCANO) {
+            return;
+        }
+
+        int RequiredMeeples = 0;
+
+        ArrayList<Hex> ExpansionHexes = new ArrayList<>();
+        LinkedList<Hex> queue = new LinkedList<>();
+
+        Settlement ExpandedSettlement = hexAt(coordinate).getSettlement();
+        ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
+
+        for (int i = 0; i < SettlementHexes.size(); i++) {
+            queue.add(SettlementHexes.get(i));
+        }
+
+        while (queue.size() != 0) {
+            //get current Hex
+            Hex CurrentHex = queue.poll();
+            Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
+
+            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
+
+            //if a neighboring tile isn't part of the settlement already
+            //and isn't already added to the list of hexes marked for expansion
+            //and matches the terrain type
+            //then add it
+            for(Coordinate adj : adjacencyMatrix) {
+                boolean added = false;
+
+                if (isTaken(adj)) {
+                    if (hexAt(adj).getTerrainType() == TerrainType && hexAt(adj).getSettlement() == null) {
+
+                        for (int j = 0; j < ExpansionHexes.size(); j++) {
+                            if (ExpansionHexes.get(j) == hexAt(adj)) {
+                                added = true;
+                            }
+                        }
+
+                        if (added == false) {
+                            queue.add(hexAt(adj));
+                            ExpansionHexes.add(hexAt(adj));
+                            RequiredMeeples += hexAt(adj).getLevel();
                         }
                     }
                 }
             }
         }
 
-        //System.out.println("Required Meeples for Expansion: " + RequiredMeeples);
-
         //add hexes to settlement if enough Meeples
-        if (player.getNumberOfMeeplesIHave() < RequiredMeeples) {
+        if (!playerHasEnoughMeeplesToExpand(player, RequiredMeeples)) {
             return;
         } else {
             for (int i = 0; i < ExpansionHexes.size(); i++) {
@@ -559,14 +469,13 @@ public class Map {
             }
             player.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
             player.increaseMatchScore(RequiredMeeples);
-            //System.out.println(p.getPlayerName() + " has " + p.getNumberOfMeeplesIHave() + " Meeples left!");
         }
 
-        MergeSettlementsAfterExpansion(ExpandedSettlement, player);
+        mergeSettlementsAfterExpansion(ExpandedSettlement, player);
 
     }
 
-    public void PlaceTotoro(Coordinate Location, Player player) {
+    public void placeTotoro(Coordinate Location, Player player) {
 
         int x = Location.getX();
         int y = Location.getY();
@@ -598,54 +507,77 @@ public class Map {
                         notEnough.printStackTrace();
                     }
                     player.increaseMatchScore(200);
-                    //System.out.println("Totoro placed!");
                     break;
                 }
             }
         }
-
-        //System.out.println(player.getPlayerName() + " has " + player.getNumberOfTotorosIHave() + " Totoros left!");
-
     }
 
-    public void PlaceTiger(Coordinate Location, Player player) {
+    public boolean hexIsViableForTiger(Coordinate chosenCoordinate)   {
+        if(isTaken(chosenCoordinate)) {
+            Hex chosenHex = hexAt(chosenCoordinate);
+            if (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
+                    chosenHex.getSettlement() == null &&
+                    chosenHex.getLevel() >= 3) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        int x = Location.getX();
-        int y = Location.getY();
-        int z = Location.getZ();
+    public boolean playerHasPlacedTigerInSettlement(Hex hexFromSettlement)   {
+        if(!hexFromSettlement.getSettlement().getTigerFlag())  {
+            return true;
+        }
+        return false;
+    }
 
+    public boolean playerHasTigersLeft(Player player)   {
+        if(player.getNumberOfTigersIHave() > 0)    {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean thereIsAnAdjacentSettlement(Coordinate coordinateFromSettlement, Player player)   {
+        if(isTaken(coordinateFromSettlement))   {
+            Hex hexFromSettlement = hexAt(coordinateFromSettlement);
+            if(hexFromSettlement.getSettlement() != null &&
+                    playerHasPlacedTigerInSettlement(hexFromSettlement) &&
+                    hexFromSettlement.getSettlement().getPlayer() == player)    {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void placeTiger(Coordinate coordinate, Player player) {
         //return error trying to place on Volcano or space already occupied or no tigers left to play or not level 3+ tile
-        if (Map[x][y][z].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y][z].getSettlement() != null || player.getNumberOfTigersIHave() <= 0 || Map[x][y][z].getLevel() < 3) {
+        if (!hexIsViableForTiger(coordinate) || !playerHasTigersLeft(player)) {
             return;
         }
 
-        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
-        int x_adj;
-        int y_adj;
-        int z_adj;
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(coordinate);
 
-        for (int i = 0; i < 6; i++) {
-            x_adj = adjacencyMatrix[i].getX();
-            y_adj = adjacencyMatrix[i].getY();
-            z_adj = adjacencyMatrix[i].getZ();
+        for(Coordinate adj : adjacencyMatrix) {
+            if (thereIsAnAdjacentSettlement(adj, player)) {
+                hexAt(adj).getSettlement().addToSettlement(hexAt(coordinate));
+                hexAt(coordinate).setSettlement(hexAt(adj).getSettlement());
+                hexAt(coordinate).placeTiger(player);
 
-            if ((Map[x_adj][y_adj][z_adj] != null) && (Map[x_adj][y_adj][z_adj].getSettlement() != null) && (Map[x_adj][y_adj][z_adj].getSettlement().getTigerFlag() == false)) {
-                Map[x_adj][y_adj][z_adj].getSettlement().addToSettlement(Map[x][y][z]);
-                Map[x][y][z].setSettlement(Map[x_adj][y_adj][z_adj].getSettlement());
-                Map[x][y][z].placeTiger(player);
                 try {
                     player.decreaseNumberOfTigersByAmount(1);
                 } catch (NotEnoughTigers notEnoughTigers) {
                     notEnoughTigers.printStackTrace();
                 }
+
                 player.increaseMatchScore(75);
-                //System.out.println("Tiger placed!");
                 break;
             }
         }
     }
 
-    public void MergeSettlementsAfterFounding(Settlement MergedSettlement, Player player) {
+    public void mergeSettlementsAfterFounding(Settlement MergedSettlement, Player player) {
 
         Coordinate Location = MergedSettlement.getSettlementHexes().get(0).getCoordinate();
 
@@ -679,7 +611,7 @@ public class Map {
 
     }
 
-    public void MergeSettlementsAfterExpansion(Settlement MergedSettlement, Player player){
+    public void mergeSettlementsAfterExpansion(Settlement MergedSettlement, Player player){
 
         ArrayList<Hex> ExpandedSettlementHexes = MergedSettlement.getSettlementHexes();
 
@@ -715,15 +647,15 @@ public class Map {
         }
     }
 
-
     public void splitSettlementsAfterNuking(Tile tile){
         Hex Hex1 = hexAt(tile.getHex2().getCoordinate());
         Hex Hex2 = hexAt(tile.getHex3().getCoordinate());
-
+        Settlement OriginalHex1Settlement = null;
 
         ArrayList<Settlement> NukedSettlements = new ArrayList<>();
         if (Hex1 != null){
             if (Hex1.getSettlement() != null){
+                OriginalHex1Settlement = Hex1.getSettlement();
                 Hex1.getSettlement().getSettlementHexes().remove(Hex1);
                 NukedSettlements.add(Hex1.getSettlement());
                 Hex1.setSettlement(null);
@@ -732,7 +664,9 @@ public class Map {
         if (Hex2 != null){
             if (Hex2.getSettlement() != null){
                 Hex2.getSettlement().getSettlementHexes().remove(Hex2);
-                NukedSettlements.add(Hex2.getSettlement());
+                    if (Hex2.getSettlement() != OriginalHex1Settlement){
+                        NukedSettlements.add(Hex2.getSettlement());
+                }
                 Hex2.setSettlement(null);
             }
         }
@@ -765,7 +699,6 @@ public class Map {
                         NewSettlement.addTigerFlag();
                     }
                     NukedSettlementsHexes.remove(CurrentHex);
-
                     Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
 
                     Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
@@ -784,8 +717,7 @@ public class Map {
                         boolean added = false;
 
                         if (Map[x_adj][y_adj][z_adj] != null) {
-                            if (Map[x_adj][y_adj][z_adj].getSettlement() == CurrentHex.getSettlement()) {
-
+                            if (Map[x_adj][y_adj][z_adj].getSettlement() == NukedSettlements.get(i)) {
                                 for (int k = 0; k < NewSettlementHexes.size(); k++) {
                                     if (NewSettlementHexes.get(k) == Map[x_adj][y_adj][z_adj]) {
                                         added = true;
@@ -795,20 +727,18 @@ public class Map {
                                 if (added == false) {
                                     queue.add(Map[x_adj][y_adj][z_adj]);
                                     NewSettlementHexes.add(Map[x_adj][y_adj][z_adj]);
-                                    CurrentHex.setSettlement(NewSettlement);
                                 }
                             }
                         }
                     }
                 }
-
+                for (int l = 0; l < NewSettlementHexes.size(); l++){
+                    NewSettlementHexes.get(l).setSettlement(NewSettlement);
+                }
                 NewSettlement.setLength(NewSettlement.getSettlementHexes().size());
                 hexOwner.addSettlement(NewSettlement);
-
             }
-
             hexOwner.removeSettlement(NukedSettlements.get(i));
-
         }
     }
 

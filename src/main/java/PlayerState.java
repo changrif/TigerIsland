@@ -1,6 +1,7 @@
 /**
  * Created by Nick Kroeger on 4/5/2017.
  */
+@Deprecated
 public class PlayerState {
 
     public PlayerState.gameState getStateOfTheGameAfterMove(String a) {

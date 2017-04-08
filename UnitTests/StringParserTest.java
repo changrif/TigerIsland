@@ -32,7 +32,7 @@ public class StringParserTest{
     public void getStateOfTheGameFromServerWhenGameIsOngoing(){
         String expected = "PLACE";
         String testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                            "PLACE <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>";
+                "PLACE <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>";
         Assert.assertEquals(expected, parser.getCurrentStateFromServer(testString));
 
         String testString2 = "GAME <gid> MOVE <#> PLAYER <pid> " +
@@ -234,10 +234,39 @@ public class StringParserTest{
         Assert.assertEquals(expected, parser.getZCoordFromOpponentMove(test));
     }
 
-    /*@Test
+    @Test
     public void getGameStatusFromServerMessagesSentToBothPlayers(){
         String test = "GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>";
         Assert.assertTrue(parser.isGameOver(test));
-    }*/
+    }
+
+    @Test
+    public void getScoreForFirstPlayerWhenGameEnds(){
+        String test = "GAME <gid> OVER PLAYER BLUE 200 PLAYER RED 0";
+        int expected = 200;
+        Assert.assertEquals(expected, parser.getCurrentScoreForFirstPlayerWhenGameEnds(test));
+    }
+
+    @Test
+    public void getScoreForSecondPlayerWhenGameEnds(){
+        String test = "GAME <gid> OVER PLAYER BLUE 200 PLAYER RED 0";
+        int expected = 0;
+        Assert.assertEquals(expected, parser.getCurrentScoreForSecondPlayerWhenGameEnds(test));
+    }
+
+    @Test
+    public void getPlayerIDForSecondPlayerWhenGameEnds(){
+        String test = "GAME <gid> OVER PLAYER BLUE 200 PLAYER RED 0";
+        String expected = "RED";
+        Assert.assertEquals(expected, parser.getPlayerIdForSecondPlayerOnceGameEnds(test));
+    }
+
+    @Test
+    public void getPlayerIDForFirstPlayerWhenGameEnds(){
+        String test = "GAME <gid> OVER PLAYER BLUE 200 PLAYER RED 0";
+        String expected = "BLUE";
+        Assert.assertEquals(expected, parser.getPlayerIdForFirstPlayerOnceGameEnds(test));
+    }
+
 
 }

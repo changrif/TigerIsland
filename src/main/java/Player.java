@@ -1,3 +1,5 @@
+import cucumber.api.java.hu.De;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,25 +33,13 @@ public class Player {
         numberOfTigersIHave = MAX_NUMBER_OF_TIGERS;
     }
 
+    @Deprecated
     public PlayerState.gameState getCurrentStateOfTheGameAfterAIMove() {
         return currentStateOfTheGameAfterAIMove;
     }
-
+    @Deprecated
     public void setCurrentStateOfTheGameAfterAIMove(PlayerState.gameState currentStateOfTheGameAfterAIMove) {
         this.currentStateOfTheGameAfterAIMove = currentStateOfTheGameAfterAIMove;
-    }
-
-    public int getTileOrientationInputFromPlayer(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! Input the orientation number (1-6) for which you want to rotate the " +
-                "other two hexes around the volcano pivot.");
-        return sc.nextInt();
-    }
-
-    public int getYCoordinateInputFromPlayer(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! Input your Y coordinate for where to place the volcano tile.");
-        return sc.nextInt();
     }
 
     public boolean isCurrentPlayersTurn() {

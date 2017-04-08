@@ -18,6 +18,7 @@ public class PlayerBrain {
     private Map map;
     private Tile bestTilePlacement;
     private Tile tileToPlace;
+    private BuildOption.typesOfBuildOptions buildOption;
     private Terrain.typesOfTerrain typeOfTerrainForBestExpansion;
     private Coordinate bestSettlementPlacementForFounding;
     private Coordinate bestSettlementPlacementForExpansion;
@@ -32,29 +33,13 @@ public class PlayerBrain {
         volcanoCoordinates.add(ORIGIN);
     }
 
+
     public Tile getTileToPlace() {
         return tileToPlace;
     }
 
     public void setTileToPlace(Tile tileToPlaceFromServer) {
         this.tileToPlace = tileToPlaceFromServer;
-    }
-
-    public void addLevelThreeHexesToArrayList(Tile tile)   {
-        availableHexesOnLevelThree.add(tile.getHex2().getCoordinate());
-        availableHexesOnLevelThree.add(tile.getHex3().getCoordinate());
-    }
-
-    public void deleteHexFromLevelThreeHexArrayList(Coordinate coordinateToBeDeleted)   {
-        Coordinate coordinate;
-        for(int i = 0; i < availableHexesOnLevelThree.size(); i++) {
-            coordinate = availableHexesOnLevelThree.get(i);
-            if(coordinate.getX() == coordinateToBeDeleted.getX() &&
-                    coordinate.getY() == coordinateToBeDeleted.getY() &&
-                    coordinate.getZ() == coordinateToBeDeleted.getZ())  {
-                availableHexesOnLevelThree.remove(i);
-            }
-        }
     }
 
     public Tile getBestTilePlacement() {
@@ -64,10 +49,13 @@ public class PlayerBrain {
     public void setBestTilePlacement(){
         bestTilePlacement = tileToPlace;
 
-        if(canFindFirstValidStackedTilePlacement())    {
+        if(hasTigersLeft() && canFindFirstValidStackedTilePlacement())    {
             setTileToPlace(bestTilePlacement);
         }   else if(canFindFirstLevelOneTilePlacement()) {
             setTileToPlace(bestTilePlacement);
+        }
+        if(bestTilePlacement.getTileLevel() >= 3)   {
+            addLevelThreeHexesToArrayList(tileToPlace.getHex2().getCoordinate(), tileToPlace.getHex3().getCoordinate());
         }
 
         map.splitSettlementsAfterNuking(tileToPlace);
@@ -104,7 +92,7 @@ public class PlayerBrain {
                 Coordinate adjacentCoordinate;
                 for(int i = 0; i < adjacencyMatrix.length; i++) {
                     adjacentCoordinate = adjacencyMatrix[i];
-                    if(!hasBeenVisited(isVisited, adjacentCoordinate))   {
+                    if(!hexHasBeenVisited(isVisited, adjacentCoordinate))   {
                         queue.add(adjacentCoordinate);
                     }
                 }
@@ -114,12 +102,9 @@ public class PlayerBrain {
         return false;
     }
 
-    public boolean hasBeenVisited(ArrayList<Coordinate> isVisited, Coordinate adjacentCoordinate)    {
-
-        for (int j = 0; j < isVisited.size(); j++) {
-            if (isVisited.get(j).getX() == adjacentCoordinate.getX() &&
-                    isVisited.get(j).getY() == adjacentCoordinate.getY() &&
-                    isVisited.get(j).getZ() == adjacentCoordinate.getZ()) {
+    public boolean canFindFirstValidStackedTilePlacement()    {
+        for(Coordinate volcanoCoordinate : volcanoCoordinates)  {
+            if(canPlaceTile(volcanoCoordinate))   {
                 return true;
             }
         }
@@ -127,9 +112,12 @@ public class PlayerBrain {
         return false;
     }
 
-    public boolean canFindFirstValidStackedTilePlacement()    {
-        for(Coordinate volcanoCoordinate : volcanoCoordinates)  {
-            if(canPlaceTile(volcanoCoordinate))   {
+    public boolean hexHasBeenVisited(ArrayList<Coordinate> isVisited, Coordinate adjacentCoordinate)    {
+
+        for (int j = 0; j < isVisited.size(); j++) {
+            if (isVisited.get(j).getX() == adjacentCoordinate.getX() &&
+                    isVisited.get(j).getY() == adjacentCoordinate.getY() &&
+                    isVisited.get(j).getZ() == adjacentCoordinate.getZ()) {
                 return true;
             }
         }
@@ -158,44 +146,88 @@ public class PlayerBrain {
         tile.getHex3().setLevel(0);
     }
 
+    public boolean hasTigersLeft()   {
+        if(ourPlayer.getNumberOfTigersIHave() > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public BuildOption.typesOfBuildOptions getBuildAction() {
-        //TODO method will decide which build option is best
-        if(canFindFirstPlaceForTigerPlayground()){
-            return BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND;
+        return this.buildOption;
+    }
+
+    public void setBuildOption(BuildOption.typesOfBuildOptions buildOption) { this.buildOption = buildOption; }
+
+    public void getBestBuildAction()    {
+        if(!wePlacedAllOfOurTigers() && canFindFirstPlaceForTigerPlayground()){
+            setBuildOption(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND);
         }
-        else if(wePlacedAllOfOurTigers() && canFindFirstPlaceToExpandSettlement()){
-            return BuildOption.typesOfBuildOptions.EXPANSION;
+        else if(wePlacedAllOfOurTigers() && !wePlacedAllOfOurMeeples() && canFindFirstPlaceToExpandSettlement()){
+            setBuildOption(BuildOption.typesOfBuildOptions.EXPANSION);
         }
-        else if(canFindFirstPlaceToFoundSettlement()){
+        else if(!wePlacedAllOfOurMeeples() && canFindFirstPlaceToFoundSettlement()){
             //Note to Nick & David, from Nick...
             // make sure we're returning the best coordinate later for founding settlement
             //            settlementToPlaceTiger = bestSettlementPlacement;
-            return BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT;
+            setBuildOption(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT);
+        }   else    {
+            setBuildOption(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD);
         }
 
-        return null;
+    }
+
+    public void executeBuildAction()    {
+        if(buildOption == BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND) {
+            map.placeTiger(bestSettlementPlacementForTiger, ourPlayer);
+        } else if(buildOption == BuildOption.typesOfBuildOptions.EXPANSION) {
+            map.expandSettlement(bestSettlementPlacementForExpansion, typeOfTerrainForBestExpansion, ourPlayer);
+        }
+        else if(buildOption == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT)  {
+            map.foundNewSettlement(bestSettlementPlacementForFounding, ourPlayer);
+        }
     }
 
     public boolean wePlacedAllOfOurTigers() {
         return ourPlayer.getNumberOfTigersIHave() == 0;
     }
 
+    public boolean wePlacedAllOfOurMeeples() { return ourPlayer.getNumberOfMeeplesIHave() == 0; }
+
     public boolean canFindFirstPlaceToFoundSettlement() {
-        if(canPlaceNextToLevelThree())    {
-            return true;
-        }
-        else if(ifPlayerDoesNotHaveAnySettlements())    {
-            findCoordinateForFoundingASettlement();
+        if(canPlaceNextToEmptyLevelThreeHex())    {
+            System.out.println("Trying to place next to level 3");
             return true;
         }
         else if(ifPlayerHasAtleastOneSettlement())   {
             for(Settlement settlement : ourPlayer.getPlayerSettlements())   {
                 if(canPlacePiece(settlement))   {
+                    System.out.println("Trying to place next to settlement");
+                    return true;
+                }
+            }
+
+            if(canFindCoordinateForFoundingASettlement())    {
+                System.out.println("Trying to found");
+                return true;
+            }
+        }
+        else if(canFindCoordinateForFoundingASettlement())    {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean canPlaceNextToEmptyLevelThreeHex()   {
+        for(Coordinate coordinate : availableHexesOnLevelThree)  {
+            for (Coordinate adjacentCoordinate : map.createAdjacentCoordinateArray(coordinate)) {
+                if (hexIsViableForSettlement(adjacentCoordinate) && map.hexAt(adjacentCoordinate).getLevel() == 1) {
+                    bestSettlementPlacementForFounding = adjacentCoordinate;
                     return true;
                 }
             }
         }
-
 
         return false;
     }
@@ -208,20 +240,7 @@ public class PlayerBrain {
         return ourPlayer.getPlayerSettlements().size() == 0;
     }
 
-    public boolean canPlaceNextToLevelThree()   {
-        for(Coordinate coordinate : availableHexesOnLevelThree)  {
-            for(Coordinate adjacentCoordinate : map.createAdjacentCoordinateArray(coordinate)) {
-                if(hexIsViableForSettlement(adjacentCoordinate))    {
-                    bestSettlementPlacementForFounding = adjacentCoordinate;
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public void findCoordinateForFoundingASettlement()    {
+    public boolean canFindCoordinateForFoundingASettlement()    {
         LinkedList<Coordinate> queue = new LinkedList<>();
         Coordinate[] adjacentHexes = map.createAdjacentCoordinateArray(ORIGIN);
         ArrayList<Coordinate> isVisited = new ArrayList<>();
@@ -232,17 +251,16 @@ public class PlayerBrain {
         }
 
         while(!queue.isEmpty()) {
+            //System.out.println("LOOP QUEUE");
             //get current Coordinate
             Coordinate currentCoordinate = queue.poll();
+            //currentCoordinate.coordinateToString();
             isVisited.add(currentCoordinate);
 
             //if a neighboring hex is taken, then check for valid placement
-            if(map.isTaken(currentCoordinate)) {
-                if (hexIsViableForSettlement(currentCoordinate)) {
-                    bestSettlementPlacementForFounding = currentCoordinate;
-                    //CHANDLER LOOK AT THIS <3333333333333333333333333333333333333333333333333333333333333333333333333333
-                    //Check if there should be a break here to exit loop
-                }
+            if(map.isTaken(currentCoordinate) && hexIsViableForSettlement(currentCoordinate) && map.hexAt(currentCoordinate).getLevel() == 1) {
+                bestSettlementPlacementForFounding = currentCoordinate;
+                return true;
             }
 
             //if a neighboring hex isn't taken,
@@ -253,18 +271,32 @@ public class PlayerBrain {
                 Coordinate adjacentCoordinate;
                 for(int i = 0; i < adjacencyMatrix.length; i++) {
                     adjacentCoordinate = adjacencyMatrix[i];
-                    if(!hasBeenVisited(isVisited, adjacentCoordinate))   {
+                    if(!hexHasBeenVisited(isVisited, adjacentCoordinate) && map.isTaken(adjacentCoordinate))   {
                         queue.add(adjacentCoordinate);
                     }
                 }
             }
         }
+        return false;
     }
 
     public boolean canFindFirstPlaceToExpandSettlement()    {
         for(Settlement settlement : ourPlayer.getPlayerSettlements())   {
-            if(canPlacePiece(settlement))   {
-                return true;
+            for(Hex hex : settlement.getSettlementHexes()) {
+                Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(hex.getCoordinate());
+                for(Coordinate coordinateToExpand : adjacencyMatrix) {
+                    if(map.isTaken(coordinateToExpand) &&
+                            map.hexAt(coordinateToExpand).getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
+                            !map.hexAt(coordinateToExpand).isSettled()) {
+                        int requiredMeeples = map.requiredMeeplesForExpansion(hex.getCoordinate(), map.hexAt(coordinateToExpand).getTerrainType());
+                        if (requiredMeeples > 0 && requiredMeeples <= ourPlayer.getNumberOfMeeplesIHave()) {
+                            bestSettlementPlacementForExpansion = hex.getCoordinate();
+                            typeOfTerrainForBestExpansion = map.hexAt(coordinateToExpand).getTerrainType();
+                            System.out.println("true?");
+                            return true;
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -287,7 +319,10 @@ public class PlayerBrain {
             for(Hex hex : settlement.getSettlementHexes()) {
                 Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
                 for (Coordinate coordinate : adjacentCoordinateArray) {
-                    if(map.isTaken(coordinate) && !map.hexAt(coordinate).isSettled() && map.hexAt(coordinate).getLevel() >= 3)    {
+                    if(map.isTaken(coordinate) &&
+                            !map.hexAt(coordinate).isSettled() &&
+                            map.hexAt(coordinate).getLevel() >= 3 &&
+                            map.hexAt(coordinate).getTerrainType() != Terrain.typesOfTerrain.VOLCANO)    {
                         bestSettlementPlacementForTiger = coordinate;
                         return true;
                     }
@@ -302,9 +337,8 @@ public class PlayerBrain {
         for(Hex hex : settlement.getSettlementHexes())  {
             Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
             for(Coordinate coordinate : adjacentCoordinateArray)    {
-                if(hexIsViableForSettlement(coordinate))   {
-                    bestSettlementPlacementForExpansion = coordinate;
-                    typeOfTerrainForBestExpansion = map.hexAt(coordinate).getTerrainType();
+                if(hexIsViableForSettlement(coordinate) && map.hexAt(coordinate).getLevel() == 1)   {
+                    bestSettlementPlacementForFounding = coordinate;
                     return true;
                 }
             }
@@ -314,7 +348,9 @@ public class PlayerBrain {
     }
 
     private boolean hexIsViableForSettlement(Coordinate coordinate) {
-        return map.isTaken(coordinate) && !map.hexAt(coordinate).isSettled() && map.hexAt(coordinate).getTerrainType() != Terrain.typesOfTerrain.VOLCANO;
+        return map.isTaken(coordinate) &&
+                !map.hexAt(coordinate).isSettled() &&
+                map.hexAt(coordinate).getTerrainType() != Terrain.typesOfTerrain.VOLCANO;
     }
 
     public Hex getHexToBeUsedAsSettlement() {
@@ -339,12 +375,23 @@ public class PlayerBrain {
         return bestSettlementPlacementForTiger;
     }
 
+    public Coordinate getCoordinateToBeUsedAsSettlement()  { return  bestSettlementPlacementForFounding; }
+
     public Player getOurPlayer() {
         return ourPlayer;
     }
 
     public Player getOpponent() {
         return opponent;
+    }
+
+    public void giveBrainTheTilePlacement(Coordinate volcanoCoordinate, int tileOrientation)    {
+        if(map.isTaken(volcanoCoordinate))  {
+            if(map.hexAt(volcanoCoordinate).getLevel() >=2) {
+                Coordinate[] hexCoordinates = map.determineTileCoordinatesBasedOnOrientation(volcanoCoordinate, tileOrientation);
+                addLevelThreeHexesToArrayList(hexCoordinates[0], hexCoordinates[1]);
+            }
+        }
     }
 
     public void giveBrainTheUpdatedVolcanoCoordinates(Coordinate volcanoCoordinate, int tileOrientation) {
@@ -385,6 +432,23 @@ public class PlayerBrain {
                     coordinate.getY() == coordinateToBeDeleted.getY() &&
                     coordinate.getZ() == coordinateToBeDeleted.getZ())  {
                 volcanoCoordinates.remove(i);
+            }
+        }
+    }
+
+    public void addLevelThreeHexesToArrayList(Coordinate hex2, Coordinate hex3)   {
+        availableHexesOnLevelThree.add(hex2);
+        availableHexesOnLevelThree.add(hex3);
+    }
+
+    public void deleteHexFromLevelThreeHexArrayList(Coordinate coordinateToBeDeleted)   {
+        Coordinate coordinate;
+        for(int i = 0; i < availableHexesOnLevelThree.size(); i++) {
+            coordinate = availableHexesOnLevelThree.get(i);
+            if(coordinate.getX() == coordinateToBeDeleted.getX() &&
+                    coordinate.getY() == coordinateToBeDeleted.getY() &&
+                    coordinate.getZ() == coordinateToBeDeleted.getZ())  {
+                availableHexesOnLevelThree.remove(i);
             }
         }
     }

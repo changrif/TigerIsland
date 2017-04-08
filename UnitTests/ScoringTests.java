@@ -1,9 +1,6 @@
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 /**
  * Created by AizeyPineda on 4/6/17.
@@ -89,7 +86,7 @@ public class ScoringTests {
 
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
         Assert.assertEquals(p1.getMatchScore(), 6);
     }
 
@@ -100,10 +97,10 @@ public class ScoringTests {
 
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
 
         CurrentPlacement = new Coordinate(99,101, 100);
-        GameBoard.PlaceTotoro(CurrentPlacement, p1);
+        GameBoard.placeTotoro(CurrentPlacement, p1);
         Assert.assertEquals(p1.getMatchScore(), 206);
 
     }
@@ -128,31 +125,52 @@ public class ScoringTests {
 
         CurrentPlacement = new Coordinate(99,100, 101);
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
-        System.out.println(p1.getMatchScore());
+        Assert.assertEquals(1, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
-        System.out.println(p1.getMatchScore());
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        Assert.assertEquals(6, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
+
+//        CurrentPlacement = new Coordinate(102,98,100);
+//        GameBoard.foundNewSettlement(CurrentPlacement, p1);
 
         CurrentPlacement = new Coordinate(99,101, 100);
-        GameBoard.PlaceTotoro(CurrentPlacement, p1);
-        System.out.println(p1.getMatchScore());
+        GameBoard.placeTotoro(CurrentPlacement, p1);
+        Assert.assertFalse(p1.getPlayerSettlements().get(0).getTigerFlag());
+        Assert.assertTrue(p1.getPlayerSettlements().get(0).getTotoroFlag());
+        Assert.assertEquals(7, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
 
         GameBoard.placeTile(tile5, tile5Location, 3);
+        Assert.assertEquals(7, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
+
         GameBoard.placeTile(tile6, tile6Location, 4);
+        Assert.assertEquals(6, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
+
         GameBoard.placeTile(tile7, tile7Location, 4);
+        Assert.assertEquals(6, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertEquals(1, p1.getPlayerSettlements().size());
 
         CurrentPlacement = new Coordinate(99, 101, 100);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
-        ArrayList<Hex> MergedHexes = p1.getPlayerSettlements().get(0).getSettlementHexes();
-        for (int k = 0; k < MergedHexes.size(); k++){
-            System.out.println(MergedHexes.get(k).getCoordinate().getX() + "," + MergedHexes.get(k).getCoordinate().getY() + "," + MergedHexes.get(k).getCoordinate().getZ());
-        }
-
-        System.out.println(p1.getMatchScore());
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
+        Assert.assertEquals(9, p1.getPlayerSettlements().get(0).getLength());
 
         CurrentPlacement = new Coordinate(101, 99, 100);
-        GameBoard.PlaceTiger(CurrentPlacement, p1);
+        GameBoard.placeTiger(CurrentPlacement, p1);
         Assert.assertEquals(p1.getMatchScore(), 288);
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
+        Assert.assertEquals(10, p1.getPlayerSettlements().get(0).getLength());
+        Assert.assertTrue(p1.getPlayerSettlements().get(0).getTigerFlag());
+        Assert.assertTrue(p1.getPlayerSettlements().get(0).getTotoroFlag());
+//
+//        ArrayList<Hex> FinalSettlement = p1.getPlayerSettlements().get(1).getSettlementHexes();
+//        for (int i = 0; i < FinalSettlement.size(); i++){
+//            System.out.println(FinalSettlement.get(i).getCoordinate().getX() + "," + FinalSettlement.get(i).getCoordinate().getY() + "," + FinalSettlement.get(i).getCoordinate().getZ());
+//        }
     }
 }

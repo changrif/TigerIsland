@@ -195,8 +195,8 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement()"
 });
 formatter.result({
-  "duration": 173195310,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement(ExpandingASettlementAcceptanceTests.java:14)\n\tat ✽.Given there is an adjacent non-volcanic hex to a player’s existing settlement(ExpandingASettlementAcceptanceTests.feature:4)\n",
+  "duration": 243824432,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement(ExpandingASettlementAcceptanceTests.java:14)\r\n\tat ✽.Given there is an adjacent non-volcanic hex to a player’s existing settlement(ExpandingASettlementAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -280,8 +280,8 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left()"
 });
 formatter.result({
-  "duration": 652662,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left(ExpandingASettlementAcceptanceTests.java:68)\n\tat ✽.Given a player has enough Meeples left(ExpandingASettlementAcceptanceTests.feature:17)\n",
+  "duration": 434627,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left(ExpandingASettlementAcceptanceTests.java:68)\r\n\tat ✽.Given a player has enough Meeples left(ExpandingASettlementAcceptanceTests.feature:17)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -329,8 +329,8 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain()"
 });
 formatter.result({
-  "duration": 508859,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain(ExpandingASettlementAcceptanceTests.java:80)\n\tat ✽.Given a non-adjacent terrain(ExpandingASettlementAcceptanceTests.feature:22)\n",
+  "duration": 397520,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain(ExpandingASettlementAcceptanceTests.java:80)\r\n\tat ✽.Given a non-adjacent terrain(ExpandingASettlementAcceptanceTests.feature:22)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -372,8 +372,8 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement()"
 });
 formatter.result({
-  "duration": 487757,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement(ExpandingASettlementAcceptanceTests.java:98)\n\tat ✽.Given a successful expansion of a settlement(ExpandingASettlementAcceptanceTests.feature:27)\n",
+  "duration": 484760,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement(ExpandingASettlementAcceptanceTests.java:98)\r\n\tat ✽.Given a successful expansion of a settlement(ExpandingASettlementAcceptanceTests.feature:27)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -423,23 +423,22 @@ formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_non_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 191756,
+  "duration": 135796,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_has_the_option_to_build()"
 });
 formatter.result({
-  "duration": 79897,
+  "duration": 51319,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 18646502,
-  "error_message": "InvalidTilePlacement\n\tat Map.placeTile(Map.java:38)\n\tat FoundingANewSettlementAcceptanceTests.they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement(FoundingANewSettlementAcceptanceTests.java:33)\n\tat ✽.Then a meeple can be placed on that hex to form a new settlement(FoundingANewSettlement.feature:6)\n",
-  "status": "failed"
+  "duration": 27183319,
+  "status": "passed"
 });
 formatter.uri("GameResultsAcceptanceTests.feature");
 formatter.feature({
@@ -476,8 +475,8 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left()"
 });
 formatter.result({
-  "duration": 595545,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\n",
+  "duration": 616215,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\r\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -519,8 +518,8 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left()"
 });
 formatter.result({
-  "duration": 608962,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\n",
+  "duration": 315410,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\r\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -567,8 +566,8 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_game_that_is_in_progress()"
 });
 formatter.result({
-  "duration": 688647,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\n",
+  "duration": 387651,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\r\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -639,14 +638,14 @@ formatter.match({
   "location": "HexAcceptanceTests.a_hex_is_created()"
 });
 formatter.result({
-  "duration": 220601,
+  "duration": 105005,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_is_created()"
 });
 formatter.result({
-  "duration": 81358,
+  "duration": 126716,
   "status": "passed"
 });
 formatter.match({
@@ -659,28 +658,28 @@ formatter.match({
   "location": "HexAcceptanceTests.it_should_have_sides(int)"
 });
 formatter.result({
-  "duration": 5895016,
+  "duration": 7946051,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_hex_has__been_created()"
 });
 formatter.result({
-  "duration": 32264,
+  "duration": 48555,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_has_been_created()"
 });
 formatter.result({
-  "duration": 104247,
+  "duration": 37897,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types()"
 });
 formatter.result({
-  "duration": 268617,
+  "duration": 8256724,
   "status": "passed"
 });
 formatter.uri("MapAcceptanceTests.feature");
@@ -718,21 +717,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 221475,
+  "duration": 109347,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 150517,
+  "duration": 36713,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_should_be_initialized_to_empty()"
 });
 formatter.result({
-  "duration": 228836247,
+  "duration": 1453539544,
   "status": "passed"
 });
 formatter.scenario({
@@ -762,23 +761,22 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 88946,
+  "duration": 64740,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 17480,
+  "duration": 32765,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_containing_data_will_produce_errors()"
 });
 formatter.result({
-  "duration": 18609357,
-  "error_message": "java.lang.AssertionError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat MapAcceptanceTests.a_board_data_structure_containing_data_will_produce_errors(MapAcceptanceTests.java:45)\n\tat ✽.Then a board data structure containing data will produce errors.(MapAcceptanceTests.feature:11)\n",
-  "status": "failed"
+  "duration": 1067125557,
+  "status": "passed"
 });
 formatter.uri("MeepleAcceptanceTests.feature");
 formatter.feature({
@@ -1009,8 +1007,8 @@ formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 767161,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color(MergingSettlementsAcceptanceTests.java:13)\n\tat ✽.Given a settlement is added next to an adjacent hex of an existing settlement of the same color(MergingSettlementsAcceptanceTests.feature:3)\n",
+  "duration": 684507,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color(MergingSettlementsAcceptanceTests.java:13)\r\n\tat ✽.Given a settlement is added next to an adjacent hex of an existing settlement of the same color(MergingSettlementsAcceptanceTests.feature:3)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1060,8 +1058,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_start_of_a_game()"
 });
 formatter.result({
-  "duration": 453321,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.the_start_of_a_game(PlayerTurnsAcceptanceTests.java:14)\n\tat ✽.Given the start of a game(PlayerTurnsAcceptanceTests.feature:4)\n",
+  "duration": 519895,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.the_start_of_a_game(PlayerTurnsAcceptanceTests.java:14)\r\n\tat ✽.Given the start of a game(PlayerTurnsAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1103,8 +1101,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.there_are_still_tiles_available()"
 });
 formatter.result({
-  "duration": 986861,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.there_are_still_tiles_available(PlayerTurnsAcceptanceTests.java:32)\n\tat ✽.Given there are still tiles available(PlayerTurnsAcceptanceTests.feature:9)\n",
+  "duration": 474892,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.there_are_still_tiles_available(PlayerTurnsAcceptanceTests.java:32)\r\n\tat ✽.Given there are still tiles available(PlayerTurnsAcceptanceTests.feature:9)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1146,8 +1144,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.has_build_actions_available()"
 });
 formatter.result({
-  "duration": 537519,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.has_build_actions_available(PlayerTurnsAcceptanceTests.java:50)\n\tat ✽.Given has build actions available(PlayerTurnsAcceptanceTests.feature:14)\n",
+  "duration": 417258,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.has_build_actions_available(PlayerTurnsAcceptanceTests.java:50)\r\n\tat ✽.Given has build actions available(PlayerTurnsAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1189,8 +1187,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded()"
 });
 formatter.result({
-  "duration": 681932,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded(PlayerTurnsAcceptanceTests.java:68)\n\tat ✽.Given a new settlement is added or expanded(PlayerTurnsAcceptanceTests.feature:19)\n",
+  "duration": 422784,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded(PlayerTurnsAcceptanceTests.java:68)\r\n\tat ✽.Given a new settlement is added or expanded(PlayerTurnsAcceptanceTests.feature:19)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1252,8 +1250,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player()"
 });
 formatter.result({
-  "duration": 568581,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:86)\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\n",
+  "duration": 420020,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:86)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1329,8 +1327,8 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_and_a_player(int,int)"
 });
 formatter.result({
-  "duration": 686729,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:116)\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\n",
+  "duration": 728326,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:116)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1392,15 +1390,16 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_has_placed_Meeple_s()"
 });
 formatter.result({
-  "duration": 672730,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ScoringAcceptanceTests.a_player_has_placed_Meeple_s(ScoringAcceptanceTests.java:13)\n\tat ✽.Given a player has placed Meeple(s)(ScoringAcceptanceTests.feature:4)\n",
-  "status": "pending"
+  "duration": 13994508,
+  "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 630820,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:5)\r\n",
+  "status": "pending"
 });
 formatter.match({
   "arguments": [
@@ -1441,15 +1440,16 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Totoro()"
 });
 formatter.result({
-  "duration": 563210,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ScoringAcceptanceTests.a_player_placed_a_Totoro(ScoringAcceptanceTests.java:25)\n\tat ✽.Given a player placed a Totoro(ScoringAcceptanceTests.feature:9)\n",
-  "status": "pending"
+  "duration": 154349,
+  "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 396335,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:10)\r\n",
+  "status": "pending"
 });
 formatter.match({
   "arguments": [
@@ -1490,8 +1490,8 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Tiger()"
 });
 formatter.result({
-  "duration": 559797,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:37)\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\n",
+  "duration": 437390,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:111)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1562,8 +1562,8 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "duration": 1176478,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat TerrainTypesAcceptanceTests.a_type_of_terrain(TerrainTypesAcceptanceTests.java:15)\n\tat ✽.Given a type of terrain,(TerrainTypeAcceptanceTests.feature:4)\n",
+  "duration": 572792,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat TerrainTypesAcceptanceTests.a_type_of_terrain(TerrainTypesAcceptanceTests.java:15)\r\n\tat ✽.Given a type of terrain,(TerrainTypeAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1623,21 +1623,21 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_tilePiece()"
 });
 formatter.result({
-  "duration": 49865,
+  "duration": 76188,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_is_placed_on_the_board()"
 });
 formatter.result({
-  "duration": 24098,
+  "duration": 55266,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_must_contain_one_and_only_one_volcano_terrain()"
 });
 formatter.result({
-  "duration": 200644,
+  "duration": 597661,
   "status": "passed"
 });
 formatter.uri("TilesAcceptanceTests.feature");
