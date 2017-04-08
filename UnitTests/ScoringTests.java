@@ -2,8 +2,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 /**
  * Created by AizeyPineda on 4/6/17.
  */
@@ -88,7 +86,7 @@ public class ScoringTests {
 
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
         Assert.assertEquals(p1.getMatchScore(), 6);
     }
 
@@ -99,10 +97,10 @@ public class ScoringTests {
 
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
 
         CurrentPlacement = new Coordinate(99,101, 100);
-        GameBoard.PlaceTotoro(CurrentPlacement, p1);
+        GameBoard.placeTotoro(CurrentPlacement, p1);
         Assert.assertEquals(p1.getMatchScore(), 206);
 
     }
@@ -131,7 +129,7 @@ public class ScoringTests {
         Assert.assertEquals(1, p1.getOwnedSettlementsSize());
 
         CurrentPlacement = new Coordinate(99,100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
         Assert.assertEquals(6, p1.getPlayerSettlements().get(0).getLength());
         Assert.assertEquals(1, p1.getOwnedSettlementsSize());
 
@@ -139,7 +137,7 @@ public class ScoringTests {
 //        GameBoard.foundNewSettlement(CurrentPlacement, p1);
 
         CurrentPlacement = new Coordinate(99,101, 100);
-        GameBoard.PlaceTotoro(CurrentPlacement, p1);
+        GameBoard.placeTotoro(CurrentPlacement, p1);
         Assert.assertFalse(p1.getPlayerSettlements().get(0).getTigerFlag());
         Assert.assertTrue(p1.getPlayerSettlements().get(0).getTotoroFlag());
         Assert.assertEquals(7, p1.getPlayerSettlements().get(0).getLength());
@@ -158,12 +156,12 @@ public class ScoringTests {
         Assert.assertEquals(1, p1.getPlayerSettlements().size());
 
         CurrentPlacement = new Coordinate(99, 101, 100);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
         Assert.assertEquals(1, p1.getOwnedSettlementsSize());
         Assert.assertEquals(9, p1.getPlayerSettlements().get(0).getLength());
 
         CurrentPlacement = new Coordinate(101, 99, 100);
-        GameBoard.PlaceTiger(CurrentPlacement, p1);
+        GameBoard.placeTiger(CurrentPlacement, p1);
         Assert.assertEquals(p1.getMatchScore(), 288);
         Assert.assertEquals(1, p1.getOwnedSettlementsSize());
         Assert.assertEquals(10, p1.getPlayerSettlements().get(0).getLength());
