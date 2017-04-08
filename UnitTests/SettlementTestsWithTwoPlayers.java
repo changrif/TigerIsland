@@ -83,10 +83,10 @@ public class SettlementTestsWithTwoPlayers {
         GameBoard.foundNewSettlement(CurrentPlacement, p2);
 
         CurrentPlacement = new Coordinate(100, 99, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
 
         CurrentPlacement = new Coordinate(101, 99, 100);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.ROCKY, p2);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.ROCKY, p2);
 
         CurrentPlacement = new Coordinate(99, 101, 100);
         GameBoard.foundNewSettlement(CurrentPlacement, p1);
@@ -98,7 +98,7 @@ public class SettlementTestsWithTwoPlayers {
         GameBoard.foundNewSettlement(CurrentPlacement, p2);
 
         CurrentPlacement = new Coordinate(100, 101, 99);
-        GameBoard.PlaceTotoro(CurrentPlacement, p2);
+        GameBoard.placeTotoro(CurrentPlacement, p2);
 
         //check player settlements before the nuking test
         Assert.assertEquals( 1,p1.getPlayerSettlements().size());
