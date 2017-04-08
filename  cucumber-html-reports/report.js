@@ -59,41 +59,80 @@ formatter.step({
   "name": "the amount of totoros available to the player decrease by one",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "arguments": [
+    {
+      "val": "5",
+      "offset": 44
+    }
+  ],
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_does_not_have_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 220786097,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_place_a_totoro_during_the_build_phase()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 40120,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.they_will_not_be_allowed_to_add_a_totoro()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 32062763,
+  "status": "passed"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "arguments": [
+    {
+      "val": "5",
+      "offset": 34
+    }
+  ],
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 185205,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 33123,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.they_can_add_a_Totoro_to_the_empty_hex()"
+});
+formatter.result({
+  "duration": 93329048,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_that_has_a_certain_amount_of_totoros()"
+});
+formatter.result({
+  "duration": 28457,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.he_she_places_a_totoro_on_the_board()"
+});
+formatter.result({
+  "duration": 31257,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.the_amount_of_totoros_available_to_the_player_decrease_by_one()"
+});
+formatter.result({
+  "duration": 21223404,
+  "status": "passed"
 });
 formatter.scenario({
   "line": 15,
@@ -118,17 +157,26 @@ formatter.step({
   "name": "they are not allowed to place the Totoro",
   "keyword": "Then "
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_with_a_Totoro()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
+  "duration": 53649,
+  "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_add_another_Totoro_to_that_settlement()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 21459,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.they_are_not_allowed_to_place_the_Totoro()"
+});
+formatter.result({
+  "duration": 7072290,
+  "status": "passed"
 });
 formatter.uri("ExpandingASettlementAcceptanceTests.feature");
 formatter.feature({
@@ -195,7 +243,7 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement()"
 });
 formatter.result({
-  "duration": 243824432,
+  "duration": 2553676,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement(ExpandingASettlementAcceptanceTests.java:14)\r\n\tat ✽.Given there is an adjacent non-volcanic hex to a player’s existing settlement(ExpandingASettlementAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
@@ -280,7 +328,7 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left()"
 });
 formatter.result({
-  "duration": 434627,
+  "duration": 288769,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left(ExpandingASettlementAcceptanceTests.java:68)\r\n\tat ✽.Given a player has enough Meeples left(ExpandingASettlementAcceptanceTests.feature:17)\r\n",
   "status": "pending"
 });
@@ -329,7 +377,7 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain()"
 });
 formatter.result({
-  "duration": 397520,
+  "duration": 392801,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain(ExpandingASettlementAcceptanceTests.java:80)\r\n\tat ✽.Given a non-adjacent terrain(ExpandingASettlementAcceptanceTests.feature:22)\r\n",
   "status": "pending"
 });
@@ -372,7 +420,7 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement()"
 });
 formatter.result({
-  "duration": 484760,
+  "duration": 263578,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement(ExpandingASettlementAcceptanceTests.java:98)\r\n\tat ✽.Given a successful expansion of a settlement(ExpandingASettlementAcceptanceTests.feature:27)\r\n",
   "status": "pending"
 });
@@ -419,25 +467,61 @@ formatter.step({
   "name": "a meeple can be placed on that hex to form a new settlement",
   "keyword": "Then "
 });
+formatter.step({
+  "line": 9,
+  "name": "there is an empty volcanic level one hex",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 10,
+  "name": "a player can build",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 11,
+  "name": "a meeple cannot be placed on that hex to form a new settlement",
+  "keyword": "Then "
+});
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_non_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 135796,
+  "duration": 84438,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_has_the_option_to_build()"
 });
 formatter.result({
-  "duration": 51319,
+  "duration": 34055,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 27183319,
+  "duration": 79578201,
+  "status": "passed"
+});
+formatter.match({
+  "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_volcanic_level_one_hex()"
+});
+formatter.result({
+  "duration": 28924,
+  "status": "passed"
+});
+formatter.match({
+  "location": "FoundingANewSettlementAcceptanceTests.a_player_can_build()"
+});
+formatter.result({
+  "duration": 19127,
+  "status": "passed"
+});
+formatter.match({
+  "location": "FoundingANewSettlementAcceptanceTests.they_cannot_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
+});
+formatter.result({
+  "duration": 6700482,
   "status": "passed"
 });
 formatter.uri("GameResultsAcceptanceTests.feature");
@@ -475,7 +559,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left()"
 });
 formatter.result({
-  "duration": 616215,
+  "duration": 311629,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\r\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\r\n",
   "status": "pending"
 });
@@ -518,7 +602,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left()"
 });
 formatter.result({
-  "duration": 315410,
+  "duration": 420792,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\r\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\r\n",
   "status": "pending"
 });
@@ -566,7 +650,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_game_that_is_in_progress()"
 });
 formatter.result({
-  "duration": 387651,
+  "duration": 419393,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\r\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\r\n",
   "status": "pending"
 });
@@ -638,14 +722,14 @@ formatter.match({
   "location": "HexAcceptanceTests.a_hex_is_created()"
 });
 formatter.result({
-  "duration": 105005,
+  "duration": 119427,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_is_created()"
 });
 formatter.result({
-  "duration": 126716,
+  "duration": 37787,
   "status": "passed"
 });
 formatter.match({
@@ -658,28 +742,28 @@ formatter.match({
   "location": "HexAcceptanceTests.it_should_have_sides(int)"
 });
 formatter.result({
-  "duration": 7946051,
+  "duration": 195934,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_hex_has__been_created()"
 });
 formatter.result({
-  "duration": 48555,
+  "duration": 23792,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_has_been_created()"
 });
 formatter.result({
-  "duration": 37897,
+  "duration": 21459,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types()"
 });
 formatter.result({
-  "duration": 8256724,
+  "duration": 162345,
   "status": "passed"
 });
 formatter.uri("MapAcceptanceTests.feature");
@@ -717,21 +801,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 109347,
+  "duration": 85371,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 36713,
+  "duration": 28457,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_should_be_initialized_to_empty()"
 });
 formatter.result({
-  "duration": 1453539544,
+  "duration": 150378549,
   "status": "passed"
 });
 formatter.scenario({
@@ -761,21 +845,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 64740,
+  "duration": 44785,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 32765,
+  "duration": 20993,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_containing_data_will_produce_errors()"
 });
 formatter.result({
-  "duration": 1067125557,
+  "duration": 34192847,
   "status": "passed"
 });
 formatter.uri("MeepleAcceptanceTests.feature");
@@ -893,9 +977,25 @@ formatter.match({});
 formatter.result({
   "status": "undefined"
 });
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
+});
+formatter.result({
+  "status": "skipped"
+});
 formatter.match({});
 formatter.result({
   "status": "undefined"
+});
+formatter.match({});
+formatter.result({
+  "status": "undefined"
+});
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
+});
+formatter.result({
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
@@ -917,21 +1017,11 @@ formatter.match({});
 formatter.result({
   "status": "undefined"
 });
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+formatter.match({
+  "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
-formatter.match({});
 formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
+  "status": "skipped"
 });
 formatter.match({});
 formatter.result({
@@ -1003,25 +1093,98 @@ formatter.step({
   "name": "the settlements will merge into one",
   "keyword": "Then "
 });
+formatter.step({
+  "line": 7,
+  "name": "a settlement is not added next to an adjacent hex of an existing settlement of the same player",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 8,
+  "name": "a players turn ends",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 9,
+  "name": "the settlements will not merge into one",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 11,
+  "name": "a settlement is added next to an adjacent hex of an existing settlement of a different player",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 12,
+  "name": "a players finishes their turn",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 13,
+  "name": "the settlements will not be merged",
+  "keyword": "Then "
+});
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 684507,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color(MergingSettlementsAcceptanceTests.java:13)\r\n\tat ✽.Given a settlement is added next to an adjacent hex of an existing settlement of the same color(MergingSettlementsAcceptanceTests.feature:3)\r\n",
-  "status": "pending"
+  "duration": 100299,
+  "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_player_ends_their_turn()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 20992,
+  "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_merge_into_one()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 12177309,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.a_settlement_is_not_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
+});
+formatter.result({
+  "duration": 34988,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.a_players_turn_ends()"
+});
+formatter.result({
+  "duration": 20993,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not_merge_into_one()"
+});
+formatter.result({
+  "duration": 19856063,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_a_different_player()"
+});
+formatter.result({
+  "duration": 30323,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.a_players_finishes_their_turn()"
+});
+formatter.result({
+  "duration": 25191,
+  "status": "passed"
+});
+formatter.match({
+  "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not__be_merged()"
+});
+formatter.result({
+  "duration": 6982721,
+  "status": "passed"
 });
 formatter.uri("PlayerTurnsAcceptanceTests.feature");
 formatter.feature({
@@ -1058,7 +1221,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_start_of_a_game()"
 });
 formatter.result({
-  "duration": 519895,
+  "duration": 362945,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.the_start_of_a_game(PlayerTurnsAcceptanceTests.java:14)\r\n\tat ✽.Given the start of a game(PlayerTurnsAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
@@ -1101,7 +1264,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.there_are_still_tiles_available()"
 });
 formatter.result({
-  "duration": 474892,
+  "duration": 269643,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.there_are_still_tiles_available(PlayerTurnsAcceptanceTests.java:32)\r\n\tat ✽.Given there are still tiles available(PlayerTurnsAcceptanceTests.feature:9)\r\n",
   "status": "pending"
 });
@@ -1144,7 +1307,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.has_build_actions_available()"
 });
 formatter.result({
-  "duration": 417258,
+  "duration": 279906,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.has_build_actions_available(PlayerTurnsAcceptanceTests.java:50)\r\n\tat ✽.Given has build actions available(PlayerTurnsAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
@@ -1187,7 +1350,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded()"
 });
 formatter.result({
-  "duration": 422784,
+  "duration": 276174,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded(PlayerTurnsAcceptanceTests.java:68)\r\n\tat ✽.Given a new settlement is added or expanded(PlayerTurnsAcceptanceTests.feature:19)\r\n",
   "status": "pending"
 });
@@ -1250,7 +1413,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player()"
 });
 formatter.result({
-  "duration": 420020,
+  "duration": 331222,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:86)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
   "status": "pending"
 });
@@ -1327,7 +1490,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_and_a_player(int,int)"
 });
 formatter.result({
-  "duration": 728326,
+  "duration": 417526,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:116)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
   "status": "pending"
 });
@@ -1390,14 +1553,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_has_placed_Meeple_s()"
 });
 formatter.result({
-  "duration": 13994508,
+  "duration": 7181454,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 630820,
+  "duration": 278040,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:5)\r\n",
   "status": "pending"
 });
@@ -1440,14 +1603,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Totoro()"
 });
 formatter.result({
-  "duration": 154349,
+  "duration": 52249,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 396335,
+  "duration": 499165,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:10)\r\n",
   "status": "pending"
 });
@@ -1490,8 +1653,8 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Tiger()"
 });
 formatter.result({
-  "duration": 437390,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:111)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
+  "duration": 366211,
+  "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:110)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
 formatter.match({
@@ -1562,7 +1725,7 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "duration": 572792,
+  "duration": 445517,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat TerrainTypesAcceptanceTests.a_type_of_terrain(TerrainTypesAcceptanceTests.java:15)\r\n\tat ✽.Given a type of terrain,(TerrainTypeAcceptanceTests.feature:4)\r\n",
   "status": "pending"
 });
@@ -1623,21 +1786,21 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_tilePiece()"
 });
 formatter.result({
-  "duration": 76188,
+  "duration": 69977,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_is_placed_on_the_board()"
 });
 formatter.result({
-  "duration": 55266,
+  "duration": 32189,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_must_contain_one_and_only_one_volcano_terrain()"
 });
 formatter.result({
-  "duration": 597661,
+  "duration": 495433,
   "status": "passed"
 });
 formatter.uri("TilesAcceptanceTests.feature");
