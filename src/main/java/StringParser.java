@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 
 /**
@@ -215,4 +216,35 @@ public class StringParser {
         terrainType = splitStringFromServer[splitStringFromServer.length-1];
         return t.getTerrainTypeFromString(terrainType);
     }
+
+    public int getCurrentScoreForFirstPlayerWhenGameEnds(String fromServer) {
+        String score;
+        String [] splitStringFromServer;
+        splitStringFromServer = fromServer.split(" ");
+        score = splitStringFromServer[5];
+        return Integer.parseInt(score);
+    }
+
+    public int getCurrentScoreForSecondPlayerWhenGameEnds(String fromServer) {
+        String score;
+        String [] splitStringFromServer;
+        splitStringFromServer = fromServer.split(" ");
+        score = splitStringFromServer[splitStringFromServer.length-1];
+        return Integer.parseInt(score);
+    }
+
+    public String getPlayerIdForFirstPlayerOnceGameEnds(String fromServer){
+        String pidFromMessageSentToBothPlayers;
+        String[] splitStringFromServer = fromServer.split(" ");
+        pidFromMessageSentToBothPlayers = splitStringFromServer[4];
+        return pidFromMessageSentToBothPlayers;
+    }
+
+    public String getPlayerIdForSecondPlayerOnceGameEnds(String fromServer){
+        String pidFromMessageSentToBothPlayers;
+        String[] splitStringFromServer = fromServer.split(" ");
+        pidFromMessageSentToBothPlayers = splitStringFromServer[7];
+        return pidFromMessageSentToBothPlayers;
+    }
+
 }

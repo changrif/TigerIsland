@@ -86,11 +86,11 @@ public class SettlementTests {
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
 
         CurrentPlacement = new Coordinate(99, 100, 101);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.JUNGLE, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
 
         CurrentPlacement = new Coordinate(99, 101, 100);
-        GameBoard.PlaceTotoro(CurrentPlacement, p1);
+        GameBoard.placeTotoro(CurrentPlacement, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 7);
 
@@ -105,7 +105,7 @@ public class SettlementTests {
 //        CurrentPlacement = new Coordinate(100,101,99);
 //        GameBoard.foundNewSettlement(CurrentPlacement, p1);
         CurrentPlacement = new Coordinate(100, 102, 98);
-        GameBoard.ExpandSettlement(CurrentPlacement, Terrain.typesOfTerrain.LAKE, p1);
+        GameBoard.expandSettlement(CurrentPlacement, Terrain.typesOfTerrain.LAKE, p1);
         Assert.assertEquals(p1.getPlayerSettlements().size(), 1);
         Assert.assertEquals(p1.getPlayerSettlements().get(0).getLength(), 9);
         Assert.assertTrue(p1.getPlayerSettlements().get(0).getTotoroFlag());
