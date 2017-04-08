@@ -91,8 +91,22 @@ public class HexAcceptanceTests {
 
     @Then("^it should have (\\d+) sides$")
     public void it_should_have_sides(int arg1) throws Throwable {
+        Map GameBoard = new Map();
+        Deck d = new Deck();
+        d.generateTiles();
+        Tile t = d.draw();
+        Hex h1 = t.getHex1();
+        Hex h2 = t.getHex2();
+        Hex h3 = t.getHex3();
+        Coordinate c = new Coordinate(100,99,101);
 
+        GameBoard.placeFirstTile();
+        GameBoard.placeTile(t, c, 6);
+
+        Coordinate[] adjacentToC = GameBoard.createAdjacentCoordinateArray(h1.getCoordinate());
+
+        int numberOfSidesOnHex = adjacentToC.length;
+
+        Assert.assertEquals(6, numberOfSidesOnHex);
     }
-
-
 }
