@@ -29,22 +29,6 @@ public class FoundingANewSettlementAcceptanceTests {
         Coordinate c = new Coordinate(100, 100, 100);
         m.foundNewSettlement(c, p1);
 
-//        Coordinate c = new Coordinate(100, 100, 100);
-//        d.generateTiles();
-//        Tile t = d.draw();
-//        Coordinate c2 = new Coordinate(99, 101, 100);
-
-        //m.placeTile(t, c, 1);
-        /* don't be mad and don't delete
-        Player p = new Player("David");
-
-        Assert.assertEquals(0, p.getOwnedSettlementsSize());
-        Assert.assertEquals(20, p.getNumberOfMeeplesIHave());
-
-        m.foundNewSettlement(c2, p);
-
-        Assert.assertEquals(1, p.getOwnedSettlementsSize());
-        Assert.assertEquals(19, p.getNumberOfMeeplesIHave());*/
     }
 
 }
