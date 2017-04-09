@@ -106,16 +106,40 @@ public class TerrainTypesAcceptanceTests {
         d.generateTiles();
         Tile t;
         int volcanoCount = 0;
-        for(int i = 0; i < 47; i++){
+        for (int i = 0; i < 47; i++) {
             t = d.draw();
             Assert.assertEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex1().getTerrainType());
             Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex2().getTerrainType());
             Assert.assertNotEquals(Terrain.typesOfTerrain.VOLCANO, t.getHex3().getTerrainType());
 
-            if(Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType()){
+            if (Terrain.typesOfTerrain.VOLCANO == t.getHex1().getTerrainType()) {
                 volcanoCount++;
             }
         }
         Assert.assertEquals(47, volcanoCount);
     }
+
+    @Given("^a tile is created$")
+    public void a_tile_is_created() throws Throwable {
+    }
+
+    @When("^a terrain is given in a string$")
+    public void a_terrain_is_given_in_a_string() throws Throwable {
+
+    }
+
+    @Then("^Terrain returns the right terrain enum$")
+    public void terrain_returns_the_right_terrain_enum() throws Throwable {
+        Terrain terrain = new Terrain();
+        String[] terrainStrings = {terrain.convertTerrainToString(Terrain.typesOfTerrain.JUNGLE), terrain.convertTerrainToString(Terrain.typesOfTerrain.LAKE),terrain.convertTerrainToString(Terrain.typesOfTerrain.GRASSLANDS), terrain.convertTerrainToString(Terrain.typesOfTerrain.ROCKY)};
+
+        for(int i = 0; i < terrainStrings.length; i++) {
+            Assert.assertEquals(terrain.getTerrainTypeFromString(terrainStrings[0]), Terrain.typesOfTerrain.JUNGLE);
+            Assert.assertEquals(terrain.getTerrainTypeFromString(terrainStrings[1]), Terrain.typesOfTerrain.LAKE);
+            Assert.assertEquals(terrain.getTerrainTypeFromString(terrainStrings[2]), Terrain.typesOfTerrain.GRASSLANDS);
+            Assert.assertEquals(terrain.getTerrainTypeFromString(terrainStrings[3]), Terrain.typesOfTerrain.ROCKY);
+        }
+    }
+
+
 }

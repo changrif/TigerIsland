@@ -13,3 +13,9 @@ Feature: Terrain Types
     Given a tile that has been created,
     When the tile is placed on the board,
     Then it must contain exactly one volcano terrain.
+
+  Scenario: A hex contains type of terrain
+    Given a tile is created
+    When a terrain is given in a string
+    Then Terrain returns the right terrain enum
+
