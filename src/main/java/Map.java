@@ -340,7 +340,6 @@ public class Map {
 
             player.addSettlement(s);
             player.decreaseNumberOfMeeplesByAmount(1);
-            player.increaseMatchScore(1);
 
             mergeSettlementsAfterFounding(s, player);
         }
@@ -468,7 +467,6 @@ public class Map {
                 ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
             }
             player.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
-            player.increaseMatchScore(RequiredMeeples);
         }
 
         mergeSettlementsAfterExpansion(ExpandedSettlement, player);

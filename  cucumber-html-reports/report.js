@@ -69,21 +69,21 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_does_not_have_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
 formatter.result({
-  "duration": 227709571,
+  "duration": 122683175,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_place_a_totoro_during_the_build_phase()"
 });
 formatter.result({
-  "duration": 49451,
+  "duration": 57240,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_will_not_be_allowed_to_add_a_totoro()"
 });
 formatter.result({
-  "duration": 35755188,
+  "duration": 21981614,
   "status": "passed"
 });
 formatter.match({
@@ -96,42 +96,42 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_of_size_or_larger_with_an_empty_non_volcanic_adjacent_hex(int)"
 });
 formatter.result({
-  "duration": 212728,
+  "duration": 112111,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "duration": 54115,
+  "duration": 31975,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_can_add_a_Totoro_to_the_empty_hex()"
 });
 formatter.result({
-  "duration": 32170993,
+  "duration": 14168201,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_that_has_a_certain_amount_of_totoros()"
 });
 formatter.result({
-  "duration": 38720,
+  "duration": 130665,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.he_she_places_a_totoro_on_the_board()"
 });
 formatter.result({
-  "duration": 30790,
+  "duration": 28817,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.the_amount_of_totoros_available_to_the_player_decrease_by_one()"
 });
 formatter.result({
-  "duration": 66960506,
+  "duration": 11760582,
   "status": "passed"
 });
 formatter.scenario({
@@ -161,21 +161,21 @@ formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_has_a_settlement_with_a_Totoro()"
 });
 formatter.result({
-  "duration": 83505,
+  "duration": 65530,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_tries_to_add_another_Totoro_to_that_settlement()"
 });
 formatter.result({
-  "duration": 48050,
+  "duration": 50134,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.they_are_not_allowed_to_place_the_Totoro()"
 });
 formatter.result({
-  "duration": 28627850,
+  "duration": 13928584,
   "status": "passed"
 });
 formatter.uri("ExpandingASettlementAcceptanceTests.feature");
@@ -243,49 +243,49 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.there_is_an_adjacent_non_volcanic_hex_to_a_player_s_existing_settlement()"
 });
 formatter.result({
-  "duration": 15246012,
+  "duration": 9804169,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_expand()"
 });
 formatter.result({
-  "duration": 526223,
+  "duration": 204879,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_be_able_to_occupy_all_contiguous_hexes_of_the_chosen_terrain()"
 });
 formatter.result({
-  "duration": 145551,
+  "duration": 61188,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_that_has_a_certain_amount_of_meeples()"
 });
 formatter.result({
-  "duration": 43320114,
+  "duration": 83299911,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.he_she_attempts_to_expand_to_a_terrain()"
 });
 formatter.result({
-  "duration": 377406,
+  "duration": 144481,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_have_the_necessary_amount_of_meeples_to_expand()"
 });
 formatter.result({
-  "duration": 67644,
+  "duration": 39081,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_that_has_a_certain_amount_of_totoros()"
 });
 formatter.result({
-  "duration": 11645488,
+  "duration": 8795172,
   "status": "passed"
 });
 formatter.match({
@@ -298,14 +298,14 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.he_she_attempts_to_expand_to_a_terrain_adjacent_to_a_settlement_of_length(int)"
 });
 formatter.result({
-  "duration": 476307,
+  "duration": 173299,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_must_have_the_necessary_amount_of_totoros_to_expand()"
 });
 formatter.result({
-  "duration": 117561,
+  "duration": 35528,
   "status": "passed"
 });
 formatter.scenario({
@@ -335,14 +335,14 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_has_enough_Meeples_left()"
 });
 formatter.result({
-  "duration": 38072810,
+  "duration": 12497592,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.they_expand()"
 });
 formatter.result({
-  "duration": 397000,
+  "duration": 174087,
   "status": "passed"
 });
 formatter.match({
@@ -355,7 +355,7 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.the_must_place_Meeple_per_level_on_each_hex(int)"
 });
 formatter.result({
-  "duration": 188937,
+  "duration": 149613,
   "status": "passed"
 });
 formatter.scenario({
@@ -385,21 +385,21 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_non_adjacent_terrain()"
 });
 formatter.result({
-  "duration": 11712666,
+  "duration": 34961598,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_meeple_tries_to_expand_to_the_terrain()"
 });
 formatter.result({
-  "duration": 56448,
+  "duration": 24080,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.it_will_be_prohibited_from_doing_so()"
 });
 formatter.result({
-  "duration": 99833,
+  "duration": 33949,
   "status": "passed"
 });
 formatter.scenario({
@@ -429,21 +429,21 @@ formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_successful_expansion_of_a_settlement()"
 });
 formatter.result({
-  "duration": 11253619,
+  "duration": 8475025,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.a_player_s_turn_has_ended()"
 });
 formatter.result({
-  "duration": 42919,
+  "duration": 23685,
   "status": "passed"
 });
 formatter.match({
   "location": "ExpandingASettlementAcceptanceTests.the_settlement_size_will_increase_by_the_number_of_added_territories()"
 });
 formatter.result({
-  "duration": 35921,
+  "duration": 14606,
   "status": "passed"
 });
 formatter.uri("FoundingANewSettlement.feature");
@@ -496,42 +496,42 @@ formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_non_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 168410,
+  "duration": 60003,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_has_the_option_to_build()"
 });
 formatter.result({
-  "duration": 53648,
+  "duration": 14211,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_can_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 43415748,
+  "duration": 8444234,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.there_is_an_empty_volcanic_level_one_hex()"
 });
 formatter.result({
-  "duration": 44785,
+  "duration": 25264,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.a_player_can_build()"
 });
 formatter.result({
-  "duration": 45252,
+  "duration": 12632,
   "status": "passed"
 });
 formatter.match({
   "location": "FoundingANewSettlementAcceptanceTests.they_cannot_add_a_Meeple_to_that_hex_to_form_a_new_settlement()"
 });
 formatter.result({
-  "duration": 8105144,
+  "duration": 23305232,
   "status": "passed"
 });
 formatter.uri("GameResultsAcceptanceTests.feature");
@@ -569,7 +569,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left()"
 });
 formatter.result({
-  "duration": 3475965,
+  "duration": 2048786,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_Totoros_or_Tigers_left(GameResultAcceptanceTests.java:13)\r\n\tat ✽.Given a player has Totoros or Tigers left(GameResultsAcceptanceTests.feature:3)\r\n",
   "status": "pending"
 });
@@ -612,7 +612,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left()"
 });
 formatter.result({
-  "duration": 418926,
+  "duration": 238038,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_player_has_no_Meeples_or_Totoro_left(GameResultAcceptanceTests.java:31)\r\n\tat ✽.Given a player has no Meeples or Totoro left(GameResultsAcceptanceTests.feature:8)\r\n",
   "status": "pending"
 });
@@ -660,7 +660,7 @@ formatter.match({
   "location": "GameResultAcceptanceTests.a_game_that_is_in_progress()"
 });
 formatter.result({
-  "duration": 299966,
+  "duration": 178825,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.a_game_that_is_in_progress(GameResultAcceptanceTests.java:49)\r\n\tat ✽.Given a game that is in progress(GameResultsAcceptanceTests.feature:13)\r\n",
   "status": "pending"
 });
@@ -732,14 +732,14 @@ formatter.match({
   "location": "HexAcceptanceTests.a_hex_is_created()"
 });
 formatter.result({
-  "duration": 144151,
+  "duration": 86451,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_is_created()"
 });
 formatter.result({
-  "duration": 60179,
+  "duration": 26054,
   "status": "passed"
 });
 formatter.match({
@@ -752,28 +752,28 @@ formatter.match({
   "location": "HexAcceptanceTests.it_should_have_sides(int)"
 });
 formatter.result({
-  "duration": 9701541,
+  "duration": 10413278,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_hex_has__been_created()"
 });
 formatter.result({
-  "duration": 41519,
+  "duration": 24870,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.a_tile_has_been_created()"
 });
 formatter.result({
-  "duration": 35455,
+  "duration": 14211,
   "status": "passed"
 });
 formatter.match({
   "location": "HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types()"
 });
 formatter.result({
-  "duration": 501498,
+  "duration": 257776,
   "error_message": "java.lang.AssertionError: expected:\u003c1\u003e but was:\u003c0\u003e\r\n\tat org.junit.Assert.fail(Assert.java:88)\r\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\r\n\tat org.junit.Assert.assertEquals(Assert.java:645)\r\n\tat org.junit.Assert.assertEquals(Assert.java:631)\r\n\tat HexAcceptanceTests.it_must_have_one_and_only_one_of_the_five_terrain_types(HexAcceptanceTests.java:61)\r\n\tat ✽.Then it must have one, and only one of the five terrain types(HexAcceptanceTests.feature:10)\r\n",
   "status": "failed"
 });
@@ -812,21 +812,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 116161,
+  "duration": 44213,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 37321,
+  "duration": 13027,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_should_be_initialized_to_empty()"
 });
 formatter.result({
-  "duration": 1710116315,
+  "duration": 708024765,
   "status": "passed"
 });
 formatter.scenario({
@@ -856,21 +856,21 @@ formatter.match({
   "location": "MapAcceptanceTests.the_board_is_not_initialized()"
 });
 formatter.result({
-  "duration": 71376,
+  "duration": 33949,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.the_players_begin_the_game()"
 });
 formatter.result({
-  "duration": 30323,
+  "duration": 15395,
   "status": "passed"
 });
 formatter.match({
   "location": "MapAcceptanceTests.a_board_data_structure_containing_data_will_produce_errors()"
 });
 formatter.result({
-  "duration": 964357240,
+  "duration": 424735355,
   "status": "passed"
 });
 formatter.uri("MeepleAcceptanceTests.feature");
@@ -908,14 +908,14 @@ formatter.match({
   "location": "MeepleAcceptanceTests.the_Meeples_are_not_initialized()"
 });
 formatter.result({
-  "duration": 95635,
+  "duration": 55661,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.before_the_game_begins()"
 });
 formatter.result({
-  "duration": 28923,
+  "duration": 16975,
   "status": "passed"
 });
 formatter.match({
@@ -928,7 +928,7 @@ formatter.match({
   "location": "MeepleAcceptanceTests.meeples_are_created_for_each_player(int)"
 });
 formatter.result({
-  "duration": 170277,
+  "duration": 108163,
   "status": "passed"
 });
 formatter.scenario({
@@ -1003,84 +1003,84 @@ formatter.match({
   "location": "MeepleAcceptanceTests.a_meeple()"
 });
 formatter.result({
-  "duration": 44785,
+  "duration": 32370,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "duration": 37321,
+  "duration": 27633,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.it_can_be_placed_on_a_habitable_terrain()"
 });
 formatter.result({
-  "duration": 7140401,
+  "duration": 10614604,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.a_meeple()"
 });
 formatter.result({
-  "duration": 32656,
+  "duration": 38687,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "duration": 28923,
+  "duration": 20133,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_volcano_terrain()"
 });
 formatter.result({
-  "duration": 7009312,
+  "duration": 29541198,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.a_Meeple_is_being_placed()"
 });
 formatter.result({
-  "duration": 40586,
+  "duration": 36318,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.a_player_builds()"
 });
 formatter.result({
-  "duration": 30789,
+  "duration": 28817,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.decrement_the_number_of_Meeples_from_the_player_s_total()"
 });
 formatter.result({
-  "duration": 6853031,
+  "duration": 8309622,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.a_meeple()"
 });
 formatter.result({
-  "duration": 33122,
+  "duration": 19738,
   "status": "passed"
 });
 formatter.match({
   "location": "BuildTotoroSanctuaryAcceptanceTests.a_player_enters_their_build_phase()"
 });
 formatter.result({
-  "duration": 24259,
+  "duration": 11448,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.it_cannot_be_placed_on_a_hex_that_is_already_occupied_by_meeples()"
 });
 formatter.result({
-  "duration": 7189852,
+  "duration": 7575374,
   "status": "passed"
 });
 formatter.scenario({
@@ -1110,21 +1110,21 @@ formatter.match({
   "location": "MeepleAcceptanceTests.a_terrain_that_is_of_type_volcano()"
 });
 formatter.result({
-  "duration": 90503,
+  "duration": 37502,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.a_meeple_tries_to_occupy_the_terrain()"
 });
 formatter.result({
-  "duration": 33122,
+  "duration": 20527,
   "status": "passed"
 });
 formatter.match({
   "location": "MeepleAcceptanceTests.it_will_be_prohibited_from_doing_so()"
 });
 formatter.result({
-  "duration": 95034142,
+  "duration": 6712043,
   "status": "passed"
 });
 formatter.uri("MergingSettlementsAcceptanceTests.feature");
@@ -1192,63 +1192,63 @@ formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 107764,
+  "duration": 70661,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_player_ends_their_turn()"
 });
 formatter.result({
-  "duration": 29857,
+  "duration": 19738,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_merge_into_one()"
 });
 formatter.result({
-  "duration": 7659160,
+  "duration": 7425763,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_not_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_the_same_color()"
 });
 formatter.result({
-  "duration": 39654,
+  "duration": 30396,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_players_turn_ends()"
 });
 formatter.result({
-  "duration": 29390,
+  "duration": 23686,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not_merge_into_one()"
 });
 formatter.result({
-  "duration": 6898750,
+  "duration": 7437605,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_settlement_is_added_next_to_an_adjacent_hex_of_an_existing_settlement_of_a_different_player()"
 });
 formatter.result({
-  "duration": 40120,
+  "duration": 29212,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.a_players_finishes_their_turn()"
 });
 formatter.result({
-  "duration": 28924,
+  "duration": 20132,
   "status": "passed"
 });
 formatter.match({
   "location": "MergingSettlementsAcceptanceTests.the_settlements_will_not__be_merged()"
 });
 formatter.result({
-  "duration": 7035436,
+  "duration": 62105836,
   "status": "passed"
 });
 formatter.uri("PlayerTurnsAcceptanceTests.feature");
@@ -1286,21 +1286,21 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_start_of_a_game()"
 });
 formatter.result({
-  "duration": 118960,
+  "duration": 82504,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.two_people_want_to_play_a_game()"
 });
 formatter.result({
-  "duration": 28457,
+  "duration": 18948,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.they_should_be_able_to_have_the_role_of_a_player_to_enter_the_game()"
 });
 formatter.result({
-  "duration": 56448,
+  "duration": 32371,
   "status": "passed"
 });
 formatter.scenario({
@@ -1330,21 +1330,21 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.there_are_still_tiles_available()"
 });
 formatter.result({
-  "duration": 56448,
+  "duration": 30002,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_draws_a_tile()"
 });
 formatter.result({
-  "duration": 37787,
+  "duration": 42239,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_player_must_place_the_tile_in_a_valid_spot_before_executing_a_build_action()"
 });
 formatter.result({
-  "duration": 11354852,
+  "duration": 8807804,
   "status": "passed"
 });
 formatter.scenario({
@@ -1374,21 +1374,21 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.has_build_actions_available()"
 });
 formatter.result({
-  "duration": 59714,
+  "duration": 45397,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_has_just_placed_a_tile()"
 });
 formatter.result({
-  "duration": 31722,
+  "duration": 26449,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_player_must_complete_the_build_action_before_ending_their_turn()"
 });
 formatter.result({
-  "duration": 7343334,
+  "duration": 8268567,
   "status": "passed"
 });
 formatter.scenario({
@@ -1418,21 +1418,21 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_new_settlement_is_added_or_expanded()"
 });
 formatter.result({
-  "duration": 62979,
+  "duration": 31186,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_ends_their_build_phase()"
 });
 formatter.result({
-  "duration": 35455,
+  "duration": 13027,
   "status": "passed"
 });
 formatter.match({
   "location": "PlayerTurnsAcceptanceTests.the_turn_ends_settlements_are_merged_if_necessary()"
 });
 formatter.result({
-  "duration": 33588,
+  "duration": 20527,
   "status": "passed"
 });
 formatter.scenario({
@@ -1482,7 +1482,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player()"
 });
 formatter.result({
-  "duration": 367143,
+  "duration": 257381,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player(PlayerTurnsAcceptanceTests.java:186)\r\n\tat ✽.Given A player(PlayerTurnsAcceptanceTests.feature:24)\r\n",
   "status": "pending"
 });
@@ -1559,7 +1559,7 @@ formatter.match({
   "location": "PlayerTurnsAcceptanceTests.a_player_and_a_player(int,int)"
 });
 formatter.result({
-  "duration": 464177,
+  "duration": 319752,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat PlayerTurnsAcceptanceTests.a_player_and_a_player(PlayerTurnsAcceptanceTests.java:216)\r\n\tat ✽.Given a player 1 and a player 2(PlayerTurnsAcceptanceTests.feature:34)\r\n",
   "status": "pending"
 });
@@ -1622,14 +1622,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_has_placed_Meeple_s()"
 });
 formatter.result({
-  "duration": 21972618,
+  "duration": 7923944,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 461378,
+  "duration": 174877,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:5)\r\n",
   "status": "pending"
 });
@@ -1672,14 +1672,14 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Totoro()"
 });
 formatter.result({
-  "duration": 95634,
+  "duration": 45002,
   "status": "passed"
 });
 formatter.match({
   "location": "GameResultAcceptanceTests.they_successfully_complete_a_build_phase()"
 });
 formatter.result({
-  "duration": 271975,
+  "duration": 191062,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat GameResultAcceptanceTests.they_successfully_complete_a_build_phase(GameResultAcceptanceTests.java:37)\r\n\tat ✽.When they successfully complete a build phase(ScoringAcceptanceTests.feature:10)\r\n",
   "status": "pending"
 });
@@ -1722,7 +1722,7 @@ formatter.match({
   "location": "ScoringAcceptanceTests.a_player_placed_a_Tiger()"
 });
 formatter.result({
-  "duration": 493567,
+  "duration": 151586,
   "error_message": "cucumber.api.PendingException: TODO: implement me\r\n\tat ScoringAcceptanceTests.a_player_placed_a_Tiger(ScoringAcceptanceTests.java:110)\r\n\tat ✽.Given a player placed a Tiger(ScoringAcceptanceTests.feature:14)\r\n",
   "status": "pending"
 });
@@ -1794,42 +1794,42 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "duration": 6986453,
+  "duration": 6803231,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_has_been_placed()"
 });
 formatter.result({
-  "duration": 83972,
+  "duration": 56845,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_cannot_be_compared_with_non_adjacent_terrains()"
 });
 formatter.result({
-  "duration": 72309,
+  "duration": 44608,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_type_of_terrain()"
 });
 formatter.result({
-  "duration": 7162328,
+  "duration": 7747093,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_has_been_placed()"
 });
 formatter.result({
-  "duration": 66244,
+  "duration": 50529,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_can_be_compared_with_all_adjacent_terrains()"
 });
 formatter.result({
-  "duration": 50849,
+  "duration": 34344,
   "status": "passed"
 });
 formatter.scenario({
@@ -1859,21 +1859,21 @@ formatter.match({
   "location": "TerrainTypesAcceptanceTests.a_tilePiece()"
 });
 formatter.result({
-  "duration": 48984,
+  "duration": 29607,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.the_tile_is_placed_on_the_board()"
 });
 formatter.result({
-  "duration": 27991,
+  "duration": 17764,
   "status": "passed"
 });
 formatter.match({
   "location": "TerrainTypesAcceptanceTests.it_must_contain_one_and_only_one_volcano_terrain()"
 });
 formatter.result({
-  "duration": 361545,
+  "duration": 163035,
   "status": "passed"
 });
 formatter.uri("TilesAcceptanceTests.feature");
@@ -1926,14 +1926,14 @@ formatter.match({
   "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
 });
 formatter.result({
-  "duration": 95634,
+  "duration": 88820,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.before_the_first_turn()"
 });
 formatter.result({
-  "duration": 27525,
+  "duration": 17369,
   "status": "passed"
 });
 formatter.match({
@@ -1946,21 +1946,21 @@ formatter.match({
   "location": "TilesAcceptanceTests.there_are_tiles(int)"
 });
 formatter.result({
-  "duration": 215994,
+  "duration": 128296,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.no_tiles_have_been_placed()"
 });
 formatter.result({
-  "duration": 27524,
+  "duration": 13816,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.before_the_first_turn()"
 });
 formatter.result({
-  "duration": 23792,
+  "duration": 18554,
   "status": "passed"
 });
 formatter.match({
@@ -1977,7 +1977,7 @@ formatter.match({
   "location": "TilesAcceptanceTests.there_are_tiles_of_each_of_the_terrain_combinations(int,int)"
 });
 formatter.result({
-  "duration": 472574,
+  "duration": 256986,
   "status": "passed"
 });
 formatter.scenario({
@@ -2007,14 +2007,14 @@ formatter.match({
   "location": "TilesAcceptanceTests.all_the_tiles()"
 });
 formatter.result({
-  "duration": 153482,
+  "duration": 75004,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.the_game_begins()"
 });
 formatter.result({
-  "duration": 45718,
+  "duration": 13422,
   "status": "passed"
 });
 formatter.match({
@@ -2027,7 +2027,7 @@ formatter.match({
   "location": "TilesAcceptanceTests.each_tile_should_have_hexes_with_the_proper_configuration_of_one_volcano_and_a_terrain_combination(int)"
 });
 formatter.result({
-  "duration": 507562,
+  "duration": 232116,
   "status": "passed"
 });
 formatter.scenario({
@@ -2057,21 +2057,21 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_empty()"
 });
 formatter.result({
-  "duration": 71376,
+  "duration": 38292,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.a_tile_is_being_placed()"
 });
 formatter.result({
-  "duration": 29390,
+  "duration": 24475,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.the_tile_is_placed_at_the_origin_in_any_orientation()"
 });
 formatter.result({
-  "duration": 542475965,
+  "duration": 244917906,
   "status": "passed"
 });
 formatter.scenario({
@@ -2116,42 +2116,42 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_not_empty()"
 });
 formatter.result({
-  "duration": 63912,
+  "duration": 30396,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.a_tile_is_being_placed_not_adjacent_to_another_tile()"
 });
 formatter.result({
-  "duration": 26124,
+  "duration": 12237,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.the_player_will_be_prohibited_from_so()"
 });
 formatter.result({
-  "duration": 6950532,
+  "duration": 9610739,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.there_is_a_fixed_number_of_tiles_available()"
 });
 formatter.result({
-  "duration": 38254,
+  "duration": 25659,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.they_successfully_place_a_tile()"
 });
 formatter.result({
-  "duration": 25191,
+  "duration": 12632,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.that_tile_should_be_removed_from_the_list_of_available_tiles_combination_type()"
 });
 formatter.result({
-  "duration": 7139935,
+  "duration": 144116867,
   "status": "passed"
 });
 formatter.scenario({
@@ -2181,7 +2181,7 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_not_empty()"
 });
 formatter.result({
-  "duration": 61580,
+  "duration": 27633,
   "status": "passed"
 });
 formatter.match({
@@ -2194,14 +2194,14 @@ formatter.match({
   "location": "TilesAcceptanceTests.a_tile_is_being_placed_on_level(int)"
 });
 formatter.result({
-  "duration": 132489,
+  "duration": 78951,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.at_least_one_side_of_the_tile_being_placed_must_touch_an_existing_tile_on_the_board()"
 });
 formatter.result({
-  "duration": 6925341,
+  "duration": 7438394,
   "status": "passed"
 });
 formatter.scenario({
@@ -2397,21 +2397,21 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
 });
 formatter.result({
-  "duration": 195934,
+  "duration": 123954,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.a_tile_is_About_To_Be_Stacked()"
 });
 formatter.result({
-  "duration": 30323,
+  "duration": 22106,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.it_can_be_stacked_so_long_as_it_follows_stacking_restrictions()"
 });
 formatter.result({
-  "duration": 6912745,
+  "duration": 8409890,
   "status": "passed"
 });
 formatter.match({
@@ -2424,28 +2424,28 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
 });
 formatter.result({
-  "duration": 129690,
+  "duration": 88031,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.a_tile_is_being_stacked_and()"
 });
 formatter.result({
-  "duration": 32655,
+  "duration": 22106,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.it_has_space_beneath_it()"
 });
 formatter.result({
-  "duration": 24259,
+  "duration": 15001,
   "status": "passed"
 });
 formatter.match({
   "location": "TilesAcceptanceTests.it_is_prohibited_from_being_stacked()"
 });
 formatter.result({
-  "duration": 25192,
+  "duration": 68293,
   "status": "passed"
 });
 formatter.match({
@@ -2458,7 +2458,7 @@ formatter.match({
   "location": "TilesAcceptanceTests.the_board_is_not_empty_and_has_a_valid_level_configuration(int)"
 });
 formatter.result({
-  "duration": 84439,
+  "duration": 70266,
   "status": "passed"
 });
 formatter.match({});

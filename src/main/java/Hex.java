@@ -82,6 +82,7 @@ public class Hex {
         meeples = new Meeple[Level];
         for(int i = 0; i < Level; i++){
             meeples[i] = new Meeple(player.getPlayerName());
+            player.increaseMatchScore(Level);
         }
         BelongsToThisPlayer = player.getPlayerName();
     }
