@@ -61,7 +61,7 @@ public class HexAcceptanceTests {
             terrainCounterHex2++;
         }
         if (t.getHex1().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
-            terrainCounterHex1++;
+            terrainCounterHex2++;
         }
 
         Assert.assertEquals(1, terrainCounterHex2);
@@ -82,7 +82,7 @@ public class HexAcceptanceTests {
             terrainCounterHex3++;
         }
         if (t.getHex1().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
-            terrainCounterHex1++;
+            terrainCounterHex3++;
         }
 
         Assert.assertEquals(1, terrainCounterHex3);
