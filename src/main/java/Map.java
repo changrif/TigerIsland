@@ -495,10 +495,10 @@ public class Map {
                 }
 
                 player.increaseMatchScore(200);
+                mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(),player);
                 break;
             }
         }
-        mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(),player);
     }
 
     private boolean settlementIsValidForTotoro(Coordinate adj, Player player) {
@@ -532,10 +532,10 @@ public class Map {
                 }
 
                 player.increaseMatchScore(75);
+                mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(), player);
                 break;
             }
         }
-        mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(),player);
     }
 
     public boolean hexIsViableForTiger(Coordinate chosenCoordinate)   {
@@ -614,7 +614,7 @@ public class Map {
     }
 
     public void mergeSettlementsAfterExpansion(Settlement mergedSettlement, Player player){
-
+        System.out.println(mergedSettlement);
         ArrayList<Hex> expandedSettlementHexes = mergedSettlement.getSettlementHexes();
 
         for (int l = 0; l < expandedSettlementHexes.size(); l++) {
