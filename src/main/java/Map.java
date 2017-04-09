@@ -1,5 +1,3 @@
-import cucumber.api.java.it.Ma;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -9,21 +7,45 @@ import java.util.LinkedList;
 public class Map {
     //Private Instance Variables
     private final int MAX_MAP_WIDTH = 200, MAX_MAP_HEIGHT = 200, MAX_MAP_LENGTH = 200;
-    private final Coordinate ORIGIN = new Coordinate (100,100,100);
     private Hex Map[][][];
     private boolean isTheFirstTilePlaced;
 
     //Map Constructor
     public Map() {
         Map = new Hex[MAX_MAP_WIDTH][MAX_MAP_HEIGHT][MAX_MAP_LENGTH];
+        //First tile is no longer placed by the player, so it is always true
         isTheFirstTilePlaced = true;
     }
-
-    public Map(Hex[][][] Map)   {
-        this.Map = Map;
-        isTheFirstTilePlaced = true;
+    public Hex[][][] getMap() {
+        return Map;
     }
 
+
+
+    /*
+        Basic Map functions
+    */
+
+    //Returns Hex at Coordinate
+    public Hex hexAt(Coordinate coordinate) {
+        return Map[coordinate.getX()][coordinate.getY()][coordinate.getZ()];
+    }
+
+    //Returns true if a coordinate on the map has a hex
+    public boolean isTaken(Coordinate coordinate) {
+        if (Map[coordinate.getX()][coordinate.getY()][coordinate.getZ()] != null) {
+            return true;
+        } else
+            return false;
+    }
+
+
+
+    /*
+        Tile Placement Functions
+    */
+
+    //Place the 5 hex tile
     public void placeFirstTile()    {
         FirstTile tile = new FirstTile();
         Map[tile.getHex1().getCoordinate().getX()][tile.getHex1().getCoordinate().getY()][tile.getHex1().getCoordinate().getZ()] = tile.getHex1();
@@ -33,12 +55,16 @@ public class Map {
         Map[tile.getHex5().getCoordinate().getX()][tile.getHex5().getCoordinate().getY()][tile.getHex5().getCoordinate().getZ()] = tile.getHex5();
     }
 
+    //Place the tile if it passes valid placement
     public void placeTile(Tile tile, Coordinate coordinate, int tileOrientation) {
+        //Set tile attributes to where they will be placed
+        tile.setTileOrientation(tileOrientation);
         setTileCoordinates(tile, coordinate, tileOrientation);
         setTileLevel(tile);
         if (isValidPlacement(tile)) {
-            tile.setTileOrientation(tileOrientation);
+            //split settlements if necessary
             splitSettlementsAfterNuking(tile);
+            //reflect tile placement on the board
             mapTileToBoard(tile);
         }
         else{
@@ -99,7 +125,7 @@ public class Map {
 
         if (isTheFirstTile(tile)) {
             validPlacement = true;
-        } else if ((canPlaceTileAtGivenTileLocationOnLevel1(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
+        } else if ((canPlaceTileAtGivenTileLocationOnLevelOne(tile) && isAdjacentToAnotherTile(tile)) || canStackTile(tile)) {
             validPlacement = true;
         }
 
@@ -127,8 +153,10 @@ public class Map {
         tile.getHex3().setLevel(level+1);
     }
 
-    public boolean canPlaceTileAtGivenTileLocationOnLevel1(Tile tile) {
-        if (!isTaken(tile.getHex1().getCoordinate()) && !isTaken(tile.getHex2().getCoordinate()) && !isTaken(tile.getHex3().getCoordinate())) {
+    public boolean canPlaceTileAtGivenTileLocationOnLevelOne(Tile tile) {
+        if (!isTaken(tile.getHex1().getCoordinate()) &&
+                !isTaken(tile.getHex2().getCoordinate()) &&
+                !isTaken(tile.getHex3().getCoordinate())) {
             return true;
         }
         return false;
@@ -179,7 +207,11 @@ public class Map {
     }
 
     public boolean canStackTile(Tile tile) {
-        if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile) && !isOnTopOfATotoro(tile) && !isNukingAnEntireSettlement(tile)) {
+        if (isOnTopOfMoreThanOneTile(tile) &&
+                isOnTheSameLevel(tile) &&
+                isVolcanoOverVolcano(tile) &&
+                !isOnTopOfATotoro(tile) &&
+                !isNukingAnEntireSettlement(tile)) {
             return true;
         }
 
@@ -258,6 +290,7 @@ public class Map {
         return isTotoroPresent;
     }
 
+    //Placing on top of a Tiger is not a prohibited move
     public boolean isOnTopOfATiger(Tile tile) {
         boolean isTigerPresent = false;
         if (hexAt(tile.getHex2().getCoordinate()).TigerPresent()) {
@@ -310,46 +343,118 @@ public class Map {
         Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()][hex.getCoordinate().getZ()] = hex;
     }
 
-    public boolean isTaken(Coordinate coordinate) {
-        if (Map[coordinate.getX()][coordinate.getY()][coordinate.getZ()] != null) {
-            return true;
-        } else
-            return false;
-    }
 
-    public Hex[][][] getMap() {
-        return Map;
-    }
 
-    public Terrain.typesOfTerrain getMapTerrain(Coordinate coordinate) {
-        return hexAt(coordinate).getTerrainType();
-    }
+    /*
+        Build Action Functions
+    */
 
-    public Hex hexAt(Coordinate coordinate) {
-        return Map[coordinate.getX()][coordinate.getY()][coordinate.getZ()];
-    }
-
-    public boolean isNewSettlementValid(Hex chosenHex) {
-
-        if ((chosenHex.MeeplesPresent() == false) && (chosenHex.TotoroPresent() == false) && (chosenHex.TigerPresent() == false) && (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO) && (chosenHex.getLevel() == 1)) {
-            return true;
-        } else
-            return false;
-    }
-
+    //Found New Settlement
     public void foundNewSettlement(Coordinate coordinate, Player player) {
         Hex chosenHex = hexAt(coordinate);
 
-        if (isNewSettlementValid(chosenHex)) {
+        if (hexIsViableForSettlement(chosenHex)) {
+            //Create the Settlement
+            Settlement newSettlement = new Settlement(chosenHex, player);
+
+            //Place the Meeples on the Hex and set the Hex's settlement
             chosenHex.placeMeeples(player);
+            chosenHex.setSettlement(newSettlement);
 
-            Settlement s = new Settlement(chosenHex, player);
-            chosenHex.setSettlement(s);
-
-            player.addSettlement(s);
+            //Add to Settlement to Player's settlements and decrement Meeples
+            player.addSettlement(newSettlement);
             player.decreaseNumberOfMeeplesByAmount(1);
 
-            mergeSettlementsAfterFounding(s, player);
+            //Merge if necessary
+            mergeSettlementsAfterFounding(newSettlement, player);
+        }
+    }
+
+    public boolean hexIsViableForSettlement(Hex chosenHex) {
+        //If the hex has not yet been settled, it is a habitable terrain and it is on level one it is a valid settlement placement
+        if (!chosenHex.isSettled()  &&
+                chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
+                chosenHex.getLevel() == 1) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+
+    //Expand Settlement
+    public void expandSettlement(Coordinate coordinate, Terrain.typesOfTerrain terrainType, Player player) {
+        //If the terrain to be expanded into is not habitable, don't expand
+        if (terrainType == Terrain.typesOfTerrain.VOLCANO) { return; }
+
+        //Initialize number of Meeples == 0
+        int numberOfMeeplesNeededToExpand = 0;
+        Hex chosenHex = hexAt(coordinate);
+        Settlement settlementToExpand = chosenHex.getSettlement();
+
+        ArrayList<Hex> hexesInExpansion = new ArrayList<>();
+        LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
+        addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
+
+        while (thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+            //Visit Hex
+            Hex currentHex = unvisitedHexesInTheSettlement.poll();
+            Coordinate currentHexCoordinate = currentHex.getCoordinate();
+
+            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(currentHexCoordinate);
+
+            //if a neighboring tile isn't part of the settlement already
+            //and isn't already added to the list of hexes marked for expansion
+            //and matches the terrain type
+            //then add it
+            for(Coordinate adj : adjacencyMatrix) {
+                boolean added = false;
+
+                if (isTaken(adj)) {
+                    if (hexAt(adj).getTerrainType() == terrainType && !hexAt(adj).isSettled()) {
+
+                        for (int j = 0; j < hexesInExpansion.size(); j++) {
+                            if (hexesInExpansion.get(j) == hexAt(adj)) {
+                                added = true;
+                            }
+                        }
+
+                        if (added == false) {
+                            unvisitedHexesInTheSettlement.add(hexAt(adj));
+                            hexesInExpansion.add(hexAt(adj));
+                            numberOfMeeplesNeededToExpand += hexAt(adj).getLevel();
+                        }
+                    }
+                }
+            }
+        }
+
+        //add hexes to settlement if enough Meeples
+        if (!playerHasEnoughMeeplesToExpand(player, numberOfMeeplesNeededToExpand)) {
+            return;
+        } else {
+            for (int i = 0; i < hexesInExpansion.size(); i++) {
+                hexesInExpansion.get(i).setSettlement(settlementToExpand);
+                hexesInExpansion.get(i).placeMeeples(player);
+                settlementToExpand.addToSettlement(hexesInExpansion.get(i));
+            }
+            player.decreaseNumberOfMeeplesByAmount(numberOfMeeplesNeededToExpand);
+        }
+
+        mergeSettlementsAfterExpansion(settlementToExpand, player);
+
+    }
+
+    public boolean thereAreStillHexesToVisit(LinkedList<Hex> unvisitedHexesInTheSettlement) {
+        return !unvisitedHexesInTheSettlement.isEmpty();
+    }
+
+    public void addSettlementHexesToUnvisitedQueue(LinkedList<Hex> unvisitedHexesInTheSettlement, Settlement settlementToExpand)    {
+        ArrayList<Hex> originalHexesInTheSettlement = settlementToExpand.getSettlementHexes();
+
+        for (int i = 0; i < originalHexesInTheSettlement.size(); i++) {
+            //Add the original hexes in the settlement to a list of unvisited hexes
+            unvisitedHexesInTheSettlement.add(originalHexesInTheSettlement.get(i));
         }
     }
 
@@ -361,202 +466,51 @@ public class Map {
         return false;
     }
 
-    public int requiredMeeplesForExpansion(Coordinate coordinate, Terrain.typesOfTerrain TerrainType)    {
-        //throw error if trying to expand on volcano?
-        if (TerrainType == Terrain.typesOfTerrain.VOLCANO) {
-            return -1;
-        }
 
-        int RequiredMeeples = 0;
-
-        ArrayList<Hex> ExpansionHexes = new ArrayList<>();
-        LinkedList<Hex> queue = new LinkedList<>();
-
-        Settlement ExpandedSettlement = hexAt(coordinate).getSettlement();
-        ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
-
-        for (int i = 0; i < SettlementHexes.size(); i++) {
-            queue.add(SettlementHexes.get(i));
-        }
-
-        while (queue.size() != 0) {
-            //get current Hex
-            Hex CurrentHex = queue.poll();
-            Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
-
-            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
-
-            //if a neighboring tile isn't part of the settlement already
-            //and isn't already added to the list of hexes marked for expansion
-            //and matches the terrain type
-            //then add it
-            for(Coordinate adj : adjacencyMatrix) {
-                boolean added = false;
-
-                if (isTaken(adj)) {
-                    if (hexAt(adj).getTerrainType() == TerrainType && hexAt(adj).getSettlement() == null) {
-
-                        for (int j = 0; j < ExpansionHexes.size(); j++) {
-                            if (ExpansionHexes.get(j) == hexAt(adj)) {
-                                added = true;
-                            }
-                        }
-
-                        if (added == false) {
-                            queue.add(hexAt(adj));
-                            ExpansionHexes.add(hexAt(adj));
-                            RequiredMeeples += hexAt(adj).getLevel();
-                        }
-                    }
-                }
-            }
-        }
-        return RequiredMeeples;
-    }
-
-    public void expandSettlement(Coordinate coordinate, Terrain.typesOfTerrain TerrainType, Player player) {
-        //throw error if trying to expand on volcano?
-        if (TerrainType == Terrain.typesOfTerrain.VOLCANO) {
-            return;
-        }
-
-        int RequiredMeeples = 0;
-
-        ArrayList<Hex> ExpansionHexes = new ArrayList<>();
-        LinkedList<Hex> queue = new LinkedList<>();
-
-        Settlement ExpandedSettlement = hexAt(coordinate).getSettlement();
-        ArrayList<Hex> SettlementHexes = ExpandedSettlement.getSettlementHexes();
-
-        for (int i = 0; i < SettlementHexes.size(); i++) {
-            queue.add(SettlementHexes.get(i));
-        }
-
-        while (queue.size() != 0) {
-            //get current Hex
-            Hex CurrentHex = queue.poll();
-            Coordinate CurrentHexLocation = CurrentHex.getCoordinate();
-
-            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(CurrentHexLocation);
-
-            //if a neighboring tile isn't part of the settlement already
-            //and isn't already added to the list of hexes marked for expansion
-            //and matches the terrain type
-            //then add it
-            for(Coordinate adj : adjacencyMatrix) {
-                boolean added = false;
-
-                if (isTaken(adj)) {
-                    if (hexAt(adj).getTerrainType() == TerrainType && hexAt(adj).getSettlement() == null) {
-
-                        for (int j = 0; j < ExpansionHexes.size(); j++) {
-                            if (ExpansionHexes.get(j) == hexAt(adj)) {
-                                added = true;
-                            }
-                        }
-
-                        if (added == false) {
-                            queue.add(hexAt(adj));
-                            ExpansionHexes.add(hexAt(adj));
-                            RequiredMeeples += hexAt(adj).getLevel();
-                        }
-                    }
-                }
-            }
-        }
-
-        //add hexes to settlement if enough Meeples
-        if (!playerHasEnoughMeeplesToExpand(player, RequiredMeeples)) {
-            return;
-        } else {
-            for (int i = 0; i < ExpansionHexes.size(); i++) {
-                ExpansionHexes.get(i).setSettlement(ExpandedSettlement);
-                ExpansionHexes.get(i).placeMeeples(player);
-                ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
-            }
-            player.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
-        }
-
-        mergeSettlementsAfterExpansion(ExpandedSettlement, player);
-
-    }
-
-    public void placeTotoro(Coordinate Location, Player player) {
-
-        int x = Location.getX();
-        int y = Location.getY();
-        int z = Location.getZ();
-
+    //Place Totoro
+    public void placeTotoro(Coordinate coordinate, Player player) {
         //return error trying to place on Volcano or space already occupied or not Totoro left to play
-        if (Map[x][y][z].getTerrainType() == Terrain.typesOfTerrain.VOLCANO || Map[x][y][z].getSettlement() != null || player.getNumberOfTotorosIHave() <= 0) {
+        if (hexAt(coordinate).getTerrainType() == Terrain.typesOfTerrain.VOLCANO ||
+                hexAt(coordinate).isSettled() ||
+                player.getNumberOfTotorosIHave() <= 0) {
             return;
         }
 
-        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
-        int x_adj;
-        int y_adj;
-        int z_adj;
+        Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(coordinate);
+        Coordinate adjacentCoordinate;
 
         for (int i = 0; i < 6; i++) {
-            x_adj = adjacencyMatrix[i].getX();
-            y_adj = adjacencyMatrix[i].getY();
-            z_adj = adjacencyMatrix[i].getZ();
+            adjacentCoordinate = adjacencyMatrix[i];
 
-            if ((Map[x_adj][y_adj][z_adj] != null) && (Map[x_adj][y_adj][z_adj].getSettlement() != null)) {
-                if (Map[x_adj][y_adj][z_adj].getSettlement().getLength() >= 5 && (Map[x_adj][y_adj][z_adj].getSettlement().getTotoroFlag() == false)) {
-                    Map[x_adj][y_adj][z_adj].getSettlement().addToSettlement(Map[x][y][z]);
-                    Map[x][y][z].setSettlement(Map[x_adj][y_adj][z_adj].getSettlement());
-                    Map[x][y][z].placeTotoro(player);
-                    try {
-                        player.decreaseNumberOfTotorosByAmount(1);
-                    } catch (NotEnoughTotoro notEnough) {
-                        notEnough.printStackTrace();
-                    }
-                    player.increaseMatchScore(200);
-                    break;
+            if (settlementIsValidForTotoro(adjacentCoordinate, player)) {
+                //If it's a valid placement, then the adjacent coordinate is a part of the player's setlement
+                //and it is of size 5 or greater without a Totoro already
+                hexAt(adjacentCoordinate).getSettlement().addToSettlement(hexAt(coordinate));
+                hexAt(coordinate).setSettlement(hexAt(adjacentCoordinate).getSettlement());
+                hexAt(coordinate).placeTotoro(player);
+
+                try {
+                    player.decreaseNumberOfTotorosByAmount(1);
+                } catch (NotEnoughTotoro notEnough) {
+                    notEnough.printStackTrace();
                 }
+
+                player.increaseMatchScore(200);
+                break;
             }
         }
     }
 
-    public boolean hexIsViableForTiger(Coordinate chosenCoordinate)   {
-        if(isTaken(chosenCoordinate)) {
-            Hex chosenHex = hexAt(chosenCoordinate);
-            if (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
-                    chosenHex.getSettlement() == null &&
-                    chosenHex.getLevel() >= 3) {
-                return true;
-            }
-        }
-        return false;
+    private boolean settlementIsValidForTotoro(Coordinate adj, Player player) {
+        return isTaken(adj) &&
+                hexAt(adj).isSettled() &&
+                hexAt(adj).getSettlement().getPlayer() == player &&
+                hexAt(adj).getSettlement().getLength() >= 5 &&
+                !hexAt(adj).getSettlement().getTotoroFlag();
     }
 
-    public boolean playerHasPlacedTigerInSettlement(Hex hexFromSettlement)   {
-        if(!hexFromSettlement.getSettlement().getTigerFlag())  {
-            return true;
-        }
-        return false;
-    }
 
-    public boolean playerHasTigersLeft(Player player)   {
-        if(player.getNumberOfTigersIHave() > 0)    {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean thereIsAnAdjacentSettlement(Coordinate coordinateFromSettlement, Player player)   {
-        if(isTaken(coordinateFromSettlement))   {
-            Hex hexFromSettlement = hexAt(coordinateFromSettlement);
-            if(hexFromSettlement.getSettlement() != null &&
-                    playerHasPlacedTigerInSettlement(hexFromSettlement) &&
-                    hexFromSettlement.getSettlement().getPlayer() == player)    {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    //Place Tiger
     public void placeTiger(Coordinate coordinate, Player player) {
         //return error trying to place on Volcano or space already occupied or no tigers left to play or not level 3+ tile
         if (!hexIsViableForTiger(coordinate) || !playerHasTigersLeft(player)) {
@@ -583,33 +537,74 @@ public class Map {
         }
     }
 
-    public void mergeSettlementsAfterFounding(Settlement MergedSettlement, Player player) {
+    public boolean hexIsViableForTiger(Coordinate chosenCoordinate)   {
+        if(isTaken(chosenCoordinate)) {
+            Hex chosenHex = hexAt(chosenCoordinate);
+            if (chosenHex.getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
+                    chosenHex.getSettlement() == null &&
+                    chosenHex.getLevel() >= 3) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        Coordinate Location = MergedSettlement.getSettlementHexes().get(0).getCoordinate();
+    public boolean playerHasTigersLeft(Player player)   {
+        if(player.getNumberOfTigersIHave() > 0)    {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean thereIsAnAdjacentSettlement(Coordinate coordinateFromSettlement, Player player)   {
+        if(isTaken(coordinateFromSettlement))   {
+            Hex hexFromSettlement = hexAt(coordinateFromSettlement);
+            if(hexFromSettlement.getSettlement() != null &&
+                    playerHasPlacedTigerInSettlement(hexFromSettlement) &&
+                    hexFromSettlement.getSettlement().getPlayer() == player)    {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean playerHasPlacedTigerInSettlement(Hex hexFromSettlement)   {
+        if(!hexFromSettlement.getSettlement().getTigerFlag())  {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    /*
+        Merging Settlement Functions
+     */
+    public void mergeSettlementsAfterFounding(Settlement mergedSettlement, Player player) {
+
+        Coordinate Location = mergedSettlement.getSettlementHexes().get(0).getCoordinate();
 
         Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
-        int x_adj;
-        int y_adj;
-        int z_adj;
+        Coordinate adjacentCoordinate;
 
         for (int i = 0; i < 6; i++) {
-            x_adj = adjacencyMatrix[i].getX();
-            y_adj = adjacencyMatrix[i].getY();
-            z_adj = adjacencyMatrix[i].getZ();
+            adjacentCoordinate = adjacencyMatrix[i];
 
-            if ((Map[x_adj][y_adj][z_adj] != null) && (Map[x_adj][y_adj][z_adj].GetPlayerBelongsTo() == player.getPlayerName()) && Map[x_adj][y_adj][z_adj].getSettlement() != MergedSettlement) {
-                ArrayList<Hex> HexesToMerge = Map[x_adj][y_adj][z_adj].getSettlement().getSettlementHexes();
-                player.getPlayerSettlements().remove(Map[x_adj][y_adj][z_adj].getSettlement());
+            if (isTaken(adjacentCoordinate) &&
+                    hexAt(adjacentCoordinate).getPlayerBelongsTo() == player.getPlayerName() &&
+                    hexAt(adjacentCoordinate).getSettlement() != mergedSettlement) {
+                ArrayList<Hex> hexesToMerge = hexAt(adjacentCoordinate).getSettlement().getSettlementHexes();
+                player.getPlayerSettlements().remove(hexAt(adjacentCoordinate).getSettlement());
 
-                for (int j = 0; j < HexesToMerge.size(); j++) {
-                    MergedSettlement.addToSettlement(HexesToMerge.get(j));
-                    if(HexesToMerge.get(j).TotoroPresent() == true){
-                        MergedSettlement.addTotoroFlag();
+                for (int j = 0; j < hexesToMerge.size(); j++) {
+                    mergedSettlement.addToSettlement(hexesToMerge.get(j));
+                    if(hexesToMerge.get(j).TotoroPresent()){
+                        mergedSettlement.addTotoroFlag();
                     }
-                    if(HexesToMerge.get(j).TigerPresent() == true){
-                        MergedSettlement.addTigerFlag();
+                    if(hexesToMerge.get(j).TigerPresent()){
+                        mergedSettlement.addTigerFlag();
                     }
-                    HexesToMerge.get(j).setSettlement(MergedSettlement);
+                    hexesToMerge.get(j).setSettlement(mergedSettlement);
                 }
             }
         }
@@ -617,42 +612,45 @@ public class Map {
 
     }
 
-    public void mergeSettlementsAfterExpansion(Settlement MergedSettlement, Player player){
+    public void mergeSettlementsAfterExpansion(Settlement mergedSettlement, Player player){
 
-        ArrayList<Hex> ExpandedSettlementHexes = MergedSettlement.getSettlementHexes();
+        ArrayList<Hex> expandedSettlementHexes = mergedSettlement.getSettlementHexes();
 
-        for (int l = 0; l < ExpandedSettlementHexes.size(); l++) {
+        for (int l = 0; l < expandedSettlementHexes.size(); l++) {
 
-            Coordinate Location = ExpandedSettlementHexes.get(l).getCoordinate();
+            Coordinate Location = expandedSettlementHexes.get(l).getCoordinate();
             Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(Location);
-            int x_adj;
-            int y_adj;
-            int z_adj;
+            Coordinate adjacentCoordinate;
 
             for (int i = 0; i < 6; i++) {
-                x_adj = adjacencyMatrix[i].getX();
-                y_adj = adjacencyMatrix[i].getY();
-                z_adj = adjacencyMatrix[i].getZ();
+                adjacentCoordinate = adjacencyMatrix[i];
 
-                if ((Map[x_adj][y_adj][z_adj] != null) && (Map[x_adj][y_adj][z_adj].GetPlayerBelongsTo() == player.getPlayerName()) && Map[x_adj][y_adj][z_adj].getSettlement() != MergedSettlement) {
-                    ArrayList<Hex> HexesToMerge = Map[x_adj][y_adj][z_adj].getSettlement().getSettlementHexes();
-                    player.getPlayerSettlements().remove(Map[x_adj][y_adj][z_adj].getSettlement());
+                if (isTaken(adjacentCoordinate) &&
+                        hexAt(adjacentCoordinate).getPlayerBelongsTo() == player.getPlayerName() &&
+                        hexAt(adjacentCoordinate).getSettlement() != mergedSettlement) {
+                    ArrayList<Hex> HexesToMerge = hexAt(adjacentCoordinate).getSettlement().getSettlementHexes();
+                    player.getPlayerSettlements().remove(hexAt(adjacentCoordinate).getSettlement());
 
                     for (int j = 0; j < HexesToMerge.size(); j++) {
-                        MergedSettlement.addToSettlement(HexesToMerge.get(j));
+                        mergedSettlement.addToSettlement(HexesToMerge.get(j));
                         if(HexesToMerge.get(j).TotoroPresent() == true){
-                            MergedSettlement.addTotoroFlag();
+                            mergedSettlement.addTotoroFlag();
                         }
                         if(HexesToMerge.get(j).TigerPresent() == true){
-                            MergedSettlement.addTigerFlag();
+                            mergedSettlement.addTigerFlag();
                         }
-                        HexesToMerge.get(j).setSettlement(MergedSettlement);
+                        HexesToMerge.get(j).setSettlement(mergedSettlement);
                     }
                 }
             }
         }
     }
 
+
+
+    /*
+        Splitting Settlement (after Nuking) Functions
+     */
     public void splitSettlementsAfterNuking(Tile tile){
         Hex Hex1 = hexAt(tile.getHex2().getCoordinate());
         Hex Hex2 = hexAt(tile.getHex3().getCoordinate());

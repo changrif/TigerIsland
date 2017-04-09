@@ -1,3 +1,5 @@
+import gherkin.lexer.Pl;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -24,6 +26,7 @@ public class PlayerBrain {
     private Coordinate bestSettlementPlacementForFounding;
     private Coordinate bestSettlementPlacementForExpansion;
     private Coordinate bestSettlementPlacementForTiger;
+    private Coordinate bestSettlementPlacementForTotoro;
     private ArrayList<Coordinate> volcanoCoordinates = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelThree = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelOne = new ArrayList<>();
@@ -91,7 +94,6 @@ public class PlayerBrain {
         if(getBuildAction() == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT && !availableHexesOnLevelOne.isEmpty())    {
             removeHexesFromPlacement();
             if(availableHexesOnLevelOne.isEmpty())  {
-                System.out.println("\n\n\n\nNO YOU AINT STACKIN\n\n\n\n");
                 return true;
             }
         }
@@ -99,24 +101,20 @@ public class PlayerBrain {
     }
 
     private void removeHexesFromPlacement()    {
-        System.out.println("\nPossible Empty Hexes");
         for(int i = 0; i < availableHexesOnLevelOne.size(); i++)   {
             Coordinate coordinate = availableHexesOnLevelOne.get(i);
             if(coordinate.getX() == bestTilePlacement.getHex2().getCoordinate().getX() &&
                     coordinate.getY() == bestTilePlacement.getHex2().getCoordinate().getY() &&
                     coordinate.getZ() == bestTilePlacement.getHex2().getCoordinate().getZ())    {
-                coordinate.coordinateToString();
                 availableHexesOnLevelOne.remove(i);
             }
 
             if(coordinate.getX() == bestTilePlacement.getHex3().getCoordinate().getX() &&
                     coordinate.getY() == bestTilePlacement.getHex3().getCoordinate().getY() &&
                     coordinate.getZ() == bestTilePlacement.getHex3().getCoordinate().getZ())    {
-                coordinate.coordinateToString();
                 availableHexesOnLevelOne.remove(i);
             }
         }
-        System.out.println("\n");
     }
 
     public boolean canFindFirstLevelOneTilePlacement()    {
@@ -236,17 +234,6 @@ public class PlayerBrain {
 
     }
 
-    public void executeBuildAction()    {
-        if(buildOption == BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND) {
-            map.placeTiger(bestSettlementPlacementForTiger, currentPlayer);
-        } else if(buildOption == BuildOption.typesOfBuildOptions.EXPANSION) {
-            map.expandSettlement(bestSettlementPlacementForExpansion, typeOfTerrainForBestExpansion, currentPlayer);
-        }
-        else if(buildOption == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT)  {
-            map.foundNewSettlement(bestSettlementPlacementForFounding, currentPlayer);
-        }
-    }
-
     public boolean wePlacedAllOfOurTigers() {
         return currentPlayer.getNumberOfTigersIHave() == 0;
     }
@@ -255,22 +242,16 @@ public class PlayerBrain {
 
     public boolean canFindFirstPlaceToFoundSettlement() {
         if(canPlaceNextToEmptyLevelThreeHex())    {
-            System.out.println("Trying to place next to level 3");
             return true;
         }
         else if(ifPlayerHasAtleastOneSettlement())   {
             for(Settlement settlement : currentPlayer.getPlayerSettlements())   {
                 if(canPlacePiece(settlement))   {
-                    System.out.println("Trying to place next to settlement on...");
-                    bestSettlementPlacementForFounding.coordinateToString();
-                    System.out.println(map.hexAt(bestSettlementPlacementForFounding).getLevel());
-
                     return true;
                 }
             }
 
             if(canFindCoordinateForFoundingASettlement())    {
-                System.out.println("Trying to found");
                 return true;
             }
         }
@@ -355,7 +336,7 @@ public class PlayerBrain {
                     if(map.isTaken(coordinateToExpand) &&
                             map.hexAt(coordinateToExpand).getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
                             !map.hexAt(coordinateToExpand).isSettled()) {
-                        int requiredMeeples = map.requiredMeeplesForExpansion(hex.getCoordinate(), map.hexAt(coordinateToExpand).getTerrainType());
+                        int requiredMeeples = requiredMeeplesForExpansion(hex.getCoordinate(), map.hexAt(coordinateToExpand).getTerrainType());
                         if (requiredMeeples > 0 && requiredMeeples <= currentPlayer.getNumberOfMeeplesIHave()) {
                             bestSettlementPlacementForExpansion = hex.getCoordinate();
                             typeOfTerrainForBestExpansion = map.hexAt(coordinateToExpand).getTerrainType();
@@ -371,6 +352,7 @@ public class PlayerBrain {
     public boolean canFindFirstPlaceForTotoroSanctuary()   {
         for(Settlement settlement : currentPlayer.getPlayerSettlements())  {
             if(settlement.getLength() >= 5) {
+                //If we use this the function needs to change
                 if(canPlacePiece(settlement))   {
                     return true;
                 }
@@ -406,6 +388,7 @@ public class PlayerBrain {
 
         for(Coordinate adj : adjacencyMatrix) {
             if (map.thereIsAnAdjacentSettlement(adj, player)) {
+                deleteHexFromLevelThreeHexArrayList(adj);
                 return true;
             }
         }
@@ -437,22 +420,12 @@ public class PlayerBrain {
                 map.hexAt(coordinate).getTerrainType() != Terrain.typesOfTerrain.VOLCANO;
     }
 
-    public Hex getHexToBeUsedAsSettlement() {
-        //TODO return the hex where you founded a settlement, if the brain chooses to do so.
-        return null;
-    }
-
     public Coordinate getCoordinateToExpandTo() {
         return bestSettlementPlacementForExpansion;
     }
 
     public Terrain.typesOfTerrain getTerrainForExpansion(){
         return typeOfTerrainForBestExpansion;
-    }
-
-    public Hex getHexToPlaceTotoro() {
-        //TODO return the hex where you decided place Totoro Sanctuary, if the brain chooses to do so.
-        return null;
     }
 
     public Coordinate getCoordinateForTigerPlayground() {
@@ -527,6 +500,67 @@ public class PlayerBrain {
                 availableHexesOnLevelThree.remove(i);
             }
         }
+    }
+
+    public void executeBuildAction()    {
+        if(buildOption == BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND) {
+            map.placeTiger(bestSettlementPlacementForTiger, currentPlayer);
+        } else if(buildOption == BuildOption.typesOfBuildOptions.EXPANSION) {
+            map.expandSettlement(bestSettlementPlacementForExpansion, typeOfTerrainForBestExpansion, currentPlayer);
+        }
+        else if(buildOption == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT)  {
+            map.foundNewSettlement(bestSettlementPlacementForFounding, currentPlayer);
+        }
+        else if(buildOption == BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY) {
+            map.placeTotoro(bestSettlementPlacementForTotoro, currentPlayer);
+        }
+    }
+
+    public int requiredMeeplesForExpansion(Coordinate coordinate, Terrain.typesOfTerrain terrainType)    {
+        if (terrainType == Terrain.typesOfTerrain.VOLCANO) { return -1; }
+
+        //Initialize number of Meeples == 0
+        int numberOfMeeplesNeededToExpand = 0;
+        Hex chosenHex = map.hexAt(coordinate);
+        Settlement settlementToExpand = chosenHex.getSettlement();
+
+        ArrayList<Hex> hexesInExpansion = new ArrayList<>();
+        LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
+        map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
+
+        while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+            //Visit Hex
+            Hex currentHex = unvisitedHexesInTheSettlement.poll();
+            Coordinate currentHexCoordinate = currentHex.getCoordinate();
+
+            Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
+
+            //if a neighboring tile isn't part of the settlement already
+            //and isn't already added to the list of hexes marked for expansion
+            //and matches the terrain type
+            //then add it
+            for(Coordinate adj : adjacencyMatrix) {
+                boolean added = false;
+
+                if (map.isTaken(adj)) {
+                    if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
+
+                        for (int j = 0; j < hexesInExpansion.size(); j++) {
+                            if (hexesInExpansion.get(j) == map.hexAt(adj)) {
+                                added = true;
+                            }
+                        }
+
+                        if (added == false) {
+                            unvisitedHexesInTheSettlement.add(map.hexAt(adj));
+                            hexesInExpansion.add(map.hexAt(adj));
+                            numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
+                        }
+                    }
+                }
+            }
+        }
+        return numberOfMeeplesNeededToExpand;
     }
 
 }

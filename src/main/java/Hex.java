@@ -107,7 +107,7 @@ public class Hex {
         return this.settlement;
     }
 
-    public String GetPlayerBelongsTo(){
+    public String getPlayerBelongsTo(){
         return BelongsToThisPlayer;
     }
 

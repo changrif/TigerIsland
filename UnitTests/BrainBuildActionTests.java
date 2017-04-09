@@ -80,7 +80,7 @@ public class BrainBuildActionTests {
             System.out.println("Trying FS at ");
             playerBrain.getCoordinateToBeUsedAsSettlement().coordinateToString();
             System.out.println("...");
-            if(GameBoard.isNewSettlementValid(GameBoard.hexAt(playerBrain.getCoordinateToBeUsedAsSettlement())))   {
+            if(GameBoard.hexIsViableForSettlement(GameBoard.hexAt(playerBrain.getCoordinateToBeUsedAsSettlement())))   {
                 System.out.println("Founded A Settlement");
                 return true;
             }
@@ -89,7 +89,7 @@ public class BrainBuildActionTests {
             playerBrain.getCoordinateToExpandTo().coordinateToString();
             System.out.println("in terrain : " + playerBrain.getTerrainForExpansion());
             System.out.println("...");
-            int requiredMeeples = GameBoard.requiredMeeplesForExpansion(playerBrain.getCoordinateToExpandTo(), playerBrain.getTerrainForExpansion());
+            int requiredMeeples = playerBrain.requiredMeeplesForExpansion(playerBrain.getCoordinateToExpandTo(), playerBrain.getTerrainForExpansion());
             if(requiredMeeples > 0 && player.getNumberOfMeeplesIHave() >= requiredMeeples)   {
                 System.out.println("Expanded A Settlement");
                 return true;

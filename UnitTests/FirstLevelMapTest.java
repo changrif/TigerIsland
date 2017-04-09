@@ -135,6 +135,6 @@ public class FirstLevelMapTest {
     public void checkIfGivenTileCanBePlaceInALocation(){
         Coordinate coordinate = new Coordinate(100, 100, 100);
         GameBoard.setTileCoordinates(t, coordinate, 1);
-        Assert.assertFalse(GameBoard.canPlaceTileAtGivenTileLocationOnLevel1(t));
+        Assert.assertFalse(GameBoard.canPlaceTileAtGivenTileLocationOnLevelOne(t));
     }
 }
