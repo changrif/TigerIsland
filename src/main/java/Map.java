@@ -1,3 +1,5 @@
+import cucumber.api.java.it.Ma;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -14,6 +16,11 @@ public class Map {
     //Map Constructor
     public Map() {
         Map = new Hex[MAX_MAP_WIDTH][MAX_MAP_HEIGHT][MAX_MAP_LENGTH];
+        isTheFirstTilePlaced = true;
+    }
+
+    public Map(Hex[][][] Map)   {
+        this.Map = Map;
         isTheFirstTilePlaced = true;
     }
 
@@ -172,7 +179,7 @@ public class Map {
     }
 
     public boolean canStackTile(Tile tile) {
-        if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile) && !isOnTopOfATotoro(tile) && !isOnTopOfATiger(tile) && !isNukingAnEntireSettlement(tile)) {
+        if (isOnTopOfMoreThanOneTile(tile) && isOnTheSameLevel(tile) && isVolcanoOverVolcano(tile) && !isOnTopOfATotoro(tile) && !isNukingAnEntireSettlement(tile)) {
             return true;
         }
 
@@ -266,27 +273,28 @@ public class Map {
         Settlement settlement1 = null;
         Settlement settlement2 = null;
 
-        if (tile.getHex2().getSettlement() != null) {
-            settlement1 = tile.getHex2().getSettlement();
+        if (hexAt(tile.getHex2().getCoordinate()).getSettlement() != null) {
+            settlement1 = hexAt(tile.getHex2().getCoordinate()).getSettlement();
 
             if (settlement1.getLength() == 1) {
                 isNukingSettlement = true;
             }
         }
 
-        if (tile.getHex3().getSettlement() != null) {
-            settlement2 = tile.getHex3().getSettlement();
+        if (hexAt(tile.getHex3().getCoordinate()).getSettlement() != null) {
+            settlement2 = hexAt(tile.getHex3().getCoordinate()).getSettlement();
             if (settlement2.getLength() == 1) {
                 isNukingSettlement = true;
             }
         }
 
         if (settlement1 != null && settlement2 != null && settlement1.getLength() == 2) {
-            if (settlement1.equals(settlement2)) {
+            if (settlement1 == settlement2) {
                 isNukingSettlement = true;
             }
         }
 
+        System.out.println("Nuking is " + isNukingSettlement);
         return isNukingSettlement;
     }
 
@@ -340,7 +348,6 @@ public class Map {
 
             player.addSettlement(s);
             player.decreaseNumberOfMeeplesByAmount(1);
-            player.increaseMatchScore(1);
 
             mergeSettlementsAfterFounding(s, player);
         }
@@ -468,7 +475,6 @@ public class Map {
                 ExpandedSettlement.addToSettlement(ExpansionHexes.get(i));
             }
             player.decreaseNumberOfMeeplesByAmount(RequiredMeeples);
-            player.increaseMatchScore(RequiredMeeples);
         }
 
         mergeSettlementsAfterExpansion(ExpandedSettlement, player);
