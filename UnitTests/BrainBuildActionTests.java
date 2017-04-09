@@ -253,6 +253,56 @@ public class BrainBuildActionTests {
         Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
     }
 
+    @Test
+    public void aiBuildTest31()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest32()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest33()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest34()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest35()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest36()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest37()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest38()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest39()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
+    @Test
+    public void aiBuildTest40()   {
+        Assert.assertTrue(isValidPlacement(playerBrain.getCurrentPlayer()));
+    }
+
     public void switchPlayers() {
         if(playerBrain.getCurrentPlayer() == teamI)  {
             playerBrain.setCurrentPlayer(playerBrain.getOpponent());

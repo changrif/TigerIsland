@@ -425,6 +425,13 @@ public class TilesAcceptanceTests {
         Assert.assertEquals(2, t.getTileLevel());
     }
 
+
+
+
+    /*@Given("^the board is not empty and has a valid level (1) configuration$")
+    public void the_board_is_not_empty_and_has_a_valid_level_configuration(int arg1) throws Throwable {
+
+    }*/
     @When("^a tile is being stacked and$")
     public void a_tile_is_being_stacked_and() throws Throwable {
 
@@ -438,6 +445,25 @@ public class TilesAcceptanceTests {
     @Then("^it is prohibited from being stacked$")
     public void it_is_prohibited_from_being_stacked() throws Throwable {
 
+        Map m = new Map();
+        Deck d = new Deck();
+        Coordinate c1 = new Coordinate(101, 101, 98);
+        Coordinate c2 = new Coordinate(100, 100, 100);
+        Coordinate c3 = new Coordinate(100, 100, 100);
+        d.generateTiles();
+
+        Tile t1 = d.draw();
+        Tile t2 = d.draw();
+        Tile t3 = d.draw();
+
+        m.placeFirstTile();
+
+        m.placeTile(t1, c1, 1);
+        m.placeTile(t2, c2, 3);
+        int tile2Level = t2.getTileLevel();
+        Assert.assertEquals(tile2Level, 2);
+        m.setTileCoordinates(t3, c3, 2);
+        Assert.assertFalse(m.isValidPlacement(t3));
     }
 
 
@@ -449,6 +475,25 @@ public class TilesAcceptanceTests {
     @Then("^the tile is prohibited from being stacked$")
     public void the_tile_is_prohibited_from_being_stacked() throws Throwable {
 
+        Map m = new Map();
+        Deck d = new Deck();
+        Coordinate c1 = new Coordinate(101, 101, 98);
+        Coordinate c2 = new Coordinate(100, 100, 100);
+        Coordinate c3 = new Coordinate(101, 100, 99);
+        d.generateTiles();
+
+        Tile t1 = d.draw();
+        Tile t2 = d.draw();
+        Tile t3 = d.draw();
+
+        m.placeFirstTile();
+
+        m.placeTile(t1, c1, 1);
+        m.placeTile(t2, c2, 3);
+        int tile2Level = t2.getTileLevel();
+        Assert.assertEquals(tile2Level, 2);
+        m.setTileCoordinates(t3, c3, 2);
+        Assert.assertFalse(m.isValidPlacement(t3));
     }
 
     @When("^it is placed over an area of the board$")
@@ -458,7 +503,18 @@ public class TilesAcceptanceTests {
 
     @Then("^the level of that area of the board increases by (\\d+)$")
     public void the_level_of_that_area_of_the_board_increases_by(int arg1) throws Throwable {
+        Map m = new Map();
+        Deck d = new Deck();
+        Coordinate c1 = new Coordinate(101, 101, 98);
+        Coordinate c2 = new Coordinate(100, 100, 100);
+        d.generateTiles();
 
+        Tile t1 = d.draw();
+
+        m.placeFirstTile();
+
+
+        m.placeTile(t1, c1, 1);
     }
 
     @Then("^it can not be placed directly over a single tile$")

@@ -59,9 +59,6 @@ public class PlayerTurnsAcceptanceTests {
         Assert.assertTrue(m.isTaken(new Coordinate(101, 101, 98)));
     }
 
-
-
-
     @Given("^has build actions available$")
     public void has_build_actions_available() throws Throwable {
     }
@@ -108,12 +105,6 @@ public class PlayerTurnsAcceptanceTests {
         Assert.assertTrue(buildOptionAvailable);
     }
 
-
-
-
-
-
-
     @Given("^a new settlement is added or expanded$")
     public void a_new_settlement_is_added_or_expanded() throws Throwable {
     }
@@ -125,7 +116,7 @@ public class PlayerTurnsAcceptanceTests {
     @Then("^the turn ends, settlements are merged \\(if necessary\\)$")
     public void the_turn_ends_settlements_are_merged_if_necessary() throws Throwable {
         //TEST DOES NOT PASS
-        /*Map m = new Map();
+        Map m = new Map();
         Deck d = new Deck();
         d.generateTiles();
 
@@ -161,70 +152,10 @@ public class PlayerTurnsAcceptanceTests {
 
         m.foundNewSettlement(new Coordinate(100, 98, 102), p1);
         m.expandSettlement(new Coordinate(100, 98, 102), Terrain.typesOfTerrain.JUNGLE, p1);
-        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
         m.foundNewSettlement(new Coordinate(102, 98, 100), p1);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        Assert.assertEquals(2, p1.getOwnedSettlementsSize());
         m.expandSettlement(new Coordinate(102, 98, 100), Terrain.typesOfTerrain.ROCKY, p1);
 
+        Assert.assertEquals(1, p1.getOwnedSettlementsSize());
 
-        //m.mergeSettlementsAfterExpansion(p1.getPlayerSettlements().get(0), p1);
-
-        //Assert.assertEquals(1, p1.getOwnedSettlementsSize());*/
-
-    }
-
-
-
-
-
-
-    @Given("^A player$")
-    public void a_player() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @When("^a player made an illegal move$")
-    public void a_player_made_an_illegal_move() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @When("^the first player is about to play$")
-    public void the_first_player_is_about_to_play() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^the first player will have its turn$")
-    public void the_first_player_will_have_its_turn() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^the second player will have its turn after the first player completes their turn$")
-    public void the_second_player_will_have_its_turn_after_the_first_player_completes_their_turn() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Given("^a player (\\d+) and a player (\\d+)$")
-    public void a_player_and_a_player(int arg1, int arg2) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @When("^player (\\d+) has finished his/her turn$")
-    public void player_has_finished_his_her_turn(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^it becomes player (\\d+)’s turn$")
-    public void it_becomes_player_s_turn(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 }
