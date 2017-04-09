@@ -19,6 +19,12 @@ public class BrainTilePlacementTests {
         GameBoard = new Map();
         GameBoard.placeFirstTile();
         playerBrain = new PlayerBrain(teamI, opponent, GameBoard);
+        t = d.draw();
+        playerBrain.setTileToPlace(t);
+        playerBrain.setBestTilePlacement();
+        GameBoard.mapTileToBoard(playerBrain.getTileToPlace());
+
+        GameBoard.foundNewSettlement(new Coordinate(99, 101, 100), teamI);
     }
 
     @Before

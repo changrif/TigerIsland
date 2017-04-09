@@ -13,6 +13,7 @@ public class PlayerBrain {
     //TODO make a getter for the origin in the map class
 
     private final Coordinate ORIGIN = new Coordinate(100, 100, 100);
+    private Player currentPlayer;
     private Player ourPlayer;
     private Player opponent;
     private Map map;
@@ -25,14 +26,27 @@ public class PlayerBrain {
     private Coordinate bestSettlementPlacementForTiger;
     private ArrayList<Coordinate> volcanoCoordinates = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelThree = new ArrayList<>();
+    private ArrayList<Coordinate> availableHexesOnLevelOne = new ArrayList<>();
 
     public PlayerBrain(Player ourPlayer, Player opponent, Map map){
+        this.currentPlayer = ourPlayer;
         this.ourPlayer = ourPlayer;
         this.opponent = opponent;
         this.map = map;
         volcanoCoordinates.add(ORIGIN);
     }
 
+    public Player getCurrentPlayer() { return currentPlayer; }
+
+    public void setCurrentPlayer(Player player) { this.currentPlayer = player; }
+
+    public Player getOurPlayer() {
+        return ourPlayer;
+    }
+
+    public Player getOpponent() {
+        return opponent;
+    }
 
     public Tile getTileToPlace() {
         return tileToPlace;
@@ -48,18 +62,61 @@ public class PlayerBrain {
 
     public void setBestTilePlacement(){
         bestTilePlacement = tileToPlace;
+        if((hasTigersLeft()) && canFindFirstValidStackedTilePlacement()) {
+            setTileToPlace(bestTilePlacement);
 
-        if(hasTigersLeft() && canFindFirstValidStackedTilePlacement())    {
-            setTileToPlace(bestTilePlacement);
-        }   else if(canFindFirstLevelOneTilePlacement()) {
-            setTileToPlace(bestTilePlacement);
+            getBestBuildAction();
+            if (!playerCanBuild())  {
+                if(canFindFirstLevelOneTilePlacement()) {
+                    setTileToPlace(bestTilePlacement);
+                }
+            }
+        } else if(canFindFirstLevelOneTilePlacement()) {
+                setTileToPlace(bestTilePlacement);
         }
+
         if(bestTilePlacement.getTileLevel() >= 3)   {
             addLevelThreeHexesToArrayList(tileToPlace.getHex2().getCoordinate(), tileToPlace.getHex3().getCoordinate());
         }
 
         map.splitSettlementsAfterNuking(tileToPlace);
         giveBrainTheUpdatedVolcanoCoordinates(bestTilePlacement.getHex1().getCoordinate(), bestTilePlacement.getTileOrientation());
+    }
+
+    private boolean playerCanBuild() {
+        return (!(getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD) && !conflictWithFoundingASettlement());
+    }
+
+    private boolean conflictWithFoundingASettlement()    {
+        if(getBuildAction() == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT && !availableHexesOnLevelOne.isEmpty())    {
+            removeHexesFromPlacement();
+            if(availableHexesOnLevelOne.isEmpty())  {
+                System.out.println("\n\n\n\nNO YOU AINT STACKIN\n\n\n\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void removeHexesFromPlacement()    {
+        System.out.println("\nPossible Empty Hexes");
+        for(int i = 0; i < availableHexesOnLevelOne.size(); i++)   {
+            Coordinate coordinate = availableHexesOnLevelOne.get(i);
+            if(coordinate.getX() == bestTilePlacement.getHex2().getCoordinate().getX() &&
+                    coordinate.getY() == bestTilePlacement.getHex2().getCoordinate().getY() &&
+                    coordinate.getZ() == bestTilePlacement.getHex2().getCoordinate().getZ())    {
+                coordinate.coordinateToString();
+                availableHexesOnLevelOne.remove(i);
+            }
+
+            if(coordinate.getX() == bestTilePlacement.getHex3().getCoordinate().getX() &&
+                    coordinate.getY() == bestTilePlacement.getHex3().getCoordinate().getY() &&
+                    coordinate.getZ() == bestTilePlacement.getHex3().getCoordinate().getZ())    {
+                coordinate.coordinateToString();
+                availableHexesOnLevelOne.remove(i);
+            }
+        }
+        System.out.println("\n");
     }
 
     public boolean canFindFirstLevelOneTilePlacement()    {
@@ -147,7 +204,7 @@ public class PlayerBrain {
     }
 
     public boolean hasTigersLeft()   {
-        if(ourPlayer.getNumberOfTigersIHave() > 0) {
+        if(currentPlayer.getNumberOfTigersIHave() > 0) {
             return true;
         }
         return false;
@@ -160,18 +217,20 @@ public class PlayerBrain {
     public void setBuildOption(BuildOption.typesOfBuildOptions buildOption) { this.buildOption = buildOption; }
 
     public void getBestBuildAction()    {
+        availableHexesOnLevelOne = new ArrayList<>();
         if(!wePlacedAllOfOurTigers() && canFindFirstPlaceForTigerPlayground()){
+            System.out.println("TP");
             setBuildOption(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND);
         }
         else if(wePlacedAllOfOurTigers() && !wePlacedAllOfOurMeeples() && canFindFirstPlaceToExpandSettlement()){
+            System.out.println("EX");
             setBuildOption(BuildOption.typesOfBuildOptions.EXPANSION);
         }
         else if(!wePlacedAllOfOurMeeples() && canFindFirstPlaceToFoundSettlement()){
-            //Note to Nick & David, from Nick...
-            // make sure we're returning the best coordinate later for founding settlement
-            //            settlementToPlaceTiger = bestSettlementPlacement;
+            System.out.println("FS");
             setBuildOption(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT);
         }   else    {
+            System.out.println("UB");
             setBuildOption(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD);
         }
 
@@ -179,20 +238,20 @@ public class PlayerBrain {
 
     public void executeBuildAction()    {
         if(buildOption == BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND) {
-            map.placeTiger(bestSettlementPlacementForTiger, ourPlayer);
+            map.placeTiger(bestSettlementPlacementForTiger, currentPlayer);
         } else if(buildOption == BuildOption.typesOfBuildOptions.EXPANSION) {
-            map.expandSettlement(bestSettlementPlacementForExpansion, typeOfTerrainForBestExpansion, ourPlayer);
+            map.expandSettlement(bestSettlementPlacementForExpansion, typeOfTerrainForBestExpansion, currentPlayer);
         }
         else if(buildOption == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT)  {
-            map.foundNewSettlement(bestSettlementPlacementForFounding, ourPlayer);
+            map.foundNewSettlement(bestSettlementPlacementForFounding, currentPlayer);
         }
     }
 
     public boolean wePlacedAllOfOurTigers() {
-        return ourPlayer.getNumberOfTigersIHave() == 0;
+        return currentPlayer.getNumberOfTigersIHave() == 0;
     }
 
-    public boolean wePlacedAllOfOurMeeples() { return ourPlayer.getNumberOfMeeplesIHave() == 0; }
+    public boolean wePlacedAllOfOurMeeples() { return currentPlayer.getNumberOfMeeplesIHave() == 0; }
 
     public boolean canFindFirstPlaceToFoundSettlement() {
         if(canPlaceNextToEmptyLevelThreeHex())    {
@@ -200,9 +259,12 @@ public class PlayerBrain {
             return true;
         }
         else if(ifPlayerHasAtleastOneSettlement())   {
-            for(Settlement settlement : ourPlayer.getPlayerSettlements())   {
+            for(Settlement settlement : currentPlayer.getPlayerSettlements())   {
                 if(canPlacePiece(settlement))   {
-                    System.out.println("Trying to place next to settlement");
+                    System.out.println("Trying to place next to settlement on...");
+                    bestSettlementPlacementForFounding.coordinateToString();
+                    System.out.println(map.hexAt(bestSettlementPlacementForFounding).getLevel());
+
                     return true;
                 }
             }
@@ -233,11 +295,11 @@ public class PlayerBrain {
     }
 
     public boolean ifPlayerHasAtleastOneSettlement() {
-        return ourPlayer.getPlayerSettlements().size() > 0;
+        return currentPlayer.getPlayerSettlements().size() > 0;
     }
 
     public boolean ifPlayerDoesNotHaveAnySettlements() {
-        return ourPlayer.getPlayerSettlements().size() == 0;
+        return currentPlayer.getPlayerSettlements().size() == 0;
     }
 
     public boolean canFindCoordinateForFoundingASettlement()    {
@@ -260,7 +322,7 @@ public class PlayerBrain {
             //if a neighboring hex is taken, then check for valid placement
             if(map.isTaken(currentCoordinate) && hexIsViableForSettlement(currentCoordinate) && map.hexAt(currentCoordinate).getLevel() == 1) {
                 bestSettlementPlacementForFounding = currentCoordinate;
-                return true;
+                availableHexesOnLevelOne.add(currentCoordinate);
             }
 
             //if a neighboring hex isn't taken,
@@ -277,11 +339,16 @@ public class PlayerBrain {
                 }
             }
         }
+
+        if(availableHexesOnLevelOne.size() > 0) {
+            return true;
+        }
+
         return false;
     }
 
     public boolean canFindFirstPlaceToExpandSettlement()    {
-        for(Settlement settlement : ourPlayer.getPlayerSettlements())   {
+        for(Settlement settlement : currentPlayer.getPlayerSettlements())   {
             for(Hex hex : settlement.getSettlementHexes()) {
                 Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(hex.getCoordinate());
                 for(Coordinate coordinateToExpand : adjacencyMatrix) {
@@ -289,10 +356,9 @@ public class PlayerBrain {
                             map.hexAt(coordinateToExpand).getTerrainType() != Terrain.typesOfTerrain.VOLCANO &&
                             !map.hexAt(coordinateToExpand).isSettled()) {
                         int requiredMeeples = map.requiredMeeplesForExpansion(hex.getCoordinate(), map.hexAt(coordinateToExpand).getTerrainType());
-                        if (requiredMeeples > 0 && requiredMeeples <= ourPlayer.getNumberOfMeeplesIHave()) {
+                        if (requiredMeeples > 0 && requiredMeeples <= currentPlayer.getNumberOfMeeplesIHave()) {
                             bestSettlementPlacementForExpansion = hex.getCoordinate();
                             typeOfTerrainForBestExpansion = map.hexAt(coordinateToExpand).getTerrainType();
-                            System.out.println("true?");
                             return true;
                         }
                     }
@@ -303,7 +369,7 @@ public class PlayerBrain {
     }
 
     public boolean canFindFirstPlaceForTotoroSanctuary()   {
-        for(Settlement settlement : ourPlayer.getPlayerSettlements())  {
+        for(Settlement settlement : currentPlayer.getPlayerSettlements())  {
             if(settlement.getLength() >= 5) {
                 if(canPlacePiece(settlement))   {
                     return true;
@@ -315,18 +381,32 @@ public class PlayerBrain {
     }
 
     public boolean canFindFirstPlaceForTigerPlayground()    {
-        for(Settlement settlement : ourPlayer.getPlayerSettlements())  {
+        for(Settlement settlement : currentPlayer.getPlayerSettlements())  {
             for(Hex hex : settlement.getSettlementHexes()) {
                 Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
                 for (Coordinate coordinate : adjacentCoordinateArray) {
-                    if(map.isTaken(coordinate) &&
-                            !map.hexAt(coordinate).isSettled() &&
-                            map.hexAt(coordinate).getLevel() >= 3 &&
-                            map.hexAt(coordinate).getTerrainType() != Terrain.typesOfTerrain.VOLCANO)    {
+                    if(canPlaceTiger(coordinate, currentPlayer))    {
                         bestSettlementPlacementForTiger = coordinate;
                         return true;
                     }
                 }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canPlaceTiger(Coordinate chosenCoordinate, Player player)  {
+        //return error trying to place on Volcano or space already occupied or no tigers left to play or not level 3+ tile
+        if (!map.hexIsViableForTiger(chosenCoordinate) || !map.playerHasTigersLeft(player)) {
+            return false;
+        }
+
+        Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(chosenCoordinate);
+
+        for(Coordinate adj : adjacencyMatrix) {
+            if (map.thereIsAnAdjacentSettlement(adj, player)) {
+                return true;
             }
         }
 
@@ -339,9 +419,13 @@ public class PlayerBrain {
             for(Coordinate coordinate : adjacentCoordinateArray)    {
                 if(hexIsViableForSettlement(coordinate) && map.hexAt(coordinate).getLevel() == 1)   {
                     bestSettlementPlacementForFounding = coordinate;
-                    return true;
+                    availableHexesOnLevelOne.add(coordinate);
                 }
             }
+        }
+
+        if(!availableHexesOnLevelOne.isEmpty()) {
+            return true;
         }
 
         return false;
@@ -376,14 +460,6 @@ public class PlayerBrain {
     }
 
     public Coordinate getCoordinateToBeUsedAsSettlement()  { return  bestSettlementPlacementForFounding; }
-
-    public Player getOurPlayer() {
-        return ourPlayer;
-    }
-
-    public Player getOpponent() {
-        return opponent;
-    }
 
     public void giveBrainTheTilePlacement(Coordinate volcanoCoordinate, int tileOrientation)    {
         if(map.isTaken(volcanoCoordinate))  {
