@@ -327,7 +327,6 @@ public class Map {
             }
         }
 
-        System.out.println("Nuking is " + isNukingSettlement);
         return isNukingSettlement;
     }
 
