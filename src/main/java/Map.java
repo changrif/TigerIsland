@@ -211,6 +211,7 @@ public class Map {
                 isOnTheSameLevel(tile) &&
                 isVolcanoOverVolcano(tile) &&
                 !isOnTopOfATotoro(tile) &&
+                !isOnTopOfATiger(tile) &&
                 !isNukingAnEntireSettlement(tile)) {
             return true;
         }
@@ -290,7 +291,6 @@ public class Map {
         return isTotoroPresent;
     }
 
-    //Placing on top of a Tiger is not a prohibited move
     public boolean isOnTopOfATiger(Tile tile) {
         boolean isTigerPresent = false;
         if (hexAt(tile.getHex2().getCoordinate()).TigerPresent()) {
@@ -498,6 +498,7 @@ public class Map {
                 break;
             }
         }
+        mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(),player);
     }
 
     private boolean settlementIsValidForTotoro(Coordinate adj, Player player) {
@@ -534,6 +535,7 @@ public class Map {
                 break;
             }
         }
+        mergeSettlementsAfterExpansion(hexAt(coordinate).getSettlement(),player);
     }
 
     public boolean hexIsViableForTiger(Coordinate chosenCoordinate)   {
