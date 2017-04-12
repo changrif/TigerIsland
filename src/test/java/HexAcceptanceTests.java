@@ -60,7 +60,7 @@ public class HexAcceptanceTests {
         if (t.getHex2().getTerrainType() == Terrain.typesOfTerrain.JUNGLE) {
             terrainCounterHex2++;
         }
-        if (t.getHex1().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
+        if (t.getHex2().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
             terrainCounterHex2++;
         }
 
@@ -81,7 +81,7 @@ public class HexAcceptanceTests {
         if (t.getHex3().getTerrainType() == Terrain.typesOfTerrain.JUNGLE) {
             terrainCounterHex3++;
         }
-        if (t.getHex1().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
+        if (t.getHex3().getTerrainType() == Terrain.typesOfTerrain.LAKE) {
             terrainCounterHex3++;
         }
 
