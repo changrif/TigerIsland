@@ -94,6 +94,14 @@ public class BrainBuildActionTests {
                 System.out.println("Expanded A Settlement");
                 return true;
             }
+        } else if(playerBrain.getBuildAction() == BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY) {
+            System.out.println("Trying TS at ");
+            playerBrain.getCoordinateForTotoroSanctuary().coordinateToString();
+            System.out.println("...");
+            if(playerBrain.canPlaceTotoro(playerBrain.getCoordinateForTotoroSanctuary()))   {
+                System.out.println("Founded A Totoro Sanctuary");
+                return true;
+            }
         } else if(playerBrain.getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD &&
                 playerBrain.wePlacedAllOfOurMeeples() &&
                 playerBrain.wePlacedAllOfOurTigers())    {

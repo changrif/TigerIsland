@@ -1,4 +1,3 @@
-
 import java.util.Arrays;
 
 /**
@@ -6,15 +5,13 @@ import java.util.Arrays;
  */
 public class StringParser {
 
-
     public boolean weAreActivePlayer(String fromServer) {
-        return fromServer.startsWith("M");
-    }
+        return fromServer.startsWith("MAKE");
+    } //YOUR MOVE
 
     public String getPlayerIDFromServerMessageDuringAuthenticationProtocol(String fromServer) {
         String pid;
-        String [] splitStringFromServer;
-        splitStringFromServer = fromServer.split(" ");
+        String [] splitStringFromServer = fromServer.split(" ");
         pid = splitStringFromServer[splitStringFromServer.length-1];
         return pid;
     }
@@ -67,11 +64,17 @@ public class StringParser {
         return pid;
     }
 
-    public int getMoveNumberFromServerMessageIfActivePlayer(String fromServer) {
-        String moveNum;
+    public int getMoveNumberFromServerMessage(String fromServer) {
+        String moveNum = null;
         String [] splitStringFromServer;
-        splitStringFromServer = fromServer.split(" ");
-        moveNum = splitStringFromServer[10];
+        if(fromServer.contains("MAKE YOUR MOVE"))   {
+            splitStringFromServer = fromServer.split(" ");
+            moveNum = splitStringFromServer[10];
+        }
+        else if(fromServer.contains("PLACED") || fromServer.contains("FORFEITED") || fromServer.contains("LOST"))    {
+            splitStringFromServer = fromServer.split(" ");
+            moveNum = splitStringFromServer[3];
+        }
         return Integer.parseInt(moveNum);
     }
 
@@ -158,6 +161,54 @@ public class StringParser {
         return Integer.parseInt(Z);
     }
 
+    public int getXCoordFromOpponentBuild(String opponentMove) {
+        String X;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        X = splitStringFromServer[11];
+        return Integer.parseInt(X);
+    }
+
+    public int getYCoordFromOpponentBuild(String opponentMove) {
+        String Y;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        Y = splitStringFromServer[12];
+        return Integer.parseInt(Y);
+    }
+
+    public int getZCoordFromOpponentBuild(String opponentMove) {
+        String Z;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        Z = splitStringFromServer[13];
+        return Integer.parseInt(Z);
+    }
+
+    public int getXCoordFromOpponentFoundOrExpand(String opponentMove) {
+        String X;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        X = splitStringFromServer[10];
+        return Integer.parseInt(X);
+    }
+
+    public int getYCoordFromOpponentFoundOrExpand(String opponentMove) {
+        String Y;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        Y = splitStringFromServer[11];
+        return Integer.parseInt(Y);
+    }
+
+    public int getZCoordFromOpponentFoundOrExpand(String opponentMove) {
+        String Z;
+        String [] splitStringFromServer;
+        splitStringFromServer = opponentMove.split(" ");
+        Z = splitStringFromServer[12];
+        return Integer.parseInt(Z);
+    }
+
     public int getOrientationFromOpponent(String opponentMove) {
         String orientation;
         String [] splitStringFromServer;
@@ -166,6 +217,7 @@ public class StringParser {
         return Integer.parseInt(orientation);
     }
 
+    /*
     public PlayerState.gameState getGameStateFromMessageSentToBothPlayers(String fromServer){
         PlayerState p = new PlayerState();
         String [] gameStateMessageFromMessageSentToBothPlayers;
@@ -173,7 +225,7 @@ public class StringParser {
         gameStateMessageFromMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 6, splitStringFromServer.length);
         String gameStateMessage = mergeStringArrayIntoString(gameStateMessageFromMessageSentToBothPlayers);
         return p.getStateOfTheGameAfterMove(gameStateMessage);
-    }
+    }*/
 
     public String getPlayerIdFromMessageSentToBothPlayers(String fromServer){
         String pidFromMessageSentToBothPlayers;
@@ -184,16 +236,7 @@ public class StringParser {
 
     public BuildOption.typesOfBuildOptions getBuildOptionFromMessageSentToBothPlayers(String fromServer){
         BuildOption b = new BuildOption();
-        String [] lastBuildOptionMessageSentToBothPlayers;
-        String[] splitStringFromServer = fromServer.split(" ");
-        if(splitStringFromServer[13].equals("UNABLE"))
-            lastBuildOptionMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 13, splitStringFromServer.length);
-        else if(splitStringFromServer[13].equals("EXPAND"))
-            lastBuildOptionMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 13, splitStringFromServer.length - 4);
-        else
-            lastBuildOptionMessageSentToBothPlayers = Arrays.copyOfRange(splitStringFromServer, 13, splitStringFromServer.length - 3);
-        String buildOptionMessage = mergeStringArrayIntoString(lastBuildOptionMessageSentToBothPlayers);
-        return b.getTypeOfBuildOption(buildOptionMessage);
+        return b.getTypeOfBuildOption(fromServer);
     }
 
     public String getCurrentStateFromServer(String fromServer) {
@@ -203,9 +246,10 @@ public class StringParser {
     }
 
     public boolean isGameOver(String fromServer) {
-        String [] serverMessage = fromServer.split(" ");
-        String currentState = serverMessage[2];
-        return currentState.equals("OVER");
+        if(fromServer.contains("OVER PLAYER"))  { //GAME <GID> OVER PLAYER ...
+            return true;
+        }
+        return false;
     }
 
     public Terrain.typesOfTerrain getTerrainTypeFromServerMessageIfOpponentExpands(String opponentMove) {
@@ -246,5 +290,4 @@ public class StringParser {
         pidFromMessageSentToBothPlayers = splitStringFromServer[7];
         return pidFromMessageSentToBothPlayers;
     }
-
 }

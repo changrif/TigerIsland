@@ -16,7 +16,6 @@ public class Tile {
         this.Hex3 = Hex3;
         this.TileID = TileID;
         this.TileLevel = 0;
-        this.tileOrientation = tileOrientation;
     }
 
     public int getTileLevel() { return TileLevel; }

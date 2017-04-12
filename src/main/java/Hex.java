@@ -19,7 +19,6 @@ public class Hex {
 
 
     public Hex (Terrain.typesOfTerrain TerrainType, int TileID){
-
         this.TerrainType = TerrainType;
         this.TileID = TileID;
     }

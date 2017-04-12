@@ -1,5 +1,3 @@
-import cucumber.api.java.hu.De;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

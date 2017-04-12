@@ -14,7 +14,7 @@ public class MockServer {
 
     public String readFromFile() throws IOException {
         String lineInTextFile = "";
-        File file = new File("C:\\Users\\ddmac\\Documents\\TigerIslandExampleServerMessages3.txt");
+        File file = new File("/Users/chandlergriffin/Desktop/TigerIslandExampleServerMessages5.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
         int loops = 0;

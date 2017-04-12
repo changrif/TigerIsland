@@ -332,6 +332,7 @@ public class Map {
 
     //Maps a Tile's Hexes to the Board
     public void mapTileToBoard(Tile tile) {
+        System.out.println(getMap());
         mapHexToBoard(tile.getHex1());
         mapHexToBoard(tile.getHex2());
         mapHexToBoard(tile.getHex3());
@@ -339,6 +340,7 @@ public class Map {
 
     //Maps a Hex to the Board
     public void mapHexToBoard(Hex hex) {
+        hex.getCoordinate().coordinateToString();
         Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()][hex.getCoordinate().getZ()] = hex;
     }
 
@@ -501,7 +503,7 @@ public class Map {
         }
     }
 
-    private boolean settlementIsValidForTotoro(Coordinate adj, Player player) {
+    public boolean settlementIsValidForTotoro(Coordinate adj, Player player) {
         return isTaken(adj) &&
                 hexAt(adj).isSettled() &&
                 hexAt(adj).getSettlement().getPlayer() == player &&

@@ -4,13 +4,14 @@
 
 public class Terrain {
     public typesOfTerrain getTerrainTypeFromString(String a) {
-        if(a.equalsIgnoreCase("JUNGLE"))
+        a.toUpperCase();
+        if(a.contains("JUNGLE"))
             return typesOfTerrain.JUNGLE;
-        if(a.equalsIgnoreCase("LAKE"))
+        if(a.contains("LAKE"))
             return typesOfTerrain.LAKE;
-        if(a.equalsIgnoreCase("GRASS"))
+        if(a.contains("GRASS"))
             return typesOfTerrain.GRASSLANDS;
-        if(a.equalsIgnoreCase("ROCK"))
+        if(a.contains("ROCK"))
             return typesOfTerrain.ROCKY;
         return null;
     }

@@ -9,19 +9,22 @@ public class PlayerBrain {
     private final Coordinate ORIGIN = new Coordinate(100, 100, 100);
     private Player currentPlayer;
     private Player ourPlayer;
+    private String gameID;
+    private boolean gameInProgress;
     private Player opponent;
     private Map map;
     private Tile bestTilePlacement;
     private Tile tileToPlace;
     private BuildOption.typesOfBuildOptions buildOption;
-    private Terrain.typesOfTerrain typeOfTerrainForBestExpansion;
-    private Coordinate bestSettlementPlacementForFounding;
-    private Coordinate bestSettlementPlacementForExpansion;
-    private Coordinate bestSettlementPlacementForTiger;
-    private Coordinate bestSettlementPlacementForTotoro;
+    public Terrain.typesOfTerrain typeOfTerrainForBestExpansion;
+    public Coordinate bestSettlementPlacementForFounding;
+    public Coordinate bestSettlementPlacementForExpansion;
+    public Coordinate bestSettlementPlacementForTiger;
+    public Coordinate bestSettlementPlacementForTotoro;
     private ArrayList<Coordinate> volcanoCoordinates = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelThree = new ArrayList<>();
     private ArrayList<Coordinate> availableHexesOnLevelOne = new ArrayList<>();
+    private StringParser parser;
 
     public PlayerBrain(Player ourPlayer, Player opponent, Map map){
         this.currentPlayer = ourPlayer;
@@ -29,11 +32,16 @@ public class PlayerBrain {
         this.opponent = opponent;
         this.map = map;
         volcanoCoordinates.add(ORIGIN);
+        this.parser = new StringParser();
     }
 
     /*
         Basic Getter and Setters
      */
+    public Map getMap() {
+        return map;
+    }
+
     public Player getCurrentPlayer() { return currentPlayer; }
 
     public void setCurrentPlayer(Player player) { this.currentPlayer = player; }
@@ -74,6 +82,10 @@ public class PlayerBrain {
         return bestSettlementPlacementForTiger;
     }
 
+    public Coordinate getCoordinateForTotoroSanctuary() {
+        return bestSettlementPlacementForTotoro;
+    }
+
     /*
         AI For Finding Best Tile Placement
      */
@@ -93,7 +105,7 @@ public class PlayerBrain {
                 }
             }
         } else if(canFindFirstLevelOneTilePlacement()) {
-                setTileToPlace(bestTilePlacement);
+            setTileToPlace(bestTilePlacement);
         }
 
         if(bestTilePlacement.getTileLevel() >= 3)   {
@@ -219,6 +231,10 @@ public class PlayerBrain {
         tile.getHex3().setLevel(0);
     }
 
+    public void executeTilePlacement()  {
+        map.mapTileToBoard(tileToPlace);
+    }
+
     /*
         AI For Finding Best Build Action
      */
@@ -235,7 +251,12 @@ public class PlayerBrain {
         else if(!wePlacedAllOfOurMeeples() && canFindFirstPlaceToFoundSettlement()){
             System.out.println("FS");
             setBuildOption(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT);
-        }   else    {
+        }
+        else if(wePlacedAllOfOurMeeples() && !wePlacedAllOfOurTotoro() && canFindFirstPlaceForTotoroSanctuary())   {
+            System.out.println("TS");
+            setBuildOption(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY);
+        }
+        else    {
             System.out.println("UB");
             setBuildOption(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD);
         }
@@ -476,8 +497,7 @@ public class PlayerBrain {
     public boolean canFindFirstPlaceForTotoroSanctuary()   {
         for(Settlement settlement : currentPlayer.getPlayerSettlements())  {
             if(settlement.getLength() >= 5) {
-                //If we use this the function needs to change
-                if(canPlaceNextToASettlement(settlement))   {
+                if(!settlement.getTotoroFlag() && canPlaceNextToSettlementOfSizeFiveOrGreater(settlement))   {
                     return true;
                 }
             }
@@ -485,6 +505,48 @@ public class PlayerBrain {
 
         return false;
     }
+
+    public boolean canPlaceNextToSettlementOfSizeFiveOrGreater(Settlement settlement)    {
+        for(Hex hex : settlement.getSettlementHexes())  {
+            Coordinate[] adjacentCoordinateArray = map.createAdjacentCoordinateArray(hex.getCoordinate());
+            for(Coordinate coordinate : adjacentCoordinateArray)    {
+                if(hexIsViableForSettlement(coordinate))   {
+                    bestSettlementPlacementForTotoro = coordinate;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canPlaceTotoro(Coordinate coordinate) {
+        //return error trying to place on Volcano or space already occupied or not Totoro left to play
+        if (map.hexAt(coordinate).getTerrainType() == Terrain.typesOfTerrain.VOLCANO ||
+                map.hexAt(coordinate).isSettled() ||
+                currentPlayer.getNumberOfTotorosIHave() <= 0) {
+            return false;
+        }
+
+        Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(coordinate);
+        Coordinate adjacentCoordinate;
+
+        for (int i = 0; i < 6; i++) {
+            adjacentCoordinate = adjacencyMatrix[i];
+
+            if (map.settlementIsValidForTotoro(adjacentCoordinate, currentPlayer)) {
+                //If it's a valid placement, then the adjacent coordinate is a part of the player's setlement
+                //and it is of size 5 or greater without a Totoro already
+                map.hexAt(adjacentCoordinate).getSettlement().addToSettlement(map.hexAt(coordinate));
+                map.hexAt(coordinate).setSettlement(map.hexAt(adjacentCoordinate).getSettlement());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean wePlacedAllOfOurTotoro() { return currentPlayer.getNumberOfTotorosIHave() <= 0; }
+
 
     /*
         Execute methods
@@ -501,10 +563,6 @@ public class PlayerBrain {
         else if(buildOption == BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY) {
             map.placeTotoro(bestSettlementPlacementForTotoro, currentPlayer);
         }
-    }
-
-    public void executeTilePlacement()  {
-        map.placeTile(tileToPlace, tileToPlace.getHex1().getCoordinate(), tileToPlace.getTileOrientation());
     }
 
     /*
@@ -581,5 +639,123 @@ public class PlayerBrain {
                 availableHexesOnLevelThree.remove(i);
             }
         }
+    }
+
+    /*
+        Tournament Client Functions
+     */
+
+    //GAME ID get/set
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
+    }
+
+    public String getGameID() {
+        return gameID;
+    }
+
+    //Game in Progress
+    public boolean isGameInProgress() {
+        return gameInProgress;
+    }
+
+    public void setGameInProgress(boolean gameInProgress) {
+        this.gameInProgress = gameInProgress;
+    }
+
+    //Place the opponent Tile
+    public Tile createTileFromOpponentToPlaceOnBoard(String opponentMove,int moveNumberAndTileID) {
+        String tileOpponentPlaced = parser.getTileOpponentPlacedFromServer(opponentMove);
+        Tile t = createTile(tileOpponentPlaced, moveNumberAndTileID);
+        return t;
+    }
+
+    public Tile createTile(String fromServer, int moveNumberAndTileID){
+        String tileToPlaceFromServer = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
+        Terrain.typesOfTerrain terrainA = parser.getTerrainAFromString(tileToPlaceFromServer);
+        Terrain.typesOfTerrain terrainB = parser.getTerrainBFromString(tileToPlaceFromServer);
+        Hex hex1 = new Hex(Terrain.typesOfTerrain.VOLCANO, moveNumberAndTileID);
+        Hex hex2 = new Hex(terrainA, moveNumberAndTileID);
+        Hex hex3 = new Hex(terrainB, moveNumberAndTileID);
+        Tile t = new Tile(hex1, hex2, hex3, moveNumberAndTileID);
+        return t;
+    }
+
+    public Coordinate getVolcanoCoordinateFromOpponent(String opponentMove) {
+        int opponentX = parser.getXCoordFromOpponentMove(opponentMove);
+        int opponentY = parser.getYCoordFromOpponentMove(opponentMove);
+        int opponentZ = parser.getZCoordFromOpponentMove(opponentMove);
+        return new Coordinate(opponentZ + 100, opponentX + 100, opponentY + 100);
+    }
+
+    public void placeTileFromOpponent(String opponentMove, int moveNumberAndTileID) {
+        int opponentOrientation = parser.getOrientationFromOpponent(opponentMove);
+        Coordinate opponentVolcanoCoordinate = getVolcanoCoordinateFromOpponent(opponentMove);
+        Tile opponentTile = createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumberAndTileID);
+
+        this.giveBrainTheUpdatedVolcanoCoordinates(opponentVolcanoCoordinate, opponentOrientation);
+        this.giveBrainTheTilePlacement(opponentVolcanoCoordinate, opponentOrientation);
+        this.opponentPlaceTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
+    }
+
+    public void opponentPlaceTile(Tile tile, Coordinate coordinate, int tileOrientation) {
+        map.placeTile(tile, coordinate, tileOrientation);
+    }
+
+    //Opponent Build
+    public void addOpponentsMoveToBoardBasedOnBuildOption(String opponentMove) {
+        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == parseBuildSelectionFromOpponent(opponentMove)) {
+            addOpponentSettlementToBoard(opponentMove);
+        }
+        else if(BuildOption.typesOfBuildOptions.EXPANSION == parseBuildSelectionFromOpponent(opponentMove)){
+            addOpponentExpansionOnBoardBasedOnTheServerMessage(opponentMove);
+        }
+        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == parseBuildSelectionFromOpponent(opponentMove)){
+            addOpponentTotoroSanctuaryToBoard(opponentMove);
+        }
+        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == parseBuildSelectionFromOpponent(opponentMove)){
+            addOpponentTigerPlaygroundToBoard(opponentMove);
+        }
+        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == parseBuildSelectionFromOpponent(opponentMove)) {
+            //Do nothing
+        }
+    }
+
+    public BuildOption.typesOfBuildOptions parseBuildSelectionFromOpponent(String opponentMove) {
+        BuildOption.typesOfBuildOptions buildOptions = parser.getBuildOptionFromMessageSentToBothPlayers(opponentMove);
+        return buildOptions;
+    }
+
+    public void addOpponentSettlementToBoard(String s){
+        int xCoordForOpponentSettlement = parser.getXCoordFromOpponentFoundOrExpand(s);
+        int yCoordForOpponentSettlement = parser.getYCoordFromOpponentFoundOrExpand(s);
+        int zCoordForOpponentSettlement = parser.getZCoordFromOpponentFoundOrExpand(s);
+        Coordinate c = new Coordinate(zCoordForOpponentSettlement + 100, xCoordForOpponentSettlement + 100, yCoordForOpponentSettlement + 100);
+        map.foundNewSettlement(c, this.getOpponent());
+    }
+
+    public void addOpponentExpansionOnBoardBasedOnTheServerMessage(String s) {
+        int xCoordForOpponentExpansion = parser.getXCoordFromOpponentFoundOrExpand(s);
+        int yCoordForOpponentExpansion = parser.getYCoordFromOpponentFoundOrExpand(s);
+        int zCoordForOpponentExpansion = parser.getZCoordFromOpponentFoundOrExpand(s);
+        Coordinate c = new Coordinate(zCoordForOpponentExpansion, xCoordForOpponentExpansion, yCoordForOpponentExpansion);
+        Terrain.typesOfTerrain t = parser.getTerrainTypeFromServerMessageIfOpponentExpands(s);
+        map.expandSettlement(c, t, this.getOpponent());
+    }
+
+    public void addOpponentTotoroSanctuaryToBoard(String opponentMove) {
+        int xCoordForOpponentTotoroSanctuary = parser.getXCoordFromOpponentBuild(opponentMove);
+        int yCoordForOpponentTotoroSanctuary = parser.getYCoordFromOpponentBuild(opponentMove);
+        int zCoordForOpponentTotoroSanctuary = parser.getZCoordFromOpponentBuild(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponentTotoroSanctuary, xCoordForOpponentTotoroSanctuary, yCoordForOpponentTotoroSanctuary);
+        map.placeTotoro(c, this.getOpponent());
+    }
+
+    public void addOpponentTigerPlaygroundToBoard(String opponentMove) {
+        int xCoordForOpponentTigerPlayground = parser.getXCoordFromOpponentBuild(opponentMove);
+        int yCoordForOpponentTigerPlayground = parser.getYCoordFromOpponentBuild(opponentMove);
+        int zCoordForOpponentTigerPlayground = parser.getZCoordFromOpponentBuild(opponentMove);
+        Coordinate c = new Coordinate(zCoordForOpponentTigerPlayground, xCoordForOpponentTigerPlayground, yCoordForOpponentTigerPlayground);
+        map.placeTiger(c, this.getOpponent());
     }
 }

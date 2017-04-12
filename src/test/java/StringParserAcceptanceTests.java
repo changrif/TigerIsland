@@ -37,52 +37,52 @@ public class StringParserAcceptanceTests {
         Assert.assertEquals(expected, parser.getOpponentMoveFromServer(messageSentToBothPlayersAfterATurn2));
     }
 
-    @When("^it contains the state of the game$")
-    public void it_contains_the_state_of_the_game() throws Throwable {
-
-    }
-
-    @Then("^the state will be parsed$")
-    public void the_state_will_be_parsed() throws Throwable {
-        String expected = "PLACE";
-        String testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "PLACE <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>";
-        Assert.assertEquals(expected, parser.getCurrentStateFromServer(testString));
-
-        String testString2 = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "LOST: UNABLE TO BUILD";
-
-        Assert.assertNotEquals(expected, parser.getCurrentStateFromServer(testString2));
-
-        PlayerState.gameState p = PlayerState.gameState.LOST_UNABLE_TO_BUILD;
-        testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "LOST: UNABLE TO BUILD";
-        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString));
-    }
-
-    @When("^it contains a forfeit$")
-    public void it_contains_a_forfeit() throws Throwable {
-
-    }
-
-    @Then("^the forfeit will be parsed$")
-    public void the_forfeit_will_be_parsed() throws Throwable {
-        PlayerState.gameState p = PlayerState.gameState.FORFEITED_ILLEGAL_TILE_PLACEMENT;
-
-        String testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "FORFEITED: ILLEGAL TILE PLACEMENT";
-        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString));
-
-        p = PlayerState.gameState.FORFEITED_ILLEGAL_BUILD;
-        String testString2 = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "FORFEITED: ILLEGAL BUILD";
-        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString2));
-
-        p = PlayerState.gameState.FORFEITED_TIMEOUT;
-        String testString3 = "GAME <gid> MOVE <#> PLAYER <pid> " +
-                "FORFEITED: TIMEOUT";
-        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString3));
-    }
+//    @When("^it contains the state of the game$")
+//    public void it_contains_the_state_of_the_game() throws Throwable {
+//
+//    }
+//
+//    @Then("^the state will be parsed$")
+//    public void the_state_will_be_parsed() throws Throwable {
+//        String expected = "PLACE";
+//        String testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "PLACE <tile> AT <x> <y> <z> <orientation> FOUND SETTLEMENT AT <x> <y> <z>";
+//        Assert.assertEquals(expected, parser.getCurrentStateFromServer(testString));
+//
+//        String testString2 = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "LOST: UNABLE TO BUILD";
+//
+//        Assert.assertNotEquals(expected, parser.getCurrentStateFromServer(testString2));
+//
+//        PlayerState.gameState p = PlayerState.gameState.LOST_UNABLE_TO_BUILD;
+//        testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "LOST: UNABLE TO BUILD";
+//        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString));
+//    }
+//
+//    @When("^it contains a forfeit$")
+//    public void it_contains_a_forfeit() throws Throwable {
+//
+//    }
+//
+//    @Then("^the forfeit will be parsed$")
+//    public void the_forfeit_will_be_parsed() throws Throwable {
+//        PlayerState.gameState p = PlayerState.gameState.FORFEITED_ILLEGAL_TILE_PLACEMENT;
+//
+//        String testString = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "FORFEITED: ILLEGAL TILE PLACEMENT";
+//        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString));
+//
+//        p = PlayerState.gameState.FORFEITED_ILLEGAL_BUILD;
+//        String testString2 = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "FORFEITED: ILLEGAL BUILD";
+//        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString2));
+//
+//        p = PlayerState.gameState.FORFEITED_TIMEOUT;
+//        String testString3 = "GAME <gid> MOVE <#> PLAYER <pid> " +
+//                "FORFEITED: TIMEOUT";
+//        Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString3));
+//    }
 
     @When("^it contains a playerID for both players$")
     public void it_contains_a_playerID_for_both_players() throws Throwable {

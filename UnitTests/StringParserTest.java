@@ -41,6 +41,7 @@ public class StringParserTest{
         Assert.assertNotEquals(expected, parser.getCurrentStateFromServer(testString2));
     }
 
+    /*
     @Test
     public void getStateOfTheGameFromServerWhenSomeoneLost(){
         PlayerState.gameState p = PlayerState.gameState.LOST_UNABLE_TO_BUILD;
@@ -66,7 +67,7 @@ public class StringParserTest{
         String testString3 = "GAME <gid> MOVE <#> PLAYER <pid> " +
                 "FORFEITED: TIMEOUT";
         Assert.assertEquals(p, parser.getGameStateFromMessageSentToBothPlayers(testString3));
-    }
+    }*/
 
     @Test
     public void getPlayerIDFromServerWhenServerSendsMessageToBothPlayers(){
@@ -146,28 +147,23 @@ public class StringParserTest{
     public void getTypeOfBuildOptionFromServerWhenServerSendsMessageToBothPlayers(){
         BuildOption.typesOfBuildOptions b = BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT;
 
-        String testString = "GAME <gid> MOVE <#> PLAYER BCA " +
-                "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> FOUND SETTLEMENT AT <103> <222> <0>";
+        String testString = "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> FOUND SETTLEMENT AT <103> <222> <0>";
         Assert.assertEquals(b, parser.getBuildOptionFromMessageSentToBothPlayers(testString));
 
         b =  BuildOption.typesOfBuildOptions.EXPANSION;
-        String testString2 = "GAME <gid> MOVE <#> PLAYER BCA " +
-                "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> EXPAND SETTLEMENT AT <x> <y> <z> <terrain>";
+        String testString2 = "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> EXPAND SETTLEMENT AT <x> <y> <z> <terrain>";
         Assert.assertEquals(b, parser.getBuildOptionFromMessageSentToBothPlayers(testString2));
 
         b = BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY;
-        String testString3 = "GAME <gid> MOVE <#> PLAYER BCA " +
-                "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> BUILD TOTORO SANCTUARY AT <x> <y> <z>";
+        String testString3 = "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> BUILD TOTORO SANCTUARY AT <x> <y> <z>";
         Assert.assertEquals(b, parser.getBuildOptionFromMessageSentToBothPlayers(testString3));
 
         b = BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND;
-        String testString4 = "GAME <gid> MOVE <#> PLAYER BCA " +
-                "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> BUILD TIGER PLAYGROUND AT <x> <y> <z>";
+        String testString4 = "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> BUILD TIGER PLAYGROUND AT <x> <y> <z>";
         Assert.assertEquals(b, parser.getBuildOptionFromMessageSentToBothPlayers(testString4));
 
         b = BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD;
-        String testString5 = "GAME <gid> MOVE <#> PLAYER BCA " +
-                "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> UNABLE TO BUILD";
+        String testString5 = "PLACE <JUNGLE+LAKE> AT <102> <103> <122> <6> UNABLE TO BUILD";
         Assert.assertEquals(b, parser.getBuildOptionFromMessageSentToBothPlayers(testString5));
 
     }
