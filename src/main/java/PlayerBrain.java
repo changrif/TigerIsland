@@ -341,35 +341,37 @@ public class PlayerBrain {
 
         ArrayList<Hex> hexesInExpansion = new ArrayList<>();
         LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
-        map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
+        if(settlementToExpand != null) {
+            map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
 
-        while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
-            //Visit Hex
-            Hex currentHex = unvisitedHexesInTheSettlement.poll();
-            Coordinate currentHexCoordinate = currentHex.getCoordinate();
+            while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+                //Visit Hex
+                Hex currentHex = unvisitedHexesInTheSettlement.poll();
+                Coordinate currentHexCoordinate = currentHex.getCoordinate();
 
-            Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
+                Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
 
-            //if a neighboring tile isn't part of the settlement already
-            //and isn't already added to the list of hexes marked for expansion
-            //and matches the terrain type
-            //then add it
-            for(Coordinate adj : adjacencyMatrix) {
-                boolean added = false;
+                //if a neighboring tile isn't part of the settlement already
+                //and isn't already added to the list of hexes marked for expansion
+                //and matches the terrain type
+                //then add it
+                for (Coordinate adj : adjacencyMatrix) {
+                    boolean added = false;
 
-                if (map.isTaken(adj)) {
-                    if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
+                    if (map.isTaken(adj)) {
+                        if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
 
-                        for (int j = 0; j < hexesInExpansion.size(); j++) {
-                            if (hexesInExpansion.get(j) == map.hexAt(adj)) {
-                                added = true;
+                            for (int j = 0; j < hexesInExpansion.size(); j++) {
+                                if (hexesInExpansion.get(j) == map.hexAt(adj)) {
+                                    added = true;
+                                }
                             }
-                        }
 
-                        if (added == false) {
-                            unvisitedHexesInTheSettlement.add(map.hexAt(adj));
-                            hexesInExpansion.add(map.hexAt(adj));
-                            numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
+                            if (added == false) {
+                                unvisitedHexesInTheSettlement.add(map.hexAt(adj));
+                                hexesInExpansion.add(map.hexAt(adj));
+                                numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
+                            }
                         }
                     }
                 }
@@ -563,6 +565,8 @@ public class PlayerBrain {
         else if(buildOption == BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY) {
             map.placeTotoro(bestSettlementPlacementForTotoro, currentPlayer);
         }
+        System.out.println("We have this many tigers : " + ourPlayer.getNumberOfTigersIHave());
+        System.out.println("We have this many meeples : " + ourPlayer.getNumberOfMeeplesIHave());
     }
 
     /*

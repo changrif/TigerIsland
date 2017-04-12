@@ -84,7 +84,6 @@ public class TournamentClient {
                 break;
             }
         }
-        System.exit(1);
     }
 
     public void setUpProtocolBeforeGame() throws IOException {
