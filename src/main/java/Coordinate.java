@@ -13,7 +13,7 @@ public class Coordinate {
     }
 
     public void coordinateToString()  {
-        System.out.println("(Z: " + z + ", X: " + x + ", Y: " + y + ")");
+        System.out.println("(X: " + x + ", Y: " + y + ", Z: " + z + ")");
     }
 
     public int getX() {

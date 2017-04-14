@@ -332,7 +332,6 @@ public class Map {
 
     //Maps a Tile's Hexes to the Board
     public void mapTileToBoard(Tile tile) {
-        System.out.println(getMap());
         mapHexToBoard(tile.getHex1());
         mapHexToBoard(tile.getHex2());
         mapHexToBoard(tile.getHex3());
@@ -356,6 +355,8 @@ public class Map {
 
         if (hexIsViableForSettlement(chosenHex)) {
             //Create the Settlement
+            System.out.print("Settlement: ");
+            coordinate.coordinateToString();
             Settlement newSettlement = new Settlement(chosenHex, player);
 
             //Place the Meeples on the Hex and set the Hex's settlement
@@ -434,6 +435,8 @@ public class Map {
         if (!playerHasEnoughMeeplesToExpand(player, numberOfMeeplesNeededToExpand)) {
             return;
         } else {
+            System.out.print("Expand from: ");
+            coordinate.coordinateToString();
             for (int i = 0; i < hexesInExpansion.size(); i++) {
                 hexesInExpansion.get(i).setSettlement(settlementToExpand);
                 hexesInExpansion.get(i).placeMeeples(player);
@@ -490,6 +493,8 @@ public class Map {
                 hexAt(coordinate).setSettlement(hexAt(adjacentCoordinate).getSettlement());
                 hexAt(coordinate).placeTotoro(player);
 
+                System.out.print("Totoro: ");
+                coordinate.coordinateToString();
                 try {
                     player.decreaseNumberOfTotorosByAmount(1);
                 } catch (NotEnoughTotoro notEnough) {
@@ -527,6 +532,8 @@ public class Map {
                 hexAt(coordinate).setSettlement(hexAt(adj).getSettlement());
                 hexAt(coordinate).placeTiger(player);
 
+                System.out.print("Tiger Playground: ");
+                coordinate.coordinateToString();
                 try {
                     player.decreaseNumberOfTigersByAmount(1);
                 } catch (NotEnoughTigers notEnoughTigers) {

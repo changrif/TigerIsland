@@ -96,11 +96,18 @@ public class PlayerBrain {
     public void setBestTilePlacement(){
         bestTilePlacement = tileToPlace;
         if((hasTigersLeft()) && canFindFirstValidStackedTilePlacement()) {
+            System.out.println("YASSSSSS STACK STACK STACK STACK");
             setTileToPlace(bestTilePlacement);
 
             getBestBuildAction();
+            System.out.println("YASSSSSS STACK STACK STACK STACK");
+            System.out.println("YASSSSSS STACK STACK STACK STACK");
+            System.out.println("YASSSSSS STACK STACK STACK STACK");
             if (!playerCanBuild())  {
+                System.out.println("Player can't build?");
                 if(canFindFirstLevelOneTilePlacement()) {
+                    System.out.println("LVL ONE TILE");
+                    System.out.println("LVL ONE TILE");
                     setTileToPlace(bestTilePlacement);
                 }
             }
@@ -117,12 +124,23 @@ public class PlayerBrain {
     }
 
     private boolean playerCanBuild() {
+        System.out.println("UNABLE? : " + getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD + "CONFLICT W/ LEVEL 1: " + conflictWithFoundingASettlement());
         return (!(getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD) && !conflictWithFoundingASettlement());
     }
 
     private boolean conflictWithFoundingASettlement()    {
-        if(getBuildAction() == BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT && !availableHexesOnLevelOne.isEmpty())    {
+        if(getBuildAction().equals(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT) && !availableHexesOnLevelOne.isEmpty())    {
+            System.out.println("///");
+            for(Coordinate coordinate : availableHexesOnLevelOne)   {
+                coordinate.coordinateToString();
+            }
+            System.out.println("///");
             removeHexesFromPlacement();
+            System.out.println("///");
+            for(Coordinate coordinate : availableHexesOnLevelOne)   {
+                coordinate.coordinateToString();
+            }
+            System.out.println("///");
             if(availableHexesOnLevelOne.isEmpty())  {
                 return true;
             }
@@ -341,37 +359,33 @@ public class PlayerBrain {
 
         ArrayList<Hex> hexesInExpansion = new ArrayList<>();
         LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
-        if(settlementToExpand != null) {
-            map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
 
-            while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
-                //Visit Hex
-                Hex currentHex = unvisitedHexesInTheSettlement.poll();
-                Coordinate currentHexCoordinate = currentHex.getCoordinate();
+        map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
 
-                Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
-
-                //if a neighboring tile isn't part of the settlement already
+        while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+            //Visit Hex
+            Hex currentHex = unvisitedHexesInTheSettlement.poll();
+            Coordinate currentHexCoordinate = currentHex.getCoordinate();
+            Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
+            //if a neighboring tile isn't part of the settlement already
                 //and isn't already added to the list of hexes marked for expansion
                 //and matches the terrain type
                 //then add it
-                for (Coordinate adj : adjacencyMatrix) {
-                    boolean added = false;
+            for (Coordinate adj : adjacencyMatrix) {
+                boolean added = false;
+                if (map.isTaken(adj)) {
+                    if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
 
-                    if (map.isTaken(adj)) {
-                        if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
-
-                            for (int j = 0; j < hexesInExpansion.size(); j++) {
-                                if (hexesInExpansion.get(j) == map.hexAt(adj)) {
-                                    added = true;
-                                }
+                        for (int j = 0; j < hexesInExpansion.size(); j++) {
+                            if (hexesInExpansion.get(j) == map.hexAt(adj)) {
+                                added = true;
                             }
+                        }
 
-                            if (added == false) {
-                                unvisitedHexesInTheSettlement.add(map.hexAt(adj));
-                                hexesInExpansion.add(map.hexAt(adj));
-                                numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
-                            }
+                        if (added == false) {
+                            unvisitedHexesInTheSettlement.add(map.hexAt(adj));
+                            hexesInExpansion.add(map.hexAt(adj));
+                            numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
                         }
                     }
                 }
@@ -697,9 +711,18 @@ public class PlayerBrain {
         Coordinate opponentVolcanoCoordinate = getVolcanoCoordinateFromOpponent(opponentMove);
         Tile opponentTile = createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumberAndTileID);
 
-        this.giveBrainTheUpdatedVolcanoCoordinates(opponentVolcanoCoordinate, opponentOrientation);
-        this.giveBrainTheTilePlacement(opponentVolcanoCoordinate, opponentOrientation);
-        this.opponentPlaceTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
+        giveBrainTheUpdatedVolcanoCoordinates(opponentVolcanoCoordinate, opponentOrientation);
+        giveBrainTheTilePlacement(opponentVolcanoCoordinate, opponentOrientation);
+
+        try {
+            this.opponentPlaceTile(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
+        }   catch(InvalidTilePlacement invalidTilePlacement)    {
+            System.out.println("EXCUSE YOU SERVER TEAM - this is not a valid placement but ok...");
+            opponentTile.setTileOrientation(opponentOrientation);
+            map.setTileCoordinates(opponentTile, opponentVolcanoCoordinate, opponentOrientation);
+            map.setTileLevel(opponentTile);
+            map.mapTileToBoard(opponentTile);
+        }
     }
 
     public void opponentPlaceTile(Tile tile, Coordinate coordinate, int tileOrientation) {
@@ -708,19 +731,19 @@ public class PlayerBrain {
 
     //Opponent Build
     public void addOpponentsMoveToBoardBasedOnBuildOption(String opponentMove) {
-        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == parseBuildSelectionFromOpponent(opponentMove)) {
+        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT.equals(parseBuildSelectionFromOpponent(opponentMove))) {
             addOpponentSettlementToBoard(opponentMove);
         }
-        else if(BuildOption.typesOfBuildOptions.EXPANSION == parseBuildSelectionFromOpponent(opponentMove)){
+        else if(BuildOption.typesOfBuildOptions.EXPANSION.equals(parseBuildSelectionFromOpponent(opponentMove))){
             addOpponentExpansionOnBoardBasedOnTheServerMessage(opponentMove);
         }
-        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == parseBuildSelectionFromOpponent(opponentMove)){
+        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY.equals(parseBuildSelectionFromOpponent(opponentMove))){
             addOpponentTotoroSanctuaryToBoard(opponentMove);
         }
-        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == parseBuildSelectionFromOpponent(opponentMove)){
+        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND.equals(parseBuildSelectionFromOpponent(opponentMove))){
             addOpponentTigerPlaygroundToBoard(opponentMove);
         }
-        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == parseBuildSelectionFromOpponent(opponentMove)) {
+        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD.equals(parseBuildSelectionFromOpponent(opponentMove))) {
             //Do nothing
         }
     }

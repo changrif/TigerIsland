@@ -46,15 +46,23 @@ public class TournamentClient {
     }
 
     public void runClient() throws IOException {
-        setUpProtocolBeforeGame();
+        setUpAuthenticationProtocol();
+        setUpChallengeProtocol();
+        System.out.println("WHY ISN'T THIS CHANGING");
+        System.out.println("WHY ISN'T THIS CHANGING");
+        System.out.println("WHY ISN'T THIS CHANGING");
+        System.out.println("WHY ISN'T THIS CHANGING");
 
         while(thereAreChallengesLeft) {
+            setUpRoundProtocol();
+            setUpMatchProtocol();
             for (int i = 0; i < numberOfRounds; i++) {
                 mapForGameOne = new Map();
                 mapForGameOne.placeFirstTile();
                 mapForGameTwo = new Map();
                 mapForGameTwo.placeFirstTile();
 
+                System.out.println("reset player data");
                 Player ourAI = new Player(playerId);
                 Player opponentAI = new Player(opponentId);
                 brain1 = new PlayerBrain(ourAI, opponentAI, mapForGameOne);
@@ -73,24 +81,15 @@ public class TournamentClient {
 
         while(true) {
             if(getAndDisplayMessageFromServer() != null)    {
-                System.out.println("still server messages...");
             }
             else    {
                 try{
                     out.close();
                     in.close();
                 } catch (IOException e){}
-                System.out.println("break...");
                 break;
             }
         }
-    }
-
-    public void setUpProtocolBeforeGame() throws IOException {
-        setUpAuthenticationProtocol();
-        setUpChallengeProtocol();
-        setUpRoundProtocol();
-        setUpMatchProtocol();
     }
 
     public void setUpAuthenticationProtocol() throws IOException {
@@ -121,6 +120,9 @@ public class TournamentClient {
         if(fromServer.contains("NEW CHALLENGE")) {
             numberOfRounds = parser.getNumberOfRoundsFromServerMessage(fromServer);
         }
+        else if(fromServer.contains("WAIT FOR THE NEXT CHALLENGE")) {
+            setUpChallengeProtocol();
+        }
         else if(fromServer.contains("END OF CHALLENGE"))    {
             thereAreChallengesLeft = false;
         }
@@ -137,6 +139,7 @@ public class TournamentClient {
         String fromServer = getAndDisplayMessageFromServer();
         if(fromServer.contains("NEW MATCH")) {
             opponentId = parser.getOpponentPlayerIDFromServerMessage(fromServer);
+            System.out.println("OPPONENT ID" + opponentId);
             matchHasBegun = true;
         }
         else if(fromServer.contains("OVER PLAYER"))   { //GAME <GID> OVER PLAYER ...
@@ -160,6 +163,7 @@ public class TournamentClient {
                     matchHasBegun = false;
                 }
                 if(gameID.equals(brain1.getGameID())) {
+                    System.out.println("BRAIN 1");
                     // Get details of the move from server
                     String terrains = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
                     tileToPlace = brain1.createTile(fromServer, moveNumber);
@@ -168,6 +172,7 @@ public class TournamentClient {
                     sendMessageToServerBasedOnOurPlayersMove(brain1, moveNumber, gameID, terrains);
                 }
                 else{
+                    System.out.println("BRAIN 2");
                     // Get details of the move from server
                     String terrains = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
                     tileToPlace = brain2.createTile(fromServer, moveNumber);
@@ -179,14 +184,15 @@ public class TournamentClient {
             } else if (fromServer.contains("PLAYER " + opponentId + " PLACED")) {
                 gameID = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
                 moveNumber = parser.getMoveNumberFromServerMessage(fromServer);
-                System.out.println("GameID " + gameID);
-                System.out.println("In function brain1 map: " + brain1.getMap());
+                System.out.println("PLAYER OPPONENT PLACED");
+
                 System.out.println(moveNumber);
                 if (matchHasBegun) {
                     setGameIDForBrain(brain1);
                     matchHasBegun = false;
                 }
                 if (gameID.equals(brain1.getGameID())) {
+                    System.out.println("BRAIN 1");
                     // Get details of the move from server
                     String opponentMove = parser.getOpponentMoveFromServer(fromServer);
                     tileToPlace = brain1.createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumber);
@@ -195,6 +201,7 @@ public class TournamentClient {
                     brain1.placeTileFromOpponent(opponentMove, moveNumber);
                     brain1.addOpponentsMoveToBoardBasedOnBuildOption(parser.getOpponentMoveFromServer(fromServer));
                 } else {
+                    System.out.println("BRAIN 2");
                     // Get details of the move from server
                     String opponentMove = parser.getOpponentMoveFromServer(fromServer);
                     tileToPlace = brain2.createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumber);
@@ -205,32 +212,9 @@ public class TournamentClient {
                     brain2.addOpponentsMoveToBoardBasedOnBuildOption(parser.getOpponentMoveFromServer(fromServer));
                 }
             }
-//            else if(fromServer.contains("PLAYER " + playerId + " PLACED"))   {
-//                if(brain1.getGameID().equals(parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer))) {
-//                    moveNumber = parser.getMoveNumberFromServerMessage(fromServer);
-//
-//                    // Get details of the move from server
-//                    String move = parser.getOpponentMoveFromServer(fromServer);
-//                    tileToPlace = brain1.createTileFromOpponentToPlaceOnBoard(move, moveNumber);
-//                    brain1.setTileToPlace(tileToPlace);
-//
-//                    // System.out.println(brain1);
-//                    readMessageFromServerForAddingOurPlayersMove(brain1, tileToPlace, fromServer, moveNumber);
-//                }
-//                else    {
-//                    moveNumber = parser.getMoveNumberFromServerMessage(fromServer);
-//
-//                    // Get details of the move from server
-//                    String move = parser.getOpponentMoveFromServer(fromServer);
-//                    tileToPlace = brain2.createTileFromOpponentToPlaceOnBoard(move, moveNumber);
-//                    brain2.setTileToPlace(tileToPlace);
-//
-//                    //System.out.println(brain2);
-//                    readMessageFromServerForAddingOurPlayersMove(brain2, tileToPlace, fromServer, moveNumber);
-//                }
-//            }
             else if (fromServer.contains("FORFEITED") || fromServer.contains("LOST")) {
                 gameID = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
+
                 if(matchHasBegun)   {
                     setGameIDForBrain(brain1);
                     matchHasBegun = false;
@@ -242,57 +226,6 @@ public class TournamentClient {
                     brain2.setGameInProgress(false);
                 }
             }
-        }
-//        matchHasBegun = true;
-    }
-
-    public void readMessageFromServerForAddingOurPlayersMove(PlayerBrain brain, Tile tileToPlaceFromServer, String fromServer, int moveNumberAndTileID) {
-        //GAME B MOVE 0 PLAYER 8 PLACED GRASS+LAKE AT -1 2 -1 4 FOUNDED SETTLEMENT AT 0 1 -1
-        String ourMove = parser.getOpponentMoveFromServer(fromServer);
-        int ourOrientation = parser.getOrientationFromOpponent(ourMove);
-        Coordinate ourVolcanoCoordinate = brain.getVolcanoCoordinateFromOpponent(ourMove);
-
-        brain.giveBrainTheUpdatedVolcanoCoordinates(ourVolcanoCoordinate, ourOrientation);
-        brain.giveBrainTheTilePlacement(ourVolcanoCoordinate, ourOrientation);
-        ourVolcanoCoordinate.coordinateToString();
-        System.out.println("This is our move " + ourMove);
-        System.out.println("This is the server message " + fromServer);
-        ourVolcanoCoordinate.coordinateToString();
-        System.out.println("The tile orientation is " + ourOrientation);
-        brain.opponentPlaceTile(tileToPlaceFromServer, ourVolcanoCoordinate, ourOrientation);
-
-        if(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT == brain.parseBuildSelectionFromOpponent(ourMove)) {
-            int x = parser.getXCoordFromOpponentFoundOrExpand(ourMove);
-            int y = parser.getYCoordFromOpponentFoundOrExpand(ourMove);
-            int z = parser.getZCoordFromOpponentFoundOrExpand(ourMove);
-            brain.bestSettlementPlacementForFounding = new Coordinate(z, x, y);
-            brain.executeBuildAction();
-        }
-        else if(BuildOption.typesOfBuildOptions.EXPANSION == brain.parseBuildSelectionFromOpponent(ourMove)){
-            int x = parser.getXCoordFromOpponentFoundOrExpand(ourMove);
-            int y = parser.getYCoordFromOpponentFoundOrExpand(ourMove);
-            int z = parser.getZCoordFromOpponentFoundOrExpand(ourMove);
-            Terrain.typesOfTerrain terrain = parser.getTerrainTypeFromServerMessageIfOpponentExpands(ourMove);
-            brain.bestSettlementPlacementForExpansion = new Coordinate(z, x, y);
-            brain.typeOfTerrainForBestExpansion = terrain;
-            brain.executeBuildAction();
-        }
-        else if(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY == brain.parseBuildSelectionFromOpponent(ourMove)){
-            int x = parser.getXCoordFromOpponentBuild(ourMove);
-            int y = parser.getYCoordFromOpponentBuild(ourMove);
-            int z = parser.getZCoordFromOpponentBuild(ourMove);
-            brain.bestSettlementPlacementForTotoro = new Coordinate(z, x, y);
-            brain.executeBuildAction();
-        }
-        else if(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND == brain.parseBuildSelectionFromOpponent(ourMove)){
-            int x = parser.getXCoordFromOpponentBuild(ourMove);
-            int y = parser.getYCoordFromOpponentBuild(ourMove);
-            int z = parser.getZCoordFromOpponentBuild(ourMove);
-            brain.bestSettlementPlacementForTiger = new Coordinate(z, x, y);
-            brain.executeBuildAction();
-        }
-        else if(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD == brain.parseBuildSelectionFromOpponent(ourMove)) {
-            System.out.println("UNABLE TO BUILD");
         }
     }
 
