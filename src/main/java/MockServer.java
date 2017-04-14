@@ -4,6 +4,7 @@ import java.net.Socket;
 
 /**
  * Created by ddmac on 4/7/2017.
+ * This is a mock server that
  */
 public class MockServer {
     private int incrementer;

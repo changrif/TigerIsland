@@ -1,6 +1,11 @@
 import java.io.*;
 import java.net.*;
 
+/*
+This handles all communication with the server and our client. The
+runClient method in this class is called from the Main class.
+ */
+
 public class TournamentClient {
     private StringParser parser;
     private String hostName;

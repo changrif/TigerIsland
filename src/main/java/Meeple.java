@@ -1,5 +1,6 @@
 /**
  * Created by Kyle on 3/14/2017.
+ * Meeples are represented as objects and they have a reference to the player they belong to and their point value.
  */
 public class Meeple {
 

@@ -1,3 +1,7 @@
+/*
+Testing class for testing the knock knock server. Not relevant to the execution of our project.
+*/
+
 public class TournamentProtocol {
     private static final int WAITING = 0;
     private static final int SENTWELCOMEMESSAGE = 1;

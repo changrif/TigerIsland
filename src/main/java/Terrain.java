@@ -1,5 +1,7 @@
 /**
  * Created by ddmac on 3/15/2017.
+ * This class creates an enumeration for each of the terrain types and has one function that will convert it to a string for printing.
+ * The Habitat class is used to determine if a certain terrain is habitable (not a volcano).
  */
 
 public class Terrain {

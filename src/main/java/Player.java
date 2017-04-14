@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 /**
  * Created by Nick Kroeger on 3/21/2017.
+ * This class represents and holds all functionality for the player. It has references to number of meeples, totoros, and tigers
+ * the player currently has and also keeps track of the round, match, and tournament score. The functionality prefaced with @Deprecated are no longer
+ * being used. Most of the functions in this class are getters and setters.
  */
 
 public class Player {

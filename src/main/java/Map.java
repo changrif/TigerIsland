@@ -3,6 +3,8 @@ import java.util.LinkedList;
 
 /**
  * Created by Kyle on 3/14/2017.
+ * Included in this class is all the functionality related to the Map class Important functionality includes: mapTileToBoard,
+ * nukeSettlement, placeFirstTile, isValidPlacement, isAdjacentToAnotherTile, placeTiger, placeTotoro, and merge settlement.
  */
 public class Map {
     //Private Instance Variables

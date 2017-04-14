@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 /**
  * Created by Nick Kroeger on 4/5/2017.
+ * This class is used primarily to take input from the server and parse it for the information needed. Each function is
+ * labeled accordingly.
  */
 public class StringParser {
 

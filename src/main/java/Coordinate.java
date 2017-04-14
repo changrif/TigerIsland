@@ -1,6 +1,9 @@
 /**
  * Created by chandlergriffin on 3/26/17.
+ * The coordinate class creates an x y z object to represent a hexagonal coordinate on the map. It contains getters and setters
+ *  and a function that prints the x, y, and z coordinates.
  */
+
 public class Coordinate {
     private int x;
     private int y;

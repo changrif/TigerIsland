@@ -1,5 +1,9 @@
 /**
  * Created by Kyle on 3/14/2017.
+ * All of the hexes in each tile are represented by a hex object. Each hex object has a reference to its TileID and Tile level.
+ * Additionally, it has it's own coordinate and terrain type. Each hex also has flags that determine whether or not there are tigers, totoros,
+ * meeples, or part of a settlement. Each hex can place a tiger, totoro, meeple, and set the settlement along with getting the player it belongs
+ * to.
  */
 public class Hex {
 

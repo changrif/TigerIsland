@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Kyle on 3/25/2017.
+ * The Settlement class represents each Settlement as an object with is an ArrayList of hexes holding all of the hexes in
+ * the settlement. It has references to the player and has flags for totoro and tiger in the settlement.
  */
 public class Settlement {
 

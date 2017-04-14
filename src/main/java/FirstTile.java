@@ -1,5 +1,7 @@
 /**
  * Created by chandlergriffin on 4/3/17.
+ * This class is specifically for the first tile. It creates the first tile and gives it a tileID and a tile level. There are also
+ * getters and setters.
  */
 public class FirstTile {
     private Hex Hex1;

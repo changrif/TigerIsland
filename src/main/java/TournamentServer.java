@@ -2,6 +2,8 @@
 import java.net.*;
 import java.io.*;
 
+/*Testing class for the server. Not relevant to the execution of our project.*/
+
 public class TournamentServer {
     public static void main(String[] args) throws IOException {
 

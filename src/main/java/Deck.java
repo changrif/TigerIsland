@@ -3,6 +3,8 @@ import java.util.Collections;
 
 /**
  * Created by Michelle on 3/21/2017.
+ * This class was created and used for unit and acceptance testing. It generates a deck of 48 tiles with all of the possible terrain
+ * combinations and then shuffles them. Additionally, the draw function will draw a tile randomly from the deck and returns it as a Tile object.
  */
 public class Deck {
 

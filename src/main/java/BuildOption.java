@@ -1,5 +1,7 @@
 /**
  * Created by Nick Kroeger on 4/5/2017.
+ * This class describes each build option as an enumeration. The function getTypeOfBuildOption(String a) where a is a
+ * build option from the server and it returns the build option specified.
  */
 public class BuildOption {
 

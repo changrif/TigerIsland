@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 /**
  * Created by Nick Kroeger on 4/5/2017.
+ * This class is the AI component.
  */
 public class PlayerBrain {
 

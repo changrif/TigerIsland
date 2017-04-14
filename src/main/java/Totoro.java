@@ -1,5 +1,6 @@
 /**
  * Created by Kyle on 3/14/2017.
+ * Creates a totoro object that has references to the player and point value of a totoro.
  */
 public class Totoro {
 

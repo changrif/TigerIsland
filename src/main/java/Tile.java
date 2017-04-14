@@ -1,5 +1,7 @@
 /**
  * Created by Kyle on 3/14/2017.
+ * The tile class creates an object with consisting of three hexes and has references to those hexes, tileID, level, and orientation.
+ *
  */
 public class Tile {
 
