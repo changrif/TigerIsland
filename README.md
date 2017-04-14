@@ -1,5 +1,7 @@
-# TigerIsland
+# TigerIsland Team_I
 TigerIsland is a two-player tile-placement game. Players alternate turns placing tiles and building until one player either forfeits or a player wins by placing all of two types of pieces.
+
+*Members:* Kyle Griffey (KGriffey), Charles 'Chandler' Griffin (changrif), Nicholas Kroeger (kroegern1), David Machin (git4Dave), Michelle Palumbo (mpalumbo6), Aizey Pineda (az2cool)
 
 ## Game Functionality
 
@@ -21,6 +23,11 @@ The following **required** functionality is completed:
 - [X] The AI plays itself both in unit tests (see BrainBuildActionTests) and client-server tests where one of the AI implementations always wins, there is never a forfeit.
 
 (*NOTE*: On Monday, we finished in last place timing out of every game. This is Friday's tournament scoreboard where we are listed as the highest scoring team by placing all of our Tigers and Meeples in multiple games.)
+
+## Server Functionality
+
+The following **required** functionality is completed:
+- [X] The client is fully functional and parses all server input for multiple rounds and challenges. Strings are parsed in the class, String Parser. The client communicates with the server in TournamentClient and PlayerBrain (our AI). We ran without any exceptions or bugs in Friday's implementation of the tournament.
 
 ## Non-implemented Functionality
 
