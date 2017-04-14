@@ -339,7 +339,6 @@ public class Map {
 
     //Maps a Hex to the Board
     public void mapHexToBoard(Hex hex) {
-        hex.getCoordinate().coordinateToString();
         Map[hex.getCoordinate().getX()][hex.getCoordinate().getY()][hex.getCoordinate().getZ()] = hex;
     }
 
@@ -355,8 +354,6 @@ public class Map {
 
         if (hexIsViableForSettlement(chosenHex)) {
             //Create the Settlement
-            System.out.print("Settlement: ");
-            coordinate.coordinateToString();
             Settlement newSettlement = new Settlement(chosenHex, player);
 
             //Place the Meeples on the Hex and set the Hex's settlement
@@ -396,57 +393,57 @@ public class Map {
 
         ArrayList<Hex> hexesInExpansion = new ArrayList<>();
         LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
-        addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
+        if(settlementToExpand != null) {
+            addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
 
-        while (thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
-            //Visit Hex
-            Hex currentHex = unvisitedHexesInTheSettlement.poll();
-            Coordinate currentHexCoordinate = currentHex.getCoordinate();
+            while (thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+                //Visit Hex
+                Hex currentHex = unvisitedHexesInTheSettlement.poll();
+                Coordinate currentHexCoordinate = currentHex.getCoordinate();
 
-            Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(currentHexCoordinate);
+                Coordinate[] adjacencyMatrix = createAdjacentCoordinateArray(currentHexCoordinate);
 
-            //if a neighboring tile isn't part of the settlement already
-            //and isn't already added to the list of hexes marked for expansion
-            //and matches the terrain type
-            //then add it
-            for(Coordinate adj : adjacencyMatrix) {
-                boolean added = false;
+                //if a neighboring tile isn't part of the settlement already
+                //and isn't already added to the list of hexes marked for expansion
+                //and matches the terrain type
+                //then add it
+                for (Coordinate adj : adjacencyMatrix) {
+                    boolean added = false;
 
-                if (isTaken(adj)) {
-                    if (hexAt(adj).getTerrainType() == terrainType && !hexAt(adj).isSettled()) {
+                    if (isTaken(adj)) {
+                        if (hexAt(adj).getTerrainType() == terrainType && !hexAt(adj).isSettled()) {
 
-                        for (int j = 0; j < hexesInExpansion.size(); j++) {
-                            if (hexesInExpansion.get(j) == hexAt(adj)) {
-                                added = true;
+                            for (int j = 0; j < hexesInExpansion.size(); j++) {
+                                if (hexesInExpansion.get(j) == hexAt(adj)) {
+                                    added = true;
+                                }
                             }
-                        }
 
-                        if (added == false) {
-                            unvisitedHexesInTheSettlement.add(hexAt(adj));
-                            hexesInExpansion.add(hexAt(adj));
-                            numberOfMeeplesNeededToExpand += hexAt(adj).getLevel();
+                            if (added == false) {
+                                unvisitedHexesInTheSettlement.add(hexAt(adj));
+                                hexesInExpansion.add(hexAt(adj));
+                                numberOfMeeplesNeededToExpand += hexAt(adj).getLevel();
+                            }
                         }
                     }
                 }
             }
-        }
 
-        //add hexes to settlement if enough Meeples
-        if (!playerHasEnoughMeeplesToExpand(player, numberOfMeeplesNeededToExpand)) {
-            return;
-        } else {
-            System.out.print("Expand from: ");
-            coordinate.coordinateToString();
-            for (int i = 0; i < hexesInExpansion.size(); i++) {
-                hexesInExpansion.get(i).setSettlement(settlementToExpand);
-                hexesInExpansion.get(i).placeMeeples(player);
-                settlementToExpand.addToSettlement(hexesInExpansion.get(i));
+            //add hexes to settlement if enough Meeples
+            if (!playerHasEnoughMeeplesToExpand(player, numberOfMeeplesNeededToExpand)) {
+                return;
+            } else {
+                for (int i = 0; i < hexesInExpansion.size(); i++) {
+                    hexesInExpansion.get(i).setSettlement(settlementToExpand);
+                    hexesInExpansion.get(i).placeMeeples(player);
+                    settlementToExpand.addToSettlement(hexesInExpansion.get(i));
+                }
+                player.decreaseNumberOfMeeplesByAmount(numberOfMeeplesNeededToExpand);
             }
-            player.decreaseNumberOfMeeplesByAmount(numberOfMeeplesNeededToExpand);
+
+            mergeSettlementsAfterExpansion(settlementToExpand, player);
+
         }
-
-        mergeSettlementsAfterExpansion(settlementToExpand, player);
-
     }
 
     public boolean thereAreStillHexesToVisit(LinkedList<Hex> unvisitedHexesInTheSettlement) {
@@ -493,8 +490,6 @@ public class Map {
                 hexAt(coordinate).setSettlement(hexAt(adjacentCoordinate).getSettlement());
                 hexAt(coordinate).placeTotoro(player);
 
-                System.out.print("Totoro: ");
-                coordinate.coordinateToString();
                 try {
                     player.decreaseNumberOfTotorosByAmount(1);
                 } catch (NotEnoughTotoro notEnough) {
@@ -532,8 +527,6 @@ public class Map {
                 hexAt(coordinate).setSettlement(hexAt(adj).getSettlement());
                 hexAt(coordinate).placeTiger(player);
 
-                System.out.print("Tiger Playground: ");
-                coordinate.coordinateToString();
                 try {
                     player.decreaseNumberOfTigersByAmount(1);
                 } catch (NotEnoughTigers notEnoughTigers) {

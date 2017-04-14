@@ -48,10 +48,6 @@ public class TournamentClient {
     public void runClient() throws IOException {
         setUpAuthenticationProtocol();
         setUpChallengeProtocol();
-        System.out.println("WHY ISN'T THIS CHANGING");
-        System.out.println("WHY ISN'T THIS CHANGING");
-        System.out.println("WHY ISN'T THIS CHANGING");
-        System.out.println("WHY ISN'T THIS CHANGING");
 
         while(thereAreChallengesLeft) {
             setUpRoundProtocol();
@@ -63,10 +59,12 @@ public class TournamentClient {
                 mapForGameTwo.placeFirstTile();
 
                 System.out.println("reset player data");
-                Player ourAI = new Player(playerId);
-                Player opponentAI = new Player(opponentId);
-                brain1 = new PlayerBrain(ourAI, opponentAI, mapForGameOne);
-                brain2 = new PlayerBrain(ourAI, opponentAI, mapForGameTwo);
+                Player ourAI_1 = new Player(playerId);
+                Player opponentAI_1 = new Player(opponentId);
+                Player ourAI_2 = new Player(playerId);
+                Player opponentAI_2 = new Player(opponentId);
+                brain1 = new PlayerBrain(ourAI_1, opponentAI_1, mapForGameOne);
+                brain2 = new PlayerBrain(ourAI_2, opponentAI_2, mapForGameTwo);
                 brain1.setGameInProgress(true);
                 brain2.setGameInProgress(true);
 
@@ -120,7 +118,7 @@ public class TournamentClient {
         if(fromServer.contains("NEW CHALLENGE")) {
             numberOfRounds = parser.getNumberOfRoundsFromServerMessage(fromServer);
         }
-        else if(fromServer.contains("WAIT FOR THE NEXT CHALLENGE")) {
+        else if(fromServer.contains("WAIT FOR THE NEXT CHALLENGE") || fromServer.contains("WAIT FOR NEXT CHALLENGE")) {
             setUpChallengeProtocol();
         }
         else if(fromServer.contains("END OF CHALLENGE"))    {
@@ -130,7 +128,10 @@ public class TournamentClient {
 
     public void setUpRoundProtocol() throws IOException {
         String fromServer = getAndDisplayMessageFromServer();
-        if(fromServer.contains("WAIT FOR THE NEXT MATCH")) {
+        if(fromServer.contains("WAIT FOR THE NEXT MATCH") || fromServer.contains("WAIT FOR NEXT MATCH")) {
+            setUpRoundProtocol();
+        }
+        else if(fromServer.contains("OVER PLAYER") || fromServer.contains("FORFEITED") || fromServer.contains("LOST")) {
             setUpRoundProtocol();
         }
     }
@@ -144,6 +145,11 @@ public class TournamentClient {
         }
         else if(fromServer.contains("OVER PLAYER"))   { //GAME <GID> OVER PLAYER ...
             getAndDisplayMessageFromServer();
+        }
+        else if(fromServer.contains("END OF ROUND"))    {
+            setUpRoundProtocol();
+            numberOfRounds--;
+            setUpMatchProtocol();
         }
     }
 
@@ -163,7 +169,6 @@ public class TournamentClient {
                     matchHasBegun = false;
                 }
                 if(gameID.equals(brain1.getGameID())) {
-                    System.out.println("BRAIN 1");
                     // Get details of the move from server
                     String terrains = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
                     tileToPlace = brain1.createTile(fromServer, moveNumber);
@@ -172,7 +177,6 @@ public class TournamentClient {
                     sendMessageToServerBasedOnOurPlayersMove(brain1, moveNumber, gameID, terrains);
                 }
                 else{
-                    System.out.println("BRAIN 2");
                     // Get details of the move from server
                     String terrains = parser.getTileIDFromServerMessageIfActivePlayer(fromServer);
                     tileToPlace = brain2.createTile(fromServer, moveNumber);
@@ -184,7 +188,6 @@ public class TournamentClient {
             } else if (fromServer.contains("PLAYER " + opponentId + " PLACED")) {
                 gameID = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
                 moveNumber = parser.getMoveNumberFromServerMessage(fromServer);
-                System.out.println("PLAYER OPPONENT PLACED");
 
                 System.out.println(moveNumber);
                 if (matchHasBegun) {
@@ -192,7 +195,6 @@ public class TournamentClient {
                     matchHasBegun = false;
                 }
                 if (gameID.equals(brain1.getGameID())) {
-                    System.out.println("BRAIN 1");
                     // Get details of the move from server
                     String opponentMove = parser.getOpponentMoveFromServer(fromServer);
                     tileToPlace = brain1.createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumber);
@@ -201,7 +203,6 @@ public class TournamentClient {
                     brain1.placeTileFromOpponent(opponentMove, moveNumber);
                     brain1.addOpponentsMoveToBoardBasedOnBuildOption(parser.getOpponentMoveFromServer(fromServer));
                 } else {
-                    System.out.println("BRAIN 2");
                     // Get details of the move from server
                     String opponentMove = parser.getOpponentMoveFromServer(fromServer);
                     tileToPlace = brain2.createTileFromOpponentToPlaceOnBoard(opponentMove, moveNumber);
@@ -212,7 +213,7 @@ public class TournamentClient {
                     brain2.addOpponentsMoveToBoardBasedOnBuildOption(parser.getOpponentMoveFromServer(fromServer));
                 }
             }
-            else if (fromServer.contains("FORFEITED") || fromServer.contains("LOST")) {
+            else if (fromServer.contains("OVER PLAYER") || fromServer.contains("FORFEITED") || fromServer.contains("LOST")) {
                 gameID = parser.getGameIDFromServerMessageIfNotActivePlayer(fromServer);
 
                 if(matchHasBegun)   {

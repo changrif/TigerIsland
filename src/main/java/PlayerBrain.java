@@ -96,18 +96,11 @@ public class PlayerBrain {
     public void setBestTilePlacement(){
         bestTilePlacement = tileToPlace;
         if((hasTigersLeft()) && canFindFirstValidStackedTilePlacement()) {
-            System.out.println("YASSSSSS STACK STACK STACK STACK");
             setTileToPlace(bestTilePlacement);
 
             getBestBuildAction();
-            System.out.println("YASSSSSS STACK STACK STACK STACK");
-            System.out.println("YASSSSSS STACK STACK STACK STACK");
-            System.out.println("YASSSSSS STACK STACK STACK STACK");
             if (!playerCanBuild())  {
-                System.out.println("Player can't build?");
                 if(canFindFirstLevelOneTilePlacement()) {
-                    System.out.println("LVL ONE TILE");
-                    System.out.println("LVL ONE TILE");
                     setTileToPlace(bestTilePlacement);
                 }
             }
@@ -124,23 +117,12 @@ public class PlayerBrain {
     }
 
     private boolean playerCanBuild() {
-        System.out.println("UNABLE? : " + getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD + "CONFLICT W/ LEVEL 1: " + conflictWithFoundingASettlement());
         return (!(getBuildAction() == BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD) && !conflictWithFoundingASettlement());
     }
 
     private boolean conflictWithFoundingASettlement()    {
         if(getBuildAction().equals(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT) && !availableHexesOnLevelOne.isEmpty())    {
-            System.out.println("///");
-            for(Coordinate coordinate : availableHexesOnLevelOne)   {
-                coordinate.coordinateToString();
-            }
-            System.out.println("///");
             removeHexesFromPlacement();
-            System.out.println("///");
-            for(Coordinate coordinate : availableHexesOnLevelOne)   {
-                coordinate.coordinateToString();
-            }
-            System.out.println("///");
             if(availableHexesOnLevelOne.isEmpty())  {
                 return true;
             }
@@ -259,23 +241,18 @@ public class PlayerBrain {
     public void getBestBuildAction()    {
         availableHexesOnLevelOne = new ArrayList<>();
         if(!wePlacedAllOfOurTigers() && canFindFirstPlaceForTigerPlayground()){
-            System.out.println("TP");
             setBuildOption(BuildOption.typesOfBuildOptions.TIGER_PLAYGROUND);
         }
         else if(wePlacedAllOfOurTigers() && !wePlacedAllOfOurMeeples() && canFindFirstPlaceToExpandSettlement()){
-            System.out.println("EX");
             setBuildOption(BuildOption.typesOfBuildOptions.EXPANSION);
         }
         else if(!wePlacedAllOfOurMeeples() && canFindFirstPlaceToFoundSettlement()){
-            System.out.println("FS");
             setBuildOption(BuildOption.typesOfBuildOptions.FOUND_SETTLEMENT);
         }
         else if(wePlacedAllOfOurMeeples() && !wePlacedAllOfOurTotoro() && canFindFirstPlaceForTotoroSanctuary())   {
-            System.out.println("TS");
             setBuildOption(BuildOption.typesOfBuildOptions.TOTORO_SANCTUARY);
         }
         else    {
-            System.out.println("UB");
             setBuildOption(BuildOption.typesOfBuildOptions.UNABLE_TO_BUILD);
         }
 
@@ -360,32 +337,34 @@ public class PlayerBrain {
         ArrayList<Hex> hexesInExpansion = new ArrayList<>();
         LinkedList<Hex> unvisitedHexesInTheSettlement = new LinkedList<>();
 
-        map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
+        if(settlementToExpand != null) {
+            map.addSettlementHexesToUnvisitedQueue(unvisitedHexesInTheSettlement, settlementToExpand);
 
-        while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
-            //Visit Hex
-            Hex currentHex = unvisitedHexesInTheSettlement.poll();
-            Coordinate currentHexCoordinate = currentHex.getCoordinate();
-            Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
-            //if a neighboring tile isn't part of the settlement already
+            while (map.thereAreStillHexesToVisit(unvisitedHexesInTheSettlement)) {
+                //Visit Hex
+                Hex currentHex = unvisitedHexesInTheSettlement.poll();
+                Coordinate currentHexCoordinate = currentHex.getCoordinate();
+                Coordinate[] adjacencyMatrix = map.createAdjacentCoordinateArray(currentHexCoordinate);
+                //if a neighboring tile isn't part of the settlement already
                 //and isn't already added to the list of hexes marked for expansion
                 //and matches the terrain type
                 //then add it
-            for (Coordinate adj : adjacencyMatrix) {
-                boolean added = false;
-                if (map.isTaken(adj)) {
-                    if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
+                for (Coordinate adj : adjacencyMatrix) {
+                    boolean added = false;
+                    if (map.isTaken(adj)) {
+                        if (map.hexAt(adj).getTerrainType() == terrainType && !map.hexAt(adj).isSettled()) {
 
-                        for (int j = 0; j < hexesInExpansion.size(); j++) {
-                            if (hexesInExpansion.get(j) == map.hexAt(adj)) {
-                                added = true;
+                            for (int j = 0; j < hexesInExpansion.size(); j++) {
+                                if (hexesInExpansion.get(j) == map.hexAt(adj)) {
+                                    added = true;
+                                }
                             }
-                        }
 
-                        if (added == false) {
-                            unvisitedHexesInTheSettlement.add(map.hexAt(adj));
-                            hexesInExpansion.add(map.hexAt(adj));
-                            numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
+                            if (added == false) {
+                                unvisitedHexesInTheSettlement.add(map.hexAt(adj));
+                                hexesInExpansion.add(map.hexAt(adj));
+                                numberOfMeeplesNeededToExpand += map.hexAt(adj).getLevel();
+                            }
                         }
                     }
                 }
@@ -765,7 +744,7 @@ public class PlayerBrain {
         int xCoordForOpponentExpansion = parser.getXCoordFromOpponentFoundOrExpand(s);
         int yCoordForOpponentExpansion = parser.getYCoordFromOpponentFoundOrExpand(s);
         int zCoordForOpponentExpansion = parser.getZCoordFromOpponentFoundOrExpand(s);
-        Coordinate c = new Coordinate(zCoordForOpponentExpansion, xCoordForOpponentExpansion, yCoordForOpponentExpansion);
+        Coordinate c = new Coordinate(zCoordForOpponentExpansion + 100, xCoordForOpponentExpansion + 100, yCoordForOpponentExpansion + 100);
         Terrain.typesOfTerrain t = parser.getTerrainTypeFromServerMessageIfOpponentExpands(s);
         map.expandSettlement(c, t, this.getOpponent());
     }
@@ -774,7 +753,7 @@ public class PlayerBrain {
         int xCoordForOpponentTotoroSanctuary = parser.getXCoordFromOpponentBuild(opponentMove);
         int yCoordForOpponentTotoroSanctuary = parser.getYCoordFromOpponentBuild(opponentMove);
         int zCoordForOpponentTotoroSanctuary = parser.getZCoordFromOpponentBuild(opponentMove);
-        Coordinate c = new Coordinate(zCoordForOpponentTotoroSanctuary, xCoordForOpponentTotoroSanctuary, yCoordForOpponentTotoroSanctuary);
+        Coordinate c = new Coordinate(zCoordForOpponentTotoroSanctuary + 100, xCoordForOpponentTotoroSanctuary + 100, yCoordForOpponentTotoroSanctuary + 100);
         map.placeTotoro(c, this.getOpponent());
     }
 
@@ -782,7 +761,7 @@ public class PlayerBrain {
         int xCoordForOpponentTigerPlayground = parser.getXCoordFromOpponentBuild(opponentMove);
         int yCoordForOpponentTigerPlayground = parser.getYCoordFromOpponentBuild(opponentMove);
         int zCoordForOpponentTigerPlayground = parser.getZCoordFromOpponentBuild(opponentMove);
-        Coordinate c = new Coordinate(zCoordForOpponentTigerPlayground, xCoordForOpponentTigerPlayground, yCoordForOpponentTigerPlayground);
+        Coordinate c = new Coordinate(zCoordForOpponentTigerPlayground + 100, xCoordForOpponentTigerPlayground + 100, yCoordForOpponentTigerPlayground + 100);
         map.placeTiger(c, this.getOpponent());
     }
 }
